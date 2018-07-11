@@ -1,5 +1,7 @@
 package main.notizverwaltung.model.interfaces;
 
+import main.notizverwaltung.model.classes.Kategorie;
+
 public interface NotizblockInterface {
     public void setNotizblockID(int notizblockID);
     public void getNotizblockID();
