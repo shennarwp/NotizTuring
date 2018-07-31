@@ -1,5 +1,8 @@
 package main.notizverwaltung.model.interfaces;
 
+import main.notizverwaltung.model.classes.Aufgabe;
+import main.notizverwaltung.model.classes.Kategorie;
+
 import java.util.Date;
 
 public interface NotizInterface {

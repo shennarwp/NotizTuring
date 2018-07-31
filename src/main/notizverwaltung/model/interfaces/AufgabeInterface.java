@@ -9,4 +9,5 @@ public interface AufgabeInterface {
     public int getAufgabeID();
     public String getBeschreibung();
     public Boolean getBearbeitet();
+    public String toString();
 }
