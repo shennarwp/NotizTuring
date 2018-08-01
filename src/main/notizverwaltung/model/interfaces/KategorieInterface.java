@@ -11,4 +11,5 @@ public interface KategorieInterface {
     public int getKategorieID();
     public String getKategorieName();
     public Color getFarbe();
+    public String toString();
 }
