@@ -4,6 +4,7 @@ import main.notizverwaltung.model.interfaces.AufgabeInterface;
 
 public class Aufgabe implements AufgabeInterface {
 
+    //TODO Wie wird die Aufgaben ID erzeugt?
     private int aufgabeID;
     private String beschreibung;
     private Boolean bearbeitet;
@@ -48,4 +49,10 @@ public class Aufgabe implements AufgabeInterface {
                 ", bearbeitet=" + bearbeitet +
                 '}';
     }
+}
+
+
+//TODO Es gibt nur zwei Zustände. Eventuell kann man auch bool holen
+ enum Bearbeitungszustaende {
+    FERTIG, UNFERTIG
 }
