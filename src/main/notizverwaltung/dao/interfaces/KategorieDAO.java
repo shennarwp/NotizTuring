@@ -1,4 +1,4 @@
-package main.notizverwaltung.dao.intefaces;
+package main.notizverwaltung.dao.interfaces;
 
 import main.notizverwaltung.model.classes.Kategorie;
 
@@ -9,7 +9,7 @@ public interface KategorieDAO {
     public void addKategorie(Kategorie kategorie);
     public Kategorie getKategorie(int kategorieID);
     public void deleteKategorie( int kategorieID);
-    public void modifiyKategorie(Kategorie kategorie);
+    public void updateKategorie(Kategorie kategorie);
 
     public List<Kategorie> getAlleKategorien();
 

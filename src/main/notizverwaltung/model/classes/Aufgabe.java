@@ -12,31 +12,38 @@ public class Aufgabe implements AufgabeInterface {
 
     @Override
     public void setAufgabeID(int aufgabeID){
+
         this.aufgabeID=aufgabeID;
     }
 
     @Override
     public void setBeschreibung(String beschreibung){
+
         this.beschreibung=beschreibung;
     }
 
     @Override
+    //TODO Ändern auf Enum
     public void setBearbeitet(Boolean bearbeitet){
+
         this.bearbeitet=bearbeitet;
     }
 
     @Override
     public int getAufgabeID(){
+
         return this.aufgabeID;
     }
 
     @Override
     public String getBeschreibung(){
+
         return this.beschreibung;
     }
 
     @Override
     public Boolean getBearbeitet(){
+
         return this.bearbeitet;
     }
 
