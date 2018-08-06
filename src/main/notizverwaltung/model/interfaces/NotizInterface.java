@@ -39,6 +39,7 @@ public interface NotizInterface {
 
 
     public void addAufgabe(Aufgabe aufgabe);
+    public void updateAufgabbe(Aufgabe aufgabe);
     public void removeAufgabe(int aufgabeID);
     public Aufgabe getAufgabe(int aufgabeID);
 

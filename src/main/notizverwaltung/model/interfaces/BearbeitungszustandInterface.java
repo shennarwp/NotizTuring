@@ -5,4 +5,7 @@ public interface BearbeitungszustandInterface {
     public void addBearbeitungszustand(String neuerBearbeitungszustand);
     public void modifiyBearbeitungszustand (String alterBearbeitungszustand, String neuerBearbeitungszustand);
     public void removeBearbeitungszustand (String zuloeschenderBearbeitungszustand);
+
+
+
 }

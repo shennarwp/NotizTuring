@@ -1,13 +1,17 @@
 package main.notizverwaltung.model.classes;
 
-public class Bearbeitungszustand {
+import main.notizverwaltung.util.PropertiesLoader;
 
-    final private int maximaleAnzahlAnBearbeitungszustaende = 10;
+import java.io.IOException;
+
+public class Bearbeitungszustand  {
+
+
 
     private String[] bearbeitungszustaende;
 
-    public Bearbeitungszustand(){
-
+    public Bearbeitungszustand() throws IOException {
+        final int maximaleAnzahlAnBearbeitungszustaende = Integer.parseInt(PropertiesLoader.loadPropertie("AnzahlDerBearbeitungsZustaende"));	;
         bearbeitungszustaende = new String[maximaleAnzahlAnBearbeitungszustaende];
     }
 

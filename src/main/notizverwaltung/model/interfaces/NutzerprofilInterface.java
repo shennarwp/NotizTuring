@@ -1,7 +1,7 @@
 package main.notizverwaltung.model.interfaces;
 
 public interface NutzerprofilInterface {
-    public String getBenutzer();
+    public String getBenutzerInformationen();
 
 
     //Security; Eventuell als Hash oder in eigenes Package
