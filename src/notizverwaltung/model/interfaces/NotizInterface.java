@@ -38,14 +38,5 @@ public interface NotizInterface {
     public String getBearbeitungszustand();
 
 
-    public void addAufgabe(Aufgabe aufgabe);
-    public void updateAufgabbe(Aufgabe aufgabe);
-    public void removeAufgabe(int aufgabeID);
-    public Aufgabe getAufgabe(int aufgabeID);
-
-    //TODO Wie schreiben wir die Aufgaben in die Datenbank? Eventuell Tabellen für Aufgabe pro Task
-    public Aufgabe[] getAufgaben();
-    public Aufgabe[] getFertigeAufgaben();
-    public Aufgabe[] getUnfertigeAufgaben();
 }
 

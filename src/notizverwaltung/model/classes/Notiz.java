@@ -15,7 +15,7 @@ public class Notiz {
     private String beschreibung;
 
     //TODO Warum Wrapper Klasse und keine primitiven Datentyp?
-    private Boolean prioritaet;
+    private boolean prioritaet;
 
     //TODO Eventuell Problem, Was ist der BearbeitungszustandImpl? Eventuell eigene Klasse
     private String bearbeitungszustand;
@@ -24,8 +24,7 @@ public class Notiz {
     private Date erinnerung;
     private boolean istErinnerungGesetzt;
 
-    //TODO Maximale Anzahl an Aufgaben? Steht nix im Pflichtenheft
-    private Aufgabe[] aufgaben;
+
 
 
     //Kontruktor mit den maximalen Parameter zum Erstellen einer Notiz
@@ -33,7 +32,7 @@ public class Notiz {
     public Notiz(Date erstellungsDatum, Kategorie kategorie, String title, String beschreibung, Boolean prioritaet, String bearbeitungszustand, Date faehlligkeit, Date erinnerung, boolean istErinnerungGesetzt) throws IOException {
 
         final int  maximaleAnzahlDerNotizenImArray = Integer.parseInt(PropertiesLoader.loadPropertie("AnzahlDerAufgabenMaximal"));
-        aufgaben = new Aufgabe[maximaleAnzahlDerNotizenImArray];
+        
 
         this.erstellungsDatum = new Date();
         this.erstellungsDatum = erstellungsDatum;
