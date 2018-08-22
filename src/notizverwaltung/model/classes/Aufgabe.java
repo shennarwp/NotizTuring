@@ -7,7 +7,7 @@ public class Aufgabe implements AufgabeInterface {
     //TODO Wie wird die Aufgaben ID erzeugt?
     private int aufgabeID;
     private String beschreibung;
-    private Boolean bearbeitet;
+    private boolean bearbeitet;
 
 
     @Override
@@ -23,8 +23,8 @@ public class Aufgabe implements AufgabeInterface {
     }
 
     @Override
-    //TODO Ändern auf Enum
-    public void setBearbeitet(Boolean bearbeitet){
+
+    public void setBearbeitet(boolean bearbeitet){
 
         this.bearbeitet=bearbeitet;
     }
@@ -59,7 +59,3 @@ public class Aufgabe implements AufgabeInterface {
 }
 
 
-//TODO Es gibt nur zwei Zustände. Eventuell kann man auch bool holen
- enum Bearbeitungszustaende {
-    FERTIG, UNFERTIG
-}

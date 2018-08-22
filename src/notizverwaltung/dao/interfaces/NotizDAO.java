@@ -12,8 +12,5 @@ public interface NotizDAO {
     public void updateNotiz (Notiz notiz);
 
 
-    public List<Notiz> getAlleNotizenVonEinemBearbeitungszustand(String bearbeitungszustand);
-    public List<Notiz> getAlleNotizenVomNotizblock (int NotizblockID);
-
 
 }

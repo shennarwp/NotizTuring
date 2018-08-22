@@ -1,10 +1,12 @@
 package notizverwaltung.model.classes;
 
 import notizverwaltung.model.interfaces.NotizInterface;
+import notizverwaltung.util.PropertiesLoader;
 
+import java.io.IOException;
 import java.util.Date;
 
-public class Notiz implements NotizInterface {
+public class Notiz {
 
     private int notizID;
     private Date erstellungsDatum;
@@ -15,7 +17,7 @@ public class Notiz implements NotizInterface {
     //TODO Warum Wrapper Klasse und keine primitiven Datentyp?
     private Boolean prioritaet;
 
-    //TODO Eventuell Problem, Was ist der Bearbeitungszustand? Eventuell eigene Klasse
+    //TODO Eventuell Problem, Was ist der BearbeitungszustandImpl? Eventuell eigene Klasse
     private String bearbeitungszustand;
 
     private Date faehlligkeit;
@@ -28,10 +30,9 @@ public class Notiz implements NotizInterface {
 
     //Kontruktor mit den maximalen Parameter zum Erstellen einer Notiz
 
-    public Notiz(Date erstellungsDatum, Kategorie kategorie, String title, String beschreibung, Boolean prioritaet, String bearbeitungszustand, Date faehlligkeit, Date erinnerung, boolean istErinnerungGesetzt) {
+    public Notiz(Date erstellungsDatum, Kategorie kategorie, String title, String beschreibung, Boolean prioritaet, String bearbeitungszustand, Date faehlligkeit, Date erinnerung, boolean istErinnerungGesetzt) throws IOException {
 
-        int final maximaleAnzahlDerNotizenImArray =
-        Integer.parseInt(PropertiesLoader.loadPropertie("AnzahlDerAufgabenMaximal"));
+        final int  maximaleAnzahlDerNotizenImArray = Integer.parseInt(PropertiesLoader.loadPropertie("AnzahlDerAufgabenMaximal"));
         aufgaben = new Aufgabe[maximaleAnzahlDerNotizenImArray];
 
         this.erstellungsDatum = new Date();
@@ -53,10 +54,10 @@ public class Notiz implements NotizInterface {
 
 
     //Konstruktor mit den minimalen Parameter zum Erstellen einer Notiz
-    public Notiz (String title, String beschreibung){
-        this(new Date(), new Kategorie(), title, beschreibug, new Boolean(), "null", new Date(), new date(),boolean )
+    public Notiz (String title, String beschreibung) throws IOException {
+        this(new Date(), new Kategorie(), title, beschreibung, new Boolean(true), "null", new Date(), new Date(),true );
 
-        int final maximaleAnzahlDerNotizenImArray = Integer.parseInt(PropertiesLoader.loadPropertie("AnzahlDerAufgabenMaximal"));
+        final int  maximaleAnzahlDerNotizenImArray = Integer.parseInt(PropertiesLoader.loadPropertie("AnzahlDerAufgabenMaximal"));
         aufgaben = new Aufgabe[maximaleAnzahlDerNotizenImArray];
 
         this.erstellungsDatum = new Date();

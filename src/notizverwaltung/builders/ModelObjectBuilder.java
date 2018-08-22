@@ -1,12 +1,13 @@
 package notizverwaltung.builders;
 
-import notizverwaltung.model.classes.Aufgabe;
-import notizverwaltung.model.classes.Kategorie;
 import notizverwaltung.model.classes.Notiz;
 import notizverwaltung.model.classes.Nutzerprofil;
-import notizverwaltung.service.interfaces.AufgabenService;
+
 import notizverwaltung.service.interfaces.KategorieService;
 import notizverwaltung.service.interfaces.NotizService;
+import notizverwaltung.service.interfaces.AufgabeService;
+
+
 
 /**
  * Die Klasse stellt ein Service-Objekt bereit
@@ -35,7 +36,7 @@ public class ModelObjectBuilder {
         return null;
     }
 
-    public static AufgabenService getAufgabenService(){
+    public static AufgabeService getAufgabenService(){
         return null;
     }
 
