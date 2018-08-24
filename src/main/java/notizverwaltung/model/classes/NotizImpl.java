@@ -2,7 +2,9 @@ package notizverwaltung.model.classes;
 
 import notizverwaltung.exceptions.StringIsEmptyException;
 import notizverwaltung.model.interfaces.Notiz;
+import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.validators.StringValidator;
+
 
 import java.io.IOException;
 import java.util.Date;
@@ -19,7 +21,7 @@ public class NotizImpl implements Notiz {
 
     private int notizID;
     private Date erstellungsDatum;
-    private Kategorie kategorie;
+    private kategorie;
     private String title;
     private String beschreibung;
     private boolean prioritaet;
