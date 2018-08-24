@@ -1,6 +1,6 @@
 package notizverwaltung.dao.interfaces;
 
-import model.classes.NotizImpl;
+import notizverwaltung.model.classes.NotizImpl;
 
 public interface NotizDAO {
 

@@ -1,6 +1,6 @@
-package service.interfaces;
+package notizverwaltung.service.interfaces;
 
-import model.interfaces.Bearbeitungszustand;
+import notizverwaltung.model.interfaces.Bearbeitungszustand;
 
 public interface BearbeitungszustaendeService {
 

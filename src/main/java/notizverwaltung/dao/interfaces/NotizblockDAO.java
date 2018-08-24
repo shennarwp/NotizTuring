@@ -1,6 +1,6 @@
 package notizverwaltung.dao.interfaces;
 
-import model.classes.Notizblock;
+import notizverwaltung.model.classes.Notizblock;
 
 public interface NotizblockDAO {
     public Notizblock getNotizblock();

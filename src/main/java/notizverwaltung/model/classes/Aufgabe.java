@@ -1,6 +1,6 @@
 package notizverwaltung.model.classes;
 
-import model.interfaces.AufgabeInterface;
+import notizverwaltung.model.interfaces.AufgabeInterface;
 
 public class Aufgabe implements AufgabeInterface {
 

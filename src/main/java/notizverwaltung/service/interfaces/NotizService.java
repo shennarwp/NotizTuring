@@ -2,9 +2,10 @@ package notizverwaltung.service.interfaces;
 
 
 import notizverwaltung.model.classes.NotizImpl;
+import notizverwaltung.model.interfaces.Kategorie;
 
 import java.util.List;
-import notizverwaltung.model.interfaces.Kategorie;
+
 
 /**
  *

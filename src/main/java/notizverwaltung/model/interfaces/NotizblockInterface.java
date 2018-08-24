@@ -1,4 +1,4 @@
-package model.interfaces;
+package notizverwaltung.model.interfaces;
 
 
 public interface NotizblockInterface {

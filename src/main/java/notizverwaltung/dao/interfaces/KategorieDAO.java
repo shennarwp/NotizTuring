@@ -1,6 +1,6 @@
 package notizverwaltung.dao.interfaces;
 
-import model.classes.Kategorie;
+import notizverwaltung.model.interfaces.Kategorie;
 
 import java.util.List;
 
