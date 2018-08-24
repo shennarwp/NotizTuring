@@ -21,7 +21,7 @@ public class NotizImpl implements Notiz {
 
     private int notizID;
     private Date erstellungsDatum;
-    private kategorie;
+    private Kategorie kategorie;
     private String title;
     private String beschreibung;
     private boolean prioritaet;
@@ -69,12 +69,14 @@ public class NotizImpl implements Notiz {
      */
 
     public NotizImpl(String title, String beschreibung) throws IOException {
-        this( new Kategorie(), title, beschreibung, new Boolean(false), "null", new Date(), new Date(),true );
+        //this( new Kategorie(), title, beschreibung, new Boolean(false), "null", new Date(), new Date(),true );
 
     }
 
+
+
     @Override
-    public void setKategorie(Kategorie kategorie) {
+    public void setKategorie(Kategorie kategorie){
         this.kategorie = kategorie;
     }
 
@@ -148,6 +150,7 @@ public class NotizImpl implements Notiz {
     public Boolean getPrioritaet() {
         return prioritaet;
     }
+
 
 
 }

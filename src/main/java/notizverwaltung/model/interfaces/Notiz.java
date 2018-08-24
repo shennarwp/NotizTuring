@@ -1,7 +1,7 @@
-package model.interfaces;
+package notizverwaltung.model.interfaces;
 
-import exceptions.StringIsEmptyException;
-import model.classes.Kategorie;
+import notizverwaltung.exceptions.StringIsEmptyException;
+import notizverwaltung.model.interfaces.Kategorie;
 
 import java.util.Date;
 

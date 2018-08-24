@@ -1,6 +1,6 @@
-package service.interfaces;
+package notizverwaltung.service.interfaces;
 
-import model.classes.Aufgabe;
+import notizverwaltung.model.classes.Aufgabe;
 
 import java.util.List;
 

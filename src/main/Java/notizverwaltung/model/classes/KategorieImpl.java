@@ -1,9 +1,9 @@
-package model.classes;
+package notizverwaltung.model.classes;
 
 import javafx.scene.paint.Color;
-import model.interfaces.KategorieInterface;
+import notizverwaltung.model.interfaces.Kategorie;
 
-public class Kategorie implements KategorieInterface {
+public class KategorieImpl implements Kategorie {
 
     private int kategorieID;
     private String kategorieName;

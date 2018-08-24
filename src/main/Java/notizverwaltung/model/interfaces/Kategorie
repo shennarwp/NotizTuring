@@ -1,8 +1,8 @@
-package model.interfaces;
+package notizverwaltung.model.interfaces;
 
 import javafx.scene.paint.Color;
 
-public interface KategorieInterface {
+public interface Kategorie {
 
     public void setKategorieID(int kategorieID);
     public void setKategorieName(String name);

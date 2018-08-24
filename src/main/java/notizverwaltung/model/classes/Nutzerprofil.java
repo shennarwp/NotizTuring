@@ -1,4 +1,4 @@
-package model.classes;
+package notizverwaltung.model.classes;
 
 public class Nutzerprofil  {
 

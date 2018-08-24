@@ -1,7 +1,7 @@
-package validators;
+package notizverwaltung.validators;
 
 
-import exceptions.StringIsEmptyException;
+import notizverwaltung.exceptions.StringIsEmptyException;
 
 /**
  * Die Klasse beinhaltet Methoden zur Ueberprufung von Strings

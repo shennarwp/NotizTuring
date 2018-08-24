@@ -1,11 +1,11 @@
 package notizverwaltung.builders;
 
-import model.classes.NotizImpl;
-import model.classes.Nutzerprofil;
+import notizverwaltung.model.classes.NotizImpl;
+import notizverwaltung.model.classes.Nutzerprofil;
 
-import service.interfaces.KategorieService;
-import service.interfaces.NotizService;
-import service.interfaces.AufgabeService;
+import notizverwaltung.service.interfaces.KategorieService;
+import notizverwaltung.service.interfaces.NotizService;
+import notizverwaltung.service.interfaces.AufgabeService;
 
 
 
