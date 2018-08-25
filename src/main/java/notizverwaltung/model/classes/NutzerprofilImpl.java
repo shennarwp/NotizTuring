@@ -1,4 +1,4 @@
-package notizverwaltung.model.classes;
+package main.java.notizverwaltung.model.classes;
 
 public class NutzerprofilImpl {
 

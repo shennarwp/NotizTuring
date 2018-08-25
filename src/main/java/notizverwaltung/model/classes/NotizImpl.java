@@ -1,9 +1,9 @@
-package notizverwaltung.model.classes;
+package main.java.notizverwaltung.model.classes;
 
-import notizverwaltung.exceptions.StringIsEmptyException;
-import notizverwaltung.model.interfaces.Notiz;
-import notizverwaltung.model.interfaces.Kategorie;
-import notizverwaltung.validators.StringValidator;
+import main.java.notizverwaltung.exceptions.StringIsEmptyException;
+import main.java.notizverwaltung.model.interfaces.Notiz;
+import main.java.notizverwaltung.model.interfaces.Kategorie;
+import main.java.notizverwaltung.validators.StringValidator;
 
 
 import java.io.IOException;

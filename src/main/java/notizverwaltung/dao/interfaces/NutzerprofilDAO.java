@@ -1,6 +1,6 @@
-package notizverwaltung.dao.interfaces;
+package main.java.notizverwaltung.dao.interfaces;
 
-import notizverwaltung.model.classes.Nutzerprofil;
+import main.java.notizverwaltung.model.interfaces.Nutzerprofil;
 
 public interface NutzerprofilDAO {
     public void addNutzerprofil(Nutzerprofil nutzerprofil);

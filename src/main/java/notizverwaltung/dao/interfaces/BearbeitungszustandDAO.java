@@ -1,8 +1,8 @@
-package notizverwaltung.dao.interfaces;
+package main.java.notizverwaltung.dao.interfaces;
 
-import notizverwaltung.model.interfaces.Bearbeitungszustand;
-import notizverwaltung.model.interfaces.Notiz;
-import notizverwaltung.model.interfaces.Kategorie;
+import main.java.notizverwaltung.model.interfaces.Bearbeitungszustand;
+import main.java.notizverwaltung.model.interfaces.Notiz;
+import main.java.notizverwaltung.model.interfaces.Kategorie;
 
 import java.util.List;
 

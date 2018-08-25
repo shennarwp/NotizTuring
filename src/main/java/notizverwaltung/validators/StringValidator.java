@@ -1,7 +1,7 @@
-package notizverwaltung.validators;
+package main.java.notizverwaltung.validators;
 
 
-import notizverwaltung.exceptions.StringIsEmptyException;
+import main.java.notizverwaltung.exceptions.StringIsEmptyException;
 
 /**
  * Die Klasse beinhaltet Methoden zur Ueberprufung von Strings

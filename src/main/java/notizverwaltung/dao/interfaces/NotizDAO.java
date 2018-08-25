@@ -1,6 +1,6 @@
-package notizverwaltung.dao.interfaces;
+package main.java.notizverwaltung.dao.interfaces;
 
-import notizverwaltung.model.classes.NotizImpl;
+import main.java.notizverwaltung.model.classes.NotizImpl;
 
 public interface NotizDAO {
 

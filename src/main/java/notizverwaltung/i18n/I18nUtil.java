@@ -14,8 +14,8 @@ public class I18nUtil {
 	/**
 	 * Der Basisname fuer die Ressourcendatei. 
 	 */
-	private static final String I18N_BASENAME_MESSAGES ="resources.messages" ;
-	private static final String I18N_BASENAME_MENU ="resources.menu" ;
+	private static final String I18N_BASENAME_MESSAGES ="main.resources.messages" ;
+	private static final String I18N_BASENAME_MENU ="main.resources.menu" ;
 
 
 	/**

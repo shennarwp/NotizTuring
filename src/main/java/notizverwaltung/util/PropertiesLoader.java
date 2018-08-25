@@ -1,4 +1,4 @@
-package util;
+package main.java.notizverwaltung.util;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

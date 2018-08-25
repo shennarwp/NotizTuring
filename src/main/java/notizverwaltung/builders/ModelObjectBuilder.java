@@ -1,11 +1,11 @@
-package notizverwaltung.builders;
+package main.java.notizverwaltung.builders;
 
-import notizverwaltung.model.classes.NotizImpl;
-import notizverwaltung.model.classes.Nutzerprofil;
+import main.java.notizverwaltung.model.classes.NotizImpl;
+import main.java.notizverwaltung.model.classes.NutzerprofilImpl;
 
-import notizverwaltung.service.interfaces.KategorieService;
-import notizverwaltung.service.interfaces.NotizService;
-import notizverwaltung.service.interfaces.AufgabeService;
+import main.java.notizverwaltung.service.interfaces.KategorieService;
+import main.java.notizverwaltung.service.interfaces.NotizService;
+import main.java.notizverwaltung.service.interfaces.AufgabeService;
 
 
 
@@ -23,7 +23,7 @@ public class ModelObjectBuilder {
         return null;
     }
 
-    public static Nutzerprofil getNutzerprofilObjekt (){
+    public static NutzerprofilImpl getNutzerprofilObjekt (){
 
         return null;
     }

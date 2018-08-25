@@ -1,6 +1,6 @@
-package notizverwaltung.service.interfaces;
+package main.java.notizverwaltung.service.interfaces;
 
-import notizverwaltung.model.interfaces.Kategorie;
+import main.java.notizverwaltung.model.interfaces.Kategorie;
 
 import java.util.List;
 
