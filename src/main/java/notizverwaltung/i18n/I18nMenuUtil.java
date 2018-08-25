@@ -1,8 +1,10 @@
-package notizverwaltung.i18n;
+package main.java.notizverwaltung.i18n;
+
+import main.java.notizverwaltung.i18n.I18nUtil;
 
 import java.util.ResourceBundle;
 
-public class I18nMenuUtil {
+public abstract class I18nMenuUtil {
 
     private static final String MENU_FILE = "menu-file";
     private static final String MENU_NEW = "menu-new";

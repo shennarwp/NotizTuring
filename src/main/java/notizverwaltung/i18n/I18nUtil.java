@@ -1,4 +1,4 @@
-package notizverwaltung.i18n;
+package main.java.notizverwaltung.i18n;
 
 import java.io.File;
 import java.util.ResourceBundle;

@@ -1,4 +1,4 @@
-package notizverwaltung.javafx8;
+package main.java.notizverwaltung.javafx8;
 
 import javafx.application.Application;
 import javafx.scene.Node;
@@ -9,7 +9,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import notizverwaltung.i18n.I18nMenuUtil;
+import main.java.notizverwaltung.i18n.I18nMenuUtil;
 
 import static javafx.application.Application.launch;
 
