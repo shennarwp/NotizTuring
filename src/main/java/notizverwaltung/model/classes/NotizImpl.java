@@ -33,7 +33,6 @@ public class NotizImpl implements Notiz {
 
     /**
      * Konstruktor fuer NotizImplementierung
-     * @param kategorie
      * @param title
      * @param beschreibung
      * @param prioritaet
@@ -43,7 +42,7 @@ public class NotizImpl implements Notiz {
      * @param istErinnerungGesetzt
      * @throws IOException
      */
-    public NotizImpl(Kategorie kategorie, String title, String beschreibung, Boolean prioritaet, String bearbeitungszustand, Date faehlligkeit, Date erinnerung, boolean istErinnerungGesetzt) throws IOException {
+    public NotizImpl(String title, String beschreibung, Boolean prioritaet, String bearbeitungszustand, Date faehlligkeit, Date erinnerung, boolean istErinnerungGesetzt) throws IOException {
 
 
         this.erstellungsDatum = new Date();
@@ -69,10 +68,9 @@ public class NotizImpl implements Notiz {
      */
 
     public NotizImpl(String title, String beschreibung) throws IOException {
-        //this( new Kategorie(), title, beschreibung, new Boolean(false), "null", new Date(), new Date(),true );
+        this(title, beschreibung, new Boolean(false), "null", new Date(), new Date(), true);
 
     }
-
 
 
     @Override
@@ -133,7 +131,7 @@ public class NotizImpl implements Notiz {
     //TODO Muss noch implemetiert werden
     @Override
     public Kategorie getKategorie() {
-        return null;
+        return kategorie;
     }
 
     @Override
