@@ -7,38 +7,23 @@ import notizverwaltung.service.interfaces.KategorieService;
 import notizverwaltung.service.interfaces.NotizService;
 import notizverwaltung.service.interfaces.AufgabeService;
 
+import java.io.IOException;
 
 
 /**
- * Die Klasse stellt ein Service-Objekt bereit
+ * Die Klasse stellt ein Model-Objekt bereit
  *
- * @author
+ * @author Tobias Gottschalk
  * @version 1.0
  * @since
  */
 public class ModelObjectBuilder {
 
-    public static NotizImpl getNotizObjekt(){
-        //Aufruf von Notizobject
-        return null;
+    public static NotizImpl getNotizObjektMinimaleParameter(String title, String beschreibung) throws IOException {
+        return new NotizImpl(title,beschreibung);
     }
 
-    public static NutzerprofilImpl getNutzerprofilObjekt (){
 
-        return null;
-    }
-
-    public static NotizService getNotizService(){
-        return null;
-    }
-
-    public static KategorieService getKategorieService(){
-        return null;
-    }
-
-    public static AufgabeService getAufgabenService(){
-        return null;
-    }
 
 
 
