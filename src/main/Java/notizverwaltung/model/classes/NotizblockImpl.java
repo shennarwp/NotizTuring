@@ -1,6 +1,6 @@
 package notizverwaltung.model.classes;
 
-public class Notizblock {
+public class NotizblockImpl {
 
 
     private int notizblockID;

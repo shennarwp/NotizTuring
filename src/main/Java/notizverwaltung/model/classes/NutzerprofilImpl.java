@@ -1,6 +1,6 @@
 package notizverwaltung.model.classes;
 
-public class Nutzerprofil  {
+public class NutzerprofilImpl {
 
     private int nutzerprofilID;
 

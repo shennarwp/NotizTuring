@@ -1,6 +1,6 @@
 package notizverwaltung.model.interfaces;
 
-public interface AufgabeInterface {
+public interface Aufgabe {
 
     //Ändern der AufgabenID sinnvoll?
     public void setAufgabeID(int aufgabeID);

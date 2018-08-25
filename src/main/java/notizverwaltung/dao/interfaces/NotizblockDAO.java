@@ -1,9 +1,9 @@
 package notizverwaltung.dao.interfaces;
 
-import notizverwaltung.model.classes.Notizblock;
+import notizverwaltung.model.classes.NotizblockImpl;
 
 public interface NotizblockDAO {
-    public Notizblock getNotizblock();
-    public void addNotizblock (Notizblock notizblock);
+    public NotizblockImpl getNotizblock();
+    public void addNotizblock (NotizblockImpl notizblockImpl);
     public void removeNotizblock(int notizblockID);
 }

@@ -1,8 +1,8 @@
 package notizverwaltung.model.classes;
 
-import notizverwaltung.model.interfaces.AufgabeInterface;
+import notizverwaltung.model.interfaces.Aufgabe;
 
-public class Aufgabe implements AufgabeInterface {
+public class AufgabeImpl implements Aufgabe {
 
     //TODO Wie wird die Aufgaben ID erzeugt?
     private int aufgabeID;
@@ -50,7 +50,7 @@ public class Aufgabe implements AufgabeInterface {
 
     @Override
     public String toString() {
-        return "Aufgabe{" +
+        return "AufgabeImpl{" +
                 "aufgabeID=" + aufgabeID +
                 ", beschreibung='" + beschreibung + '\'' +
                 ", bearbeitet=" + bearbeitet +

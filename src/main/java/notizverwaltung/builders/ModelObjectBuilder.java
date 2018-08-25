@@ -1,7 +1,7 @@
 package notizverwaltung.builders;
 
 import notizverwaltung.model.classes.NotizImpl;
-import notizverwaltung.model.classes.Nutzerprofil;
+import notizverwaltung.model.classes.NutzerprofilImpl;
 
 import notizverwaltung.service.interfaces.KategorieService;
 import notizverwaltung.service.interfaces.NotizService;
@@ -23,7 +23,7 @@ public class ModelObjectBuilder {
         return null;
     }
 
-    public static Nutzerprofil getNutzerprofilObjekt (){
+    public static NutzerprofilImpl getNutzerprofilObjekt (){
 
         return null;
     }
