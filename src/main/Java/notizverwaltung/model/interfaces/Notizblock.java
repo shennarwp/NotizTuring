@@ -1,7 +1,7 @@
-package notizverwaltung.model.interfaces;
+package main.java.notizverwaltung.model.interfaces;
 
 
-public interface NotizblockInterface {
+public interface Notizblock {
 
 
     public void setNotizblockID(int notizblockID);

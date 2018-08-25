@@ -1,4 +1,4 @@
-package notizverwaltung.model.interfaces;
+package main.java.notizverwaltung.model.interfaces;
 
 import javafx.scene.paint.Color;
 

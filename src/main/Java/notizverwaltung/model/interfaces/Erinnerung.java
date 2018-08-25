@@ -1,8 +1,8 @@
-package notizverwaltung.model.interfaces;
+package main.java.notizverwaltung.model.interfaces;
 
 import java.util.Date;
 
-public interface ErinnerungInterface {
+public interface Erinnerung {
 
     public Date getErinnterungsDatum();
     public void setErinnterungsDatum(Date datum);

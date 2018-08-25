@@ -1,8 +1,8 @@
-package main.java.notizverwaltung.model.classes;
+package notizverwaltung.model.classes;
 
-import main.java.notizverwaltung.model.interfaces.Aufgabe;
+import notizverwaltung.model.interfaces.AufgabeInterface;
 
-public class AufgabeImpl implements Aufgabe {
+public class AufgabeImpl implements AufgabeInterface {
 
     //TODO Wie wird die Aufgaben ID erzeugt?
     private int aufgabeID;

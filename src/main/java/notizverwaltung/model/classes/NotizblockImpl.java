@@ -1,4 +1,4 @@
-package main.java.notizverwaltung.model.classes;
+package notizverwaltung.model.classes;
 
 public class NotizblockImpl {
 
