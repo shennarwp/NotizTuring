@@ -17,7 +17,9 @@ import java.util.List;
  * @version 1.0
  * @since
  */
+//TODO Kommentare oder irgendwelche Tests für Interface notwendig?
 public interface NotizService {
+
 
     public Notiz getNotiz(int NotizID);
     public void newNotiz(Notiz notiz, int notizblockID);

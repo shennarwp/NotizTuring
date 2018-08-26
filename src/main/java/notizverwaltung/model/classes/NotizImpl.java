@@ -1,9 +1,11 @@
 package notizverwaltung.model.classes;
 
+import notizverwaltung.exceptions.IntIstNegativException;
 import notizverwaltung.exceptions.ObjectIstNullException;
 import notizverwaltung.exceptions.StringIsEmptyException;
 import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.model.interfaces.Kategorie;
+import notizverwaltung.validators.IntValidator;
 import notizverwaltung.validators.ObjectValidator;
 import notizverwaltung.validators.StringValidator;
 
@@ -33,35 +35,6 @@ public class NotizImpl implements Notiz {
     private boolean istErinnerungGesetzt;
 
 
-    /**
-     * Konstruktor fuer NotizImplementierung
-     * @param title
-     * @param beschreibung
-     * @param prioritaet
-     * @param bearbeitungszustand
-     * @param faehlligkeit
-     * @param erinnerung
-     * @param istErinnerungGesetzt
-     * @throws IOException
-     */
-    public NotizImpl(String title, String beschreibung, Boolean prioritaet, String bearbeitungszustand, Date faehlligkeit, Date erinnerung, boolean istErinnerungGesetzt) throws IOException {
-
-
-        this.erstellungsDatum = new Date();
-        this.kategorie = kategorie;
-        this.title = title;
-        this.beschreibung = beschreibung;
-        this.prioritaet = prioritaet;
-        this.bearbeitungszustand = bearbeitungszustand;
-        this.faehlligkeit = faehlligkeit;
-        this.erinnerung = erinnerung;
-        this.istErinnerungGesetzt = istErinnerungGesetzt;
-
-        this.title = title;
-        this.beschreibung = beschreibung;
-
-    }
-
 
     /**Konstruktor mit den minimalen Parameter zum Erstellen einer NotizImpl
      * @param title
@@ -69,8 +42,18 @@ public class NotizImpl implements Notiz {
      * @throws IOException
      */
 
-    public NotizImpl(String title, String beschreibung) throws IOException {
-        this(title, beschreibung, new Boolean(false), "null", new Date(), new Date(), true);
+    //TODO muss jeder Notiz beim Erstellen ein Bearbeitunszustand/Spalte zugewiesen werden?
+    public NotizImpl(int notizID,String title, String beschreibung) throws IOException, StringIsEmptyException, IntIstNegativException {
+        //this(notizID,title, beschreibung, new Boolean(false), "null", new Date(), new Date(), true);
+        IntValidator.checkObIntNullOderNegativIst(notizID);
+        StringValidator.checkObStringLeerOderNullIst(title);
+        StringValidator.checkObStringLeerOderNullIst(beschreibung);
+
+        this.notizID = notizID;
+        this.title = title;
+        this.beschreibung = beschreibung;
+
+
 
     }
 
@@ -84,13 +67,13 @@ public class NotizImpl implements Notiz {
 
     @Override
     public void setTitle(String title) throws StringIsEmptyException {
-        StringValidator.checkObStringLeerIst(title);
+        StringValidator.checkObStringLeerOderNullIst(title);
         this.title = title;
     }
 
     @Override
     public void setBeschreibung(String beschreibung) throws StringIsEmptyException {
-        StringValidator.checkObStringLeerIst(beschreibung);
+        StringValidator.checkObStringLeerOderNullIst(beschreibung);
         this.beschreibung = beschreibung;
     }
 
@@ -102,7 +85,7 @@ public class NotizImpl implements Notiz {
     //TODO Wie war das nochmal mit dem Berabeitungszustand
     @Override
     public void setBearbeitungszustand(String Bearbeitungszustand) throws StringIsEmptyException {
-        StringValidator.checkObStringLeerIst(beschreibung);
+        StringValidator.checkObStringLeerOderNullIst(beschreibung);
         this.bearbeitungszustand = bearbeitungszustand;
     }
 

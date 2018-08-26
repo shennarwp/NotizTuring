@@ -1,9 +1,13 @@
 package notizverwaltung.service.classes;
 
+import notizverwaltung.builders.DaoObjectBuilder;
+import notizverwaltung.dao.interfaces.NotizDAO;
+import notizverwaltung.exceptions.ObjectIstNullException;
 import notizverwaltung.model.classes.NotizImpl;
 import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.service.interfaces.NotizService;
+import notizverwaltung.validators.ObjectValidator;
 
 import java.util.List;
 
@@ -18,6 +22,19 @@ import java.util.List;
  */
 public class NotizServiceImpl implements NotizService {
 
+    private NotizDAO notizDAO;
+
+    //TODO Olbertz hat den Konstruktor so in seinem Beispiel aufgebaut. Warum sollte man das machen? Kann man es auch weglassen -> abklären
+    public NotizServiceImpl(NotizDAO notizDAO) throws ObjectIstNullException {
+        ObjectValidator.checkObObjectNullIst(notizDAO);
+        this.notizDAO = notizDAO;
+
+    }
+
+    public NotizServiceImpl() throws ObjectIstNullException {
+        this(DaoObjectBuilder.getNotizDaoObject());
+    }
+
     @Override
     public NotizImpl getNotiz(int NotizID) {
         return null;
@@ -25,11 +42,12 @@ public class NotizServiceImpl implements NotizService {
 
     @Override
     public void newNotiz(Notiz notiz, int notizblockID) {
-
+        notizDAO.addNotiz(notiz, notizblockID);
     }
 
     @Override
     public void removeNotiz(int NotizID) {
+
 
     }
 
