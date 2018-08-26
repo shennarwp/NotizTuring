@@ -1,12 +1,19 @@
 package notizverwaltung.model.interfaces;
 
+import notizverwaltung.exceptions.ObjectIstNullException;
 import notizverwaltung.exceptions.StringIsEmptyException;
 import notizverwaltung.model.interfaces.Kategorie;
 
 import java.util.Date;
 
 
-
+/**
+ *  Das Interface stellt die Methoden für die Modelklasse
+ *
+ * @author Tobias Gottschalk
+ *
+ * @version 1.0
+ */
 public interface Notiz {
     //TODO Sollen wir nur mit Objekten arbeiten oder mit der NotizID? 
 
@@ -15,7 +22,7 @@ public interface Notiz {
 
 
 
-    public void setKategorie(Kategorie kategorie);
+    public void setKategorie(Kategorie kategorie) throws ObjectIstNullException;
     public void setTitle(String name) throws StringIsEmptyException;
     public void setBeschreibung(String beschreibung) throws StringIsEmptyException;
     public void setPrioritaet(Boolean prioritaet);
@@ -26,7 +33,7 @@ public interface Notiz {
 
     public boolean isErinnerungGesetzt();
     public Date getErinnerung();
-    public void setErinnerung(Date erinnerung);
+    public void setErinnerung(Date erinnerung) throws ObjectIstNullException;
 
     //Wann wurde die NotizImpl erstellt
     public Date getErstellungsDatum();

@@ -1,8 +1,10 @@
 package notizverwaltung.model.classes;
 
+import notizverwaltung.exceptions.ObjectIstNullException;
 import notizverwaltung.exceptions.StringIsEmptyException;
 import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.model.interfaces.Kategorie;
+import notizverwaltung.validators.ObjectValidator;
 import notizverwaltung.validators.StringValidator;
 
 
@@ -74,7 +76,8 @@ public class NotizImpl implements Notiz {
 
 
     @Override
-    public void setKategorie(Kategorie kategorie){
+    public void setKategorie(Kategorie kategorie) throws ObjectIstNullException {
+        ObjectValidator.checkObObjectNullIst(kategorie);
         this.kategorie = kategorie;
     }
 
@@ -119,7 +122,8 @@ public class NotizImpl implements Notiz {
     }
 
     @Override
-    public void setErinnerung(Date erinnerung) {
+    public void setErinnerung(Date erinnerung) throws ObjectIstNullException {
+        ObjectValidator.checkObObjectNullIst(erinnerung);
         this.erinnerung = erinnerung;
     }
 
