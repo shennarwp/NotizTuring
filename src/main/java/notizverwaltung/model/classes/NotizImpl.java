@@ -43,7 +43,7 @@ public class NotizImpl implements Notiz {
      */
 
     //TODO muss jeder Notiz beim Erstellen ein Bearbeitunszustand/Spalte zugewiesen werden?
-    public NotizImpl(int notizID,String title, String beschreibung) throws IOException, StringIsEmptyException, IntIstNegativException {
+    public NotizImpl(String title, String beschreibung) throws IOException, StringIsEmptyException, IntIstNegativException {
         //this(notizID,title, beschreibung, new Boolean(false), "null", new Date(), new Date(), true);
         IntValidator.checkObIntNullOderNegativIst(notizID);
         StringValidator.checkObStringLeerOderNullIst(title);

@@ -1,5 +1,7 @@
 package notizverwaltung.builders;
 
+import notizverwaltung.exceptions.IntIstNegativException;
+import notizverwaltung.exceptions.StringIsEmptyException;
 import notizverwaltung.model.classes.NotizImpl;
 import notizverwaltung.model.classes.NutzerprofilImpl;
 
@@ -19,7 +21,7 @@ import java.io.IOException;
  */
 public class ModelObjectBuilder {
 
-    public static NotizImpl getNotizObjektMinimaleParameter(String title, String beschreibung) throws IOException {
+    public static NotizImpl getNotizObjektMinimaleParameter(String title, String beschreibung) throws IOException, StringIsEmptyException, IntIstNegativException {
         return new NotizImpl(title,beschreibung);
     }
 
