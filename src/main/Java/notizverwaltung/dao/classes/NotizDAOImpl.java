@@ -2,10 +2,13 @@ package notizverwaltung.dao.classes;
 
 import notizverwaltung.dao.interfaces.NotizDAO;
 import notizverwaltung.model.classes.NotizImpl;
+import notizverwaltung.model.interfaces.Notiz;
 
 public class NotizDAOImpl implements NotizDAO {
+
+
     @Override
-    public void addNotiz(NotizImpl notiz) {
+    public void addNotiz(Notiz notiz, int notizblockID) {
 
     }
 

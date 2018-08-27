@@ -31,7 +31,7 @@ class NotizImplTest {
     @Test
     void setBeschreibungStringIstNull() throws StringIsEmptyException, IntIstNegativException, IOException {
         String test = null;
-        NotizImpl notiz = new NotizImpl(1,"test","Das ist eine Beschreibung");
+        NotizImpl notiz = new NotizImpl("Title","Das ist eine Beschreibung");
         assertThrows(StringIsEmptyException.class, () -> { notiz.setBeschreibung(test);});
 
     }
@@ -39,7 +39,7 @@ class NotizImplTest {
     @Test
     void setBeschreibungStringIstLeer() throws StringIsEmptyException, IntIstNegativException, IOException {
         String test = " ";
-        NotizImpl notiz = new NotizImpl(1,"test","Das ist eine Beschreibung");
+        NotizImpl notiz = new NotizImpl("Title","Das ist eine Beschreibung");
         assertThrows(StringIsEmptyException.class, () -> { notiz.setBeschreibung(test);});
 
     }
@@ -50,7 +50,7 @@ class NotizImplTest {
 
         Bearbeitungszustand bearbeitungszustand = null;
 
-        NotizImpl notiz = new NotizImpl(1,"test","Das ist eine Beschreibung");
+        NotizImpl notiz = new NotizImpl("Title","Das ist eine Beschreibung");
         //assertThrows(StringIsEmptyException.class, () -> {notiz.setBearbeitungszustand();});
     }
 
