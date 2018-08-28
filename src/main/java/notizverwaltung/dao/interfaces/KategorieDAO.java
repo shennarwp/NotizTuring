@@ -4,6 +4,10 @@ import notizverwaltung.model.interfaces.Kategorie;
 
 import java.util.List;
 
+/**
+ * @author Agra Bimantara
+ */
+
 public interface KategorieDAO {
 
     public void addKategorie(Kategorie kategorie);

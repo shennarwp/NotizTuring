@@ -9,6 +9,9 @@ public class AufgabeImpl implements Aufgabe {
     private String beschreibung;
     private boolean bearbeitet;
 
+    public AufgabeImpl(String beschreibung, String bearbeitet) {
+    }
+
 
     @Override
     public void setAufgabeID(int aufgabeID){

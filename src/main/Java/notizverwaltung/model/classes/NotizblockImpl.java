@@ -1,10 +1,23 @@
 package notizverwaltung.model.classes;
 
-public class NotizblockImpl {
+import notizverwaltung.model.interfaces.Notizblock;
+
+public class NotizblockImpl implements Notizblock {
 
 
     private int notizblockID;
 
 
+    public NotizblockImpl(int notizblockID) {
+    }
 
+    @Override
+    public void setNotizblockID(int notizblockID) {
+
+    }
+
+    @Override
+    public void getNotizblockID() {
+
+    }
 }

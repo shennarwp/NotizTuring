@@ -6,6 +6,10 @@ import notizverwaltung.model.interfaces.Kategorie;
 
 import java.util.List;
 
+/**
+ * @author Agra Bimantara
+ */
+
 public interface BearbeitungszustandDAO {
 
     public void addBearbeitungszustand (Bearbeitungszustand bearbeitungszustand);

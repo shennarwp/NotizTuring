@@ -4,6 +4,10 @@ import notizverwaltung.dao.interfaces.NotizDAO;
 import notizverwaltung.model.classes.NotizImpl;
 import notizverwaltung.model.interfaces.Notiz;
 
+/**
+ *@author Agra Bimantara
+ */
+
 public class NotizDAOImpl implements NotizDAO {
 
 

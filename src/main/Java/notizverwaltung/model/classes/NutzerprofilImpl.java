@@ -1,9 +1,23 @@
 package notizverwaltung.model.classes;
 
-public class NutzerprofilImpl {
+import notizverwaltung.model.interfaces.Nutzerprofil;
+
+public class NutzerprofilImpl implements Nutzerprofil {
 
     private int nutzerprofilID;
 
 
+    public NutzerprofilImpl(int nutzerprofilID) {
+    }
 
+
+    @Override
+    public void setNutzerproilID(int nutzerproilID) {
+
+    }
+
+    @Override
+    public void setNutzerprofilID(int nutzerprofilID) {
+
+    }
 }

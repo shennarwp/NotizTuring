@@ -1,9 +1,13 @@
 package notizverwaltung.model.classes;
 
-public class BearbeitungszustandImpl {
+import notizverwaltung.model.interfaces.Bearbeitungszustand;
+
+public class BearbeitungszustandImpl implements Bearbeitungszustand {
     private String nameDerSpalte;
 
 
+    @Override
+    public void setBearbeitungszustand(String neuerBearbeitungszustand) {
 
-
+    }
 }

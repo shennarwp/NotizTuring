@@ -3,6 +3,10 @@ package notizverwaltung.dao.interfaces;
 import notizverwaltung.model.classes.NotizImpl;
 import notizverwaltung.model.interfaces.Notiz;
 
+/**
+ * @author Agra Bimantara
+ */
+
 public interface NotizDAO {
 
     public void addNotiz(Notiz notiz, int notizblockID);
