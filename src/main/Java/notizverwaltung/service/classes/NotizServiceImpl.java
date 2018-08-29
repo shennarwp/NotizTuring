@@ -36,23 +36,24 @@ public class NotizServiceImpl implements NotizService {
     }
 
     @Override
-    public NotizImpl getNotiz(int NotizID) {
-        return null;
+    public int addNotiz(Notiz notiz, int notizblockID) {
+        int notizID = notizDAO.addNotiz(notiz, notizblockID);
+        notiz.setID(notizID);
+        return notizID;
     }
 
     @Override
-    public void newNotiz(Notiz notiz, int notizblockID) {
-        notizDAO.addNotiz(notiz, notizblockID);
-    }
-
-    @Override
-    public void removeNotiz(int NotizID) {
-
-
+    public Notiz getNotiz(int notizID) {
+        return notizDAO.getNotiz(notizID);
     }
 
     @Override
     public void updateNotiz(Notiz notiz) {
+
+    }
+
+    @Override
+    public void deleteNotiz(int NotizID) {
 
     }
 

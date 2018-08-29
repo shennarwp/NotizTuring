@@ -7,10 +7,15 @@ import notizverwaltung.model.classes.NutzerprofilImpl;
  * @author Agra Bimantara
  */
 
-public class NutzerprofilDAOImpl implements NutzerprofilDAO {
+public class NutzerprofilDAOImpl extends ObjectDAOImpl implements NutzerprofilDAO {
     @Override
-    public void addNutzerprofil(NutzerprofilImpl nutzerprofilImpl) {
+    public int addNutzerprofil(NutzerprofilImpl nutzerprofilImpl) {
+        return 0;
+    }
 
+    @Override
+    public NutzerprofilImpl getNutzerprofil(int NutzerprofilID) {
+        return null;
     }
 
     @Override
@@ -23,8 +28,5 @@ public class NutzerprofilDAOImpl implements NutzerprofilDAO {
 
     }
 
-    @Override
-    public NutzerprofilImpl getNutzerprofil(int NutzerprofilID) {
-        return null;
-    }
+
 }

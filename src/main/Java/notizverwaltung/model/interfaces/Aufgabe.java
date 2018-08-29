@@ -1,14 +1,21 @@
 package notizverwaltung.model.interfaces;
 
-public interface Aufgabe {
+import notizverwaltung.exceptions.StringIsEmptyException;
 
-    //Ändern der AufgabenID sinnvoll?
-    public void setAufgabeID(int aufgabeID);
-    public void setBeschreibung(String beschreibung);
-    public void setBearbeitet(boolean bearbeitet);
+/**
+ * @author Shenna RWP
+ */
+public interface Aufgabe
+{
 
     public int getAufgabeID();
+    public void setAufgabeID(int aufgabeID);
+
     public String getBeschreibung();
-    public Boolean getBearbeitet();
+    public void setBeschreibung(String beschreibung) throws StringIsEmptyException;
+
+    public boolean getBearbeitet();
+    public void setBearbeitet(boolean bearbeitet);
+
     public String toString();
 }

@@ -1,7 +1,8 @@
 package notizverwaltung.model.interfaces;
 
-public interface Nutzerprofil {
-    public void setNutzerproilID(int nutzerproilID);
+public interface Nutzerprofil
+{
+    public int getNutzerprofilID();
+    public void setNutzerprofilID(int nutzerprofilID);
 
-    void setNutzerprofilID(int nutzerprofilID);
 }

@@ -1,51 +1,65 @@
 package notizverwaltung.model.classes;
 
 import javafx.scene.paint.Color;
+import notizverwaltung.exceptions.StringIsEmptyException;
 import notizverwaltung.model.interfaces.Kategorie;
+import notizverwaltung.validators.StringValidator;
 
-public class KategorieImpl implements Kategorie {
+import javax.persistence.*;
 
+/**
+ * @author Shenna RWP
+ */
+@Entity
+@Table(name = "Kategorie")
+public class KategorieImpl implements Kategorie
+{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "KategorieID", nullable = false, unique = true)
     private int kategorieID;
+
+    @Column(name = "KategorieName")
     private String kategorieName;
+
     private Color farbe;
 
-
-
-    @Override
-    public Color getFarbe() {
-        return this.farbe;
+    public KategorieImpl(String kategorieName) throws StringIsEmptyException {
+        setKategorieName(kategorieName);
     }
-
+    public KategorieImpl() {}
 
     @Override
     public int getKategorieID() {
         return this.kategorieID;
     }
 
+    @Override
+    public void setKategorieID(int kategorieID) {
+        this.kategorieID = kategorieID;
+    }
 
     @Override
     public String getKategorieName() {
         return this.kategorieName;
     }
 
-
     @Override
-    public void setKategorieID(int kategorieID) {
-        this.kategorieID = kategorieID;
-    }
-
-
-    @Override
-    public void setKategorieName(String kategorieName) {
+    public void setKategorieName(String kategorieName) throws StringIsEmptyException {
+        StringValidator.checkObStringLeerOderNullIst(kategorieName);
         this.kategorieName = kategorieName;
     }
 
+    @Override
+    public Color getFarbe() {
+        return this.farbe;
+    }
 
     @Override
     public void setFarbe(Color farbe) {
         this.farbe = farbe;
     }
-
 
     @Override
     public String toString() {

@@ -1,55 +1,65 @@
 package notizverwaltung.model.classes;
 
+import notizverwaltung.exceptions.StringIsEmptyException;
 import notizverwaltung.model.interfaces.Aufgabe;
+import notizverwaltung.validators.StringValidator;
 
-public class AufgabeImpl implements Aufgabe {
+import javax.persistence.*;
 
-    //TODO Wie wird die Aufgaben ID erzeugt?
+/**
+ * @author Shenna RWP
+ */
+@Entity
+@Table(name = "Aufgabe")
+public class AufgabeImpl implements Aufgabe
+{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "AufgabeID", nullable = false, unique = true)
     private int aufgabeID;
+
+    @Column(name = "Beschreibung")
     private String beschreibung;
     private boolean bearbeitet;
 
-    public AufgabeImpl(String beschreibung, String bearbeitet) {
+    public AufgabeImpl(String beschreibung, boolean bearbeitet) throws StringIsEmptyException {
+        setBeschreibung(beschreibung);
+        setBearbeitet(bearbeitet);
     }
 
-
-    @Override
-    public void setAufgabeID(int aufgabeID){
-
-        this.aufgabeID=aufgabeID;
-    }
-
-    @Override
-    public void setBeschreibung(String beschreibung){
-
-        this.beschreibung=beschreibung;
-    }
-
-    @Override
-
-    public void setBearbeitet(boolean bearbeitet){
-
-        this.bearbeitet=bearbeitet;
-    }
+    public AufgabeImpl() {}
 
     @Override
     public int getAufgabeID(){
-
         return this.aufgabeID;
     }
 
     @Override
-    public String getBeschreibung(){
+    public void setAufgabeID(int aufgabeID){
+        this.aufgabeID = aufgabeID;
+    }
 
+    @Override
+    public String getBeschreibung(){
         return this.beschreibung;
     }
 
     @Override
-    public Boolean getBearbeitet(){
+    public void setBeschreibung(String beschreibung) throws StringIsEmptyException {
+        StringValidator.checkObStringLeerOderNullIst(beschreibung);
+        this.beschreibung=beschreibung;
+    }
 
+    @Override
+    public boolean getBearbeitet(){
         return this.bearbeitet;
     }
 
+    @Override
+    public void setBearbeitet(boolean bearbeitet){
+        this.bearbeitet = bearbeitet;
+    }
 
     @Override
     public String toString() {

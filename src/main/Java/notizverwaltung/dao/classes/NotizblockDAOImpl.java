@@ -7,19 +7,19 @@ import notizverwaltung.model.classes.NotizblockImpl;
  * @author Agra Bimantara
  */
 
-public class NotizblockDAOImpl implements NotizblockDAO {
+public class NotizblockDAOImpl extends ObjectDAOImpl implements NotizblockDAO {
     @Override
     public NotizblockImpl getNotizblock() {
         return null;
     }
 
     @Override
-    public void addNotizblock(NotizblockImpl notizblockImpl) {
-
+    public int addNotizblock(NotizblockImpl notizblockImpl) {
+        return 0;
     }
 
     @Override
-    public void removeNotizblock(int notizblockID) {
+    public void deleteNotizblock(int notizblockID) {
 
     }
 }
