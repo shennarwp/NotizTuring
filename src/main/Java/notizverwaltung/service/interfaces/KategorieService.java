@@ -5,11 +5,14 @@ import notizverwaltung.model.interfaces.Kategorie;
 import java.util.List;
 
 public interface KategorieService {
-    public List<Kategorie> getAllKategorien();
-    public void getKategorie(int kategorieID);
+
+    public int addKategorie(Kategorie kategorie);
+    public Kategorie getKategorie(int kategorieID);
     public void updateKategorie (Kategorie kategorie);
 
     //Achtung nur löschen, wenn keine Artikel mehr eine Kategorie hat
-    public void removeKategorie (Kategorie kategorie);
+    public void deleteKategorie (int kategorieID);
+
+    public List<Kategorie> getAllKategorien();
 
 }

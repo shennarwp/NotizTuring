@@ -2,7 +2,6 @@ package notizverwaltung.model.interfaces;
 
 import notizverwaltung.exceptions.ObjectIstNullException;
 import notizverwaltung.exceptions.StringIsEmptyException;
-import notizverwaltung.model.interfaces.Kategorie;
 
 import java.util.Date;
 
@@ -11,38 +10,56 @@ import java.util.Date;
  *  Das Interface stellt die Methoden für die Modelklasse
  *
  * @author Tobias Gottschalk
+ * @author Shenna RWP
  *
  * @version 1.0
  */
-public interface Notiz {
+
+public interface Notiz
+{
     //TODO Sollen wir nur mit Objekten arbeiten oder mit der NotizID? 
 
     //TODO Das Erstellungsdatum wird generiert. Braucht man eigentlich nicht
     //public void setDatum(int NotizID, Date datum);
 
+    //____________________ID____________________
+    public int getNotizID();
+    public void setID(int notizID);
 
+    //____________________TITLE____________________
+    public String getTitle();
+    public void setTitle(String title) throws StringIsEmptyException;
 
-    public void setKategorie(Kategorie kategorie) throws ObjectIstNullException;
-    public void setTitle(String name) throws StringIsEmptyException;
+    //____________________KATEGORIE____________________
+    public int getKategorieID();
+    public String getKategorie();
+    public void setKategorie(String kategorieName) throws StringIsEmptyException;
+
+    //____________________BEARBEITUNGSZUSTAND____________________
+    public int getBearbeitungszustandID();
+    public String getBearbeitungszustand();
+    public void setBearbeitungszustand(String nameDerSpalte) throws StringIsEmptyException;
+
+    //____________________BESCHREIBUNG____________________
+    public String getBeschreibung();
     public void setBeschreibung(String beschreibung) throws StringIsEmptyException;
-    public void setPrioritaet(Boolean prioritaet);
 
-    //In welcher Spalte befindet sich die NotizImpl
-    public void setBearbeitungszustand(String Bearbeitungszustand) throws StringIsEmptyException;
+    //____________________PRIORITÄT____________________
+    public boolean getPrioritaet();
+    public void setPrioritaet(boolean prioritaet);
 
+    //____________________FÄLLIGKEIT____________________
+    public Date getFaelligkeit();
+    public void setFaelligkeit(Date faelligkeit) throws ObjectIstNullException;
 
-    public boolean isErinnerungGesetzt();
+    //____________________ERRINERUNG____________________
+    public boolean istErinnerungGesetzt();
     public Date getErinnerung();
     public void setErinnerung(Date erinnerung) throws ObjectIstNullException;
 
-    //Wann wurde die NotizImpl erstellt
-    public Date getErstellungsDatum();
-    public Kategorie getKategorie();
-    public String getTitle();
-    public String getBeschreibung();
-    public Boolean getPrioritaet();
+    //____________________ERSTELLUNG____________________
+    public Date getErstellung();
 
-    public String getBearbeitungszustand();
 
 
 }

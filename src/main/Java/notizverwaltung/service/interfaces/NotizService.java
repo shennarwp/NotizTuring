@@ -21,10 +21,11 @@ import java.util.List;
 public interface NotizService {
 
 
+    public int addNotiz(Notiz notiz, int notizblockID);
     public Notiz getNotiz(int NotizID);
-    public void newNotiz(Notiz notiz, int notizblockID);
-    public void removeNotiz(int NotizID);
+
     public void updateNotiz(Notiz notiz);
+    public void deleteNotiz(int NotizID);
 
     //TODO Brauchen wir eine Methode zum Verändern der Spalte?
 

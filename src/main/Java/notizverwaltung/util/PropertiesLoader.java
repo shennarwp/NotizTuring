@@ -1,4 +1,4 @@
-package util;
+package notizverwaltung.util;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,7 +16,7 @@ public class PropertiesLoader {
     //TODO Wo werden die Exceptions abgefangen??
     //TODO Eventuell zu umständlich. Vielleicht eine einfache Klasse mit public static final usw. ->Eventuell Olbertz fragen was Best Practices ist
 
-    public static String loadPropertie(String key) throws IOException  {
+    public static String loadProperties(String key) throws IOException  {
         String result;
         InputStream inputStream;
 

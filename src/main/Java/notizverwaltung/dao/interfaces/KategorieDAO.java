@@ -8,12 +8,13 @@ import java.util.List;
  * @author Agra Bimantara
  */
 
-public interface KategorieDAO {
+public interface KategorieDAO extends ObjectDAO {
 
-    public void addKategorie(Kategorie kategorie);
+    public int addKategorie(Kategorie kategorie);
     public Kategorie getKategorie(int kategorieID);
-    public void deleteKategorie( int kategorieID);
+    public int istKategorieExist(String kategorieName);
     public void updateKategorie(Kategorie kategorie);
+    public void deleteKategorie( int kategorieID);
 
     public List<Kategorie> getAlleKategorien();
 
