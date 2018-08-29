@@ -10,8 +10,8 @@ package notizverwaltung.constants;
 
 public class FXKonstanten {
 
-    public static final String PFAD_ROOT_LAYOUT = "view/RootLayout.fxml";
-    public static final String PFAD_DIALOG_LAYOUT = "view/Dialog.fxml";
+    public static final String PFAD_ROOT_LAYOUT = "/view/RootLayout.fxml";
+    public static final String PFAD_DIALOG_LAYOUT = "/view/Dialog.fxml";
 
     public static final String ANWENDUNG_NAME = "Notizverwaltung";
 
