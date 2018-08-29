@@ -39,7 +39,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        System.out.println("HIIIIIIIIIIIIIIIIIIIIIIIIII");
+        System.out.println("HIIIIIIIIIIIIIIIIIIIIIIIIIII");
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle(FXKonstanten.ANWENDUNG_NAME);
         //this.primaryStage.setMaximized(true);
