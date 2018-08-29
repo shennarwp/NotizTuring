@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 /**
  *
  * Diese Klasse gibt die Funktionalität (DERZEIT NUR VON DER MENUBAR)für das Grundfenster "rootBorderPane" aus der Klasse "MainApp" an.
- * In der view/RootLayout.fxml wird auf die Methoden dieser Klasse verwiesen.
+ * In der view_fxml/RootLayout.fxml wird auf die Methoden dieser Klasse verwiesen.
  * 
  * @author Michelle Blau
  * @version 29.08.2018
