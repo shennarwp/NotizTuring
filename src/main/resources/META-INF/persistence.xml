@@ -5,10 +5,12 @@
              xmlns="http://java.sun.com/xml/ns/persistence">
     <persistence-unit name="test" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        EDIT LATER!
-        <class>Util.Notiz</class>
-        <class>Util.Kategorie</class>
-        <class>Util.Bearbeitungszustand</class>
+        <class>notizverwaltung.model.classes.NotizblockImpl</class>
+        <class>notizverwaltung.model.classes.NotizImpl</class>
+        <class>notizverwaltung.model.classes.KategorieImpl</class>
+        <class>notizverwaltung.model.classes.BearbeitungszustandImpl</class>
+        <class>notizverwaltung.model.classes.AufgabeImpl</class>
+        <class>notizverwaltung.model.classes.NutzerprofilImpl</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC" />
             <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:src/main/resources/testdb.db" />
