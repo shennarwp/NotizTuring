@@ -69,7 +69,7 @@ public class Fxtest extends Application {
         };
 
 
-        //itmNotiz.addEventHandler(DragEvent. , lambdaErstelleNotizDialog);
+        itmNotiz.setOnAction(lambdaErstelleNotizDialog);
 
         final Menu menuBearbeiten = new Menu(I18nMenuUtil.getMenuEdit());
         final Menu menuOptionen = new Menu(I18nMenuUtil.getMenuOptions());

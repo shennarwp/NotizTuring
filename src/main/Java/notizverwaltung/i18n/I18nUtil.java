@@ -16,6 +16,7 @@ public class I18nUtil {
 	 */
 	private static final String I18N_BASENAME_MESSAGES ="i18nresources.messages" ;
 	private static final String I18N_BASENAME_MENU ="i18nresources.menu" ;
+	private static final String I18N_BASENAME_DIALOG="i18nresources.dialog" ;
 
 
 	/**
@@ -23,6 +24,7 @@ public class I18nUtil {
 	 */
 	private static ResourceBundle resourceBundleMessages;
 	private static ResourceBundle resourceBundleMenu;
+	private static ResourceBundle resourceBundleDialog;
 
 
 
@@ -37,6 +39,9 @@ public class I18nUtil {
 
 		resourceBundleMenu = ResourceBundle.getBundle
 				(I18N_BASENAME_MENU);
+
+		resourceBundleDialog = ResourceBundle.getBundle
+				(I18N_BASENAME_DIALOG);
 	}
 
 
@@ -51,5 +56,9 @@ public class I18nUtil {
 
 	public static ResourceBundle getMenuResourceBundle() {
 		return resourceBundleMenu;
+	}
+
+	public static ResourceBundle getDialogResourceBundle(){
+		return resourceBundleDialog;
 	}
 }

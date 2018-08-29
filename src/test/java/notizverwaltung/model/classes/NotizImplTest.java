@@ -29,7 +29,7 @@ class NotizImplTest {
     }
 
     @Test
-    void setBeschreibungStringIstNull() throws StringIsEmptyException, IntIstNegativException, IOException {
+    void setBeschreibungStringIstNull() throws StringIsEmptyException, IntIstNegativException, IOException, ObjectIstNullException {
         String test = null;
         NotizImpl notiz = new NotizImpl("Title","Das ist eine Beschreibung");
         assertThrows(StringIsEmptyException.class, () -> { notiz.setBeschreibung(test);});
@@ -37,7 +37,7 @@ class NotizImplTest {
     }
 
     @Test
-    void setBeschreibungStringIstLeer() throws StringIsEmptyException, IntIstNegativException, IOException {
+    void setBeschreibungStringIstLeer() throws StringIsEmptyException, IntIstNegativException, IOException, ObjectIstNullException {
         String test = " ";
         NotizImpl notiz = new NotizImpl("Title","Das ist eine Beschreibung");
         assertThrows(StringIsEmptyException.class, () -> { notiz.setBeschreibung(test);});
@@ -46,7 +46,7 @@ class NotizImplTest {
 
     //TODO Muss ueberarbeitet werden. Bearbeitunszustand Objekt oder String?
     @Test
-    void setBearbeitungszustandIstNull() throws StringIsEmptyException, IntIstNegativException, IOException {
+    void setBearbeitungszustandIstNull() throws StringIsEmptyException, IntIstNegativException, IOException, ObjectIstNullException {
 
         Bearbeitungszustand bearbeitungszustand = null;
 
