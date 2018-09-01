@@ -11,7 +11,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import notizverwaltung.constants.FXKonstanten;
 import notizverwaltung.i18n.I18nUtil;
+import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.Kategorie;
+import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.view.RootLayoutController;
 
 import java.io.IOException;
@@ -19,9 +21,12 @@ import java.util.ResourceBundle;
 
 /**
  * Hauptprogramm, welches die GUI initialisiert
+ * Kategorien, Notizen, Bearbeitungszustände befinden sich jeweils in einer ObversableList.
  *
- * @author Michelle Blau
- * @version 28.08.2018
+ * Die Funktionalität der GUI-Elemente wird durch entsprechende Controller-Klassen und FXML zur Verfügung gestellt.
+ *
+ * @author Michelle Blau, Johannes Gerwert
+ * @version 31.08.2018
  */
 
 public class MainApp extends Application {
@@ -31,18 +36,24 @@ public class MainApp extends Application {
     private BorderPane rootBorderPane;
 
     /**
-     * Die Daten befinden sich in einer ObservableList
+     * Die Kategorien, Notizen und Bearbeitungszustände befinden sich in einer ObservableList
      */
     private ObservableList<Kategorie> kategorieListe = FXCollections.observableArrayList();
+    private ObservableList<Notiz> notizListe = FXCollections.observableArrayList();
+    private ObservableList<Bearbeitungszustand> bearbeitungszustandListe = FXCollections.observableArrayList();
 
 
-
+    /**
+     * Startet das Hauptprogramm
+     *
+     * @param primaryStage
+     */
     @Override
     public void start(Stage primaryStage) {
-        System.out.println("HIIIIIIIIIIIIIIIIIIIIIIIIIII");
+        System.out.println(kategorieListe.size() + notizListe.size() + bearbeitungszustandListe.size());
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle(FXKonstanten.ANWENDUNG_NAME);
-        //this.primaryStage.setMaximized(true);
+        //initSpalten();
         initRootLayout();
 
     }
@@ -74,6 +85,20 @@ public class MainApp extends Application {
         return this.kategorieListe;
     }
 
+    public ObservableList<Notiz> getNotizListe() {
+        return notizListe;
+    }
+
+    public ObservableList<Bearbeitungszustand> getBearbeitungszustandListe() {
+        return bearbeitungszustandListe;
+    }
+
+
+    /**
+     * Führt launch()-Methode aus, sollte aus Kompatibilitätsgründen nicht verändert werden
+     *
+     * @param args wird nicht verwendet
+     */
     public static void main(String[] args) {
         launch(args);
     }
