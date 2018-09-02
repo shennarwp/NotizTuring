@@ -39,6 +39,8 @@ public class ModelObjectBuilder
             se.printStackTrace();
         } catch (ObjectIstNullException oe) {
             oe.printStackTrace();
+        } catch (IntIstNegativException e) {
+            e.printStackTrace();
         }
         return  notiz;
     }
@@ -51,6 +53,8 @@ public class ModelObjectBuilder
             se.printStackTrace();
         } catch (ObjectIstNullException oe) {
             oe.printStackTrace();
+        } catch (IntIstNegativException e) {
+            e.printStackTrace();
         }
         return notiz;
     }

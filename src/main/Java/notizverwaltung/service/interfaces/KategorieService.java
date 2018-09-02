@@ -1,12 +1,13 @@
 package notizverwaltung.service.interfaces;
 
+import notizverwaltung.exceptions.IntIstNegativException;
 import notizverwaltung.model.interfaces.Kategorie;
 
 import java.util.List;
 
 public interface KategorieService {
 
-    public int addKategorie(Kategorie kategorie);
+    public int addKategorie(Kategorie kategorie) throws IntIstNegativException;
     public Kategorie getKategorie(int kategorieID);
     public void updateKategorie (Kategorie kategorie);
 

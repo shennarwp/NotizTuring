@@ -3,6 +3,7 @@ package notizverwaltung.service.classes;
 import notizverwaltung.builders.DaoObjectBuilder;
 import notizverwaltung.dao.classes.KategorieDAOImpl;
 import notizverwaltung.dao.interfaces.KategorieDAO;
+import notizverwaltung.exceptions.IntIstNegativException;
 import notizverwaltung.exceptions.ObjectIstNullException;
 import notizverwaltung.model.classes.KategorieImpl;
 import notizverwaltung.model.interfaces.Kategorie;
@@ -30,7 +31,7 @@ public class KategorieServiceImpl implements KategorieService
 	}
 
 	@Override
-	public int addKategorie(Kategorie kategorie) {
+	public int addKategorie(Kategorie kategorie) throws IntIstNegativException {
 		int kategorieID = kategorieDAO.addKategorie(kategorie);
 		kategorie.setKategorieID(kategorieID);
 		return kategorieID;

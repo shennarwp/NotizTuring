@@ -1,5 +1,6 @@
 package notizverwaltung.model.interfaces;
 
+import notizverwaltung.exceptions.IntIstNegativException;
 import notizverwaltung.exceptions.ObjectIstNullException;
 import notizverwaltung.exceptions.StringIsEmptyException;
 
@@ -33,7 +34,7 @@ public interface Notiz
     //____________________KATEGORIE____________________
     public int getKategorieID();
     public String getKategorie();
-    public void setKategorie(String kategorieName) throws StringIsEmptyException;
+    public void setKategorie(String kategorieName) throws StringIsEmptyException, IntIstNegativException;
 
     //____________________BEARBEITUNGSZUSTAND____________________
     public int getBearbeitungszustandID();

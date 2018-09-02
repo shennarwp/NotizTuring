@@ -2,6 +2,7 @@ package notizverwaltung.model.classes;
 
 import notizverwaltung.builders.ModelObjectBuilder;
 import notizverwaltung.builders.ServiceObjectBuilder;
+import notizverwaltung.exceptions.IntIstNegativException;
 import notizverwaltung.exceptions.ObjectIstNullException;
 import notizverwaltung.exceptions.StringIsEmptyException;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
@@ -57,7 +58,7 @@ public class NotizImpl implements Notiz
 
 
     public NotizImpl(String title, String kategorie, String bearbeitungszustand, String beschreibung, boolean prioritaet,
-                     Date faelligkeit, Date erinnerung) throws StringIsEmptyException, ObjectIstNullException {
+                     Date faelligkeit, Date erinnerung) throws StringIsEmptyException, ObjectIstNullException, IntIstNegativException {
         setTitle(title);
         setKategorie(kategorie);
         setBearbeitungszustand(bearbeitungszustand);
@@ -75,7 +76,7 @@ public class NotizImpl implements Notiz
      */
 
     //TODO muss jeder Notiz beim Erstellen ein Bearbeitunszustand/Spalte zugewiesen werden?
-    public NotizImpl(String title, String beschreibung) throws StringIsEmptyException, ObjectIstNullException {
+    public NotizImpl(String title, String beschreibung) throws StringIsEmptyException, ObjectIstNullException, IntIstNegativException {
         setTitle(title);
         setKategorie("others");
         setBearbeitungszustand("todo");
@@ -122,7 +123,7 @@ public class NotizImpl implements Notiz
     }
 
     @Override
-    public void setKategorie(String kategorieName) {
+    public void setKategorie(String kategorieName) throws IntIstNegativException {
         Kategorie kategorie = ModelObjectBuilder.getKategorieObjekt(kategorieName);
         this.kategorieID = ServiceObjectBuilder.getKategorieService().addKategorie(kategorie);
     }

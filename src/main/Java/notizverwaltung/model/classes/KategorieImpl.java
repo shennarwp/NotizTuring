@@ -1,8 +1,12 @@
 package notizverwaltung.model.classes;
 
 import javafx.scene.paint.Color;
+import notizverwaltung.exceptions.IntIstNegativException;
+import notizverwaltung.exceptions.ObjectIstNullException;
 import notizverwaltung.exceptions.StringIsEmptyException;
 import notizverwaltung.model.interfaces.Kategorie;
+import notizverwaltung.validators.IntValidator;
+import notizverwaltung.validators.ObjectValidator;
 import notizverwaltung.validators.StringValidator;
 
 import javax.persistence.*;
@@ -26,17 +30,24 @@ public class KategorieImpl implements Kategorie
     private Color farbe;
 
     public KategorieImpl(String kategorieName) throws StringIsEmptyException {
+        StringValidator.checkObStringLeerOderNullIst(kategorieName);
         setKategorieName(kategorieName);
     }
-    public KategorieImpl() {}
+
+    public KategorieImpl(){
+
+    }
+
 
     @Override
     public int getKategorieID() {
+
         return this.kategorieID;
     }
 
     @Override
-    public void setKategorieID(int kategorieID) {
+    public void setKategorieID(int kategorieID) throws IntIstNegativException {
+        IntValidator.checkObIntNullOderNegativIst(kategorieID);
         this.kategorieID = kategorieID;
     }
 
@@ -57,7 +68,8 @@ public class KategorieImpl implements Kategorie
     }
 
     @Override
-    public void setFarbe(Color farbe) {
+    public void setFarbe(Color farbe) throws ObjectIstNullException {
+        ObjectValidator.checkObObjectNullIst(farbe);
         this.farbe = farbe;
     }
 
