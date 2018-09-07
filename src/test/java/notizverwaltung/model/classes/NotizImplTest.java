@@ -12,7 +12,13 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * Testklasse fuer die Klasse NotizImpl
+ *
+ * @author Tobias Gottschalk
+ *
+ * @version 1.0
+ */
 class NotizImplTest {
 
     @BeforeEach

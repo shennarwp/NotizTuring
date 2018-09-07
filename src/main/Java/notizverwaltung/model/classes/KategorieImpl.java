@@ -37,10 +37,11 @@ public class KategorieImpl implements Kategorie
     }
 
     public KategorieImpl(String kategorieName, Color farbe) throws StringIsEmptyException, ObjectIstNullException {
-        this.kategorieName = kategorieName;
-        this.farbe = farbe;
         StringValidator.checkObStringLeerOderNullIst(kategorieName);
         setKategorieName(kategorieName);
+
+        this.kategorieName = kategorieName;
+        this.farbe = farbe;
         setFarbe(farbe);
     }
 

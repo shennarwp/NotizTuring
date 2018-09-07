@@ -9,6 +9,7 @@ import notizverwaltung.model.classes.NotizImpl;
 import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.service.interfaces.NotizService;
+import notizverwaltung.validators.IntValidator;
 import notizverwaltung.validators.ObjectValidator;
 
 import java.util.List;
@@ -39,7 +40,9 @@ public class NotizServiceImpl implements NotizService {
 
     @Override
     public int addNotiz(Notiz notiz, int notizblockID) {
+        //TODO Was passiert, wenn in DAO ein Fehler passiert?
         int notizID = notizDAO.addNotiz(notiz, notizblockID);
+        IntValidator.checkObIntNullOderNegativIst(notizID);
         notiz.setID(notizID);
         return notizID;
     }
@@ -55,7 +58,9 @@ public class NotizServiceImpl implements NotizService {
     }
 
     @Override
-    public void deleteNotiz(int NotizID) {
+    public void deleteNotiz(int notizID) {
+        IntValidator.checkObIntNullOderNegativIst(notizID);
+        notizDAO.deleteNotiz(notizID);
 
     }
 
@@ -66,6 +71,7 @@ public class NotizServiceImpl implements NotizService {
 
     @Override
     public List<Notiz> getAlleNotizenImNotizblock(int notizblockID) {
+        IntValidator.checkObIntNullOderNegativIst(notizblockID);
         return null;
     }
     @Override
@@ -75,11 +81,13 @@ public class NotizServiceImpl implements NotizService {
     }
 
     public List<Notiz> getAlleNotizenVonEinemBearbeitungszustand(int bearbeitungszustand) {
+        IntValidator.checkObIntNullOderNegativIst(bearbeitungszustand);
         return new BearbeitungszustandDAOImpl().getAlleNotizenVonEinemBearbeitungszustand(bearbeitungszustand);
     }
     @Override
-    public List<Notiz> getAlleNotizenVomNotizblock(int NotizblockID)
+    public List<Notiz> getAlleNotizenVomNotizblock(int notizblockID)
     {
-        return new BearbeitungszustandDAOImpl().getAlleNotizenVomNotizblock(NotizblockID);
+        IntValidator.checkObIntNullOderNegativIst(notizblockID);
+        return new BearbeitungszustandDAOImpl().getAlleNotizenVomNotizblock(notizblockID);
     }
 }
