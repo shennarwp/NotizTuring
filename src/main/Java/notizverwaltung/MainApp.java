@@ -69,7 +69,7 @@ public class MainApp extends Application {
 
         //TODO Notizen derzeit nicht anlegbar mit Fälligkeitsdatum
 
-//       Notiz notiz1 = new NotizImpl("Lager-Klasse impl.", "Exceptions und Validators" );
+          Notiz notiz1 = new NotizImpl("Lager-Klasse impl.", "Exceptions und Validators" );
 //
 //        notizListe.add(new NotizImpl("Lager-Klasse impl.", kat1.getKategorieName(), "To-Do", "Exceptions und Validators", true, naechsteWoche));
 //        notizListe.add(new NotizImpl("Hausaufgabe", kat2.getKategorieName(), "To-Do", "Übung 12", true, naechsteWoche));
