@@ -11,7 +11,8 @@
         <menus>
           <Menu mnemonicParsing="false" text="%menu-file">
             <items>
-              <MenuItem mnemonicParsing="false" text="%menuitem-file-new" />
+              <MenuItem mnemonicParsing="false" text="%menuitem-file-save" />
+                  <MenuItem mnemonicParsing="false" text="%menuitem-file-new" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="%menu-new">
@@ -23,7 +24,9 @@
           </Menu>
           <Menu mnemonicParsing="false" text="%menu-edit">
             <items>
-              <MenuItem mnemonicParsing="false" text="TODO" />
+              <MenuItem mnemonicParsing="false" onAction="#showKategorieAenderungsMaske" text="%menuitem-change-category" />
+                  <MenuItem mnemonicParsing="false" onAction="#showZustandAenderungsMaske" text="%menuitem-change-state" />
+                  <MenuItem mnemonicParsing="false" onAction="#showNotizAenderungsMaske" text="%menuitem-change-note" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="%menu-options">

@@ -35,11 +35,13 @@ public interface Notiz
     public int getKategorieID();
     public String getKategorie();
     public void setKategorie(String kategorieName) throws StringIsEmptyException, IntIstNegativException;
+    public void setKategorie(Kategorie kategorie);
 
     //____________________BEARBEITUNGSZUSTAND____________________
     public int getBearbeitungszustandID();
     public String getBearbeitungszustand();
     public void setBearbeitungszustand(String nameDerSpalte) throws StringIsEmptyException;
+    public void setBearbeitungszustand(Bearbeitungszustand bearbeitungszustand);
 
     //____________________BESCHREIBUNG____________________
     public String getBeschreibung();

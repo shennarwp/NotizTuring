@@ -7,7 +7,7 @@ package notizverwaltung.exceptions;
  *
  * @version 1.0
  */
-public class IntIstNegativException extends Exception{
+public class IntIstNegativException extends RuntimeException{
     private static final String MESSAGE = "Der Integer darf nicht 0 oder negativ sein";
 
     public IntIstNegativException(){

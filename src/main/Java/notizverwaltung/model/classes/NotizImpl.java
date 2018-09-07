@@ -68,6 +68,31 @@ public class NotizImpl implements Notiz
         setErinnerung(erinnerung);
     }
 
+    /**
+     * //TODO Konstruktor ohne Erinnerungsdatum, mit Kategorie-Objekt statt String
+     *
+     *
+     * @param title
+     * @param kategorie
+     * @param bearbeitungszustand
+     * @param beschreibung
+     * @param prioritaet
+     * @param faelligkeit
+     * @throws StringIsEmptyException
+     * @throws ObjectIstNullException
+     * @throws IntIstNegativException
+     */
+    public NotizImpl(String title, String kategorie, String bearbeitungszustand, String beschreibung, boolean prioritaet,
+                     Date faelligkeit) throws StringIsEmptyException, ObjectIstNullException, IntIstNegativException {
+        setTitle(title);
+        setKategorie(kategorie);
+        setBearbeitungszustand(bearbeitungszustand);
+        setBeschreibung(beschreibung);
+        setPrioritaet(prioritaet);
+        setFaelligkeit(faelligkeit);
+
+    }
+
 
     /**Konstruktor mit den minimalen Parameter zum Erstellen einer NotizImpl
      * @param title
@@ -128,6 +153,12 @@ public class NotizImpl implements Notiz
         this.kategorieID = ServiceObjectBuilder.getKategorieService().addKategorie(kategorie);
     }
 
+    //TODO Kategorie soll als Klasse verwendet werden und nicht nur als String
+    @Override
+    public void setKategorie(Kategorie kategorie) {
+
+    }
+
     //____________________BEARBEITUNGSZUSTAND____________________
     @Override
     public int getBearbeitungszustandID() {
@@ -143,6 +174,12 @@ public class NotizImpl implements Notiz
     public void setBearbeitungszustand(String nameDerSpalte) throws StringIsEmptyException {
         Bearbeitungszustand bearbeitungszustand = ModelObjectBuilder.getBearbeitungszustandObjekt(nameDerSpalte);
         this.bearbeitungszustandID = ServiceObjectBuilder.getBearbeitungszustandService().addBearbeitungszustand(bearbeitungszustand);
+    }
+
+    //TODO
+    @Override
+    public void setBearbeitungszustand(Bearbeitungszustand bearbeitungszustand) {
+
     }
 
     //____________________BESCHREIBUNG____________________

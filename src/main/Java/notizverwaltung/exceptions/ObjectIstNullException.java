@@ -7,7 +7,7 @@ package notizverwaltung.exceptions;
  *
  * @version 1.0
  */
-public class ObjectIstNullException extends Exception {
+public class ObjectIstNullException extends RuntimeException {
     private static String Message ="Das Objekt darf nicht null sein";
 
     public ObjectIstNullException(){

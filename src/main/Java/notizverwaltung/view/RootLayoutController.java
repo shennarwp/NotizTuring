@@ -5,7 +5,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import notizverwaltung.constants.FXKonstanten;
@@ -28,7 +30,7 @@ import java.util.ResourceBundle;
  * Zur Darstellung der Dialoge wird die KategorieErstellungsdialog.fxml verwendet, die Funktionalität steht in der Klasse "DialogController"
  * 
  * @author Michelle Blau
- * @version 31.08.2018
+ * @version 07.09.2018
  */
 
 
@@ -36,7 +38,7 @@ public class RootLayoutController {
 
 
 	/**
-	 * Eine Referenz auf das Hauptprogramm, wichtig zum verändern der Kategorien/Notizen/Bearbeitungszustände.
+	 * Eine Referenz auf das Hauptprogramm, wichtig zum Verändern der Kategorien/Notizen/Bearbeitungszustände.
 	 */
     private MainApp mainApp;
 
@@ -55,7 +57,7 @@ public class RootLayoutController {
     private void showKategorieErstellungsMaske() {
         Kategorie tmpKategorie = new KategorieImpl();
 
-        //TODO: In Konstante oder Util-Klasse auslagern
+        //TODO: i18n
         if(mainApp.getKategorieListe().size() == FXKonstanten.maxAnzahlKategorien){
             showZuVieleElementeDialog("Zu viele Kategorien","Bitte bestehende Kategorien entfernen");
         } else{
@@ -92,7 +94,7 @@ public class RootLayoutController {
     private void showBearbeitungszustandErstellungsMaske() {
         Bearbeitungszustand tmpZustand = new BearbeitungszustandImpl();
 
-        //TODO: In Konstante oder Util-Klasse auslagern
+        //TODO: i18n
         if(mainApp.getBearbeitungszustandListe().size() == FXKonstanten.maxAnzahlZustaende){
             showZuVieleElementeDialog("Zu viele Bearbeitungszustände","Bitte bestehende Zustände entfernen");
         } else{
@@ -129,7 +131,7 @@ public class RootLayoutController {
     private void showNotizErstellungsMaske() {
         Notiz tmpNotiz = new NotizImpl();
 
-        //TODO: In Konstante oder Util-Klasse auslagern
+        //TODO: i18n
         if(mainApp.getNotizListe().size() == FXKonstanten.maxAnzahlNotizen){
             showZuVieleElementeDialog("Zu viele Notizen","Bitte bestehende Notizen entfernen");
         } else{
@@ -167,6 +169,58 @@ public class RootLayoutController {
         dialog.setTitle(titel);
         dialog.setHeaderText(header);
         dialog.showAndWait();
+    }
+
+
+    /**
+     * Zeigt einen Dialog zum Verändern einer bestehenden Kategorie
+     */
+    @FXML
+    private void showKategorieAenderungsMaske() {
+        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_KATEGORIE_ÄNDERUNGSDIALOG_LAYOUT);
+    }
+
+
+    /**
+     * Zeigt einen Dialog zum Verändern eines bestehenden Bearbeitungszustands
+     */
+    @FXML
+    private void showZustandAenderungsMaske() {
+        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_ZUSTAND_ÄNDERUNGSDIALOG_LAYOUT);
+    }
+
+
+    /**
+     * Zeigt einen Dialog zum Verändern einer bestehenden Notiz
+     */
+    @FXML
+    private void showNotizAenderungsMaske() {
+        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_NOTIZ_ÄNDERUNGSDIALOG_LAYOUT);
+    }
+
+
+    private void showDialogFensterMitAnchorPane(String fxmlPfad){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            ResourceBundle bundle = I18nUtil.getDialogResourceBundle();
+            loader.setLocation(MainApp.class
+                    .getResource(fxmlPfad));
+            loader.setResources(bundle);
+            AnchorPane anchorPane = (AnchorPane) loader.load();
+
+            Scene scene = new Scene(anchorPane);
+            Stage dialogStage = new Stage();
+            dialogStage.setScene(scene);
+            DialogController controller = loader.getController();
+            controller.setMainApp(this.mainApp);
+
+            dialogStage.setTitle(FXKonstanten.DIALOG);
+            dialogStage.setResizable(false);
+            dialogStage.initModality(Modality.APPLICATION_MODAL);
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

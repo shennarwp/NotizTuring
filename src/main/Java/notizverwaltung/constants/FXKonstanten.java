@@ -14,6 +14,9 @@ public class FXKonstanten {
     public static final String PFAD_KATEGORIE_ERSTELLUNGSDIALOG_LAYOUT = "/view/KategorieErstellungsdialog.fxml";
     public static final String PFAD_BEABREITUNGSZUSTAND_ERSTELLUNGSDIALOG_LAYOUT ="/view/ZustandErstellungsdialog.fxml";
     public static final String PFAD_NOTIZ_ERSTELLUNGSDIALOG_LAYOUT ="/view/NotizErstellungsdialog.fxml";
+    public static final String PFAD_KATEGORIE_ÄNDERUNGSDIALOG_LAYOUT= "/view/KategorieAenderungsdialog.fxml";
+    public static final String PFAD_ZUSTAND_ÄNDERUNGSDIALOG_LAYOUT="/view/ZustandAenderungsdialog.fxml";
+    public static final String PFAD_NOTIZ_ÄNDERUNGSDIALOG_LAYOUT="/view/NotizAenderungsdialog.fxml";
 
     public static final String ANWENDUNG_NAME = "Notizverwaltung";
     public static final String DIALOG = "Dialog";

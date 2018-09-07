@@ -8,15 +8,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import notizverwaltung.constants.FXKonstanten;
+import notizverwaltung.exceptions.ObjectIstNullException;
+import notizverwaltung.exceptions.StringIsEmptyException;
 import notizverwaltung.i18n.I18nUtil;
+import notizverwaltung.model.classes.BearbeitungszustandImpl;
+import notizverwaltung.model.classes.KategorieImpl;
+import notizverwaltung.model.classes.NotizImpl;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.view.RootLayoutController;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 /**
@@ -26,7 +34,7 @@ import java.util.ResourceBundle;
  * Die Funktionalität der GUI-Elemente wird durch entsprechende Controller-Klassen und FXML zur Verfügung gestellt.
  *
  * @author Michelle Blau, Johannes Gerwert
- * @version 31.08.2018
+ * @version 07.09.2018
  */
 
 public class MainApp extends Application {
@@ -41,6 +49,36 @@ public class MainApp extends Application {
     private ObservableList<Kategorie> kategorieListe = FXCollections.observableArrayList();
     private ObservableList<Notiz> notizListe = FXCollections.observableArrayList();
     private ObservableList<Bearbeitungszustand> bearbeitungszustandListe = FXCollections.observableArrayList();
+
+
+    /**
+     * Fülle die Listen mit entsprechenden Daten, dies sind noch Testdaten für die GUI.
+     */
+    public MainApp() throws StringIsEmptyException, ObjectIstNullException {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, 7);
+        Date naechsteWoche = calendar.getTime();
+
+        Kategorie kat1 = new KategorieImpl("Prog 3", Color.AQUA);
+        Kategorie kat2 = new KategorieImpl("Mathe", Color.BEIGE);
+        Kategorie kat3 = new KategorieImpl("Englisch", Color.DARKGREEN);
+
+        kategorieListe.add(kat1);
+        kategorieListe.add(kat2);
+        kategorieListe.add(kat3);
+
+        //TODO Notizen derzeit nicht anlegbar mit Fälligkeitsdatum
+
+//       Notiz notiz1 = new NotizImpl("Lager-Klasse impl.", "Exceptions und Validators" );
+//
+//        notizListe.add(new NotizImpl("Lager-Klasse impl.", kat1.getKategorieName(), "To-Do", "Exceptions und Validators", true, naechsteWoche));
+//        notizListe.add(new NotizImpl("Hausaufgabe", kat2.getKategorieName(), "To-Do", "Übung 12", true, naechsteWoche));
+//        notizListe.add(new NotizImpl("Aufsatz", kat3.getKategorieName(), "In Bearbeitung", "Shakespeare", false, naechsteWoche));
+
+        bearbeitungszustandListe.add(new BearbeitungszustandImpl("To-Do"));
+        bearbeitungszustandListe.add(new BearbeitungszustandImpl("In Bearbeitung"));
+        bearbeitungszustandListe.add(new BearbeitungszustandImpl("Erledigt"));
+    }
 
 
     /**

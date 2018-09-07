@@ -7,7 +7,7 @@ package notizverwaltung.exceptions;
  *
  * @version 1.0
  */
-public class StringIsEmptyException extends Exception {
+public class StringIsEmptyException extends RuntimeException {
 	private static final String MESSAGE = "Der String darf nicht leer sein!";
 	
 	public StringIsEmptyException() {
