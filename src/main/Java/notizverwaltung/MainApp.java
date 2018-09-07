@@ -67,6 +67,8 @@ public class MainApp extends Application {
         kategorieListe.add(kat2);
         kategorieListe.add(kat3);
 
+        //System.out.println("Irgendein Käs");
+
         //TODO Notizen derzeit nicht anlegbar mit Fälligkeitsdatum
 
           Notiz notiz1 = new NotizImpl("Lager-Klasse impl.", "Exceptions und Validators" );

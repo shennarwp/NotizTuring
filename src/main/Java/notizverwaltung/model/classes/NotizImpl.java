@@ -15,6 +15,7 @@ import notizverwaltung.validators.StringValidator;
 import javax.persistence.*;
 import java.io.IOException;
 import java.util.Date;
+import java.util.Calendar;
 
 /**
  * Die Klasse ist eine Modelklasse fuer Notizen
@@ -50,10 +51,18 @@ public class NotizImpl implements Notiz
     @Column(name = "Prioritaet")
     private boolean prioritaet;
 
-
+    @Temporal(TemporalType.DATE)
+    //@Column(name = "Faelligkeit")
     private Date faelligkeit;
+
     private boolean istErinnerungGesetzt;
+
+    @Temporal(TemporalType.DATE)
+    //@Column(name = "Erinnerung")
     private Date erinnerung;
+
+    @Temporal(TemporalType.DATE)
+    //@Column(name = "Erstellung")
     private Date erstellung;
 
 
@@ -206,6 +215,13 @@ public class NotizImpl implements Notiz
     }
 
     //____________________FÄLLIGKEIT____________________
+
+    //@Temporal(faelligkeit)
+
+
+
+    //private Date faelligkeit;
+
     @Override
     public Date getFaelligkeit() {
         return faelligkeit;
