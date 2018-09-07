@@ -14,6 +14,6 @@ public interface KategorieService {
     //Achtung nur löschen, wenn keine Artikel mehr eine Kategorie hat
     public void deleteKategorie (int kategorieID);
 
-    public List<Kategorie> getAllKategorien();
+    public List<Kategorie> getAlleKategorien();
 
 }

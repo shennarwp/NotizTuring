@@ -1,6 +1,8 @@
 package notizverwaltung.service.classes;
 
 import notizverwaltung.builders.DaoObjectBuilder;
+import notizverwaltung.dao.classes.BearbeitungszustandDAOImpl;
+import notizverwaltung.dao.classes.NotizDAOImpl;
 import notizverwaltung.dao.interfaces.NotizDAO;
 import notizverwaltung.exceptions.ObjectIstNullException;
 import notizverwaltung.model.classes.NotizImpl;
@@ -65,5 +67,19 @@ public class NotizServiceImpl implements NotizService {
     @Override
     public List<Notiz> getAlleNotizenImNotizblock(int notizblockID) {
         return null;
+    }
+    @Override
+    public List<Notiz> getAlleNotizen()
+    {
+        return new NotizDAOImpl().getAlleNotizen();
+    }
+
+    public List<Notiz> getAlleNotizenVonEinemBearbeitungszustand(int bearbeitungszustand) {
+        return new BearbeitungszustandDAOImpl().getAlleNotizenVonEinemBearbeitungszustand(bearbeitungszustand);
+    }
+    @Override
+    public List<Notiz> getAlleNotizenVomNotizblock(int NotizblockID)
+    {
+        return new BearbeitungszustandDAOImpl().getAlleNotizenVomNotizblock(NotizblockID);
     }
 }

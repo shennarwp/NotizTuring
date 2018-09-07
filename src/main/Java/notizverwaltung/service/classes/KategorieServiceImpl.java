@@ -54,7 +54,8 @@ public class KategorieServiceImpl implements KategorieService
 	}
 
 	@Override
-	public List<Kategorie> getAllKategorien() {
-		return new KategorieDAOImpl().getAlleKategorien();
+	public List<Kategorie> getAlleKategorien() {
+
+	    return new KategorieDAOImpl().getAlleKategorien();
 	}
 }

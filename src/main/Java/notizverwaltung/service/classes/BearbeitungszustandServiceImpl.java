@@ -50,4 +50,6 @@ public class BearbeitungszustandServiceImpl implements BearbeitungszustandServic
 	public List<Bearbeitungszustand> getAllBearbeitungszustand() {
 		return null;
 	}
+
+
 }
