@@ -1,27 +1,27 @@
 package notizverwaltung.model.classes;
 
+import javafx.scene.paint.Color;
 import notizverwaltung.builders.ModelObjectBuilder;
 import notizverwaltung.builders.ServiceObjectBuilder;
 import notizverwaltung.exceptions.IntIstNegativException;
 import notizverwaltung.exceptions.ObjectIstNullException;
 import notizverwaltung.exceptions.StringIsEmptyException;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
-import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.model.interfaces.Kategorie;
+import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.validators.ObjectValidator;
 import notizverwaltung.validators.StringValidator;
-
 
 import javax.persistence.*;
 import java.io.IOException;
 import java.util.Date;
-import java.util.Calendar;
 
 /**
  * Die Klasse ist eine Modelklasse fuer Notizen
  *
  * @author Tobias Gottschalk
  * @author Shenna RWP
+ * @author Agra Bimantara
  *
  * @version 1.0
  */
@@ -52,17 +52,17 @@ public class NotizImpl implements Notiz
     private boolean prioritaet;
 
     @Temporal(TemporalType.DATE)
-    //@Column(name = "Faelligkeit")
+    @Column(name = "Faelligkeit")
     private Date faelligkeit;
 
     private boolean istErinnerungGesetzt;
 
     @Temporal(TemporalType.DATE)
-    //@Column(name = "Erinnerung")
+    @Column(name = "Erinnerung")
     private Date erinnerung;
 
     @Temporal(TemporalType.DATE)
-    //@Column(name = "Erstellung")
+    @Column(name = "Erstellung")
     private Date erstellung;
 
 
@@ -112,13 +112,14 @@ public class NotizImpl implements Notiz
     //TODO muss jeder Notiz beim Erstellen ein Bearbeitunszustand/Spalte zugewiesen werden?
     public NotizImpl(String title, String beschreibung) throws StringIsEmptyException, ObjectIstNullException, IntIstNegativException {
         setTitle(title);
-        setKategorie("others");
-        setBearbeitungszustand("todo");
+        //setKategorie("others");
+        //setBearbeitungszustand("todo");
         setBeschreibung(beschreibung);
         setPrioritaet(prioritaet);
         setFaelligkeit(new Date());
         setErinnerung(new Date());
     }
+
 
     public NotizImpl() {}
 

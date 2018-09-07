@@ -16,7 +16,7 @@ import java.util.Date;
  *
  * @author Tobias Gottschalk
  * @version 1.0
- * @author Agra Bimantara (weiter bearbeitet)
+ * @author Agra Bimantara
  * @author Shenna RWP
  */
 public class ModelObjectBuilder

@@ -11,6 +11,7 @@ import notizverwaltung.validators.StringValidator;
 
 import javax.persistence.*;
 
+
 /**
  * @author Shenna RWP
  */
@@ -27,6 +28,7 @@ public class KategorieImpl implements Kategorie
     @Column(name = "KategorieName")
     private String kategorieName;
 
+    @Column(name = "Farbe")
     private Color farbe;
 
     public KategorieImpl(String kategorieName) throws StringIsEmptyException {
@@ -35,6 +37,8 @@ public class KategorieImpl implements Kategorie
     }
 
     public KategorieImpl(String kategorieName, Color farbe) throws StringIsEmptyException, ObjectIstNullException {
+        this.kategorieName = kategorieName;
+        this.farbe = farbe;
         StringValidator.checkObStringLeerOderNullIst(kategorieName);
         setKategorieName(kategorieName);
         setFarbe(farbe);

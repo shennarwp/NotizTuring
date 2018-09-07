@@ -59,17 +59,18 @@ public class MainApp extends Application {
         calendar.add(Calendar.DAY_OF_YEAR, 7);
         Date naechsteWoche = calendar.getTime();
 
-        Kategorie kat1 = new KategorieImpl("Prog 3", Color.AQUA);
-        Kategorie kat2 = new KategorieImpl("Mathe", Color.BEIGE);
-        Kategorie kat3 = new KategorieImpl("Englisch", Color.DARKGREEN);
+        Kategorie kat1 = new KategorieImpl("Prog 3", Color.color(1, 0, 0.302));
+        Kategorie kat2 = new KategorieImpl("Mathe", Color.color(0.1686, 0.6235, 1));
+        Kategorie kat3 = new KategorieImpl("Englisch", Color.color(0.051, 1, 0.5725));
+
+        //Kategorie kat4 = new KategorieImpl("Prog 4", Color.web("#660033\n", 1.0));
 
         kategorieListe.add(kat1);
         kategorieListe.add(kat2);
         kategorieListe.add(kat3);
+        //kategorieListe.add(kat4);
 
         //System.out.println("Irgendein Käs");
-
-        //TODO Notizen derzeit nicht anlegbar mit Fälligkeitsdatum
 
           Notiz notiz1 = new NotizImpl("Lager-Klasse impl.", "Exceptions und Validators" );
 //
@@ -109,7 +110,7 @@ public class MainApp extends Application {
             loader.setLocation(MainApp.class
                     .getResource(FXKonstanten.PFAD_ROOT_LAYOUT));
             loader.setResources(bundle);
-            rootBorderPane = (BorderPane)loader.load();
+            rootBorderPane = loader.load();
             Scene scene = new Scene(rootBorderPane);
             primaryStage.setScene(scene);
             RootLayoutController controller = loader.getController();
