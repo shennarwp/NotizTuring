@@ -9,7 +9,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import notizverwaltung.builders.ModelObjectBuilder;
 import notizverwaltung.constants.FXKonstanten;
+import notizverwaltung.dao.classes.NotizDAOImpl;
+import notizverwaltung.dao.interfaces.NotizDAO;
 import notizverwaltung.exceptions.ObjectIstNullException;
 import notizverwaltung.exceptions.StringIsEmptyException;
 import notizverwaltung.i18n.I18nUtil;
@@ -73,7 +76,15 @@ public class MainApp extends Application {
         kategorieListe.add(kat3);
         //kategorieListe.add(kat4);
 
-        Notiz notiz1 = new NotizImpl("Program", kat1.getKategorieName(), "To-Do", "Artikel-Klasse schreiben", true, naechsteWoche);
+        //Notiz notiz1 = new NotizImpl("Program", kat1.getKategorieName(), "To-Do", "Artikel-Klasse schreiben", true, naechsteWoche);
+
+        Notiz notiz2 = ModelObjectBuilder.getNotizObject();
+        notiz2.setTitle("Notiz2");
+        notiz2.setBeschreibung("Das ist eine Notzi");
+        NotizDAO notizDAO = new NotizDAOImpl();
+        notizDAO.addNotiz(notiz2,1);
+
+
 //        notizListe.add(notiz1);
 //        notizListe.add(new NotizImpl("Hausaufgabe", kat2.getKategorieName(), "To-Do", "Übung 12", true, naechsteWoche));
 //        notizListe.add(new NotizImpl("Aufsatz", kat3.getKategorieName(), "In Bearbeitung", "Shakespeare", false, naechsteWoche));

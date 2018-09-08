@@ -30,33 +30,11 @@ public class ModelObjectBuilder
         return new NotizblockImpl();
     }
 
-    public static Notiz getNotizObject(String title, String kategorie, String bearbeitungszustand, String beschreibung, boolean prioritaet,
-                                       Date faelligkeit, Date erinnerung) {
-        Notiz notiz = null;
-        try {
-            notiz = new NotizImpl(title, kategorie, bearbeitungszustand, beschreibung, prioritaet, faelligkeit, erinnerung );
-        } catch (StringIsEmptyException se) {
-            se.printStackTrace();
-        } catch (ObjectIstNullException oe) {
-            oe.printStackTrace();
-        } catch (IntIstNegativException e) {
-            e.printStackTrace();
-        }
-        return  notiz;
-    }
 
-    public static Notiz getNotizObject(String title,String beschreibung) {
-        Notiz notiz = null;
-        try {
-            notiz = new NotizImpl(title, beschreibung);
-        } catch (StringIsEmptyException se) {
-            se.printStackTrace();
-        } catch (ObjectIstNullException oe) {
-            oe.printStackTrace();
-        } catch (IntIstNegativException e) {
-            e.printStackTrace();
-        }
-        return notiz;
+
+    public static Notiz getNotizObject() {
+
+        return new NotizImpl();
     }
 
     public static Kategorie getKategorieObjekt(String kategorieName) {

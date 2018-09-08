@@ -9,6 +9,7 @@ import notizverwaltung.exceptions.StringIsEmptyException;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
+import notizverwaltung.validators.IntValidator;
 import notizverwaltung.validators.ObjectValidator;
 import notizverwaltung.validators.StringValidator;
 
@@ -66,62 +67,6 @@ public class NotizImpl implements Notiz
     private Date erstellung;
 
 
-    public NotizImpl(String title, String kategorie, String bearbeitungszustand, String beschreibung, boolean prioritaet,
-                     Date faelligkeit, Date erinnerung) throws StringIsEmptyException, ObjectIstNullException, IntIstNegativException {
-        setTitle(title);
-        setKategorie(kategorie);
-        setBearbeitungszustand(bearbeitungszustand);
-        setBeschreibung(beschreibung);
-        setPrioritaet(prioritaet);
-        setFaelligkeit(faelligkeit);
-        setErinnerung(erinnerung);
-    }
-
-    /**
-     * //TODO Konstruktor ohne Erinnerungsdatum, mit Kategorie-Objekt statt String
-     *
-     *
-     * @param title
-     * @param kategorie
-     * @param bearbeitungszustand
-     * @param beschreibung
-     * @param prioritaet
-     * @param faelligkeit
-     * @throws StringIsEmptyException
-     * @throws ObjectIstNullException
-     * @throws IntIstNegativException
-     */
-    public NotizImpl(String title, String kategorie, String bearbeitungszustand, String beschreibung, boolean prioritaet,
-                     Date faelligkeit) throws StringIsEmptyException, ObjectIstNullException, IntIstNegativException {
-        setTitle(title);
-        setKategorie(kategorie);
-        setBearbeitungszustand(bearbeitungszustand);
-        setBeschreibung(beschreibung);
-        setPrioritaet(prioritaet);
-        setFaelligkeit(faelligkeit);
-
-    }
-
-
-    /**Konstruktor mit den minimalen Parameter zum Erstellen einer NotizImpl
-     * @param title
-     * @param beschreibung
-     * @throws IOException
-     */
-
-    //TODO muss jeder Notiz beim Erstellen ein Bearbeitunszustand/Spalte zugewiesen werden?
-    public NotizImpl(String title, String beschreibung) throws StringIsEmptyException, ObjectIstNullException, IntIstNegativException {
-        setTitle(title);
-        //setKategorie("others");
-        //setBearbeitungszustand("todo");
-        setBeschreibung(beschreibung);
-        setPrioritaet(prioritaet);
-        setFaelligkeit(new Date());
-        setErinnerung(new Date());
-    }
-
-
-    public NotizImpl() {}
 
     //____________________ID____________________
     @Override
@@ -152,21 +97,11 @@ public class NotizImpl implements Notiz
         return kategorieID;
     }
 
-    @Override
-    public String getKategorie() {
-        return ServiceObjectBuilder.getKategorieService().getKategorie(kategorieID).getKategorieName();
-    }
 
     @Override
-    public void setKategorie(String kategorieName) throws IntIstNegativException {
-        Kategorie kategorie = ModelObjectBuilder.getKategorieObjekt(kategorieName);
-        this.kategorieID = ServiceObjectBuilder.getKategorieService().addKategorie(kategorie);
-    }
-
-    //TODO Kategorie soll als Klasse verwendet werden und nicht nur als String
-    @Override
-    public void setKategorie(Kategorie kategorie) {
-
+    public void setKategorieID(int kategorieID) {
+        IntValidator.checkObIntNullOderNegativIst(kategorieID);
+        this.kategorieID = kategorieID;
     }
 
     //____________________BEARBEITUNGSZUSTAND____________________
@@ -176,21 +111,12 @@ public class NotizImpl implements Notiz
     }
 
     @Override
-    public String getBearbeitungszustand() {
-        return ServiceObjectBuilder.getBearbeitungszustandService().getBearbeitungszustand(bearbeitungszustandID).getName();
-    }
-
-    @Override
-    public void setBearbeitungszustand(String nameDerSpalte) throws StringIsEmptyException {
-        Bearbeitungszustand bearbeitungszustand = ModelObjectBuilder.getBearbeitungszustandObjekt(nameDerSpalte);
-        this.bearbeitungszustandID = ServiceObjectBuilder.getBearbeitungszustandService().addBearbeitungszustand(bearbeitungszustand);
-    }
-
-    //TODO
-    @Override
-    public void setBearbeitungszustand(Bearbeitungszustand bearbeitungszustand) {
+    public void setBearbeitungszustandID(int bearbeitungszustandID){
+        this.bearbeitungszustandID = bearbeitungszustandID;
 
     }
+
+
 
     //____________________BESCHREIBUNG____________________
     @Override
