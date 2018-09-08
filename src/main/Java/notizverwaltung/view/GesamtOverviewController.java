@@ -1,5 +1,16 @@
 package notizverwaltung.view;
 
+import notizverwaltung.MainApp;
+
 public class GesamtOverviewController {
-    //TODO
+
+    private MainApp mainApp;
+
+    private void initialize(){
+        //todo
+    }
+
+    public void setMainApp(MainApp mainApp){
+        this.mainApp = mainApp;
+    }
 }

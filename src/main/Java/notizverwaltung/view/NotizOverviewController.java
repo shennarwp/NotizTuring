@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import notizverwaltung.MainApp;
 
 
-public class NotizDetailController {
+public class NotizOverviewController {
 
     private MainApp mainApp;
 

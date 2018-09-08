@@ -2,7 +2,7 @@ package notizverwaltung.i18n;
 
 import java.util.ResourceBundle;
 
-public class I18nMenuUtil {
+public class I18nComponentsUtil {
 
     private static final String MENU_FILE = "menu-file";
     private static final String MENU_NEW = "menu-new";
@@ -17,7 +17,7 @@ public class I18nMenuUtil {
     private static ResourceBundle resourceBundle;
 
     static {
-        resourceBundle = I18nUtil.getMenuResourceBundle();
+        resourceBundle = I18nUtil.getComponentsResourceBundle();
     }
 
     public static String getMenuFile() {

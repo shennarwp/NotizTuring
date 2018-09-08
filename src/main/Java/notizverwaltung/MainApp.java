@@ -6,9 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import notizverwaltung.constants.FXKonstanten;
 import notizverwaltung.exceptions.ObjectIstNullException;
@@ -22,12 +21,12 @@ import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.service.classes.NotizServiceImpl;
 import notizverwaltung.service.interfaces.NotizService;
+import notizverwaltung.view.GesamtOverviewController;
 import notizverwaltung.view.RootLayoutController;
 
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -100,6 +99,7 @@ public class MainApp extends Application {
         this.primaryStage.setTitle(FXKonstanten.ANWENDUNG_NAME);
         //initSpalten();
         initRootLayout();
+        //showGesamtOverview();
 
     }
 
@@ -110,7 +110,7 @@ public class MainApp extends Application {
     public void initRootLayout() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            ResourceBundle bundle = I18nUtil.getMenuResourceBundle();
+            ResourceBundle bundle = I18nUtil.getComponentsResourceBundle();
             loader.setLocation(MainApp.class
                     .getResource(FXKonstanten.PFAD_ROOT_LAYOUT));
             loader.setResources(bundle);
@@ -122,6 +122,24 @@ public class MainApp extends Application {
 
             primaryStage.show();
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showGesamtOverview(){
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            ResourceBundle bundle = I18nUtil.getComponentsResourceBundle();
+            loader.setLocation(MainApp.class.getResource(FXKonstanten.PFAD_GESAMT_OVERVIEW));
+            loader.setResources(bundle);
+            TabPane gesamtOverview = (TabPane) loader.load();
+
+            rootBorderPane.setCenter(gesamtOverview);
+
+            GesamtOverviewController controller = loader.getController();
+            controller.setMainApp(this);
+
+        } catch (IOException e){
             e.printStackTrace();
         }
     }
