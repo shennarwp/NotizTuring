@@ -4,7 +4,6 @@ package notizverwaltung.view;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -172,7 +171,7 @@ public class RootLayoutController {
      */
     @FXML
     private void handleshowKategorieAenderungsMaske() {
-        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_KATEGORIE_ÄNDERUNGSDIALOG_LAYOUT);
+        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_KATEGORIE_AENDERUNGSDIALOG_LAYOUT);
     }
 
 
@@ -181,7 +180,7 @@ public class RootLayoutController {
      */
     @FXML
     private void handleshowZustandAenderungsMaske() {
-        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_ZUSTAND_ÄNDERUNGSDIALOG_LAYOUT);
+        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_ZUSTAND_AENDERUNGSDIALOG_LAYOUT);
     }
 
 
@@ -190,7 +189,7 @@ public class RootLayoutController {
      */
     @FXML
     private void handleshowNotizAenderungsMaske() {
-        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_NOTIZ_ÄNDERUNGSDIALOG_LAYOUT);
+        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_NOTIZ_AENDERUNGSDIALOG_LAYOUT);
     }
 
 

@@ -18,7 +18,6 @@ import notizverwaltung.exceptions.StringIsEmptyException;
 import notizverwaltung.i18n.I18nUtil;
 import notizverwaltung.model.classes.BearbeitungszustandImpl;
 import notizverwaltung.model.classes.KategorieImpl;
-import notizverwaltung.model.classes.NotizImpl;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
@@ -141,7 +140,7 @@ public class MainApp extends Application {
         try{
             FXMLLoader loader = new FXMLLoader();
             ResourceBundle bundle = I18nUtil.getComponentsResourceBundle();
-            loader.setLocation(MainApp.class.getResource(FXKonstanten.PFAD_GESAMT_OVERVIEW));
+            loader.setLocation(MainApp.class.getResource(FXKonstanten.PFAD_GESAMT_OVERVIEW_LAYOUT));
             loader.setResources(bundle);
             TabPane gesamtOverview = (TabPane) loader.load();
 

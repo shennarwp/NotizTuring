@@ -4,8 +4,8 @@ package notizverwaltung.constants;
  * Stellt Konstanten für die GUI zur Verfügung
  *
  *
- * @author Michelle Blau
- * @version 29.08.2018
+ * @author Michelle Blau, Johannes Gerwert
+ * @version 08.09.2018
  */
 
 public class FXKonstanten {
@@ -16,14 +16,14 @@ public class FXKonstanten {
     public static final String PFAD_BEABREITUNGSZUSTAND_ERSTELLUNGSDIALOG_LAYOUT ="/view/ZustandErstellungsdialog.fxml";
     public static final String PFAD_NOTIZ_ERSTELLUNGSDIALOG_LAYOUT ="/view/NotizErstellungsdialog.fxml";
 
-    public static final String PFAD_KATEGORIE_ÄNDERUNGSDIALOG_LAYOUT= "/view/KategorieAenderungsdialog.fxml";
-    public static final String PFAD_ZUSTAND_ÄNDERUNGSDIALOG_LAYOUT="/view/ZustandAenderungsdialog.fxml";
-    public static final String PFAD_NOTIZ_ÄNDERUNGSDIALOG_LAYOUT="/view/NotizAenderungsdialog.fxml";
+    public static final String PFAD_KATEGORIE_AENDERUNGSDIALOG_LAYOUT = "/view/KategorieAenderungsdialog.fxml";
+    public static final String PFAD_ZUSTAND_AENDERUNGSDIALOG_LAYOUT ="/view/ZustandAenderungsdialog.fxml";
+    public static final String PFAD_NOTIZ_AENDERUNGSDIALOG_LAYOUT ="/view/NotizAenderungsdialog.fxml";
 
-    public static final String PFAD_GESAMT_OVERVIEW ="/view/GesamtOverview.fxml";
-    public static final String PFAD_NOTIZBLOCK_OVERVIEW ="/view/NotizblockOverview.fxml";
-    public static final String PFAD_BEARBEITUNGSZUSTAND_OVERVIEW ="/view/BearbeitungszustandOverview.fxml";
-    public static final String PFAD_NOTIZ_OVERVIEW ="/view/NotizOverview.fxml";
+    public static final String PFAD_GESAMT_OVERVIEW_LAYOUT ="/view/GesamtOverview.fxml";
+    public static final String PFAD_NOTIZBLOCK_OVERVIEW_LAYOUT ="/view/NotizblockOverview.fxml";
+    public static final String PFAD_BEARBEITUNGSZUSTAND_OVERVIEW_LAYOUT ="/view/BearbeitungszustandOverview.fxml";
+    public static final String PFAD_NOTIZ_OVERVIEW_LAYOUT ="/view/NotizOverview.fxml";
 
     public static final String ANWENDUNG_NAME = "Notizverwaltung";
     public static final String DIALOG = "Dialog";
