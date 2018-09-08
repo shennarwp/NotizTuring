@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import notizverwaltung.builders.ServiceObjectBuilder;
 import notizverwaltung.constants.FXKonstanten;
 import notizverwaltung.exceptions.ObjectIstNullException;
 import notizverwaltung.exceptions.StringIsEmptyException;
@@ -20,7 +21,9 @@ import notizverwaltung.model.classes.NotizImpl;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
+import notizverwaltung.service.classes.NotizFilterServiceImpl;
 import notizverwaltung.service.classes.NotizServiceImpl;
+import notizverwaltung.service.interfaces.NotizFilterService;
 import notizverwaltung.service.interfaces.NotizService;
 import notizverwaltung.view.RootLayoutController;
 
@@ -75,16 +78,19 @@ public class MainApp extends Application {
         //kategorieListe.add(kat4);
 
         Notiz notiz1 = new NotizImpl("Program", kat1.getKategorieName(), "To-Do", "Artikel-Klasse schreiben", true, naechsteWoche);
-//        notizListe.add(notiz1);
-//        notizListe.add(new NotizImpl("Hausaufgabe", kat2.getKategorieName(), "To-Do", "Übung 12", true, naechsteWoche));
-//        notizListe.add(new NotizImpl("Aufsatz", kat3.getKategorieName(), "In Bearbeitung", "Shakespeare", false, naechsteWoche));
+        notizListe.add(notiz1);
+        notizListe.add(new NotizImpl("Hausaufgabe", kat2.getKategorieName(), "To-Do", "Übung 12", true, naechsteWoche));
+        notizListe.add(new NotizImpl("Aufsatz", kat3.getKategorieName(), "In Bearbeitung", "Shakespeare", false, naechsteWoche));
 
         //TODO: führt zu einer NullpointerException, evtl weil Datenbank noch leer oder Methode geht nicht
         // notizListe.addAll(notizService.getAlleNotizenVomNotizblock(1));
-        bearbeitungszustandListe.add(new BearbeitungszustandImpl("To-Do"));
+        Bearbeitungszustand todo = new BearbeitungszustandImpl("To-Do");
+        bearbeitungszustandListe.add(todo);
         bearbeitungszustandListe.add(new BearbeitungszustandImpl("In Bearbeitung"));
         bearbeitungszustandListe.add(new BearbeitungszustandImpl("Erledigt"));
 
+        NotizFilterService notizFilterService = new NotizFilterServiceImpl();
+        System.out.println("\n\n\n" + notizFilterService.filterAlleNotizenMitEinemBearbeitunszustand(todo.getBearbeitungsZustandID(),notizListe));
     }
 
 

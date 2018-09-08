@@ -30,6 +30,10 @@ public class ModelObjectBuilder
         return new NotizblockImpl();
     }
 
+    public static Notiz getNotizObjectLeer(){
+        return new NotizImpl();
+    }
+
     public static Notiz getNotizObject(String title, String kategorie, String bearbeitungszustand, String beschreibung, boolean prioritaet,
                                        Date faelligkeit, Date erinnerung) {
         Notiz notiz = null;

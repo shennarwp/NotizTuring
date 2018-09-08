@@ -7,6 +7,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import notizverwaltung.MainApp;
+import notizverwaltung.builders.ModelObjectBuilder;
 import notizverwaltung.i18n.I18nMessagesUtil;
 import notizverwaltung.model.classes.NotizImpl;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
@@ -98,7 +99,7 @@ public class DialogController {
      */
     @FXML
     private void handleBtnErstelleNotiz(){
-        Notiz tmpNotiz = new NotizImpl();
+        Notiz tmpNotiz = ModelObjectBuilder.getNotizObjectLeer();
         if (isInputValid()) {
             tmpNotiz.setTitle(notizNameField.getText());
             tmpNotiz.setBeschreibung(notizBeschreibungTextArea.getText());
