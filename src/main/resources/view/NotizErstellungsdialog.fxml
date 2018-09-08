@@ -29,23 +29,23 @@
         </rowConstraints>
          <children>
             <Label text="%dialog-notecategory" GridPane.rowIndex="1" />
-            <TextField prefWidth="200.0" GridPane.columnIndex="1" />
+            <TextField fx:id="notizNameField" prefWidth="200.0" GridPane.columnIndex="1" />
             <Label text="%dialog-notestate" GridPane.rowIndex="2" />
             <Label text="%dialog-notedescription" GridPane.rowIndex="3" />
             <Label text="%dialog-notefinaldate" GridPane.rowIndex="4" />
             <Label text="%dialog-notename" />
-            <ChoiceBox prefHeight="31.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ChoiceBox prefHeight="31.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ChoiceBox fx:id="kategorieChoiceBox" prefHeight="31.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ChoiceBox fx:id="bearbeitungszustandChoiceBox" prefHeight="31.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextArea fx:id="notizBeschreibungTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <DatePicker fx:id="notizFaelligkeitDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
    </center>
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <buttons>
-          <Button mnemonicParsing="false" text="%dialog-add" />
-            <Button mnemonicParsing="false" text="%dialog-cancel" />
+          <Button mnemonicParsing="false" onAction="#handleBtnErstelleNotiz" text="%dialog-add" />
+            <Button mnemonicParsing="false" onAction="#handleBtnCancel" text="%dialog-cancel" />
         </buttons>
       </ButtonBar>
    </bottom>

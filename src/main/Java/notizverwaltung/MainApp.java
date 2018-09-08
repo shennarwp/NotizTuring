@@ -20,11 +20,14 @@ import notizverwaltung.model.classes.NotizImpl;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
+import notizverwaltung.service.classes.NotizServiceImpl;
+import notizverwaltung.service.interfaces.NotizService;
 import notizverwaltung.view.RootLayoutController;
 
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -50,6 +53,8 @@ public class MainApp extends Application {
     private ObservableList<Notiz> notizListe = FXCollections.observableArrayList();
     private ObservableList<Bearbeitungszustand> bearbeitungszustandListe = FXCollections.observableArrayList();
 
+    private NotizService notizService = new NotizServiceImpl();
+
 
     /**
      * Fülle die Listen mit entsprechenden Daten, dies sind noch Testdaten für die GUI.
@@ -59,10 +64,9 @@ public class MainApp extends Application {
         calendar.add(Calendar.DAY_OF_YEAR, 7);
         Date naechsteWoche = calendar.getTime();
 
-        Kategorie kat1 = new KategorieImpl("Prog 3", Color.color(1, 0, 0.302));
-        Kategorie kat2 = new KategorieImpl("Mathe", Color.color(0.1686, 0.6235, 1));
-        Kategorie kat3 = new KategorieImpl("Englisch", Color.color(0.051, 1, 0.5725));
-
+        Kategorie kat1 = new KategorieImpl("Prog 3");
+        Kategorie kat2 = new KategorieImpl("Mathe");
+        Kategorie kat3 = new KategorieImpl("Englisch");
         //Kategorie kat4 = new KategorieImpl("Prog 4", Color.web("#660033\n", 1.0));
 
         kategorieListe.add(kat1);
@@ -70,17 +74,17 @@ public class MainApp extends Application {
         kategorieListe.add(kat3);
         //kategorieListe.add(kat4);
 
-        //System.out.println("Irgendein Käs");
-
-          Notiz notiz1 = new NotizImpl("Lager-Klasse impl.", "Exceptions und Validators" );
-//
-//        notizListe.add(new NotizImpl("Lager-Klasse impl.", kat1.getKategorieName(), "To-Do", "Exceptions und Validators", true, naechsteWoche));
+        Notiz notiz1 = new NotizImpl("Program", kat1.getKategorieName(), "To-Do", "Artikel-Klasse schreiben", true, naechsteWoche);
+//        notizListe.add(notiz1);
 //        notizListe.add(new NotizImpl("Hausaufgabe", kat2.getKategorieName(), "To-Do", "Übung 12", true, naechsteWoche));
 //        notizListe.add(new NotizImpl("Aufsatz", kat3.getKategorieName(), "In Bearbeitung", "Shakespeare", false, naechsteWoche));
 
+        //TODO: führt zu einer NullpointerException, evtl weil Datenbank noch leer oder Methode geht nicht
+        // notizListe.addAll(notizService.getAlleNotizenVomNotizblock(1));
         bearbeitungszustandListe.add(new BearbeitungszustandImpl("To-Do"));
         bearbeitungszustandListe.add(new BearbeitungszustandImpl("In Bearbeitung"));
         bearbeitungszustandListe.add(new BearbeitungszustandImpl("Erledigt"));
+
     }
 
 

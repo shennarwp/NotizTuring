@@ -23,9 +23,9 @@ public class BearbeitungszustandImpl implements Bearbeitungszustand
 
 	@Column(name = "BearbeitungszustandName")
 	private String nameDerSpalte;
-
-	@Column(name = "Position", unique = true)
-	private int position;
+//TODO: Irgendwas stimmt mit der Position in der Datenbank nicht, bei Konstruktoraufruf MIT Position wird das Unique-Constraint verletzt
+//	@Column(name = "Position", unique = true)
+//	private int position;
 
 	public BearbeitungszustandImpl(String nameDerSpalte) throws StringIsEmptyException {
 		setName(nameDerSpalte);
@@ -56,12 +56,13 @@ public class BearbeitungszustandImpl implements Bearbeitungszustand
 
 	@Override
 	public int getPosition() {
-		return position;
+//		return position;
+		return 0;
 	}
 
 	@Override
 	public void setPosition(int position) {
-		this.position = position;
+//		this.position = position;
 	}
 
 }

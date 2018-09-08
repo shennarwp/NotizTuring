@@ -27,15 +27,15 @@
             <ColorPicker GridPane.columnIndex="1" />
             <Label text="%dialog-categorycolor" />
             <Label text="%dialog-categoryname" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="kategorieNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </center>
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <buttons>
-          <Button mnemonicParsing="false" text="%dialog-add" />
-            <Button mnemonicParsing="false" text="%dialog-cancel" />
+          <Button mnemonicParsing="false" onAction="#handleBtnApply" text="%dialog-add" />
+            <Button mnemonicParsing="false" onAction="#handleBtnCancel" text="%dialog-cancel" />
         </buttons>
       </ButtonBar>
    </bottom>

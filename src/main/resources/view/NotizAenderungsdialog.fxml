@@ -16,8 +16,8 @@
       <Label layoutX="32.0" layoutY="201.0" text="%dialog-notedescription" />
       <ButtonBar layoutX="184.0" layoutY="503.0" prefHeight="40.0" prefWidth="275.0">
         <buttons>
-          <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="159.0" text="%dialog-savechanges" />
-            <Button mnemonicParsing="false" text="%dialog-cancel" />
+          <Button mnemonicParsing="false" onAction="#handleBtnApply" prefHeight="31.0" prefWidth="159.0" text="%dialog-savechanges" />
+            <Button mnemonicParsing="false" onAction="#handleBtnCancel" text="%dialog-cancel" />
         </buttons>
       </ButtonBar>
       <ChoiceBox layoutX="241.0" layoutY="118.0" prefHeight="31.0" prefWidth="205.0" />

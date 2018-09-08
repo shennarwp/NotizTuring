@@ -17,16 +17,16 @@
           </Menu>
           <Menu mnemonicParsing="false" text="%menu-new">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#showKategorieErstellungsMaske" text="%menuitem-new-category" />
-                  <MenuItem mnemonicParsing="false" onAction="#showBearbeitungszustandErstellungsMaske" text="%menuitem-new-state" />
-                  <MenuItem mnemonicParsing="false" onAction="#showNotizErstellungsMaske" text="%menuitem-new-note" />
+              <MenuItem mnemonicParsing="false" onAction="#handleshowKategorieErstellungsMaske" text="%menuitem-new-category" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleshowBearbeitungszustandErstellungsMaske" text="%menuitem-new-state" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleshowNotizErstellungsMaske" text="%menuitem-new-note" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="%menu-edit">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#showKategorieAenderungsMaske" text="%menuitem-change-category" />
-                  <MenuItem mnemonicParsing="false" onAction="#showZustandAenderungsMaske" text="%menuitem-change-state" />
-                  <MenuItem mnemonicParsing="false" onAction="#showNotizAenderungsMaske" text="%menuitem-change-note" />
+              <MenuItem mnemonicParsing="false" onAction="#handleshowKategorieAenderungsMaske" text="%menuitem-change-category" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleshowZustandAenderungsMaske" text="%menuitem-change-state" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleshowNotizAenderungsMaske" text="%menuitem-change-note" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="%menu-options">

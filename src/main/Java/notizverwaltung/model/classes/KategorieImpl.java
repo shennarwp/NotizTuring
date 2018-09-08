@@ -28,22 +28,23 @@ public class KategorieImpl implements Kategorie
     @Column(name = "KategorieName")
     private String kategorieName;
 
-    @Column(name = "Farbe")
-    private Color farbe;
+    //TODO: Derzeit stimmt mit Attribut farbe irgendwas in der Datenbank nicht, deswegen auskommentiert. Bei Konstruktoraufruf von NotizImpl MIT farbe gibt die DB eine Exception
+//    @Column(name = "Farbe")
+//    private Color farbe;
 
     public KategorieImpl(String kategorieName) throws StringIsEmptyException {
         StringValidator.checkObStringLeerOderNullIst(kategorieName);
         setKategorieName(kategorieName);
     }
 
-    public KategorieImpl(String kategorieName, Color farbe) throws StringIsEmptyException, ObjectIstNullException {
-        StringValidator.checkObStringLeerOderNullIst(kategorieName);
-        setKategorieName(kategorieName);
-
-        this.kategorieName = kategorieName;
-        this.farbe = farbe;
-        setFarbe(farbe);
-    }
+//    public KategorieImpl(String kategorieName, Color farbe) throws StringIsEmptyException, ObjectIstNullException {
+//        StringValidator.checkObStringLeerOderNullIst(kategorieName);
+//        setKategorieName(kategorieName);
+//
+//        this.kategorieName = kategorieName;
+//        this.farbe = farbe;
+//        setFarbe(farbe);
+//    }
 
     public KategorieImpl(){
 
@@ -75,13 +76,14 @@ public class KategorieImpl implements Kategorie
 
     @Override
     public Color getFarbe() {
-        return this.farbe;
+//        return this.farbe;
+        return Color.DARKGREEN;
     }
 
     @Override
     public void setFarbe(Color farbe) throws ObjectIstNullException {
-        ObjectValidator.checkObObjectNullIst(farbe);
-        this.farbe = farbe;
+//        ObjectValidator.checkObObjectNullIst(farbe);
+//        this.farbe = farbe;
     }
 
     @Override
@@ -89,7 +91,7 @@ public class KategorieImpl implements Kategorie
         return "Kategorie{" +
                 "kategorieID=" + kategorieID +
                 ", kategorieName='" + kategorieName + '\'' +
-                ", farbe=" + farbe +
+//                ", farbe=" + farbe +
                 '}';
     }
 }
