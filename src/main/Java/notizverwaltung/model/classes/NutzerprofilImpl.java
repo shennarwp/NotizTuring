@@ -25,7 +25,8 @@ public class NutzerprofilImpl implements Nutzerprofil
 
     @Override
     public String toString(){
-        return getNutzerprofilID();
+        return new Integer(getNutzerprofilID()).toString();
+
     }
 
 }

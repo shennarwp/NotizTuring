@@ -25,7 +25,7 @@ public class NotizblockImpl implements Notizblock
 
     @Override
     public String toString(){
-        return getNotizblockID();
+        return new Integer(getNotizblockID()).toString();
 
     }
 
