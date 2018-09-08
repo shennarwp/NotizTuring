@@ -38,7 +38,7 @@ import java.util.ResourceBundle;
  * Die Funktionalität der GUI-Elemente wird durch entsprechende Controller-Klassen und FXML zur Verfügung gestellt.
  *
  * @author Michelle Blau, Johannes Gerwert
- * @version 07.09.2018
+ * @version 08.09.2018
  */
 
 public class MainApp extends Application {

@@ -13,6 +13,8 @@ public class I18nComponentsUtil {
     private static final String MENU_FILTER = "menu-filter";
     private static final String MENU_SORT = "menu-sort";
 
+    private static final String STANDARD_NOTEPAD_NAME = "standard-notepad-name";
+
 
     private static ResourceBundle resourceBundle;
 
@@ -50,6 +52,10 @@ public class I18nComponentsUtil {
 
     public static String getMenuSort() {
         return resourceBundle.getString(MENU_SORT);
+    }
+
+    public static String getStandardNotepadName() {
+        return resourceBundle.getString(STANDARD_NOTEPAD_NAME);
     }
 
 }

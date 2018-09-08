@@ -32,4 +32,6 @@ public class FXKonstanten {
     public static final int maxAnzahlZustaende = 10;
     public static final int maxAnzahlNotizen = 150;
 
+    public static final int STANDARD_NOTIZBLOCK_ANZAHL = 1;
+
 }
