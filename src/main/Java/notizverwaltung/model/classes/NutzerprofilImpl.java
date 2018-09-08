@@ -23,5 +23,9 @@ public class NutzerprofilImpl implements Nutzerprofil
         this.nutzerprofilID = nutzerprofilID;
     }
 
+    @Override
+    public String toString(){
+        return getNutzerprofilID();
+    }
 
 }

@@ -23,4 +23,10 @@ public class NotizblockImpl implements Notizblock
         this.notizblockID = notizblockID;
     }
 
+    @Override
+    public String toString(){
+        return getNotizblockID();
+
+    }
+
 }

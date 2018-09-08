@@ -88,10 +88,6 @@ public class KategorieImpl implements Kategorie
 
     @Override
     public String toString() {
-        return "Kategorie{" +
-                "kategorieID=" + kategorieID +
-                ", kategorieName='" + kategorieName + '\'' +
-//                ", farbe=" + farbe +
-                '}';
+        return getKategorieName();
     }
 }

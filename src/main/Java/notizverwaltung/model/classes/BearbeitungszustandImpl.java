@@ -65,4 +65,9 @@ public class BearbeitungszustandImpl implements Bearbeitungszustand
 //		this.position = position;
 	}
 
+	@Override
+	public String toString() {
+		return getName();
+	}
+
 }

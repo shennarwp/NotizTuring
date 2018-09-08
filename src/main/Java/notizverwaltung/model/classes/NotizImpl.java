@@ -259,6 +259,10 @@ public class NotizImpl implements Notiz
     }
 
 
+    @Override
+    public String toString(){
+        return getTitle();
+    }
 
 }
 
