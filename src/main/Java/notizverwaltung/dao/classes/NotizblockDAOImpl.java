@@ -70,7 +70,7 @@ public class NotizblockDAOImpl extends ObjectDAOImpl implements NotizblockDAO {
 
         List<Bearbeitungszustand> bearbeitungszustandList = entityManager
                 .createQuery("SELECT b from BearbeitungszustandImpl b WHERE b.bearbeitungszustandID =" +
-                        "(SELECT n.kategorieID FROM NotizImpl n WHERE n.notizblockID = :notizblockID)", Bearbeitungszustand.class)
+                        "(SELECT n.bearbeitungszustandID FROM NotizImpl n WHERE n.notizblockID = :notizblockID)", Bearbeitungszustand.class)
                 .setParameter("notizblockID", notizblockID)
                 .getResultList();
 
