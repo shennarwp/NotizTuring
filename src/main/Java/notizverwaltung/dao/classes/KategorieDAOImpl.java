@@ -1,6 +1,7 @@
 package notizverwaltung.dao.classes;
 
 import notizverwaltung.dao.interfaces.KategorieDAO;
+import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.Kategorie;
 
 import javax.persistence.NoResultException;

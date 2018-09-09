@@ -83,26 +83,28 @@ public class NotizServiceImpl implements NotizService {
         return new NotizDAOImpl().getAlleNotizen();
     }
 
-    public List<Notiz> getAlleNotizenVonEinemBearbeitungszustand(int bearbeitungszustand) {
+    @Override
+    public List<Notiz> getAlleNotizenVonEinemBearbeitungszustand(int bearbeitungszustand)
+    {
         IntValidator.checkObIntNullOderNegativIst(bearbeitungszustand);
-        return new BearbeitungszustandDAOImpl() {
-            @Override
-            public List<Notiz> getAlleBearbeitungszustaendeVomNotizblock(int bearbeitungszustand) {
+        return new BearbeitungszustandDAOImpl().getAlleNotizenVonEinemBearbeitungszustand(bearbeitungszustand);
+        /*{
+            *//*public List<Notiz> getAlleBearbeitungszustaendeVomNotizblock(int bearbeitungszustand) {
                 IntValidator.checkObIntNullOderNegativIst(bearbeitungszustand);
                 return notizDAO.getAlleNotizenVonEinemBearbeitungszustand(bearbeitungszustand);
             }
-        }.getAlleNotizenVonEinemBearbeitungszustand(bearbeitungszustand);
+        }*//*.*/
     }
     @Override
     public List<Notiz> getAlleNotizenVomNotizblock(int notizblockID)
     {
         IntValidator.checkObIntNullOderNegativIst(notizblockID);
-        return new BearbeitungszustandDAOImpl() {
-            @Override
+        return new BearbeitungszustandDAOImpl().getAlleNotizenVomNotizblock(notizblockID);
+        /* {
             public List<Notiz> getAlleBearbeitungszustaendeVomNotizblock(int notizblockID) {
                 IntValidator.checkObIntNullOderNegativIst(notizblockID);
                 return notizDAO.getAlleNotizenVomNotizblock(notizblockID);
             }
-        }.getAlleNotizenVomNotizblock(notizblockID);
+        }.*/
     }
 }
