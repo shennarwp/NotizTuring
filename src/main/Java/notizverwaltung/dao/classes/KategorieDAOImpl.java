@@ -80,7 +80,14 @@ public class KategorieDAOImpl extends ObjectDAOImpl implements KategorieDAO
 
     @Override
     public List<Kategorie> getAlleKategorien() {
-        return null;
+        initTransaction();
+        transaction.begin();
+        List<Kategorie> listKategorie = entityManager.createQuery("select k FROM KategorieImpl k").getResultList();
+        transaction.commit();
+        finishTransaction();
+
+        return listKategorie;
+
     }
 
 }
