@@ -140,7 +140,7 @@ public class MainApp extends Application {
         this.primaryStage.setTitle(FXKonstanten.ANWENDUNG_NAME);
         //initSpalten();
         initRootLayout();
-        //showGesamtOverview();
+        showGesamtOverview();
 
     }
 
@@ -183,13 +183,15 @@ public class MainApp extends Application {
             controller.setMainApp(this);
 
             //lade Tab
-            loader.setLocation(MainApp.class
+            FXMLLoader tabLoader = new FXMLLoader();
+            ResourceBundle tabBundle = I18nUtil.getComponentsResourceBundle();
+            tabLoader.setLocation(MainApp.class
                     .getResource(FXKonstanten.PFAD_NOTIZBLOCK_OVERVIEW_LAYOUT));
-            Tab notizblock = (Tab) loader.load();
+            Tab notizblock = (Tab) tabLoader.load();
 
             gesamtOverview.getTabs().add(notizblock);
 
-            NotizblockOverviewController tabController = loader.getController();
+            NotizblockOverviewController tabController = tabLoader.getController();
             tabController.setMainApp(this);
 
 
