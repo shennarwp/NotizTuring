@@ -38,12 +38,7 @@ public class BearbeitungszustandServiceImpl implements BearbeitungszustandServic
 
 	@Override
 	public Bearbeitungszustand getBearbeitungszustand (int bearbeitungszustandID) {
-		return new BearbeitungszustandDAOImpl() {
-			@Override
-			public List<Notiz> getAlleBearbeitungszustaendeVomNotizblock(int bearbeitungszustand) {
-				return null;
-			}
-		}.getBearbeitungszustand(bearbeitungszustandID);
+		return new BearbeitungszustandDAOImpl().getBearbeitungszustand(bearbeitungszustandID);
 	}
 
 	@Override
