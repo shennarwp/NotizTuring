@@ -4,6 +4,7 @@ import notizverwaltung.dao.interfaces.NotizDAO;
 import notizverwaltung.model.classes.NotizImpl;
 import notizverwaltung.model.interfaces.Notiz;
 
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 
@@ -92,6 +93,23 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
 
         return notizList;
     }
+
+    @Override
+    public List<Notiz> getAlleNotizenVonEinemBearbeitungszustand(int bearbeitungszustand) {
+        initTransaction();
+        transaction.begin();
+
+        List<Notiz> listVomNotiz = entityManager
+                .createQuery("SELECT n FROM NotizImpl n WHERE n.bearbeitungszustand = :bearbeitungszustand", Notiz.class)
+                .setParameter("bearbeitungszustand", bearbeitungszustand)
+                .getResultList();
+
+        transaction.commit();
+        finishTransaction();
+
+        return listVomNotiz;
+    }
+
 
 
 }

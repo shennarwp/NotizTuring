@@ -19,6 +19,7 @@ public interface NotizDAO extends ObjectDAO {
     public List<Notiz> getAlleNotizen();
 
     public List<Notiz> getAlleNotizenVomNotizblock(int notizblockID);
+    public List<Notiz> getAlleNotizenVonEinemBearbeitungszustand(int bearbeitungszustand);
 
 
 

@@ -5,7 +5,6 @@ import notizverwaltung.dao.classes.BearbeitungszustandDAOImpl;
 import notizverwaltung.dao.classes.NotizDAOImpl;
 import notizverwaltung.dao.interfaces.NotizDAO;
 import notizverwaltung.exceptions.ObjectIstNullException;
-import notizverwaltung.model.classes.NotizImpl;
 import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.service.interfaces.NotizService;
@@ -86,12 +85,24 @@ public class NotizServiceImpl implements NotizService {
 
     public List<Notiz> getAlleNotizenVonEinemBearbeitungszustand(int bearbeitungszustand) {
         IntValidator.checkObIntNullOderNegativIst(bearbeitungszustand);
-        return new BearbeitungszustandDAOImpl().getAlleNotizenVonEinemBearbeitungszustand(bearbeitungszustand);
+        return new BearbeitungszustandDAOImpl() {
+            @Override
+            public List<Notiz> getAlleBearbeitungszustaendeVomNotizblock(int bearbeitungszustand) {
+                IntValidator.checkObIntNullOderNegativIst(bearbeitungszustand);
+                return notizDAO.getAlleNotizenVonEinemBearbeitungszustand(bearbeitungszustand);
+            }
+        }.getAlleNotizenVonEinemBearbeitungszustand(bearbeitungszustand);
     }
     @Override
     public List<Notiz> getAlleNotizenVomNotizblock(int notizblockID)
     {
         IntValidator.checkObIntNullOderNegativIst(notizblockID);
-        return new BearbeitungszustandDAOImpl().getAlleNotizenVomNotizblock(notizblockID);
+        return new BearbeitungszustandDAOImpl() {
+            @Override
+            public List<Notiz> getAlleBearbeitungszustaendeVomNotizblock(int notizblockID) {
+                IntValidator.checkObIntNullOderNegativIst(notizblockID);
+                return notizDAO.getAlleNotizenVomNotizblock(notizblockID);
+            }
+        }.getAlleNotizenVomNotizblock(notizblockID);
     }
 }
