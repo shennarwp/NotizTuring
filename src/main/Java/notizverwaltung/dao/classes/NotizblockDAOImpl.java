@@ -25,9 +25,23 @@ public class NotizblockDAOImpl extends ObjectDAOImpl implements NotizblockDAO {
         return 0;
     }
 
+
     @Override
     public void deleteNotizblock(int notizblockID) {
+            initTransaction();
+            transaction.begin();
 
+
+            Bearbeitungszustand notizblock = entityManager.find(Bearbeitungszustand.class, notizblockID);
+            if (notizblock == null){
+                finishTransaction();
+                throw new IllegalArgumentException("notizblock existiert nicht!");
+            }
+
+            entityManager.remove(notizblockID);
+            transaction.commit();
+
+            finishTransaction();
     }
 
     @Override
