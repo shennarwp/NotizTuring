@@ -69,11 +69,15 @@ public class NotizServiceImpl implements NotizService {
         return null;
     }
 
+
+    //TODO
     @Override
     public List<Notiz> getAlleNotizenImNotizblock(int notizblockID) {
         IntValidator.checkObIntNullOderNegativIst(notizblockID);
-        return null;
+        return notizDAO.getAlleNotizenImNotizblock(notizblockID);
     }
+
+
     @Override
     public List<Notiz> getAlleNotizen()
     {

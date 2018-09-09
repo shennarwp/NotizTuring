@@ -66,6 +66,11 @@ public class NotizImpl implements Notiz
     @Column(name = "Erstellung")
     private Date erstellung;
 
+    @Column(name = "NotizblockID")
+    private int notizblockID;
+    
+    
+
 
 
     //____________________ID____________________
