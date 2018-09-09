@@ -23,4 +23,5 @@ public interface BearbeitungszustandDAO extends ObjectDAO {
     public List<Notiz> getAlleNotizenVonEinemBearbeitungszustand(int bearbeitungszustand);
     public List<Notiz> getAlleNotizenVomNotizblock (int NotizblockID);
 
+    List<Bearbeitungszustand> getAlleBearbeitungszustaendeVomNotizblock(int bearbeitungszustand);
 }
