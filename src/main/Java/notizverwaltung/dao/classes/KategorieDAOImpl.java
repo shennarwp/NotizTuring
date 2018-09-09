@@ -82,7 +82,7 @@ public class KategorieDAOImpl extends ObjectDAOImpl implements KategorieDAO
     public List<Kategorie> getAlleKategorien() {
         initTransaction();
         transaction.begin();
-        List<Kategorie> listKategorie = entityManager.createQuery("select k FROM KategorieImpl k").getResultList();
+        List<Kategorie> listKategorie = entityManager.createQuery("SELECT k FROM KategorieImpl k").getResultList();
         transaction.commit();
         finishTransaction();
 
