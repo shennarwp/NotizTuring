@@ -119,7 +119,7 @@ public class DialogController {
     /**
      * Validiert die eingegebenen Daten.
      *
-     * @return true wenn die Eingabe gueltig ist, sonst false.
+     * @return true wenn die Nutzer-Eingabe gueltig ist, sonst false.
      */
     private boolean isInputValid() {
         String errorMessage = validateNotiz();
