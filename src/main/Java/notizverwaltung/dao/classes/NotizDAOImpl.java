@@ -77,5 +77,21 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
         finishTransaction();
     }
 
+    @Override
+    public List<Notiz> getAlleNotizenVomNotizblock(int notizblockID) {
+        initTransaction();
+        transaction.begin();
+
+        List<Notiz> notizList = entityManager
+                .createQuery("SELECT n FROM NotizImpl n WHERE n.notizblockID = :notizblockID", Notiz.class)
+                .setParameter("notizblockID", notizblockID)
+                .getResultList();
+
+        transaction.commit();
+        finishTransaction();
+
+        return notizList;
+    }
+
 
 }

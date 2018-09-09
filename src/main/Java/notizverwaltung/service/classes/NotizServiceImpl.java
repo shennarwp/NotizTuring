@@ -74,7 +74,7 @@ public class NotizServiceImpl implements NotizService {
     @Override
     public List<Notiz> getAlleNotizenImNotizblock(int notizblockID) {
         IntValidator.checkObIntNullOderNegativIst(notizblockID);
-        return notizDAO.getAlleNotizenImNotizblock(notizblockID);
+        return notizDAO.getAlleNotizenVomNotizblock(notizblockID);
     }
 
 
