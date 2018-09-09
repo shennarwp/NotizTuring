@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -29,6 +30,7 @@ import notizverwaltung.service.interfaces.BearbeitungszustandService;
 import notizverwaltung.service.interfaces.KategorieService;
 import notizverwaltung.service.interfaces.NotizService;
 import notizverwaltung.view.GesamtOverviewController;
+import notizverwaltung.view.NotizblockOverviewController;
 import notizverwaltung.view.RootLayoutController;
 
 import java.io.IOException;
@@ -43,7 +45,7 @@ import java.util.ResourceBundle;
  * Die Funktionalität der GUI-Elemente wird durch entsprechende Controller-Klassen und FXML zur Verfügung gestellt.
  *
  * @author Michelle Blau, Johannes Gerwert
- * @version 08.09.2018
+ * @version 09.09.2018
  */
 
 public class MainApp extends Application {
@@ -167,9 +169,11 @@ public class MainApp extends Application {
 
     public void showGesamtOverview(){
         try{
+            //lade TabPane
             FXMLLoader loader = new FXMLLoader();
             ResourceBundle bundle = I18nUtil.getComponentsResourceBundle();
-            loader.setLocation(MainApp.class.getResource(FXKonstanten.PFAD_GESAMT_OVERVIEW_LAYOUT));
+            loader.setLocation(MainApp.class
+                    .getResource(FXKonstanten.PFAD_GESAMT_OVERVIEW_LAYOUT));
             loader.setResources(bundle);
             TabPane gesamtOverview = (TabPane) loader.load();
 
@@ -177,6 +181,17 @@ public class MainApp extends Application {
 
             GesamtOverviewController controller = loader.getController();
             controller.setMainApp(this);
+
+            //lade Tab
+            loader.setLocation(MainApp.class
+                    .getResource(FXKonstanten.PFAD_NOTIZBLOCK_OVERVIEW_LAYOUT));
+            Tab notizblock = (Tab) loader.load();
+
+            gesamtOverview.getTabs().add(notizblock);
+
+            NotizblockOverviewController tabController = loader.getController();
+            tabController.setMainApp(this);
+
 
         } catch (IOException e){
             e.printStackTrace();
