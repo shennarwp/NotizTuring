@@ -85,6 +85,6 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
 
     @Override
     public List<Notiz> getAlleNotizenVomNotizblock(int NotizblockID) {
-        return null;
+        return new NotizDAOImpl().getAlleNotizen();
     }
 }
