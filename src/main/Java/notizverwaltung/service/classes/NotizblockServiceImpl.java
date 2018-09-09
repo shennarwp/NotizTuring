@@ -28,11 +28,13 @@ public class NotizblockServiceImpl implements NotizblockService
 		this(DaoObjectBuilder.getNotizblockDaoObject());
 	}
 
+	@Override
 	public List<Kategorie> getAlleKategorienVomNotizblock(int notizblockID) {
 		IntValidator.checkObIntNullOderNegativIst(notizblockID);
 		return notizblockDAO.getAlleKategorienVomNotizblock(notizblockID);
 	}
 
+	@Override
 	public List<Bearbeitungszustand> getAlleBearbeitungszustaendeVomNotizblock(int notizblockID) {
 		IntValidator.checkObIntNullOderNegativIst(notizblockID);
 		return notizblockDAO.getAlleBearbeitungszustaendeVomNotizblock(notizblockID);
