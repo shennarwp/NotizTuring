@@ -12,13 +12,13 @@ public class FXKonstanten {
 
     public static final String PFAD_ROOT_LAYOUT = "/view/RootLayout.fxml";
 
-    public static final String PFAD_KATEGORIE_ERSTELLUNGSDIALOG_LAYOUT = "/view/KategorieErstellungsdialog.fxml";
-    public static final String PFAD_BEABREITUNGSZUSTAND_ERSTELLUNGSDIALOG_LAYOUT ="/view/ZustandErstellungsdialog.fxml";
-    public static final String PFAD_NOTIZ_ERSTELLUNGSDIALOG_LAYOUT ="/view/NotizErstellungsdialog.fxml";
+    public static final String PFAD_KATEGORIE_ERSTELLUNGSDIALOG_LAYOUT = "/view/dialoge/KategorieErstellungsdialog.fxml";
+    public static final String PFAD_BEABREITUNGSZUSTAND_ERSTELLUNGSDIALOG_LAYOUT = "/view/dialoge/BearbeitungszustandErstellungsdialog.fxml";
+    public static final String PFAD_NOTIZ_ERSTELLUNGSDIALOG_LAYOUT = "/view/dialoge/NotizErstellungsdialog.fxml";
 
-    public static final String PFAD_KATEGORIE_AENDERUNGSDIALOG_LAYOUT = "/view/KategorieAenderungsdialog.fxml";
-    public static final String PFAD_ZUSTAND_AENDERUNGSDIALOG_LAYOUT ="/view/ZustandAenderungsdialog.fxml";
-    public static final String PFAD_NOTIZ_AENDERUNGSDIALOG_LAYOUT ="/view/NotizAenderungsdialog.fxml";
+    public static final String PFAD_KATEGORIE_AENDERUNGSDIALOG_LAYOUT = "/view/dialoge/KategorieAenderungsdialog.fxml";
+    public static final String PFAD_ZUSTAND_AENDERUNGSDIALOG_LAYOUT = "/view/dialoge/BearbeitungszustandAenderungsdialog.fxml";
+    public static final String PFAD_NOTIZ_AENDERUNGSDIALOG_LAYOUT = "/view/dialoge/NotizAenderungsdialog.fxml";
 
     public static final String PFAD_GESAMT_OVERVIEW_LAYOUT ="/view/GesamtOverview.fxml";
     public static final String PFAD_NOTIZBLOCK_OVERVIEW_LAYOUT ="/view/NotizblockOverview.fxml";

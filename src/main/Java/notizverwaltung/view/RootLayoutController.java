@@ -26,7 +26,8 @@ import java.util.ResourceBundle;
  * Diese Klasse gibt die Funktionalität für das Grundfenster aus der Klasse "MainApp" an.
  * In der RootLayout.fxml wird auf diese Klasse verwiesen.
  *
- * Die Funktionalität der Dialoge wird in einer anderen Klasse, "DialogController" zur Verfügung gestellt
+ * Die Funktionalität der Dialog-Fenster wird in einer anderen Klasse, "DialogController" zur Verfügung gestellt, hier
+ * werden die Dialog-Fenster lediglich geöffnet
  * 
  * @author Michelle Blau
  * @version 08.09.2018

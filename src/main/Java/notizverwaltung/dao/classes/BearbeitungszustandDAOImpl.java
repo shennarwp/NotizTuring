@@ -3,6 +3,7 @@ package notizverwaltung.dao.classes;
 import notizverwaltung.dao.interfaces.BearbeitungszustandDAO;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.Notiz;
+import notizverwaltung.model.classes.BearbeitungszustandImpl;
 
 
 import javax.persistence.NoResultException;
@@ -55,7 +56,7 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
         initTransaction();
         transaction.begin();
 
-        List<Bearbeitungszustand> listBearbeitungszutand = entityManager.createQuery("SELECT n FROM BearbeitungszutandImpl n").getResultList();
+        List<Bearbeitungszustand> listBearbeitungszutand = entityManager.createQuery("SELECT n FROM BearbeitungszustandImpl n").getResultList();
         transaction.commit();
 
         finishTransaction();
@@ -86,8 +87,20 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
     }
 
     @Override
-    public void deleteBearbeitungszustand(int bearbeitungszustand) {
+    public void deleteBearbeitungszustand(int bearbeitungszustandID) {
+        initTransaction();
+        transaction.begin();
 
+        Bearbeitungszustand bearbeitungszustandZuLoeschen = entityManager.find(Bearbeitungszustand.class, bearbeitungszustandID);
+        if (bearbeitungszustandZuLoeschen == null){
+            finishTransaction();
+            throw new IllegalArgumentException("Bearbeitungszustand existiert nicht!");
+        }
+
+        entityManager.remove(bearbeitungszustandZuLoeschen);
+        transaction.commit();
+
+        finishTransaction();
     }
 
 //TODO hier muss noch bearbeiten

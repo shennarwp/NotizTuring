@@ -70,7 +70,7 @@ public class MainApp extends Application {
      * Fülle die Listen mit entsprechenden Daten, dies sind noch Testdaten für die GUI.
      */
     public MainApp() throws StringIsEmptyException, ObjectIstNullException {
-        //TODO hier wird die GUI mit Testdaten gefüllt, hier sollen jedoch später die Inhalte aus der DB geladen werden
+        //TODO hier wird die GUI mit Daten der DB gefüllt... hoffentlich irgendwann...
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_YEAR, 7);
         Date naechsteWoche = calendar.getTime();
@@ -80,7 +80,9 @@ public class MainApp extends Application {
         Kategorie kat3 = ModelObjectBuilder.getKategorieObjekt("Englisch");
 
 
-        kategorieListe.addAll(kategorieService.getAlleKategorien());
+        kategorieListe.add(kat1);
+        kategorieListe.add(kat2);
+        kategorieListe.add(kat3);
         System.out.println(kategorieListe+ "\n\n\n");
 //        notizListe.addAll(notizService.getAlleNotizenVomNotizblock(DAOKonstanten.DEFAULT_NOTIZBLOCK_ID));
 //        System.out.println(notizListe + "\n\n\n");
@@ -92,14 +94,17 @@ public class MainApp extends Application {
         Bearbeitungszustand bz1 = new BearbeitungszustandImpl("To-Do");
         Bearbeitungszustand bz2 = new BearbeitungszustandImpl("In Bearbeitung");
         Bearbeitungszustand bz3 = new BearbeitungszustandImpl("Erledigt");
+        bearbeitungszustandListe.add(bz1);
+        bearbeitungszustandListe.add(bz2);
+        bearbeitungszustandListe.add(bz3);
 
-        Notiz notiz1 = ModelObjectBuilder.getNotizObject();
-        notiz1.setTitle("Programm schreiben");
-        notiz1.setBeschreibung("Lagerklasse schreiben mit JUnit-Tests");
-        notiz1.setKategorieID(kat1.getKategorieID());
-        notiz1.setBearbeitungszustandID(bz1.getBearbeitungsZustandID());
-        notiz1.setPrioritaet(true);
-        notiz1.setFaelligkeit(naechsteWoche);
+//        Notiz notiz1 = ModelObjectBuilder.getNotizObject();
+//        notiz1.setTitle("Programm schreiben");
+////        notiz1.setBeschreibung("Lagerklasse schreiben mit JUnit-Tests");
+////        notiz1.setKategorieID(kat1.getKategorieID());
+//        notiz1.setBearbeitungszustandID(bz1.getBearbeitungsZustandID());
+//        notiz1.setPrioritaet(true);
+//        notiz1.setFaelligkeit(naechsteWoche);
 
 //        notizService.addNotiz(notiz1, DAOKonstanten.DEFAULT_NOTIZBLOCK_ID);
 //
