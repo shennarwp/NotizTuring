@@ -50,7 +50,8 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
         initTransaction();
         transaction.begin();
 
-        List<Notiz> listNotiz = entityManager.createQuery("SELECT n FROM NotizImpl n").getResultList();
+        List<Notiz> listNotiz = entityManager.createQuery("SELECT n FROM NotizImpl n", Notiz.class).getResultList();
+
         transaction.commit();
 
         finishTransaction();

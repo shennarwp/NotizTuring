@@ -57,30 +57,11 @@ public class NotizFilterServiceImpl implements NotizFilterService {
         return neueListe;
     }
 
-    @Override
-    public List<Notiz> filterAlleNotizenMitKategorie(int notizblockID, List<Notiz> listeVonNotizen) {
-        ArrayList<Notiz> neueListe = new ArrayList<>();
-
-        for (Notiz notiz:listeVonNotizen){
-            if(!notiz.getKategorie().isEmpty()){
-                neueListe.add(notiz);
-            }
-        }
-        return neueListe;
+    //TODO Implementieren
+    public List<Notiz> filterAlleNotizenMiteinerBestimmtenKategorie(int kategorieID, int notizblock){
+        return null;
     }
 
-    @Override
-    public List<Notiz> filterAlleNotizenOhneKategorie(int notizblockID, List<Notiz> listeVonNotizen) {
-
-        ArrayList<Notiz> neueListe = new ArrayList<>();
-
-        for (Notiz notiz:listeVonNotizen){
-            if(notiz.getKategorie().isEmpty()){
-                neueListe.add(notiz);
-            }
-        }
-        return neueListe;
-    }
 
     @Override
     public List<Notiz> filterAlleNotizenMitEinemBearbeitunszustand(int bearbeitungszustandID, List<Notiz> listVonNotizen) {
