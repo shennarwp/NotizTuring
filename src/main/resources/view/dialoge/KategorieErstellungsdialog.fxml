@@ -27,7 +27,7 @@
             <ColorPicker GridPane.columnIndex="1" />
             <Label text="%dialog-categorycolor" />
             <Label text="%dialog-categoryname" GridPane.rowIndex="1" />
-            <TextField fx:id="kategorieNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="kategorieAnlegenNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </center>

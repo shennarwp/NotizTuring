@@ -65,19 +65,4 @@ class ObjectValidatorTest {
         assertEquals(false, ergebnis);
     }
 
-
-
-
-    /**
-     * Testet, was bei Überegabe eines leeren Strings passiert
-     * Methode: setName()
-     * -> Erwartet wird eine StringIsEmptyException
-//     */
-//    @Test
-//    void setNameStringIstLeer() {
-//        String leerString ="";
-//        Bearbeitungszustand testZustand = new BearbeitungszustandImpl();
-//
-//        assertThrows(StringIsEmptyException.class, () -> { testZustand.setName(leerString);});
-//    }
 }

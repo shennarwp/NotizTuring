@@ -80,7 +80,9 @@ public class MainApp extends Application {
         Kategorie kat3 = ModelObjectBuilder.getKategorieObjekt("Englisch");
 
 
-        kategorieListe.addAll(kategorieService.getAlleKategorien());
+        kategorieListe.add(kat1);
+        kategorieListe.add(kat2);
+        kategorieListe.add(kat3);
         System.out.println(kategorieListe+ "\n\n\n");
 //        notizListe.addAll(notizService.getAlleNotizenVomNotizblock(DAOKonstanten.DEFAULT_NOTIZBLOCK_ID));
 //        System.out.println(notizListe + "\n\n\n");
@@ -92,6 +94,9 @@ public class MainApp extends Application {
         Bearbeitungszustand bz1 = new BearbeitungszustandImpl("To-Do");
         Bearbeitungszustand bz2 = new BearbeitungszustandImpl("In Bearbeitung");
         Bearbeitungszustand bz3 = new BearbeitungszustandImpl("Erledigt");
+        bearbeitungszustandListe.add(bz1);
+        bearbeitungszustandListe.add(bz2);
+        bearbeitungszustandListe.add(bz3);
 
 //        Notiz notiz1 = ModelObjectBuilder.getNotizObject();
 //        notiz1.setTitle("Programm schreiben");
