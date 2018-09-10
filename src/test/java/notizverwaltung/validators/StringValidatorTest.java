@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class StringValidatorTest {
 
-    @Test
+    @org.junit.Test
     void isStringLeerOderNullTrue() {
         String leererString = " ";
         boolean bool = StringValidator.isStringLeerOderNull(leererString);

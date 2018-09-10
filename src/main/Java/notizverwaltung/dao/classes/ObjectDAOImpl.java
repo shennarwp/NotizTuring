@@ -12,8 +12,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 
-import static javax.persistence.Persistence.*;
-
 /**
  * DAO-superclass
  * implementiert die Verbindung mit dem Datenbank
@@ -40,7 +38,7 @@ public class ObjectDAOImpl implements ObjectDAO
 	 */
 	@Override
 	public void initTransaction() {
-		factory = 	createEntityManagerFactory("test");
+		factory = Persistence.createEntityManagerFactory("test");
 		entityManager = factory.createEntityManager();
 		transaction = entityManager.getTransaction();
 	}
