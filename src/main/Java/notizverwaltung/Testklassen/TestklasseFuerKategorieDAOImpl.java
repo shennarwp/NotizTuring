@@ -14,8 +14,8 @@ public class TestklasseFuerKategorieDAOImpl {
 
     public static void main(String [] args){
         TestklasseFuerKategorieDAOImpl test = new TestklasseFuerKategorieDAOImpl();
-        test.kategorieHinzufuegen();
-        test.testGetAlleKategorien();
+        //test.kategorieHinzufuegen();
+       test.testGetAlleKategorien();
 
     }
 

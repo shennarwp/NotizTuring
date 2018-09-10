@@ -1,6 +1,7 @@
 package notizverwaltung.dao.classes;
 
 import notizverwaltung.dao.interfaces.KategorieDAO;
+import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.Kategorie;
 
 import javax.persistence.NoResultException;
@@ -72,10 +73,22 @@ public class KategorieDAOImpl extends ObjectDAOImpl implements KategorieDAO
     public void updateKategorie(Kategorie kategorie) {
 
     }
-
     @Override
     public void deleteKategorie(int kategorieID) {
+        initTransaction();
+        transaction.begin();
 
+
+        Bearbeitungszustand kategorie = entityManager.find(Bearbeitungszustand.class, kategorieID);
+        if (kategorie == null){
+            finishTransaction();
+            throw new IllegalArgumentException("kategorie existiert nicht!");
+        }
+
+        entityManager.remove(kategorieID);
+        transaction.commit();
+
+        finishTransaction();
     }
 
     @Override

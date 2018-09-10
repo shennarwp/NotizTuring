@@ -33,7 +33,8 @@ public interface NotizService {
     public List<Notiz> getAlleNotizenvonEinerKategorie(Kategorie kategorie);
     public List<Notiz> getAlleNotizenImNotizblock (int notizblockID);
     public List<Notiz> getAlleNotizen();
-    public List<Notiz> getAlleNotizenVonEinemBearbeitungszustand(int bearbeitungszustand);
+    public List<Notiz> getAlleNotizenVonEinemBearbeitungszustand(int bearbeitungszustandID);
     public List<Notiz> getAlleNotizenVomNotizblock(int NotizblockID);
+
 
  }
