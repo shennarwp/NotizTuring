@@ -2,7 +2,7 @@ package notizverwaltung.i18n;
 
 import java.util.ResourceBundle;
 
-/**
+/**TODO Kommentare
  * Kapselt die Zugriffe auf die Ressourcendateien fuer die Internationalisierung. In diesem
  * kleinen Beispiel wird nur eine Ressourcendatei verwendet, doch es kann durchaus sinnvoll
  * sein, mehrere solcher Dateien zu definieren, z.B. fuer Beschriftungen, Fehlermeldungen usw. 

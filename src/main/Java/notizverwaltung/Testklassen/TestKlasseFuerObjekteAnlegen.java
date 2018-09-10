@@ -60,9 +60,9 @@ public class TestKlasseFuerObjekteAnlegen {
 
 
         //TODO folgende Aufrufe führen zu Exceptions, bitte fixen
-            notizService.getAlleNotizenVomNotizblock(1);
-            notizblockService.getAlleKategorienVomNotizblock(1);
-            notizblockService.getAlleBearbeitungszustaendeVomNotizblock(1);
+            System.out.println(notizService.getAlleNotizenVomNotizblock(1));
+            System.out.println(notizblockService.getAlleKategorienVomNotizblock(1));
+            System.out.println(notizblockService.getAlleBearbeitungszustaendeVomNotizblock(1));
 
         //lösche bz1 und kat1 aus Datenbank - sind diese Methoden überhaupt schon implementiert?
         bearbeitungszustandService.deleteBearbeitungszustand(bz1.getBearbeitungsZustandID());

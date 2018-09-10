@@ -24,14 +24,14 @@
         </rowConstraints>
          <children>
             <Label prefHeight="80.0" prefWidth="230.0" text="%dialog-statename" GridPane.rowIndex="1" />
-            <TextField fx:id="BearbeitungszustandNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="bearbeitungszustandNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </center>
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <buttons>
-          <Button mnemonicParsing="false" onAction="#handleBtnApply" text="%dialog-add" />
+          <Button mnemonicParsing="false" onAction="#handleBtnErstelleBearbeitungszustand" text="%dialog-add" />
             <Button mnemonicParsing="false" onAction="#handleBtnCancel" text="%dialog-cancel" />
         </buttons>
       </ButtonBar>
