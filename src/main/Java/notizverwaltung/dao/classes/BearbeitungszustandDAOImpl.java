@@ -3,6 +3,7 @@ package notizverwaltung.dao.classes;
 import notizverwaltung.dao.interfaces.BearbeitungszustandDAO;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.Notiz;
+import notizverwaltung.model.classes.BearbeitungszustandImpl;
 
 
 import javax.persistence.NoResultException;
@@ -55,7 +56,7 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
         initTransaction();
         transaction.begin();
 
-        List<Bearbeitungszustand> listBearbeitungszutand = entityManager.createQuery("SELECT n FROM BearbeitungszutandImpl n").getResultList();
+        List<Bearbeitungszustand> listBearbeitungszutand = entityManager.createQuery("SELECT n FROM BearbeitungszustandImpl n").getResultList();
         transaction.commit();
 
         finishTransaction();

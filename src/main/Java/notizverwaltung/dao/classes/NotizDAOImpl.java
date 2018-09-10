@@ -100,8 +100,8 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
         transaction.begin();
 
         List<Notiz> listVomNotiz = entityManager
-                .createQuery("SELECT n FROM NotizImpl n WHERE n.bearbeitungszustand = :bearbeitungszustand", Notiz.class)
-                .setParameter("bearbeitungszustand", bearbeitungszustand)
+                .createQuery("SELECT n FROM NotizImpl n WHERE n.bearbeitungszustandID = :bearbeitungszustandID", Notiz.class)
+                .setParameter("bearbeitungszustandID", bearbeitungszustand)
                 .getResultList();
 
         transaction.commit();
