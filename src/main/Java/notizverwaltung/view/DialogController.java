@@ -7,26 +7,23 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import notizverwaltung.MainApp;
-import notizverwaltung.builders.ModelObjectBuilder;
 import notizverwaltung.i18n.I18nMessagesUtil;
 import notizverwaltung.model.classes.NotizImpl;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.util.FXUtil;
+import notizverwaltung.validators.ObjectValidator;
 import notizverwaltung.validators.StringValidator;
 
 import java.time.LocalDate;
-import java.util.Date;
-
-import static notizverwaltung.util.DateUtil.convertLocalDate;
 
 /**
  * Stellt Funktionalität für die Dialog-Fenster der GUI zur Verfügung, verwendet die "-dialog.fxml" Dateien
- * TODO Dialog-fxml-Dateien in eigenen Ordner packen für bessere Übersicht
+ *  //TODO falls Zeit, den DialogController in mehrere Controller-Klassen aufteilen... aber nur am Ende des Projekts
  *
  * @author Michelle Blau
- * @version 08.09.2018
+ * @version 10.09.2018
  */
 
 public class DialogController {
@@ -34,30 +31,39 @@ public class DialogController {
     private MainApp mainApp;
     private Stage dialogStage;
 
-//_______________Notiz anlegen______________//
-    @FXML
-    TextField notizNameField;
 
+    //_______________Notiz_____________//
+    @FXML
+    TextField notizAnlegenNameField;
+
+    @FXML
+    TextArea notizAnlegenBeschreibungTextArea;
+
+    @FXML
+    DatePicker notizAnlegenFaelligkeitDatePicker;
+
+    //_______________Choice-Boxen__________________//
     @FXML
     ChoiceBox<Kategorie> kategorieChoiceBox;
 
     @FXML
     ChoiceBox<Bearbeitungszustand> bearbeitungszustandChoiceBox;
 
+//    @FXML
+//    ChoiceBox<Notiz> notizChoiceBox;
+
+    //_______________Kategorie______________//
     @FXML
-    TextArea notizBeschreibungTextArea;
+    TextField kategorieAnlegenNameField;
 
     @FXML
-    DatePicker notizFaelligkeitDatePicker;
+    TextField kategorieAendernNameField;
 
-
-//_______________Kategorie anlegen______________//
+    //_______________Bearbeitungszustand______________//
     @FXML
-    TextField kategorieNameField;
-
-//_______________Bearbeitungszustand anlegen______________//
+    TextField bearbeitungszustandAnlegenNameField;
     @FXML
-    TextField BearbeitungszustandNameField;
+    TextField bearbeitungszustandAendernNameField;
 
 
     /**
@@ -66,16 +72,22 @@ public class DialogController {
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
-        if(bearbeitungszustandChoiceBox != null){
+        if(!ObjectValidator.isObjectNull(bearbeitungszustandChoiceBox)){
             bearbeitungszustandChoiceBox.getItems().addAll(mainApp.getBearbeitungszustandListe());
         }
-        if(kategorieChoiceBox != null){
+        if(!ObjectValidator.isObjectNull(kategorieChoiceBox)){
             kategorieChoiceBox.getItems().addAll(mainApp.getKategorieListe());
         }
+//        if(!ObjectValidator.isObjectNull(notizChoiceBox)){
+//            notizChoiceBox.getItems().addAll(mainApp.getNotizListe());
+//        }
+
     }
 
+
     /**
-     * //TODO: kommentar
+     * Setzt Referenz auf die aufgerufene dialogStage, also das geöffnete Dialogfenster
+     *
      * @param dialogStage
      */
     public void setDialogStage (Stage dialogStage){
@@ -84,8 +96,9 @@ public class DialogController {
     }
 
 
+
     /**
-     * Schließt Stage beim Klicken auf den "Abbrechen" Button
+     * Schließt Stage/Dialogfenster beim Klicken auf den "Abbrechen" Button
      */
     @FXML
     private void handleBtnCancel(){
@@ -93,16 +106,20 @@ public class DialogController {
     }
 
 
+
     /**
      * Erstellt neue Notiz, wenn auf "Hinzufügen" Button geklickt wird, oder ruft Error-Dialog auf, wenn
      * Nutzereingaben falsch
+     * TODO Fertigschreiben, sobald Datenbank funktioniert
      */
     @FXML
     private void handleBtnErstelleNotiz(){
-        Notiz tmpNotiz = ModelObjectBuilder.getNotizObjectLeer();
-        if (isInputValid()) {
-            tmpNotiz.setTitle(notizNameField.getText());
-            tmpNotiz.setBeschreibung(notizBeschreibungTextArea.getText());
+        Notiz tmpNotiz = new NotizImpl();
+
+        if (isInputValid(validateNotizErstellen())) {
+
+            tmpNotiz.setTitle(notizAnlegenNameField.getText());
+            tmpNotiz.setBeschreibung(notizAnlegenBeschreibungTextArea.getText());
             mainApp.getNotizListe().add(tmpNotiz);
 
             System.out.println("Notiz erfolgreich in Liste eingefügt");
@@ -111,19 +128,196 @@ public class DialogController {
     }
 
 
-    @FXML
-    private void handleBtnApply() {
 
+    /**
+     * Erstellt neue Kategorie, wenn auf "Hinzufügen" Button geklickt wird, oder ruft Error-Dialog auf, wenn
+     * Nutzereingaben falsch
+     * TODO Fertigschreiben, sobald Datenbank funktioniert
+     */
+    @FXML
+    private void handleBtnErstelleKategorie(){
+
+        if (isInputValid(validateKategorieErstellen())) {
+
+            System.out.println("Kategorie wurde nicht erstellt, muss implementiert werden");
+            dialogStage.close();
+        }
     }
+
+
+
+    /**
+     * Ändert bestehende Kategorie, wenn auf "Anwenden" Button geklickt wird, oder ruft Error-Dialog auf, wenn
+     * Nutzereingaben falsch
+     * TODO Fertigschreiben, sobald Datenbank funktioniert
+     */
+    @FXML
+    private void handleBtnAendereKategorie(){
+        if (isInputValid(validateKategorieAendern())) {
+
+            System.out.println("Kategorie wurde nicht geändert, muss noch implementiert werden");
+            dialogStage.close();
+        }
+    }
+
+
+
+    /**
+     * Erstellt neuen Bearbeitungszustand, wenn auf "Hinzufügen" Button geklickt wird, oder ruft Error-Dialog auf, wenn
+     * Nutzereingaben falsch
+     * TODO Fertigschreiben, sobald Datenbank funktioniert
+     */
+    @FXML
+    private void handleBtnErstelleBearbeitungszustand(){
+
+        if (isInputValid(validateBearbeitungszustandErstellen())) {
+
+            System.out.println("Bearbeitungszustand wurde nicht erstellt, muss implementiert werden");
+            dialogStage.close();
+        }
+    }
+
+
+
+    /**
+     * Ändert bestehenden Bearbeitungszustand, wenn auf "Anwenden" Button geklickt wird, oder ruft Error-Dialog auf, wenn
+     * Nutzereingaben falsch
+     * TODO Fertigschreiben, sobald Datenbank funktioniert
+     */
+    @FXML
+    private void handleBtnAendereBearbeitungszustand(){
+
+        if (isInputValid(validateBearbeitungszustandAendern())) {
+
+            System.out.println("Bearbeitungszustand wurde nicht geändert, muss implementiert werden");
+            dialogStage.close();
+        }
+    }
+
+
+
+    /**
+     * Validiert die Eingabefelder fuer die Eingabe zur Erstellung einer Notiz.
+     * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
+     * leerer String.
+     * TODO fertigschreiben, sobald Datenbank funktioniert
+     */
+    private String validateNotizErstellen() {
+        String notizName = notizAnlegenNameField.getText();
+        Kategorie kategorie = kategorieChoiceBox.getValue();
+        Bearbeitungszustand bearbeitungszustand = bearbeitungszustandChoiceBox.getValue();
+        String beschreibung = notizAnlegenBeschreibungTextArea.getText();
+        LocalDate localDateFaelligkeit = notizAnlegenFaelligkeitDatePicker.getValue();
+
+        String errorMessage = "";
+
+        if (StringValidator.isStringLeerOderNull(notizName)) {
+            errorMessage += I18nMessagesUtil.getErrorNotiznameUngueltig() + "\n";
+        }
+        if (StringValidator.isStringLeerOderNull(beschreibung)) {
+            errorMessage += I18nMessagesUtil.getErrorNotizbeschreibungUngueltig() + "\n";
+        }
+        if (ObjectValidator.isObjectNull(localDateFaelligkeit)) {
+            errorMessage += I18nMessagesUtil.getErrorNotizFaelligkeitUngueltig() + "\n";
+        }
+
+        return errorMessage;
+    }
+
+
+
+    /**
+     * Validiert die Eingabefelder fuer die Eingabe zur Erstellung einer Kategorie.
+     * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
+     * leerer String.
+     * TODO fertigschreiben sobald Datenbank funktioniert
+     */
+    private String validateKategorieErstellen() {
+        String kategorieName = kategorieAnlegenNameField.getText();
+
+        String errorMessage = "";
+
+        if (StringValidator.isStringLeerOderNull(kategorieName)) {
+            errorMessage += I18nMessagesUtil.getErrorKategorienameUngueltig() + "\n";
+        }
+
+        return errorMessage;
+    }
+
+
+
+    /**
+     * Validiert die Eingabefelder zur Änderung einer bestehenden Kategorie.
+     * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
+     * leerer String.
+     * TODO fertigstellen sobald Datenbank funktioniert
+     */
+    private String validateKategorieAendern() {
+        String kategorieName = kategorieAendernNameField.getText();
+        Kategorie bestehendeKategorie = kategorieChoiceBox.getValue();
+
+        String errorMessage = "";
+
+        if(ObjectValidator.isObjectNull(bestehendeKategorie)){
+            errorMessage += I18nMessagesUtil.getErrorBestehendeKategorieUngueltig() + "\n";
+        }
+        if (StringValidator.isStringLeerOderNull(kategorieName)) {
+            errorMessage += I18nMessagesUtil.getErrorKategorienameUngueltig() + "\n";
+        }
+
+        return errorMessage;
+    }
+
+
+
+    /**
+     * Validiert die Eingabefelder fuer die Eingabe zur Erstellung eines Bearbeitungszustands.
+     * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
+     * leerer String.
+     */
+    private String validateBearbeitungszustandErstellen() {
+        String bearbeitungszustandName = bearbeitungszustandAnlegenNameField.getText();
+
+        String errorMessage = "";
+
+        if (StringValidator.isStringLeerOderNull(bearbeitungszustandName)) {
+            errorMessage += I18nMessagesUtil.getErrorBearbeitungszustandnameUngueltig() + "\n";
+        }
+
+        return errorMessage;
+    }
+
+
+
+    /**
+     * Validiert die Eingabefelder zur Änderung eines Bearbeitungszustands.
+     * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
+     * leerer String.
+     */
+    private String validateBearbeitungszustandAendern() {
+
+        String bearbeitungszustandName = bearbeitungszustandAendernNameField.getText();
+        Bearbeitungszustand bestehenderBearbeitungszustand = bearbeitungszustandChoiceBox.getValue();
+        String errorMessage = "";
+
+        if(ObjectValidator.isObjectNull(bestehenderBearbeitungszustand)){
+            errorMessage += I18nMessagesUtil.getErrorBestehenderBearbeitungszustandUngueltig() + "\n";
+        }
+        if (StringValidator.isStringLeerOderNull(bearbeitungszustandName)) {
+            errorMessage += I18nMessagesUtil.getErrorBearbeitungszustandnameUngueltig() + "\n";
+        }
+
+        return errorMessage;
+    }
+
 
 
     /**
      * Validiert die eingegebenen Daten.
      *
-     * @return true wenn die Eingabe gueltig ist, sonst false.
+     * @return true wenn die Nutzer-Eingabe gueltig ist, sonst false.
      */
-    private boolean isInputValid() {
-        String errorMessage = validateNotiz();
+    private boolean isInputValid(String errorMessage) {
 
         if (StringValidator.isStringLeerOderNull(errorMessage)) {
             return true;
@@ -138,36 +332,8 @@ public class DialogController {
     }
 
 
+    @FXML
+    private void handleBtnApply(){
 
-    /** //TODO fertig schreiben
-     * Validiert die Eingabefelder fuer die Eingabe einer Notiz.
-     * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
-     * leerer String.
-     */
-    private String validateNotiz() {
-        String notizname = notizNameField.getText();
-        Kategorie kategorie = kategorieChoiceBox.getValue();
-        Bearbeitungszustand bearbeitungszustand = bearbeitungszustandChoiceBox.getValue();
-        String beschreibung = notizBeschreibungTextArea.getText();
-        LocalDate localDateFaelligkeit = notizFaelligkeitDatePicker.getValue();
-        Date dateFaelligkeit = convertLocalDate(localDateFaelligkeit);
-
-        String errorMessage = "";
-
-        if (StringValidator.isStringLeerOderNull(notizname)) {
-            errorMessage += I18nMessagesUtil.getErrorNotiznameUngueltig() + "\n";
-        }
-        if (StringValidator.isStringLeerOderNull(beschreibung)) {
-            errorMessage += I18nMessagesUtil.getErrorNotizbeschreibungUngueltig() + "\n";
-        }
-//        if (PersonValidator.isStreetEmpty(street)) {
-//            errorMessage += I18nMessagesUtil.getErrorNoValidStreetString() + "\n";
-//        }
-//
-//        if (StringValidator.isStringLeerOderNull(beschreibung)) {
-//            errorMessage += I18nMessagesUtil.getErrorNoValidZipString() + "\n";
-//        }
-
-        return errorMessage;
     }
 }

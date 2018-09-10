@@ -29,15 +29,15 @@
         </rowConstraints>
          <children>
             <Label text="%dialog-notecategory" GridPane.rowIndex="1" />
-            <TextField fx:id="notizNameField" prefWidth="200.0" GridPane.columnIndex="1" />
+            <TextField fx:id="notizAnlegenNameField" prefWidth="200.0" GridPane.columnIndex="1" />
             <Label text="%dialog-notestate" GridPane.rowIndex="2" />
             <Label text="%dialog-notedescription" GridPane.rowIndex="3" />
             <Label text="%dialog-notefinaldate" GridPane.rowIndex="4" />
             <Label text="%dialog-notename" />
             <ChoiceBox fx:id="kategorieChoiceBox" prefHeight="31.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <ChoiceBox fx:id="bearbeitungszustandChoiceBox" prefHeight="31.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextArea fx:id="notizBeschreibungTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <DatePicker fx:id="notizFaelligkeitDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextArea fx:id="notizAnlegenBeschreibungTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <DatePicker fx:id="notizAnlegenFaelligkeitDatePicker" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
    </center>

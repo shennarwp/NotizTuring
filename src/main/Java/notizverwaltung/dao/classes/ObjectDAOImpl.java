@@ -1,6 +1,7 @@
 package notizverwaltung.dao.classes;
 
 import notizverwaltung.dao.interfaces.ObjectDAO;
+import notizverwaltung.model.interfaces.Bearbeitungszustand;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -9,6 +10,7 @@ import javax.persistence.Persistence;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * DAO-superclass
@@ -18,7 +20,7 @@ import java.sql.SQLException;
  */
 public class ObjectDAOImpl implements ObjectDAO
 {
-	private static Connection connection;
+	public static Connection connection;
 	protected EntityManagerFactory factory;
 	protected EntityManager entityManager;
 	protected EntityTransaction transaction;
@@ -49,4 +51,5 @@ public class ObjectDAOImpl implements ObjectDAO
 		entityManager.close();
 		factory.close();
 	}
+
 }

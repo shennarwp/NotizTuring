@@ -5,7 +5,6 @@ import notizverwaltung.dao.classes.BearbeitungszustandDAOImpl;
 import notizverwaltung.dao.classes.NotizDAOImpl;
 import notizverwaltung.dao.interfaces.NotizDAO;
 import notizverwaltung.exceptions.ObjectIstNullException;
-import notizverwaltung.model.classes.NotizImpl;
 import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.service.interfaces.NotizService;
@@ -69,25 +68,43 @@ public class NotizServiceImpl implements NotizService {
         return null;
     }
 
+
+    //TODO
     @Override
     public List<Notiz> getAlleNotizenImNotizblock(int notizblockID) {
         IntValidator.checkObIntNullOderNegativIst(notizblockID);
-        return null;
+        return notizDAO.getAlleNotizenVomNotizblock(notizblockID);
     }
+
+
     @Override
     public List<Notiz> getAlleNotizen()
     {
         return new NotizDAOImpl().getAlleNotizen();
     }
 
-    public List<Notiz> getAlleNotizenVonEinemBearbeitungszustand(int bearbeitungszustand) {
+    @Override
+    public List<Notiz> getAlleNotizenVonEinemBearbeitungszustand(int bearbeitungszustand)
+    {
         IntValidator.checkObIntNullOderNegativIst(bearbeitungszustand);
         return new BearbeitungszustandDAOImpl().getAlleNotizenVonEinemBearbeitungszustand(bearbeitungszustand);
+        /*{
+            *//*public List<Notiz> getAlleBearbeitungszustaendeVomNotizblock(int bearbeitungszustand) {
+                IntValidator.checkObIntNullOderNegativIst(bearbeitungszustand);
+                return notizDAO.getAlleNotizenVonEinemBearbeitungszustand(bearbeitungszustand);
+            }
+        }*//*.*/
     }
     @Override
     public List<Notiz> getAlleNotizenVomNotizblock(int notizblockID)
     {
         IntValidator.checkObIntNullOderNegativIst(notizblockID);
         return new BearbeitungszustandDAOImpl().getAlleNotizenVomNotizblock(notizblockID);
+        /* {
+            public List<Notiz> getAlleBearbeitungszustaendeVomNotizblock(int notizblockID) {
+                IntValidator.checkObIntNullOderNegativIst(notizblockID);
+                return notizDAO.getAlleNotizenVomNotizblock(notizblockID);
+            }
+        }.*/
     }
 }

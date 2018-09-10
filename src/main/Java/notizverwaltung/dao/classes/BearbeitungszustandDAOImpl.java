@@ -3,6 +3,8 @@ package notizverwaltung.dao.classes;
 import notizverwaltung.dao.interfaces.BearbeitungszustandDAO;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.Notiz;
+import notizverwaltung.model.classes.BearbeitungszustandImpl;
+
 
 import javax.persistence.NoResultException;
 import java.util.List;
@@ -50,6 +52,18 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
     }
 
     @Override
+    public List<Bearbeitungszustand> getAlleBearbeitungszustand() {
+        initTransaction();
+        transaction.begin();
+
+        List<Bearbeitungszustand> listBearbeitungszutand = entityManager.createQuery("SELECT n FROM BearbeitungszustandImpl n").getResultList();
+        transaction.commit();
+
+        finishTransaction();
+        return listBearbeitungszutand;
+    }
+
+    @Override
     public int istBearbeitungszustandExist(String bearbeitungszustand) {
         initTransaction();
         transaction.begin();
@@ -67,24 +81,45 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
         return bearbeitungszustandID;
     }
 
-
     @Override
     public void updateBearbeitungszustand(Bearbeitungszustand bearbeitungszustand) {
 
     }
 
     @Override
-    public void deleteBearbeitungszustand(int bearbeitungszustand) {
+    public void deleteBearbeitungszustand(int bearbeitungszustandID) {
+        initTransaction();
+        transaction.begin();
 
+        Bearbeitungszustand bearbeitungszustandZuLoeschen = entityManager.find(Bearbeitungszustand.class, bearbeitungszustandID);
+        if (bearbeitungszustandZuLoeschen == null){
+            finishTransaction();
+            throw new IllegalArgumentException("Bearbeitungszustand existiert nicht!");
+        }
+
+        entityManager.remove(bearbeitungszustandZuLoeschen);
+        transaction.commit();
+
+        finishTransaction();
     }
 
+//TODO hier muss noch bearbeiten
     @Override
     public List<Notiz> getAlleNotizenVonEinemBearbeitungszustand(int bearbeitungszustand) {
         return null;
     }
 
     @Override
-    public List<Notiz> getAlleNotizenVomNotizblock(int NotizblockID) {
-        return null;
+    public List<Notiz> getAlleNotizenVomNotizblock(int NotizblockID)
+    {
+        return new NotizDAOImpl().getAlleNotizen();
     }
+
+    @Override
+    public List<Bearbeitungszustand> getAlleBearbeitungszustaendeVomNotizblock(int bearbeitungszustand)
+    {
+        return new BearbeitungszustandDAOImpl().getAlleBearbeitungszustand();
+    }
+
+
 }

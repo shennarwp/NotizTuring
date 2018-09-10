@@ -4,7 +4,6 @@ package notizverwaltung.view;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -27,7 +26,8 @@ import java.util.ResourceBundle;
  * Diese Klasse gibt die Funktionalität für das Grundfenster aus der Klasse "MainApp" an.
  * In der RootLayout.fxml wird auf diese Klasse verwiesen.
  *
- * Die Funktionalität der Dialoge wird in einer anderen Klasse, "DialogController" zur Verfügung gestellt
+ * Die Funktionalität der Dialog-Fenster wird in einer anderen Klasse, "DialogController" zur Verfügung gestellt, hier
+ * werden die Dialog-Fenster lediglich geöffnet
  * 
  * @author Michelle Blau
  * @version 08.09.2018
@@ -172,7 +172,7 @@ public class RootLayoutController {
      */
     @FXML
     private void handleshowKategorieAenderungsMaske() {
-        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_KATEGORIE_ÄNDERUNGSDIALOG_LAYOUT);
+        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_KATEGORIE_AENDERUNGSDIALOG_LAYOUT);
     }
 
 
@@ -181,7 +181,7 @@ public class RootLayoutController {
      */
     @FXML
     private void handleshowZustandAenderungsMaske() {
-        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_ZUSTAND_ÄNDERUNGSDIALOG_LAYOUT);
+        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_ZUSTAND_AENDERUNGSDIALOG_LAYOUT);
     }
 
 
@@ -190,7 +190,7 @@ public class RootLayoutController {
      */
     @FXML
     private void handleshowNotizAenderungsMaske() {
-        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_NOTIZ_ÄNDERUNGSDIALOG_LAYOUT);
+        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_NOTIZ_AENDERUNGSDIALOG_LAYOUT);
     }
 
 

@@ -5,6 +5,7 @@ import notizverwaltung.dao.classes.BearbeitungszustandDAOImpl;
 import notizverwaltung.dao.interfaces.BearbeitungszustandDAO;
 import notizverwaltung.exceptions.ObjectIstNullException;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
+import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.service.interfaces.BearbeitungszustandService;
 import notizverwaltung.validators.ObjectValidator;
 
@@ -13,7 +14,7 @@ import java.util.List;
 /**
  * Service-Klasse für Bearbeitungszustand
  *
- * @author Shenna RWP
+ * @author Shenna RWP, Agra Bimantara
  */
 public class BearbeitungszustandServiceImpl implements BearbeitungszustandService {
 
@@ -41,7 +42,9 @@ public class BearbeitungszustandServiceImpl implements BearbeitungszustandServic
 	}
 
 	@Override
-	public void updateBearbeitungszustand (Bearbeitungszustand bearbeitungszustand) {}
+	public void updateBearbeitungszustand (Bearbeitungszustand bearbeitungszustand) {
+
+	}
 
 	@Override
 	public void deleteBearbeitungszustand (int bearbeitungszustandID) {}

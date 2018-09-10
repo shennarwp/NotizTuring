@@ -6,31 +6,36 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import notizverwaltung.builders.ServiceObjectBuilder;
+import notizverwaltung.builders.ModelObjectBuilder;
+import notizverwaltung.constants.DAOKonstanten;
 import notizverwaltung.constants.FXKonstanten;
+import notizverwaltung.dao.classes.NotizDAOImpl;
+import notizverwaltung.dao.interfaces.NotizDAO;
 import notizverwaltung.exceptions.ObjectIstNullException;
 import notizverwaltung.exceptions.StringIsEmptyException;
 import notizverwaltung.i18n.I18nUtil;
 import notizverwaltung.model.classes.BearbeitungszustandImpl;
 import notizverwaltung.model.classes.KategorieImpl;
-import notizverwaltung.model.classes.NotizImpl;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
-import notizverwaltung.service.classes.NotizFilterServiceImpl;
+import notizverwaltung.service.classes.BearbeitungszustandServiceImpl;
+import notizverwaltung.service.classes.KategorieServiceImpl;
 import notizverwaltung.service.classes.NotizServiceImpl;
-import notizverwaltung.service.interfaces.NotizFilterService;
+import notizverwaltung.service.interfaces.BearbeitungszustandService;
+import notizverwaltung.service.interfaces.KategorieService;
 import notizverwaltung.service.interfaces.NotizService;
+import notizverwaltung.view.GesamtOverviewController;
+import notizverwaltung.view.NotizblockOverviewController;
 import notizverwaltung.view.RootLayoutController;
 
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -40,7 +45,7 @@ import java.util.ResourceBundle;
  * Die Funktionalität der GUI-Elemente wird durch entsprechende Controller-Klassen und FXML zur Verfügung gestellt.
  *
  * @author Michelle Blau, Johannes Gerwert
- * @version 07.09.2018
+ * @version 09.09.2018
  */
 
 public class MainApp extends Application {
@@ -57,40 +62,74 @@ public class MainApp extends Application {
     private ObservableList<Bearbeitungszustand> bearbeitungszustandListe = FXCollections.observableArrayList();
 
     private NotizService notizService = new NotizServiceImpl();
+    private KategorieService kategorieService = new KategorieServiceImpl();
+    private BearbeitungszustandService bearbeitungszustandService = new BearbeitungszustandServiceImpl();
 
 
     /**
      * Fülle die Listen mit entsprechenden Daten, dies sind noch Testdaten für die GUI.
      */
     public MainApp() throws StringIsEmptyException, ObjectIstNullException {
+        //TODO hier wird die GUI mit Daten der DB gefüllt... hoffentlich irgendwann...
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_YEAR, 7);
         Date naechsteWoche = calendar.getTime();
 
-        Kategorie kat1 = new KategorieImpl("Prog 3");
-        Kategorie kat2 = new KategorieImpl("Mathe");
-        Kategorie kat3 = new KategorieImpl("Englisch");
-        //Kategorie kat4 = new KategorieImpl("Prog 4", Color.web("#660033\n", 1.0));
+        Kategorie kat1 = ModelObjectBuilder.getKategorieObjekt("Prog 3");
+        Kategorie kat2 = ModelObjectBuilder.getKategorieObjekt("Mathe");
+        Kategorie kat3 = ModelObjectBuilder.getKategorieObjekt("Englisch");
+
 
         kategorieListe.add(kat1);
         kategorieListe.add(kat2);
         kategorieListe.add(kat3);
-        //kategorieListe.add(kat4);
+        System.out.println(kategorieListe+ "\n\n\n");
+//        notizListe.addAll(notizService.getAlleNotizenVomNotizblock(DAOKonstanten.DEFAULT_NOTIZBLOCK_ID));
+//        System.out.println(notizListe + "\n\n\n");
+//        bearbeitungszustandListe.addAll(bearbeitungszustandService.getAllBearbeitungszustand());
+//        System.out.println(bearbeitungszustandListe);
 
-        Notiz notiz1 = new NotizImpl("Program", kat1.getKategorieName(), "To-Do", "Artikel-Klasse schreiben", true, naechsteWoche);
-        notizListe.add(notiz1);
-        notizListe.add(new NotizImpl("Hausaufgabe", kat2.getKategorieName(), "To-Do", "Übung 12", true, naechsteWoche));
-        notizListe.add(new NotizImpl("Aufsatz", kat3.getKategorieName(), "In Bearbeitung", "Shakespeare", false, naechsteWoche));
+
+
+        Bearbeitungszustand bz1 = new BearbeitungszustandImpl("To-Do");
+        Bearbeitungszustand bz2 = new BearbeitungszustandImpl("In Bearbeitung");
+        Bearbeitungszustand bz3 = new BearbeitungszustandImpl("Erledigt");
+        bearbeitungszustandListe.add(bz1);
+        bearbeitungszustandListe.add(bz2);
+        bearbeitungszustandListe.add(bz3);
+
+//        Notiz notiz1 = ModelObjectBuilder.getNotizObject();
+//        notiz1.setTitle("Programm schreiben");
+////        notiz1.setBeschreibung("Lagerklasse schreiben mit JUnit-Tests");
+////        notiz1.setKategorieID(kat1.getKategorieID());
+//        notiz1.setBearbeitungszustandID(bz1.getBearbeitungsZustandID());
+//        notiz1.setPrioritaet(true);
+//        notiz1.setFaelligkeit(naechsteWoche);
+
+//        notizService.addNotiz(notiz1, DAOKonstanten.DEFAULT_NOTIZBLOCK_ID);
+//
+//        Notiz notiz2 = ModelObjectBuilder.getNotizObject();
+//        notiz2.setTitle("Hausaufgaben");
+//        notiz2.setBeschreibung("Übung 12, Aufgabe 1 und 2");
+//        notiz2.setKategorieID(kat2.getKategorieID());
+//        notiz2.setBearbeitungszustandID(bz2.getBearbeitungsZustandID());
+//        notiz2.setPrioritaet(true);
+//        notiz2.setFaelligkeit(naechsteWoche);
+//
+//        Notiz notiz3 = ModelObjectBuilder.getNotizObject();
+//        notiz3.setTitle("Brief schreiben");
+//        notiz3.setBeschreibung("Übung 13, Letter of Application schreiben");
+//        notiz3.setKategorieID(kat3.getKategorieID());
+//        notiz3.setBearbeitungszustandID(bz3.getBearbeitungsZustandID());
+//        notiz3.setPrioritaet(false);
+//        notiz3.setFaelligkeit(naechsteWoche);
+
 
         //TODO: führt zu einer NullpointerException, evtl weil Datenbank noch leer oder Methode geht nicht
-        // notizListe.addAll(notizService.getAlleNotizenVomNotizblock(1));
-        Bearbeitungszustand todo = new BearbeitungszustandImpl("To-Do");
-        bearbeitungszustandListe.add(todo);
-        bearbeitungszustandListe.add(new BearbeitungszustandImpl("In Bearbeitung"));
-        bearbeitungszustandListe.add(new BearbeitungszustandImpl("Erledigt"));
+        //notizListe.addAll(notizService.getAlleNotizenVomNotizblock(DAOKonstanten.DEFAULT_NOTIZBLOCK_ID));
 
-        NotizFilterService notizFilterService = new NotizFilterServiceImpl();
-        System.out.println("\n\n\n" + notizFilterService.filterAlleNotizenMitEinemBearbeitunszustand(todo.getBearbeitungsZustandID(),notizListe));
+
+
     }
 
 
@@ -106,6 +145,7 @@ public class MainApp extends Application {
         this.primaryStage.setTitle(FXKonstanten.ANWENDUNG_NAME);
         //initSpalten();
         initRootLayout();
+        showGesamtOverview();
 
     }
 
@@ -116,7 +156,7 @@ public class MainApp extends Application {
     public void initRootLayout() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            ResourceBundle bundle = I18nUtil.getMenuResourceBundle();
+            ResourceBundle bundle = I18nUtil.getComponentsResourceBundle();
             loader.setLocation(MainApp.class
                     .getResource(FXKonstanten.PFAD_ROOT_LAYOUT));
             loader.setResources(bundle);
@@ -128,6 +168,39 @@ public class MainApp extends Application {
 
             primaryStage.show();
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showGesamtOverview(){
+        try{
+            //lade TabPane
+            FXMLLoader loader = new FXMLLoader();
+            ResourceBundle bundle = I18nUtil.getComponentsResourceBundle();
+            loader.setLocation(MainApp.class
+                    .getResource(FXKonstanten.PFAD_GESAMT_OVERVIEW_LAYOUT));
+            loader.setResources(bundle);
+            TabPane gesamtOverview = (TabPane) loader.load();
+
+            rootBorderPane.setCenter(gesamtOverview);
+
+            GesamtOverviewController controller = loader.getController();
+            controller.setMainApp(this);
+
+            //lade Tab
+            FXMLLoader tabLoader = new FXMLLoader();
+            ResourceBundle tabBundle = I18nUtil.getComponentsResourceBundle();
+            tabLoader.setLocation(MainApp.class
+                    .getResource(FXKonstanten.PFAD_NOTIZBLOCK_OVERVIEW_LAYOUT));
+            Tab notizblock = (Tab) tabLoader.load();
+
+            gesamtOverview.getTabs().add(notizblock);
+
+            NotizblockOverviewController tabController = tabLoader.getController();
+            tabController.setMainApp(this);
+
+
+        } catch (IOException e){
             e.printStackTrace();
         }
     }

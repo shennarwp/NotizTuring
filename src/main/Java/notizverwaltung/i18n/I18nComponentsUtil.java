@@ -1,8 +1,8 @@
 package notizverwaltung.i18n;
 
 import java.util.ResourceBundle;
-
-public class I18nMenuUtil {
+//TODO Kommentare
+public class I18nComponentsUtil {
 
     private static final String MENU_FILE = "menu-file";
     private static final String MENU_NEW = "menu-new";
@@ -13,11 +13,13 @@ public class I18nMenuUtil {
     private static final String MENU_FILTER = "menu-filter";
     private static final String MENU_SORT = "menu-sort";
 
+    private static final String STANDARD_NOTEPAD_NAME = "standard-notepad-name";
+
 
     private static ResourceBundle resourceBundle;
 
     static {
-        resourceBundle = I18nUtil.getMenuResourceBundle();
+        resourceBundle = I18nUtil.getComponentsResourceBundle();
     }
 
     public static String getMenuFile() {
@@ -50,6 +52,10 @@ public class I18nMenuUtil {
 
     public static String getMenuSort() {
         return resourceBundle.getString(MENU_SORT);
+    }
+
+    public static String getStandardNotepadName() {
+        return resourceBundle.getString(STANDARD_NOTEPAD_NAME);
     }
 
 }
