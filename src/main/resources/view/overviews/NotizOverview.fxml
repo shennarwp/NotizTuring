@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="218.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="notizverwaltung.view.NotizOverviewController">
    <children>
       <BorderPane prefHeight="140.0" prefWidth="218.0">
@@ -16,17 +15,17 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="29.0" prefWidth="46.0">
                      <children>
-                        <Label disable="true" layoutX="7.0" layoutY="6.0" text="!!!" />
+                        <Label fx:id="prioritaetLabel" layoutX="7.0" layoutY="6.0" text="%standard-priority-low" />
                      </children>
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <Label fx:id="datumLabel" layoutY="6.0" text="Datum" />
+                        <Label fx:id="datumLabel" layoutY="6.0" text="%standard-date" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="29.0" prefWidth="60.0">
                      <children>
-                        <Label fx:id="kategorieLabel" layoutY="7.0" text="Kategorie" />
+                        <Label fx:id="kategorieLabel" layoutY="7.0" text="%standard-category-name" />
                      </children>
                   </AnchorPane>
               </items>
@@ -37,24 +36,24 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <Button layoutX="9.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleMoveLeft" text="L" />
+                        <Button layoutX="9.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleMoveLeft" text="%left" />
                      </children>
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <ComboBox layoutX="3.0" layoutY="1.0" prefHeight="25.0" prefWidth="119.0" visibleRowCount="3" />
+                        <ComboBox fx:id="spaltenWahlBox" layoutX="3.0" layoutY="1.0" prefHeight="25.0" prefWidth="119.0" visibleRowCount="3" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="27.0" prefWidth="80.0">
                      <children>
-                        <Button layoutX="8.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleMoveRight" text="R" />
+                        <Button layoutX="8.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleMoveRight" text="%right" />
                      </children>
                   </AnchorPane>
               </items>
             </SplitPane>
          </bottom>
          <center>
-            <Label fx:id="notizLabel" text="Notiz" wrapText="true" BorderPane.alignment="CENTER" />
+            <Label fx:id="notizLabel" text="%standard-note-name" wrapText="true" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </children>

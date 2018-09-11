@@ -47,7 +47,17 @@ public class BearbeitungszustandServiceImpl implements BearbeitungszustandServic
 	}
 
 	@Override
-	public void deleteBearbeitungszustand (int bearbeitungszustandID) {}
+	public void deleteBearbeitungszustand (int bearbeitungszustandID) {
+		if(getAnzahlNotizenInBearbeitungszustand(bearbeitungszustandID) == 0) {
+			bearbeitungszustandDAO.deleteBearbeitungszustand(bearbeitungszustandID);
+		}
+		//TODO throws exception later
+	}
+
+	@Override
+	public long getAnzahlNotizenInBearbeitungszustand(int bearbeitungszustandID) {
+		return bearbeitungszustandDAO.getAnzahlNotizenInBearbeitungszustand(bearbeitungszustandID);
+	}
 
 	@Override
 	public List<Bearbeitungszustand> getAllBearbeitungszustand() {

@@ -91,7 +91,7 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
         initTransaction();
         transaction.begin();
 
-        Bearbeitungszustand bearbeitungszustandZuLoeschen = entityManager.find(Bearbeitungszustand.class, bearbeitungszustandID);
+        Bearbeitungszustand bearbeitungszustandZuLoeschen = entityManager.find(BearbeitungszustandImpl.class, bearbeitungszustandID);
         if (bearbeitungszustandZuLoeschen == null){
             finishTransaction();
             throw new IllegalArgumentException("Bearbeitungszustand existiert nicht!");
@@ -103,22 +103,53 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
         finishTransaction();
     }
 
-//TODO hier muss noch bearbeiten
     @Override
-    public List<Notiz> getAlleNotizenVonEinemBearbeitungszustand(int bearbeitungszustand) {
-        return null;
+    public long getAnzahlNotizenInBearbeitungszustand(int bearbeitungszustandID) {
+        initTransaction();
+        transaction.begin();
+
+        long anzahlNotizen = entityManager.createQuery("SELECT COUNT(n.notizID) FROM NotizImpl n WHERE n.bearbeitungszustandID = :bearbeitungszustandID", Long.class)
+                .setParameter("bearbeitungszustandID", bearbeitungszustandID )
+                .getSingleResult();
+        transaction.commit();
+        finishTransaction();
+
+        return anzahlNotizen;
     }
 
     @Override
-    public List<Notiz> getAlleNotizenVomNotizblock(int NotizblockID)
-    {
-        return new NotizDAOImpl().getAlleNotizen();
+    public List<Notiz> getAlleNotizenVonEinemBearbeitungszustand(int bearbeitungszustandID) {
+        initTransaction();
+        transaction.begin();
+
+        List<Notiz> notizList = entityManager
+                .createQuery("SELECT n FROM NotizImpl n WHERE n.bearbeitungszustandID = :bearbeitungszustandID", Notiz.class)
+                .setParameter("bearbeitungszustandID", bearbeitungszustandID)
+                .getResultList();
+
+        transaction.commit();
+        finishTransaction();
+
+        return notizList;
     }
 
     @Override
-    public List<Bearbeitungszustand> getAlleBearbeitungszustaendeVomNotizblock(int bearbeitungszustand)
+    public List<Bearbeitungszustand> getAlleBearbeitungszustaendeVomNotizblock(int notizblockID)
     {
-        return new BearbeitungszustandDAOImpl().getAlleBearbeitungszustand();
+
+        initTransaction();
+        transaction.begin();
+
+        List<Bearbeitungszustand> listBearbeitungszutand = entityManager
+                .createQuery("SELECT b from BearbeitungszustandImpl b WHERE b.bearbeitungszustandID =" +
+                        "(SELECT n.bearbeitungszustandID FROM NotizImpl n WHERE n.notizblockID = :notizblockID)", Bearbeitungszustand.class)
+                .setParameter("notizblockID", notizblockID)
+                .getResultList();
+        transaction.commit();
+
+        finishTransaction();
+        return listBearbeitungszutand;
+
     }
 
 

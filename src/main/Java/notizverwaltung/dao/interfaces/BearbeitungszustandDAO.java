@@ -19,9 +19,9 @@ public interface BearbeitungszustandDAO extends ObjectDAO {
     public int istBearbeitungszustandExist(String bearbeitungszustand);
     public void updateBearbeitungszustand(Bearbeitungszustand bearbeitungszustand);
     public void deleteBearbeitungszustand (int bearbeitungszustandID);
+    public long getAnzahlNotizenInBearbeitungszustand(int bearbeitungszustandID);
 
     public List<Notiz> getAlleNotizenVonEinemBearbeitungszustand(int bearbeitungszustand);
-    public List<Notiz> getAlleNotizenVomNotizblock (int NotizblockID);
 
-    List<Bearbeitungszustand> getAlleBearbeitungszustaendeVomNotizblock(int bearbeitungszustand);
+    List<Bearbeitungszustand> getAlleBearbeitungszustaendeVomNotizblock(int notizblockID);
 }

@@ -14,6 +14,10 @@ public class GesamtOverviewController {
 
     private MainApp mainApp;
 
+    public GesamtOverviewController(){
+
+    }
+
     public void setMainApp(MainApp mainApp){
         this.mainApp = mainApp;
     }

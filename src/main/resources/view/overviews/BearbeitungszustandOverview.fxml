@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.VBox?>
+
+<TitledPane fx:id="bearbeitungszustandTitle" collapsible="false" prefHeight="331.0" prefWidth="189.0" text="%standard-status-name" wrapText="true" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="notizverwaltung.view.BearbeitungszustandOverviewController">
+   <content>
+      <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="305.0" prefWidth="187.0" vbarPolicy="ALWAYS">
+         <content>
+            <VBox fx:id="notizen" prefHeight="302.0" prefWidth="172.0" />
+         </content>
+      </ScrollPane>
+   </content>
+</TitledPane>

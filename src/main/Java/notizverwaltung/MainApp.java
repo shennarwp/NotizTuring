@@ -172,6 +172,9 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * Erstellt das Hauptanzeigefenster der Notizen.
+     */
     public void showGesamtOverview(){
         try{
             //lade TabPane
@@ -187,20 +190,22 @@ public class MainApp extends Application {
             GesamtOverviewController controller = loader.getController();
             controller.setMainApp(this);
 
-            //lade Tab
+            //lade Tab -> Notizblock
             FXMLLoader tabLoader = new FXMLLoader();
             ResourceBundle tabBundle = I18nUtil.getComponentsResourceBundle();
             tabLoader.setLocation(MainApp.class
                     .getResource(FXKonstanten.PFAD_NOTIZBLOCK_OVERVIEW_LAYOUT));
+            tabLoader.setResources(tabBundle);
             Tab notizblock = (Tab) tabLoader.load();
 
             gesamtOverview.getTabs().add(notizblock);
 
             NotizblockOverviewController tabController = tabLoader.getController();
             tabController.setMainApp(this);
+            tabController.ladeBearbeitungszustaende();
 
 
-        } catch (IOException e){
+        } catch(IOException e){
             e.printStackTrace();
         }
     }

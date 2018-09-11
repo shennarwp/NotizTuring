@@ -68,7 +68,7 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
         initTransaction();
         transaction.begin();
 
-        Notiz notiz = entityManager.find(Notiz.class, notizID);
+        Notiz notiz = entityManager.find(NotizImpl.class, notizID);
         if(notiz == null) {
             finishTransaction();
             throw new IllegalArgumentException("Notiz existiert nicht!");
