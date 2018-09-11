@@ -1,6 +1,7 @@
 package notizverwaltung.service.classes;
 
 import notizverwaltung.builders.DaoObjectBuilder;
+import notizverwaltung.builders.ServiceObjectBuilder;
 import notizverwaltung.dao.classes.BearbeitungszustandDAOImpl;
 import notizverwaltung.dao.interfaces.BearbeitungszustandDAO;
 import notizverwaltung.exceptions.ObjectIstNullException;
@@ -61,7 +62,7 @@ public class BearbeitungszustandServiceImpl implements BearbeitungszustandServic
 
 	@Override
 	public List<Bearbeitungszustand> getAllBearbeitungszustand() {
-		return null;
+		return bearbeitungszustandDAO.getAlleBearbeitungszustand();
 	}
 
 

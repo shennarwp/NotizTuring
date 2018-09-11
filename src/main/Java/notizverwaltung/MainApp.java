@@ -26,9 +26,11 @@ import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.service.classes.BearbeitungszustandServiceImpl;
 import notizverwaltung.service.classes.KategorieServiceImpl;
 import notizverwaltung.service.classes.NotizServiceImpl;
+import notizverwaltung.service.classes.NotizblockServiceImpl;
 import notizverwaltung.service.interfaces.BearbeitungszustandService;
 import notizverwaltung.service.interfaces.KategorieService;
 import notizverwaltung.service.interfaces.NotizService;
+import notizverwaltung.service.interfaces.NotizblockService;
 import notizverwaltung.view.GesamtOverviewController;
 import notizverwaltung.view.NotizblockOverviewController;
 import notizverwaltung.view.RootLayoutController;
@@ -61,6 +63,7 @@ public class MainApp extends Application {
     private ObservableList<Notiz> notizListe = FXCollections.observableArrayList();
     private ObservableList<Bearbeitungszustand> bearbeitungszustandListe = FXCollections.observableArrayList();
 
+    private NotizblockService notizblockService = new NotizblockServiceImpl();
     private NotizService notizService = new NotizServiceImpl();
     private KategorieService kategorieService = new KategorieServiceImpl();
     private BearbeitungszustandService bearbeitungszustandService = new BearbeitungszustandServiceImpl();
@@ -70,65 +73,12 @@ public class MainApp extends Application {
      * Fülle die Listen mit entsprechenden Daten, dies sind noch Testdaten für die GUI.
      */
     public MainApp() throws StringIsEmptyException, ObjectIstNullException {
-        //TODO hier wird die GUI mit Daten der DB gefüllt... hoffentlich irgendwann...
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DAY_OF_YEAR, 7);
-        Date naechsteWoche = calendar.getTime();
 
-        Kategorie kat1 = ModelObjectBuilder.getKategorieObjekt("Prog 3");
-        Kategorie kat2 = ModelObjectBuilder.getKategorieObjekt("Mathe");
-        Kategorie kat3 = ModelObjectBuilder.getKategorieObjekt("Englisch");
+        initializeListenMitDatenbankInhalt();
 
-
-        kategorieListe.add(kat1);
-        kategorieListe.add(kat2);
-        kategorieListe.add(kat3);
-        System.out.println(kategorieListe+ "\n\n\n");
-//        notizListe.addAll(notizService.getAlleNotizenVomNotizblock(DAOKonstanten.DEFAULT_NOTIZBLOCK_ID));
-//        System.out.println(notizListe + "\n\n\n");
-//        bearbeitungszustandListe.addAll(bearbeitungszustandService.getAllBearbeitungszustand());
-//        System.out.println(bearbeitungszustandListe);
-
-
-
-        Bearbeitungszustand bz1 = new BearbeitungszustandImpl("To-Do");
-        Bearbeitungszustand bz2 = new BearbeitungszustandImpl("In Bearbeitung");
-        Bearbeitungszustand bz3 = new BearbeitungszustandImpl("Erledigt");
-        bearbeitungszustandListe.add(bz1);
-        bearbeitungszustandListe.add(bz2);
-        bearbeitungszustandListe.add(bz3);
-
-//        Notiz notiz1 = ModelObjectBuilder.getNotizObject();
-//        notiz1.setTitle("Programm schreiben");
-////        notiz1.setBeschreibung("Lagerklasse schreiben mit JUnit-Tests");
-////        notiz1.setKategorieID(kat1.getKategorieID());
-//        notiz1.setBearbeitungszustandID(bz1.getBearbeitungsZustandID());
-//        notiz1.setPrioritaet(true);
-//        notiz1.setFaelligkeit(naechsteWoche);
-
-//        notizService.addNotiz(notiz1, DAOKonstanten.DEFAULT_NOTIZBLOCK_ID);
-//
-//        Notiz notiz2 = ModelObjectBuilder.getNotizObject();
-//        notiz2.setTitle("Hausaufgaben");
-//        notiz2.setBeschreibung("Übung 12, Aufgabe 1 und 2");
-//        notiz2.setKategorieID(kat2.getKategorieID());
-//        notiz2.setBearbeitungszustandID(bz2.getBearbeitungsZustandID());
-//        notiz2.setPrioritaet(true);
-//        notiz2.setFaelligkeit(naechsteWoche);
-//
-//        Notiz notiz3 = ModelObjectBuilder.getNotizObject();
-//        notiz3.setTitle("Brief schreiben");
-//        notiz3.setBeschreibung("Übung 13, Letter of Application schreiben");
-//        notiz3.setKategorieID(kat3.getKategorieID());
-//        notiz3.setBearbeitungszustandID(bz3.getBearbeitungsZustandID());
-//        notiz3.setPrioritaet(false);
-//        notiz3.setFaelligkeit(naechsteWoche);
-
-
-        //TODO: führt zu einer NullpointerException, evtl weil Datenbank noch leer oder Methode geht nicht
-        //notizListe.addAll(notizService.getAlleNotizenVomNotizblock(DAOKonstanten.DEFAULT_NOTIZBLOCK_ID));
-
-
+        System.out.println("\n\n\n\n"+notizListe);
+        System.out.println("\n\n\n\n"+kategorieListe);
+        System.out.println("\n\n\n\n"+bearbeitungszustandListe);
 
     }
 
@@ -222,6 +172,36 @@ public class MainApp extends Application {
         return bearbeitungszustandListe;
     }
 
+
+    /**
+     * Initialisiert die ObservableLists mit Notizen, Kategorien, Bearbeitungszuständen, durch Verbindung zur Datenbank
+     */
+    private void initializeListenMitDatenbankInhalt(){
+        notizListe.addAll(notizService.getAlleNotizenVomNotizblock(DAOKonstanten.DEFAULT_NOTIZBLOCK_ID));
+        kategorieListe.addAll(kategorieService.getAlleKategorien());
+        bearbeitungszustandListe.addAll(bearbeitungszustandService.getAllBearbeitungszustand());
+    }
+
+
+    /**
+     * Initialisiert die ObservableLists mit Kategorien und Bearbeitungszuständen, keine Verbindung zur Datenbank
+     */
+    private void initializeListenMitTestdaten(){
+        Kategorie kat1 = ModelObjectBuilder.getKategorieObjekt("Prog 3");
+        Kategorie kat2 = ModelObjectBuilder.getKategorieObjekt("Mathe");
+        Kategorie kat3 = ModelObjectBuilder.getKategorieObjekt("Englisch");
+        kategorieListe.add(kat1);
+        kategorieListe.add(kat2);
+        kategorieListe.add(kat3);
+
+        Bearbeitungszustand bz1 = new BearbeitungszustandImpl("To-Do");
+        Bearbeitungszustand bz2 = new BearbeitungszustandImpl("In Bearbeitung");
+        Bearbeitungszustand bz3 = new BearbeitungszustandImpl("Erledigt");
+        bearbeitungszustandListe.add(bz1);
+        bearbeitungszustandListe.add(bz2);
+        bearbeitungszustandListe.add(bz3);
+
+    }
 
     /**
      * Führt launch()-Methode aus, sollte aus Kompatibilitätsgründen nicht verändert werden

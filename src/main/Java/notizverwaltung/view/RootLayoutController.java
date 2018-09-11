@@ -60,7 +60,6 @@ public class RootLayoutController {
      */
     @FXML
     private void handleshowKategorieErstellungsMaske() {
-        Kategorie tmpKategorie = new KategorieImpl();
 
         //TODO: i18n
         if(mainApp.getKategorieListe().size() == FXKonstanten.maxAnzahlKategorien){
@@ -98,7 +97,6 @@ public class RootLayoutController {
      */
     @FXML
     private void handleshowBearbeitungszustandErstellungsMaske() {
-        Bearbeitungszustand tmpZustand = new BearbeitungszustandImpl();
 
         //TODO: i18n
         if(mainApp.getBearbeitungszustandListe().size() == FXKonstanten.maxAnzahlZustaende){
@@ -136,7 +134,6 @@ public class RootLayoutController {
      */
     @FXML
     private void handleshowNotizErstellungsMaske() {
-        Notiz tmpNotiz = new NotizImpl();
 
         //TODO: i18n
         if(mainApp.getNotizListe().size() == FXKonstanten.maxAnzahlNotizen){
@@ -227,9 +224,9 @@ public class RootLayoutController {
     /**
      * Schliesst das Programm.
      */
-//    @FXML
-//    private void handleExit() {
-//        System.exit(0);
-//    }
+    @FXML
+    private void handleExit() {
+        System.exit(0);
+    }
 
 }

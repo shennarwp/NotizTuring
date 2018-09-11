@@ -43,39 +43,51 @@ public class TestKlasseFuerObjekteAnlegen {
         Date naechsteWoche = calendar.getTime();
 
         //Legt Bearbeitungszustand und Kategorie an, fügt diese anschließend in die Datenbank ein...
-        Bearbeitungszustand bz1 = new BearbeitungszustandImpl("To-Do");
-        bearbeitungszustandService.addBearbeitungszustand(bz1);
-        Kategorie kat1 = ModelObjectBuilder.getKategorieObjekt("Prog 3");
-        Kategorie kat2 = ModelObjectBuilder.getKategorieObjekt("others");
-        kategorieService.addKategorie(kat1);
-        kategorieService.addKategorie(kat2);
+//        Bearbeitungszustand bz1 = new BearbeitungszustandImpl("To-Do");
+//        bearbeitungszustandService.addBearbeitungszustand(bz1);
+//        Kategorie kat1 = ModelObjectBuilder.getKategorieObjekt("Prog 3");
+//        Kategorie kat2 = ModelObjectBuilder.getKategorieObjekt("others");
+//        kategorieService.addKategorie(kat1);
+//        kategorieService.addKategorie(kat2);
 
         //Legt Notiz an mit bz1 und kat1 als Bearbeitungszustand bzw. Kategorie
-        Notiz notiz1 = ModelObjectBuilder.getNotizObject();
-        notiz1.setTitle("Programm schreiben");
-        notiz1.setBeschreibung("Lagerklasse schreiben mit JUnit-Tests");
-        notiz1.setKategorieID(kat1.getKategorieID());
-        notiz1.setBearbeitungszustandID(bz1.getBearbeitungsZustandID());
-        notiz1.setPrioritaet(true);
-        notiz1.setFaelligkeit(naechsteWoche);
-        notizService.addNotiz(notiz1,1);
+//        Notiz notiz1 = ModelObjectBuilder.getNotizObject();
+//        notiz1.setTitle("Programm schreiben");
+//        notiz1.setBeschreibung("Lagerklasse schreiben mit JUnit-Tests");
+//        notiz1.setKategorieID(1);
+//        notiz1.setBearbeitungszustandID(1);
+//        notiz1.setPrioritaet(true);
+//        notiz1.setFaelligkeit(naechsteWoche);
+//        notizService.addNotiz(notiz1,1);
+//
+//        Notiz notiz2 = ModelObjectBuilder.getNotizObject();
+//        notiz2.setTitle("Übung 13");
+//        notiz2.setBeschreibung("Aufgaben 1 bis 4");
+//        notiz2.setKategorieID(2);
+//        notiz2.setBearbeitungszustandID(2);
+//        notiz2.setPrioritaet(true);
+//        notiz2.setFaelligkeit(naechsteWoche);
+//        notizService.addNotiz(notiz2,1);
+//
+//        Notiz notiz3 = ModelObjectBuilder.getNotizObject();
+//        notiz3.setTitle("Vokabeln lernen");
+//        notiz3.setBeschreibung("Seite 84 - 87");
+//        notiz3.setKategorieID(3);
+//        notiz3.setBearbeitungszustandID(3);
+//        notiz3.setPrioritaet(false);
+//        notiz3.setFaelligkeit(naechsteWoche);
+//        notizService.addNotiz(notiz3,1);
 
-        //notizService.deleteNotiz(notiz1.getNotizID());
 
-
-        //TODO folgende Aufrufe führen zu Exceptions, bitte fixen
             System.out.println(notizService.getAlleNotizenVomNotizblock(1));
             System.out.println(notizblockService.getAlleKategorienVomNotizblock(1));
-            //System.out.println(notizblockService.getAlleBearbeitungszustaendeVomNotizblock(1));
+            System.out.println(notizblockService.getAlleBearbeitungszustaendeVomNotizblock(1));
 
-        //lösche bz1 und kat1 aus Datenbank - sind diese Methoden überhaupt schon implementiert?
-        notizService.deleteNotiz(notiz1.getNotizID());
-        bearbeitungszustandService.deleteBearbeitungszustand(bz1.getBearbeitungsZustandID());
-        kategorieService.deleteKategorie(kat1.getKategorieID());
-        kategorieService.deleteKategorie(kat2.getKategorieID());
-        //bearbeitungszustandService.deleteBearbeitungszustand(bz1.getBearbeitungsZustandID());
-        //kategorieService.deleteKategorie(kat1.getKategorieID());
-
+        //lösche bz1 und kat1, kat2 aus Datenbank
+//        notizService.deleteNotiz(notiz1.getNotizID());
+//        bearbeitungszustandService.deleteBearbeitungszustand(bz1.getBearbeitungsZustandID());
+//        kategorieService.deleteKategorie(kat1.getKategorieID());
+//        kategorieService.deleteKategorie(kat2.getKategorieID());
     }
 
 

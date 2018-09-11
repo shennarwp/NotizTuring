@@ -11,8 +11,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="%menu-file">
             <items>
-              <MenuItem mnemonicParsing="false" text="%menuitem-file-save" />
-                  <MenuItem mnemonicParsing="false" text="%menuitem-file-new" />
+              <MenuItem mnemonicParsing="false" onAction="#handleExit" text="%menuitem-file-exit" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="%menu-new">

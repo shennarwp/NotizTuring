@@ -24,8 +24,8 @@
           <RowConstraints maxHeight="97.59998168945313" minHeight="10.0" prefHeight="60.800018310546875" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ColorPicker GridPane.columnIndex="1" />
-            <Label text="%dialog-categorycolor" />
+            <ColorPicker disable="true" GridPane.columnIndex="1" />
+            <Label disable="true" text="%dialog-categorycolor" />
             <Label text="%dialog-categoryname" GridPane.rowIndex="1" />
             <TextField fx:id="kategorieAnlegenNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>

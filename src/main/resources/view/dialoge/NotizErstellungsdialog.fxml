@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -26,6 +27,7 @@
           <RowConstraints maxHeight="269.59998168945316" minHeight="7.199975585937466" prefHeight="67.80001220703124" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="395.59999084472656" minHeight="10.0" prefHeight="67.80001220703124" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="395.59999084472656" minHeight="10.0" prefHeight="67.80001220703124" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="395.59999084472656" minHeight="10.0" prefHeight="67.80001220703124" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="%dialog-notecategory" GridPane.rowIndex="1" />
@@ -38,11 +40,13 @@
             <ChoiceBox fx:id="bearbeitungszustandChoiceBox" prefHeight="31.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextArea fx:id="notizAnlegenBeschreibungTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <DatePicker fx:id="notizAnlegenFaelligkeitDatePicker" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="%dialog-notepriority" GridPane.rowIndex="5" />
+            <CheckBox fx:id="notizAnlegenPrioritaet" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
    </center>
    <bottom>
-      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ButtonBar prefHeight="41.0" prefWidth="485.0" BorderPane.alignment="CENTER">
         <buttons>
           <Button mnemonicParsing="false" onAction="#handleBtnErstelleNotiz" text="%dialog-add" />
             <Button mnemonicParsing="false" onAction="#handleBtnCancel" text="%dialog-cancel" />

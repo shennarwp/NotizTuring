@@ -66,8 +66,7 @@ public class NotizblockDAOImpl extends ObjectDAOImpl implements NotizblockDAO {
         transaction.begin();
 
         List<Kategorie> kategorieList = entityManager
-                    .createQuery("SELECT k from KategorieImpl k WHERE k.kategorieID =" +
-                            "(SELECT n.kategorieID FROM NotizImpl n WHERE n.notizblockID = :notizblockID)", Kategorie.class)
+                    .createQuery("SELECT k from KategorieImpl k, NotizImpl n WHERE k.kategorieID = n.kategorieID AND n.notizblockID = :notizblockID", Kategorie.class)
                     .setParameter("notizblockID", notizblockID)
                     .getResultList();
 
@@ -83,8 +82,7 @@ public class NotizblockDAOImpl extends ObjectDAOImpl implements NotizblockDAO {
         transaction.begin();
 
         List<Bearbeitungszustand> bearbeitungszustandList = entityManager
-                .createQuery("SELECT b from BearbeitungszustandImpl b WHERE b.bearbeitungszustandID =" +
-                        "(SELECT n.bearbeitungszustandID FROM NotizImpl n WHERE n.notizblockID = :notizblockID)", Bearbeitungszustand.class)
+                .createQuery("SELECT b from BearbeitungszustandImpl b, NotizImpl n WHERE b.bearbeitungszustandID = n.bearbeitungszustandID AND n.notizblockID = :notizblockID", Bearbeitungszustand.class)
                 .setParameter("notizblockID", notizblockID)
                 .getResultList();
 
