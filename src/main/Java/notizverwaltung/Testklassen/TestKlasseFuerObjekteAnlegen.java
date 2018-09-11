@@ -6,6 +6,7 @@ import notizverwaltung.model.classes.BearbeitungszustandImpl;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
+import notizverwaltung.model.interfaces.Notizblock;
 import notizverwaltung.service.classes.BearbeitungszustandServiceImpl;
 import notizverwaltung.service.classes.KategorieServiceImpl;
 import notizverwaltung.service.classes.NotizServiceImpl;
@@ -17,6 +18,7 @@ import notizverwaltung.service.interfaces.NotizblockService;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Diese Klasse testet, ob Kategorie/Notiz/Bearbeitungszustand-Objekte richtig angelegt werden können, und ob sie
@@ -36,7 +38,6 @@ public class TestKlasseFuerObjekteAnlegen {
         BearbeitungszustandService bearbeitungszustandService = new BearbeitungszustandServiceImpl();
         NotizblockService notizblockService = new NotizblockServiceImpl();
 
-
         //Dient nur der Erstellung des Faelligkeitsdatums, "naechsteWoche"
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_YEAR, 7);
@@ -48,7 +49,7 @@ public class TestKlasseFuerObjekteAnlegen {
         Kategorie kat1 = ModelObjectBuilder.getKategorieObjekt("Prog 3");
         kategorieService.addKategorie(kat1);
 
-        //Legt Notiz an mit bz1 und kat1 als Bearbeitungszustand bzw. Kategorie
+        //Legt Notiz an mit bz1 und kat1 als Bearbeitungszustand bzw. Kategorie, fügt diese anschließend in die Datenbank ein
         Notiz notiz1 = ModelObjectBuilder.getNotizObject();
         notiz1.setTitle("Programm schreiben");
         notiz1.setBeschreibung("Lagerklasse schreiben mit JUnit-Tests");
@@ -58,17 +59,22 @@ public class TestKlasseFuerObjekteAnlegen {
         notiz1.setFaelligkeit(naechsteWoche);
         notizService.addNotiz(notiz1,1);
 
-        //notizService.deleteNotiz(notiz1.getNotizID());
+        //TODO: Hier wird eine Exception geworfen, bitte Fehler beheben
+        notizService.deleteNotiz(notiz1.getNotizID());
 
+        //Lade die Objekte aus der Datenbank
+        List<Notiz> notizListe = notizService.getAlleNotizenVomNotizblock(1);
+        List<Kategorie> kategorieListe = notizblockService.getAlleKategorienVomNotizblock(1);
+        List<Bearbeitungszustand> bearbeitungszustandListe = notizblockService.getAlleBearbeitungszustaendeVomNotizblock(1);
 
-        //TODO folgende Aufrufe führen zu Exceptions, bitte fixen
-            System.out.println(notizService.getAlleNotizenVomNotizblock(1));
-            System.out.println(notizblockService.getAlleKategorienVomNotizblock(1));
-            //System.out.println(notizblockService.getAlleBearbeitungszustaendeVomNotizblock(1));
+        //Gebe den Inhalt der Listen aus
+            System.out.println("\n\n\n\n"+notizListe);
+            System.out.println("\n\n\n\n"+kategorieListe);
+            System.out.println("\n\n\n\n"+bearbeitungszustandListe);
 
-        //lösche bz1 und kat1 aus Datenbank - sind diese Methoden überhaupt schon implementiert?
-        //bearbeitungszustandService.deleteBearbeitungszustand(bz1.getBearbeitungsZustandID());
-        //kategorieService.deleteKategorie(kat1.getKategorieID());
+        //TODO: deleteBearbeitungszustand, deleteKategorie implementieren!
+        bearbeitungszustandService.deleteBearbeitungszustand(bz1.getBearbeitungsZustandID());
+        kategorieService.deleteKategorie(kat1.getKategorieID());
 
     }
 

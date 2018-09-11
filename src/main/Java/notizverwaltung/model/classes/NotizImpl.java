@@ -3,6 +3,7 @@ package notizverwaltung.model.classes;
 import javafx.scene.paint.Color;
 import notizverwaltung.builders.ModelObjectBuilder;
 import notizverwaltung.builders.ServiceObjectBuilder;
+import notizverwaltung.constants.DAOKonstanten;
 import notizverwaltung.exceptions.IntIstNegativException;
 import notizverwaltung.exceptions.ObjectIstNullException;
 import notizverwaltung.exceptions.StringIsEmptyException;
@@ -71,7 +72,9 @@ public class NotizImpl implements Notiz
     
     
 
-
+    public NotizImpl(){
+        this.notizblockID = DAOKonstanten.DEFAULT_NOTIZBLOCK_ID;
+    }
 
     //____________________ID____________________
     @Override
