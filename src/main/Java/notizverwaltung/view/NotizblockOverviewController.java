@@ -3,7 +3,6 @@ package notizverwaltung.view;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.HBox;
@@ -35,24 +34,24 @@ public class NotizblockOverviewController {
 
     private MainApp mainApp;
 
-    public NotizblockOverviewController(){
+    public NotizblockOverviewController() {
 
     }
 
     @FXML
-    private void initialize(){
+    private void initialize() {
         notizblockName.setText(name);
     }
 
-    public void setMainApp(MainApp mainApp){
+    public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
 
         bearbeitungszustandListe = mainApp.getBearbeitungszustandListe();
     }
 
-    public void ladeBearbeitungszustaende(){
+    public void ladeBearbeitungszustaende() {
         try {
-            for(Bearbeitungszustand bazs : bearbeitungszustandListe) {
+            for (Bearbeitungszustand bazs : bearbeitungszustandListe) {
                 FXMLLoader loader = new FXMLLoader();
                 ResourceBundle bundle = I18nUtil.getComponentsResourceBundle();
                 loader.setLocation(MainApp.class
@@ -68,7 +67,7 @@ public class NotizblockOverviewController {
                 controller.ladeNotizen();
 
             }
-        } catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
