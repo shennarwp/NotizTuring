@@ -50,7 +50,15 @@ public class KategorieServiceImpl implements KategorieService
 	//Achtung nur löschen, wenn keine Artikel mehr eine Kategorie hat
 	@Override
 	public void deleteKategorie (int kategorieID) {
+		if(getAnzahlNotizenInKategorie(kategorieID) == 0) {
+			kategorieDAO.deleteKategorie(kategorieID);
+		}
+		//TODO throws exception hier später
+	}
 
+	@Override
+	public long getAnzahlNotizenInKategorie(int kategorieID) {
+		return kategorieDAO.getAnzahlNotizenInKategorie(kategorieID);
 	}
 
 	@Override

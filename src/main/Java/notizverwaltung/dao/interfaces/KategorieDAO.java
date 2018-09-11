@@ -14,7 +14,8 @@ public interface KategorieDAO extends ObjectDAO {
     public Kategorie getKategorie(int kategorieID);
     public int istKategorieExist(String kategorieName);
     public void updateKategorie(Kategorie kategorie);
-    public void deleteKategorie( int kategorieID);
+    public void deleteKategorie(int kategorieID);
+    public long getAnzahlNotizenInKategorie(int kategorieID);
 
     public List<Kategorie> getAlleKategorien();
 

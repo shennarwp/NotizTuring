@@ -1,6 +1,7 @@
 package notizverwaltung.dao.classes;
 
 import notizverwaltung.dao.interfaces.KategorieDAO;
+import notizverwaltung.model.classes.KategorieImpl;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.Kategorie;
 
@@ -79,16 +80,29 @@ public class KategorieDAOImpl extends ObjectDAOImpl implements KategorieDAO
         transaction.begin();
 
 
-        Bearbeitungszustand kategorie = entityManager.find(Bearbeitungszustand.class, kategorieID);
+        Kategorie kategorie = entityManager.find(KategorieImpl.class, kategorieID);
         if (kategorie == null){
             finishTransaction();
             throw new IllegalArgumentException("kategorie existiert nicht!");
         }
 
-        entityManager.remove(kategorieID);
+        entityManager.remove(kategorie);
         transaction.commit();
 
         finishTransaction();
+    }
+
+    @Override
+    public long getAnzahlNotizenInKategorie(int kategorieID) {
+        initTransaction();
+        transaction.begin();
+
+        long anzahlNotizen = entityManager.createQuery("SELECT COUNT(n.notizID) FROM NotizImpl n WHERE n.kategorieID = :kategorieID", Long.class)
+                                    .setParameter("kategorieID", kategorieID )
+                                    .getSingleResult();
+        transaction.commit();
+        finishTransaction();
+        return anzahlNotizen;
     }
 
     @Override
@@ -100,7 +114,6 @@ public class KategorieDAOImpl extends ObjectDAOImpl implements KategorieDAO
         finishTransaction();
 
         return listKategorie;
-
     }
 
 }

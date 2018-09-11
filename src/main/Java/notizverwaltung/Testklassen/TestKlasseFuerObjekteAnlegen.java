@@ -46,7 +46,9 @@ public class TestKlasseFuerObjekteAnlegen {
         Bearbeitungszustand bz1 = new BearbeitungszustandImpl("To-Do");
         bearbeitungszustandService.addBearbeitungszustand(bz1);
         Kategorie kat1 = ModelObjectBuilder.getKategorieObjekt("Prog 3");
+        Kategorie kat2 = ModelObjectBuilder.getKategorieObjekt("others");
         kategorieService.addKategorie(kat1);
+        kategorieService.addKategorie(kat2);
 
         //Legt Notiz an mit bz1 und kat1 als Bearbeitungszustand bzw. Kategorie
         Notiz notiz1 = ModelObjectBuilder.getNotizObject();
@@ -67,6 +69,10 @@ public class TestKlasseFuerObjekteAnlegen {
             //System.out.println(notizblockService.getAlleBearbeitungszustaendeVomNotizblock(1));
 
         //lösche bz1 und kat1 aus Datenbank - sind diese Methoden überhaupt schon implementiert?
+        notizService.deleteNotiz(notiz1.getNotizID());
+        bearbeitungszustandService.deleteBearbeitungszustand(bz1.getBearbeitungsZustandID());
+        kategorieService.deleteKategorie(kat1.getKategorieID());
+        kategorieService.deleteKategorie(kat2.getKategorieID());
         //bearbeitungszustandService.deleteBearbeitungszustand(bz1.getBearbeitungsZustandID());
         //kategorieService.deleteKategorie(kat1.getKategorieID());
 

@@ -91,7 +91,7 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
         initTransaction();
         transaction.begin();
 
-        Bearbeitungszustand bearbeitungszustandZuLoeschen = entityManager.find(Bearbeitungszustand.class, bearbeitungszustandID);
+        Bearbeitungszustand bearbeitungszustandZuLoeschen = entityManager.find(BearbeitungszustandImpl.class, bearbeitungszustandID);
         if (bearbeitungszustandZuLoeschen == null){
             finishTransaction();
             throw new IllegalArgumentException("Bearbeitungszustand existiert nicht!");
@@ -101,6 +101,20 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
         transaction.commit();
 
         finishTransaction();
+    }
+
+    @Override
+    public long getAnzahlNotizenInBearbeitungszustand(int bearbeitungszustandID) {
+        initTransaction();
+        transaction.begin();
+
+        long anzahlNotizen = entityManager.createQuery("SELECT COUNT(n.notizID) FROM NotizImpl n WHERE n.bearbeitungszustandID = :bearbeitungszustandID", Long.class)
+                .setParameter("bearbeitungszustandID", bearbeitungszustandID )
+                .getSingleResult();
+        transaction.commit();
+        finishTransaction();
+
+        return anzahlNotizen;
     }
 
 //TODO hier muss noch bearbeiten
