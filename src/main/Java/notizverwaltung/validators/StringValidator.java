@@ -1,6 +1,7 @@
 package notizverwaltung.validators;
 
 
+import javafx.beans.property.StringProperty;
 import notizverwaltung.exceptions.StringIsEmptyException;
 
 /**

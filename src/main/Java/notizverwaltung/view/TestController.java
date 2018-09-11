@@ -20,11 +20,11 @@ public class TestController {
 
     @FXML
     private ListView listView;
-    private Set<String> stringSet;
 
 
-    ObservableList observableList = FXCollections.observableArrayList();
 
+    //ObservableList observableList = FXCollections.observableArrayList();
+    private ObservableList<Notiz> notizObservableList = FXCollections.observableArrayList();
 
     @FXML
     private void initialize() {
@@ -39,21 +39,47 @@ public class TestController {
 
         List<Notiz> notizList = new NotizServiceImpl().getAlleNotizen();
 
-        
-
-
-        ObservableList<Notiz> obsList= FXCollections.observableArrayList(notizList);
-
-
-
 
         //observableList.setAll(stringSet);
-        listView.setItems(obsList);
+        //listView.setItems(notizObservableList);
+        //listView.setItems(notizObservableList);
+        //initListViews();
+
+        listView.setCellFactory(param -> new ListCell<Notiz>() {
+            @Override
+            protected void updateItem(Notiz item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null || item.getTitle() == null) {
+                    setText("test");
+                } else {
+                    setText(item.getTitle());
+                }
+            }
+        });
+
+        System.out.println("test");
 
     }
 
     @FXML
     public void setListView(){
+
+    }
+
+    private void initListViews(){
+        listView.setCellFactory(param -> new ListCell<Notiz>() {
+            @Override
+            protected void updateItem(Notiz item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null || item.getTitle() == null) {
+                    setText("test");
+                } else {
+                    setText(item.getTitle());
+                }
+            }
+        });
 
     }
 }

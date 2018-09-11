@@ -1,5 +1,6 @@
 package notizverwaltung.model.classes;
 
+import javafx.beans.property.StringProperty;
 import javafx.scene.paint.Color;
 import notizverwaltung.builders.ModelObjectBuilder;
 import notizverwaltung.builders.ServiceObjectBuilder;
@@ -95,7 +96,7 @@ public class NotizImpl implements Notiz
 
     @Override
     public void setTitle(String title) throws StringIsEmptyException {
-        StringValidator.checkObStringLeerOderNullIst(title);
+        //StringValidator.checkObStringLeerOderNullIst(title);
         this.title = title;
     }
 
@@ -195,7 +196,7 @@ public class NotizImpl implements Notiz
 
     @Override
     public String toString(){
-        return getTitle();
+        return getTitle().toString();
     }
 
 }

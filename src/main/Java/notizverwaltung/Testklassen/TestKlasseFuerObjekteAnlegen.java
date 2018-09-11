@@ -52,7 +52,7 @@ public class TestKlasseFuerObjekteAnlegen {
 
         //Legt Notiz an mit bz1 und kat1 als Bearbeitungszustand bzw. Kategorie
         Notiz notiz1 = ModelObjectBuilder.getNotizObject();
-        notiz1.setTitle("Programm schreiben");
+        //notiz1.setTitle("Programm schreiben");
         notiz1.setBeschreibung("Lagerklasse schreiben mit JUnit-Tests");
         notiz1.setKategorieID(kat1.getKategorieID());
         notiz1.setBearbeitungszustandID(bz1.getBearbeitungsZustandID());

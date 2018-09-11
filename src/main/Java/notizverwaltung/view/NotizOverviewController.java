@@ -40,7 +40,7 @@ public class NotizOverviewController {
 
         datumLabel.setText(notiz.getFaelligkeit().toString());
         kategorieLabel.setText(findKategorieName(notiz.getKategorieID()));
-        notizLabel.setText(notiz.getTitle());
+        notizLabel.setText(notiz.getTitle().toString());
     }
 
     @FXML

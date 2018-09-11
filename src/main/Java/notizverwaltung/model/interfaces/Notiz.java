@@ -1,5 +1,6 @@
 package notizverwaltung.model.interfaces;
 
+import javafx.beans.property.StringProperty;
 import notizverwaltung.exceptions.IntIstNegativException;
 import notizverwaltung.exceptions.ObjectIstNullException;
 import notizverwaltung.exceptions.StringIsEmptyException;

@@ -118,7 +118,7 @@ public class DialogController {
 
         if (isInputValid(validateNotizErstellen())) {
 
-            tmpNotiz.setTitle(notizAnlegenNameField.getText());
+           // tmpNotiz.setTitle(notizAnlegenNameField.getText().toString());
             tmpNotiz.setBeschreibung(notizAnlegenBeschreibungTextArea.getText());
             mainApp.getNotizListe().add(tmpNotiz);
 
