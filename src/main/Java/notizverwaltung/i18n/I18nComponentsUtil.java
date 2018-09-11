@@ -14,6 +14,14 @@ public class I18nComponentsUtil {
     private static final String MENU_SORT = "menu-sort";
 
     private static final String STANDARD_NOTEPAD_NAME = "standard-notepad-name";
+    private static final String STANDARD_STATUS_NAME = "standard-status-name";
+    private static final String STANDARD_PRIORITY_LOW = "standard-priority-low";
+    private static final String STANDARD_PRIORITY_HIGH = "standard-priority-high";
+    private static final String STANDARD_DATE = "standard-date";
+    private static final String STANDARD_CATEGORY_NAME = "standard-category-name";
+    private static final String STANDARD_NOTE_NAME = "standard-note-name";
+    private static final String LEFT = "left";
+    private static final String RIGHT = "right";
 
 
     private static ResourceBundle resourceBundle;
@@ -54,8 +62,42 @@ public class I18nComponentsUtil {
         return resourceBundle.getString(MENU_SORT);
     }
 
+
+
     public static String getStandardNotepadName() {
         return resourceBundle.getString(STANDARD_NOTEPAD_NAME);
+    }
+
+    public static String getStandardStatusName(){
+        return resourceBundle.getString(STANDARD_STATUS_NAME);
+    }
+
+    public static String getStandardPriorityLow(){
+        return resourceBundle.getString(STANDARD_PRIORITY_LOW);
+    }
+
+    public static String getStandardPriorityHigh(){
+        return resourceBundle.getString(STANDARD_PRIORITY_HIGH);
+    }
+
+    public static String getStandardDate(){
+        return resourceBundle.getString(STANDARD_DATE);
+    }
+
+    public static String getStandardCategoryName(){
+        return resourceBundle.getString(STANDARD_CATEGORY_NAME);
+    }
+
+    public static String getStandardNoteName(){
+        return resourceBundle.getString(STANDARD_NOTE_NAME);
+    }
+
+    public static String getLeft(){
+        return resourceBundle.getString(LEFT);
+    }
+
+    public static String getRight(){
+        return resourceBundle.getString(RIGHT);
     }
 
 }

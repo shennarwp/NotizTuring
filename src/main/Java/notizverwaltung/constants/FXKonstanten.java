@@ -20,10 +20,10 @@ public class FXKonstanten {
     public static final String PFAD_ZUSTAND_AENDERUNGSDIALOG_LAYOUT = "/view/dialoge/BearbeitungszustandAenderungsdialog.fxml";
     public static final String PFAD_NOTIZ_AENDERUNGSDIALOG_LAYOUT = "/view/dialoge/NotizAenderungsdialog.fxml";
 
-    public static final String PFAD_GESAMT_OVERVIEW_LAYOUT ="/view/GesamtOverview.fxml";
-    public static final String PFAD_NOTIZBLOCK_OVERVIEW_LAYOUT ="/view/NotizblockOverview.fxml";
-    public static final String PFAD_BEARBEITUNGSZUSTAND_OVERVIEW_LAYOUT ="/view/BearbeitungszustandOverview.fxml";
-    public static final String PFAD_NOTIZ_OVERVIEW_LAYOUT ="/view/NotizOverview.fxml";
+    public static final String PFAD_GESAMT_OVERVIEW_LAYOUT = "/view/overviews/GesamtOverview.fxml";
+    public static final String PFAD_NOTIZBLOCK_OVERVIEW_LAYOUT = "/view/overviews/NotizblockOverview.fxml";
+    public static final String PFAD_BEARBEITUNGSZUSTAND_OVERVIEW_LAYOUT = "/view/overviews/BearbeitungszustandOverview.fxml";
+    public static final String PFAD_NOTIZ_OVERVIEW_LAYOUT = "/view/overviews/NotizOverview.fxml";
 
     public static final String ANWENDUNG_NAME = "Notizverwaltung";
     public static final String DIALOG = "Dialog";
