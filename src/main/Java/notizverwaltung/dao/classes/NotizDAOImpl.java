@@ -59,7 +59,19 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
     }
 
     @Override
-    public void updateNotiz(NotizImpl notiz) {
+    public void updateNotiz(Notiz notiz) {
+        initTransaction();
+        transaction.begin();
+
+        Notiz updatedNotiz = entityManager.find(NotizImpl.class, notiz.getNotizID());
+        if(updatedNotiz == null) {
+            finishTransaction();
+            throw new IllegalArgumentException("Notiz existiert nicht!");
+        }
+        entityManager.merge(notiz);
+        transaction.commit();
+
+        finishTransaction();
 
     }
 
@@ -94,23 +106,4 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
 
         return notizList;
     }
-
-    @Override
-    public List<Notiz> getAlleNotizenVonEinemBearbeitungszustand(int bearbeitungszustand) {
-        initTransaction();
-        transaction.begin();
-
-        List<Notiz> listVomNotiz = entityManager
-                .createQuery("SELECT n FROM NotizImpl n WHERE n.bearbeitungszustandID = :bearbeitungszustandID", Notiz.class)
-                .setParameter("bearbeitungszustandID", bearbeitungszustand)
-                .getResultList();
-
-        transaction.commit();
-        finishTransaction();
-
-        return listVomNotiz;
-    }
-
-
-
 }

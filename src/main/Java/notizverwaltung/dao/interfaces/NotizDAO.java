@@ -13,13 +13,12 @@ public interface NotizDAO extends ObjectDAO {
 
     public int addNotiz(Notiz notiz, int notizblockID);
     public Notiz getNotiz(int notizID);
-    public void deleteNotiz(int noitzID);
-    public void updateNotiz (NotizImpl notiz);
+    public void deleteNotiz(int notizID);
+    public void updateNotiz (Notiz notiz);
 
     public List<Notiz> getAlleNotizen();
 
     public List<Notiz> getAlleNotizenVomNotizblock(int notizblockID);
-    public List<Notiz> getAlleNotizenVonEinemBearbeitungszustand(int bearbeitungszustandID);
 
 
 
