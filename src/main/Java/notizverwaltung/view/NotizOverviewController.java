@@ -33,9 +33,9 @@ public class NotizOverviewController {
         this.notiz = notiz;
 
         if(notiz.getPrioritaet()){
-            prioritaetLabel.setText(I18nComponentsUtil.getStandardPriorityLow());
-        }else{
             prioritaetLabel.setText(I18nComponentsUtil.getStandardPriorityHigh());
+        }else{
+            prioritaetLabel.setText(I18nComponentsUtil.getStandardPriorityLow());
         }
 
         datumLabel.setText(notiz.getFaelligkeit().toString());
