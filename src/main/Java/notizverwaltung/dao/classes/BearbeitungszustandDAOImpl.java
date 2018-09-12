@@ -44,7 +44,7 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
         Bearbeitungszustand bearbeitungszustand = entityManager.find(Bearbeitungszustand.class, bearbeitungszustandID);
         if(bearbeitungszustand == null) {
             finishTransaction();
-            //throw new IllegalArgumentException("bearbeitungszustand existiert nicht!");
+            throw new IllegalArgumentException("bearbeitungszustand existiert nicht!");
         }
 
         finishTransaction();

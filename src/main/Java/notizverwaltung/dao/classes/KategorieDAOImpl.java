@@ -43,7 +43,7 @@ public class KategorieDAOImpl extends ObjectDAOImpl implements KategorieDAO
         Kategorie kategorie = entityManager.find(Kategorie.class, kategorieID);
         if(kategorie == null) {
             finishTransaction();
-            //throw new IllegalArgumentException("kategorie existiert nicht!");
+            throw new IllegalArgumentException("kategorie existiert nicht!");
         }
 
         finishTransaction();
