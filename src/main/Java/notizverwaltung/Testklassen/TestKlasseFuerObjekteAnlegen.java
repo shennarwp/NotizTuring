@@ -69,14 +69,17 @@ public class TestKlasseFuerObjekteAnlegen {
 //        notiz2.setFaelligkeit(naechsteWoche);
 //        notizService.addNotiz(notiz2,1);
 //
-//        Notiz notiz3 = ModelObjectBuilder.getNotizObject();
-//        notiz3.setTitle("Vokabeln lernen");
-//        notiz3.setBeschreibung("Seite 84 - 87");
-//        notiz3.setKategorieID(3);
-//        notiz3.setBearbeitungszustandID(3);
-//        notiz3.setPrioritaet(false);
-//        notiz3.setFaelligkeit(naechsteWoche);
-//        notizService.addNotiz(notiz3,1);
+        Notiz notiz3 = ModelObjectBuilder.getNotizObject();
+        notiz3.setTitle("Vokabeln lernen");
+        notiz3.setBeschreibung("Seite 84 - 87");
+        notiz3.setKategorieID(3);
+        notiz3.setBearbeitungszustandID(3);
+        notiz3.setPrioritaet(false);
+        notiz3.setFaelligkeit(naechsteWoche);
+        notizService.addNotiz(notiz3,1);
+
+        notiz3.setBeschreibung("newBeschreibung");
+        notizService.updateNotiz(notiz3);
 
 
             System.out.println(notizService.getAlleNotizenVomNotizblock(1));

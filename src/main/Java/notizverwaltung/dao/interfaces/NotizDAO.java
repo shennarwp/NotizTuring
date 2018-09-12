@@ -14,7 +14,7 @@ public interface NotizDAO extends ObjectDAO {
     public int addNotiz(Notiz notiz, int notizblockID);
     public Notiz getNotiz(int notizID);
     public void deleteNotiz(int noitzID);
-    public void updateNotiz (NotizImpl notiz);
+    public void updateNotiz (Notiz notiz);
 
     public List<Notiz> getAlleNotizen();
 
