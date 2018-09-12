@@ -12,6 +12,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 
+
 /**
  * DAO-superclass
  * implementiert die Verbindung mit dem Datenbank
