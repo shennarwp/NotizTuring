@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="testdb.db">
+  <database-model serializer="dbm" rdbms="SQLITE" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="main">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <collation id="3" parent="1" name="BINARY"/>
+    <collation id="4" parent="1" name="NOCASE"/>
+    <collation id="5" parent="1" name="RTRIM"/>
+    <table id="6" parent="2" name="Aufgabe"/>
+    <table id="7" parent="2" name="Bearbeitungszustand"/>
+    <table id="8" parent="2" name="Kategorie"/>
+    <table id="9" parent="2" name="Notiz"/>
+    <table id="10" parent="2" name="Notizblock"/>
+    <table id="11" parent="2" name="Nutzerprofil"/>
+    <table id="12" parent="2" name="SEQUENCE"/>
+    <table id="13" parent="2" name="sqlite_master">
+      <System>1</System>
+    </table>
+    <column id="14" parent="6" name="AufgabeID">
+      <DataType>NUMBER(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="15" parent="6" name="BEARBEITET">
+      <Position>1</Position>
+      <DataType>NUMBER(1)|0</DataType>
+    </column>
+    <column id="16" parent="6" name="Beschreibung">
+      <Position>2</Position>
+      <DataType>VARCHAR|0</DataType>
+    </column>
+    <index id="17" parent="6" name="sqlite_autoindex_Aufgabe_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>AufgabeID</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="18" parent="6">
+      <ColNames>AufgabeID</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>sqlite_autoindex_Aufgabe_1</UnderlyingIndexName>
+    </key>
+    <key id="19" parent="6">
+      <ColNames>AufgabeID</ColNames>
+      <UnderlyingIndexName>sqlite_autoindex_Aufgabe_1</UnderlyingIndexName>
+    </key>
+    <column id="20" parent="7" name="BearbeitungszustandID">
+      <DataType>NUMBER(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="21" parent="7" name="BearbeitungszustandName">
+      <Position>1</Position>
+      <DataType>VARCHAR|0</DataType>
+    </column>
+    <index id="22" parent="7" name="sqlite_autoindex_Bearbeitungszustand_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>BearbeitungszustandID</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="23" parent="7">
+      <ColNames>BearbeitungszustandID</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>sqlite_autoindex_Bearbeitungszustand_1</UnderlyingIndexName>
+    </key>
+    <key id="24" parent="7">
+      <ColNames>BearbeitungszustandID</ColNames>
+      <UnderlyingIndexName>sqlite_autoindex_Bearbeitungszustand_1</UnderlyingIndexName>
+    </key>
+    <column id="25" parent="8" name="KategorieID">
+      <DataType>NUMBER(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="26" parent="8" name="KategorieName">
+      <Position>1</Position>
+      <DataType>VARCHAR|0</DataType>
+    </column>
+    <index id="27" parent="8" name="sqlite_autoindex_Kategorie_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>KategorieID</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="28" parent="8">
+      <ColNames>KategorieID</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>sqlite_autoindex_Kategorie_1</UnderlyingIndexName>
+    </key>
+    <key id="29" parent="8">
+      <ColNames>KategorieID</ColNames>
+      <UnderlyingIndexName>sqlite_autoindex_Kategorie_1</UnderlyingIndexName>
+    </key>
+    <column id="30" parent="9" name="NotizID">
+      <DataType>NUMBER(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="31" parent="9" name="BearbeitungszustandID">
+      <Position>1</Position>
+      <DataType>NUMBER(10)|0</DataType>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="32" parent="9" name="Beschreibung">
+      <Position>2</Position>
+      <DataType>VARCHAR|0</DataType>
+    </column>
+    <column id="33" parent="9" name="Erinnerung">
+      <Position>3</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <column id="34" parent="9" name="Erstellung">
+      <Position>4</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <column id="35" parent="9" name="Faelligkeit">
+      <Position>5</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <column id="36" parent="9" name="ISTERINNERUNGGESETZT">
+      <Position>6</Position>
+      <DataType>NUMBER(1)|0</DataType>
+    </column>
+    <column id="37" parent="9" name="KategorieID">
+      <Position>7</Position>
+      <DataType>NUMBER(10)|0</DataType>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="38" parent="9" name="Prioritaet">
+      <Position>8</Position>
+      <DataType>NUMBER(1)|0</DataType>
+    </column>
+    <column id="39" parent="9" name="Title">
+      <Position>9</Position>
+      <DataType>VARCHAR|0</DataType>
+    </column>
+    <column id="40" parent="9" name="NotizblockID">
+      <Position>10</Position>
+      <DataType>NUMBER(10)|0</DataType>
+    </column>
+    <index id="41" parent="9" name="sqlite_autoindex_Notiz_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>NotizID</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="42" parent="9">
+      <ColNames>NotizID</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>sqlite_autoindex_Notiz_1</UnderlyingIndexName>
+    </key>
+    <key id="43" parent="9">
+      <ColNames>NotizID</ColNames>
+      <UnderlyingIndexName>sqlite_autoindex_Notiz_1</UnderlyingIndexName>
+    </key>
+    <foreign-key id="44" parent="9">
+      <ColNames>BearbeitungszustandID</ColNames>
+      <RefTableName>Bearbeitungszustand</RefTableName>
+      <RefColNames>BearbeitungszustandID</RefColNames>
+      <OnDelete>set-default</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
+    </foreign-key>
+    <foreign-key id="45" parent="9">
+      <ColNames>KategorieID</ColNames>
+      <RefTableName>Kategorie</RefTableName>
+      <RefColNames>KategorieID</RefColNames>
+      <OnDelete>set-default</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
+    </foreign-key>
+    <foreign-key id="46" parent="9">
+      <ColNames>NotizblockID</ColNames>
+      <RefTableName>Notizblock</RefTableName>
+      <RefColNames>NotizblockID</RefColNames>
+    </foreign-key>
+    <column id="47" parent="10" name="NotizblockID">
+      <DataType>NUMBER(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="48" parent="10" name="sqlite_autoindex_Notizblock_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>NotizblockID</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="49" parent="10">
+      <ColNames>NotizblockID</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>sqlite_autoindex_Notizblock_1</UnderlyingIndexName>
+    </key>
+    <key id="50" parent="10">
+      <ColNames>NotizblockID</ColNames>
+      <UnderlyingIndexName>sqlite_autoindex_Notizblock_1</UnderlyingIndexName>
+    </key>
+    <column id="51" parent="11" name="NutzerprofilID">
+      <DataType>NUMBER(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="52" parent="11" name="sqlite_autoindex_Nutzerprofil_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>NutzerprofilID</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="53" parent="11">
+      <ColNames>NutzerprofilID</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>sqlite_autoindex_Nutzerprofil_1</UnderlyingIndexName>
+    </key>
+    <key id="54" parent="11">
+      <ColNames>NutzerprofilID</ColNames>
+      <UnderlyingIndexName>sqlite_autoindex_Nutzerprofil_1</UnderlyingIndexName>
+    </key>
+    <column id="55" parent="12" name="SEQ_NAME">
+      <DataType>VARCHAR(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="56" parent="12" name="SEQ_COUNT">
+      <Position>1</Position>
+      <DataType>NUMBER(19)|0</DataType>
+    </column>
+    <index id="57" parent="12" name="sqlite_autoindex_SEQUENCE_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SEQ_NAME</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="58" parent="12">
+      <ColNames>SEQ_NAME</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>sqlite_autoindex_SEQUENCE_1</UnderlyingIndexName>
+    </key>
+    <column id="59" parent="13" name="type">
+      <DataType>text|0</DataType>
+    </column>
+    <column id="60" parent="13" name="name">
+      <Position>1</Position>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="61" parent="13" name="tbl_name">
+      <Position>2</Position>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="62" parent="13" name="rootpage">
+      <Position>3</Position>
+      <DataType>integer|0</DataType>
+    </column>
+    <column id="63" parent="13" name="sql">
+      <Position>4</Position>
+      <DataType>text|0</DataType>
+    </column>
+  </database-model>
+</dataSource>
