@@ -83,6 +83,18 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
 
     @Override
     public void updateBearbeitungszustand(Bearbeitungszustand bearbeitungszustand) {
+        initTransaction();
+        transaction.begin();
+
+        Bearbeitungszustand updatedBearbeitungszustand = entityManager.find(BearbeitungszustandImpl.class, bearbeitungszustand.getBearbeitungsZustandID());
+        if (updatedBearbeitungszustand == null){
+            finishTransaction();
+            throw new IllegalArgumentException("Bearbeitungszustand existiert nicht!");
+        }
+        entityManager.merge(bearbeitungszustand);
+
+        transaction.commit();
+        finishTransaction();
 
     }
 

@@ -72,7 +72,19 @@ public class KategorieDAOImpl extends ObjectDAOImpl implements KategorieDAO
 
     @Override
     public void updateKategorie(Kategorie kategorie) {
+        initTransaction();
+        transaction.begin();
 
+        Kategorie updatedKategorie = entityManager.find(KategorieImpl.class, kategorie.getKategorieID());
+        if (updatedKategorie == null){
+            finishTransaction();
+            throw new IllegalArgumentException("kategorie existiert nicht!");
+        }
+
+        entityManager.merge(kategorie);
+        transaction.commit();
+
+        finishTransaction();
     }
     @Override
     public void deleteKategorie(int kategorieID) {
