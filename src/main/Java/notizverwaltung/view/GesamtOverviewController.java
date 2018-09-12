@@ -8,16 +8,24 @@ import notizverwaltung.MainApp;
  * Notizbloecke.
  *
  * @author Johannes Gerwert
- * @version 09.09.2018
+ * @version 12.09.2018
  */
 public class GesamtOverviewController {
 
     private MainApp mainApp;
 
+    /**
+     * Konstruktor
+     * Tut momentan nichts.
+     */
     public GesamtOverviewController(){
 
     }
 
+    /**
+     * Die Umgebung in der das Bedienelement agiert wird gesetzt.
+     * @param mainApp Ein Verweis auf die MainApp.
+     */
     public void setMainApp(MainApp mainApp){
         this.mainApp = mainApp;
     }

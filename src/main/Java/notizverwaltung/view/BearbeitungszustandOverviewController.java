@@ -16,6 +16,13 @@ import notizverwaltung.model.interfaces.Notiz;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
+/**
+ * Diese Klasse erzeugt einen Teil des Hauptanzeigefensters.
+ * Die Bearbeitungszustaende werden hier bedient.
+ *
+ * @author Johannes Gerwert
+ * @version 12.09.2018
+ */
 public class BearbeitungszustandOverviewController {
 
     @FXML
@@ -29,27 +36,53 @@ public class BearbeitungszustandOverviewController {
 
     private MainApp mainApp;
 
+    /**
+     * Konstruktor
+     * Tut momentan nichts.
+     */
     public BearbeitungszustandOverviewController(){
 
     }
 
+    /**
+     * Das Bedienelement wird initialisiert. Dieser Code wird direkt nach dem laden der
+     * FXML Datei ausgefuehrt.
+     * Der Standard Name fuer Bearbeitungszustaende wird in den TitledPane geladen.
+     */
     @FXML
     private void initialize(){
         bearbeitungszustandTitle.setText(name);
     }
 
+    /**
+     * Die Umgebung in der das Bedienelement agiert wird gesetzt.
+     * Außerdem wird eine Liste aus der MainApp geladen, die alle
+     * entsprechenden Notizen enthaelt.
+     * @param mainApp Ein Verweis auf die MainApp.
+     */
     public void setMainApp(MainApp mainApp){
         this.mainApp = mainApp;
 
         notizListe = mainApp.getNotizListe();
     }
 
+    /**
+     * Der Bearbeitungszustand, der zu diesem Controller gehoert, wird festgelegt.
+     * Danach wird der Name der zu diesem Bearbeitungszustand gehoert in den
+     * TitledPane geladen.
+     * @param bazs Der Bearbeitungszustand, der zu diesem Controller gehoert.
+     */
     public void setBearbeitungszustand(Bearbeitungszustand bazs){
         this.bazs = bazs;
         bearbeitungszustandTitle.setText(this.bazs.getName());
     }
 
+    /**
+     * Die Notizen die zu dem Bearbeitungsstatus gehoeren werden geladen.
+     * Sie werden in eine VBox eingefuegt.
+     */
     public void ladeNotizen(){
+        //TODO: Fehler werfen, falls Bearbeitungsstatus nicht gesetzt.
         try{
             for(Notiz notiz : notizListe){
                 if(this.bazs.getBearbeitungsZustandID() == notiz.getBearbeitungszustandID()){

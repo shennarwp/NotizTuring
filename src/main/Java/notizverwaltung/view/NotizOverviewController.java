@@ -11,7 +11,13 @@ import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.service.classes.KategorieServiceImpl;
 import notizverwaltung.service.interfaces.KategorieService;
 
-
+/**
+ * Diese Klasse erzeugt einen Teil des Hauptanzeigefensters.
+ * Die Notizen werden hier bedient.
+ *
+ * @author Johannes Gerwert
+ * @version 12.09.2018
+ */
 public class NotizOverviewController {
 
     @FXML
@@ -31,10 +37,27 @@ public class NotizOverviewController {
 
     private KategorieService kategorieService = ServiceObjectBuilder.getKategorieService();
 
+    /**
+     * Konstruktor
+     * Tut momentan nichts.
+     */
+    public NotizOverviewController(){
+
+    }
+
+    /**
+     * Die Umgebung in der das Bedienelement agiert wird gesetzt.
+     * @param mainApp Ein Verweis auf die MainApp.
+     */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
 
+    /**
+     * Die Notiz, die zu diesem Controller gehoert wird festgelegt.
+     * Danach werden alle Notiz spezifischen Labels beschriftet.
+     * @param notiz Die Notiz, die zum Controller gehoert
+     */
     public void setNotiz(Notiz notiz){
         this.notiz = notiz;
 
@@ -44,16 +67,23 @@ public class NotizOverviewController {
             prioritaetLabel.setText(I18nComponentsUtil.getStandardPriorityLow());
         }
 
+        //TODO: Bessere Loesung zur Datumsanzeige finden
         datumLabel.setText(notiz.getFaelligkeit().toString());
         kategorieLabel.setText(kategorieService.findKategorieName(notiz.getKategorieID()));
         notizLabel.setText(notiz.getTitle());
     }
 
+    /**
+     * Die Notiz wird um eine Spalte nach links bewegt.
+     */
     @FXML
     private void handleMoveLeft(){
         //TODO
     }
 
+    /**
+     * Die Notiz wird um eine Spalte nach rechts bewegt.
+     */
     @FXML
     private void handleMoveRight(){
         //TODO

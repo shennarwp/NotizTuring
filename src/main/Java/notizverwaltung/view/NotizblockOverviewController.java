@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
  * Die tabs werden hier generiert. Sie stellen die Notizbloecke dar.
  *
  * @author Johannes Gerwert
- * @version 09.09.2018
+ * @version 12.09.2018
  */
 public class NotizblockOverviewController {
 
@@ -34,21 +34,44 @@ public class NotizblockOverviewController {
 
     private MainApp mainApp;
 
+    /**
+     * Konstruktor
+     * Tut momentan nichts.
+     */
     public NotizblockOverviewController() {
 
     }
 
+    /**
+     * Das Bedienelement wird initialisiert. Dieser Code wird direkt nach dem laden der
+     * FXML Datei ausgefuehrt.
+     * Der Standard Name fuer Notizbloecke wird in den Tab geladen.
+     */
     @FXML
     private void initialize() {
         notizblockName.setText(name);
     }
 
+    /**
+     * Die Umgebung in der das Bedienelement agiert wird gesetzt.
+     * Außerdem wird eine Liste aus der Main App geladen, die alle entsprechenden
+     * Bearbeitungszustaende enthaelt.
+     *
+     * @param mainApp Ein Verweis auf die MainApp.
+     */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
 
         bearbeitungszustandListe = mainApp.getBearbeitungszustandListe();
     }
 
+    /**
+     * Die Bearbeitungszustaende des Notizblocks werden geladen.
+     * Fuer jedes Objekt in der Liste wird ein TitledPane angelegt. Dieser enthaelt
+     * einen ScrollPane und eine VBox um die Notizen darzustellen.
+     * Der Bearbeitungszustand wird dann in die HBox geladen.
+     * Schlussendlich werden die Notizen des Bearbeitungszustands geladen.
+     */
     public void ladeBearbeitungszustaende() {
         try {
             for (Bearbeitungszustand bazs : bearbeitungszustandListe) {

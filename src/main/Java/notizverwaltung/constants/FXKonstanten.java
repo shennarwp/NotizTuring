@@ -4,11 +4,15 @@ package notizverwaltung.constants;
  * Stellt Konstanten für die GUI zur Verfügung
  *
  *
- * @author Michelle Blau, Johannes Gerwert
- * @version 08.09.2018
+ * @author Michelle Blau
+ * @author Johannes Gerwert
+ * @version 12.09.2018
  */
 
 public class FXKonstanten {
+
+    //----------------------------------------------------------------------------------------------
+    //FXML Dateipfade
 
     public static final String PFAD_ROOT_LAYOUT = "/view/RootLayout.fxml";
 
@@ -24,11 +28,13 @@ public class FXKonstanten {
     public static final String PFAD_ZUSTAND_LOESCHUNGSDIALOG_LAYOUT = "/view/dialoge/BearbeitungszustandLoeschungsdialog.fxml";
     public static final String PFAD_NOTIZ_LOESCHUNGSDIALOG_LAYOUT = "/view/dialoge/NotizLoeschungsdialog.fxml";
 
-
     public static final String PFAD_GESAMT_OVERVIEW_LAYOUT = "/view/overviews/GesamtOverview.fxml";
     public static final String PFAD_NOTIZBLOCK_OVERVIEW_LAYOUT = "/view/overviews/NotizblockOverview.fxml";
     public static final String PFAD_BEARBEITUNGSZUSTAND_OVERVIEW_LAYOUT = "/view/overviews/BearbeitungszustandOverview.fxml";
     public static final String PFAD_NOTIZ_OVERVIEW_LAYOUT = "/view/overviews/NotizOverview.fxml";
+
+    //----------------------------------------------------------------------------------------------
+    //Konstanten
 
     public static final String ANWENDUNG_NAME = "Notizverwaltung";
     public static final String DIALOG = "Dialog";
