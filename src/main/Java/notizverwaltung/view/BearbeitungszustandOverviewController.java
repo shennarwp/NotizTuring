@@ -46,24 +46,26 @@ public class BearbeitungszustandOverviewController {
 
     public void setBearbeitungszustand(Bearbeitungszustand bazs){
         this.bazs = bazs;
-        bearbeitungszustandTitle.setText(bazs.getName());
+        bearbeitungszustandTitle.setText(this.bazs.getName());
     }
 
     public void ladeNotizen(){
         try{
             for(Notiz notiz : notizListe){
-                FXMLLoader loader = new FXMLLoader();
-                ResourceBundle bundle = I18nUtil.getComponentsResourceBundle();
-                loader.setLocation(MainApp.class
-                        .getResource(FXKonstanten.PFAD_NOTIZ_OVERVIEW_LAYOUT));
-                loader.setResources(bundle);
-                AnchorPane notizView = (AnchorPane) loader.load();
+                if(this.bazs.getBearbeitungsZustandID() == notiz.getBearbeitungszustandID()){
+                    FXMLLoader loader = new FXMLLoader();
+                    ResourceBundle bundle = I18nUtil.getComponentsResourceBundle();
+                    loader.setLocation(MainApp.class
+                            .getResource(FXKonstanten.PFAD_NOTIZ_OVERVIEW_LAYOUT));
+                    loader.setResources(bundle);
+                    AnchorPane notizView = (AnchorPane) loader.load();
 
-                notizen.getChildren().add(notizView);
+                    notizen.getChildren().add(notizView);
 
-                NotizOverviewController controller = loader.getController();
-                controller.setMainApp(mainApp);
-                controller.setNotiz(notiz);
+                    NotizOverviewController controller = loader.getController();
+                    controller.setMainApp(mainApp);
+                    controller.setNotiz(notiz);
+                }
             }
 
         } catch(IOException e){
