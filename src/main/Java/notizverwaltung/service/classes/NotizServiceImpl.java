@@ -54,7 +54,8 @@ public class NotizServiceImpl implements NotizService {
 
     @Override
     public void updateNotiz(Notiz notiz) {
-
+        ObjectValidator.checkObObjectNullIst(notiz);
+        notizDAO.updateNotiz(notiz);
     }
 
     @Override

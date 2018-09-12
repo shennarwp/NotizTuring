@@ -44,7 +44,8 @@ public class BearbeitungszustandServiceImpl implements BearbeitungszustandServic
 
 	@Override
 	public void updateBearbeitungszustand (Bearbeitungszustand bearbeitungszustand) {
-
+		ObjectValidator.checkObObjectNullIst(bearbeitungszustand);
+		bearbeitungszustandDAO.updateBearbeitungszustand(bearbeitungszustand);
 	}
 
 	@Override
