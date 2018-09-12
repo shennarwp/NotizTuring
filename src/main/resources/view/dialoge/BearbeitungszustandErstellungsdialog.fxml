@@ -24,7 +24,7 @@
         </rowConstraints>
          <children>
             <Label prefHeight="80.0" prefWidth="230.0" text="%dialog-statename" GridPane.rowIndex="1" />
-            <TextField fx:id="bearbeitungszustandAnlegenNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="bearbeitungszustandNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </center>

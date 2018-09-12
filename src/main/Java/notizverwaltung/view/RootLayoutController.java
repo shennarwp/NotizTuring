@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
  * werden die Dialog-Fenster lediglich geöffnet
  * 
  * @author Michelle Blau
- * @version 08.09.2018
+ * @version 12.09.2018
  */
 
 
@@ -188,6 +188,32 @@ public class RootLayoutController {
     @FXML
     private void handleshowNotizAenderungsMaske() {
         showDialogFensterMitAnchorPane(FXKonstanten.PFAD_NOTIZ_AENDERUNGSDIALOG_LAYOUT);
+    }
+
+
+    /**
+     * Zeigt einen Dialog zum Löschen einer bestehenden Notiz
+     */
+    @FXML
+    private void handleshowNotizLoeschungsMaske() {
+        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_NOTIZ_LOESCHUNGSDIALOG_LAYOUT);
+    }
+
+
+    /**
+     * Zeigt einen Dialog zum Löschen einer bestehenden Kategorie
+     */
+    @FXML
+    private void handleshowKategorieLoeschungsMaske() {
+        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_KATEGORIE_LOESCHUNGSDIALOG_LAYOUT);
+    }
+
+    /**
+     * Zeigt einen Dialog zum Löschen eines bestehenden Bearbeitungszustands
+     */
+    @FXML
+    private void handleshowBearbeitungszustandLoeschungsMaske() {
+        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_ZUSTAND_LOESCHUNGSDIALOG_LAYOUT);
     }
 
 

@@ -1,7 +1,6 @@
 package notizverwaltung.view;
 
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -10,7 +9,6 @@ import notizverwaltung.MainApp;
 import notizverwaltung.builders.ModelObjectBuilder;
 import notizverwaltung.constants.DAOKonstanten;
 import notizverwaltung.i18n.I18nMessagesUtil;
-import notizverwaltung.model.classes.NotizImpl;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
@@ -22,10 +20,10 @@ import notizverwaltung.service.interfaces.KategorieService;
 import notizverwaltung.service.interfaces.NotizService;
 import notizverwaltung.util.DateUtil;
 import notizverwaltung.util.FXUtil;
+import notizverwaltung.validators.ListValidator;
 import notizverwaltung.validators.ObjectValidator;
 import notizverwaltung.validators.StringValidator;
 
-import java.awt.*;
 import java.time.LocalDate;
 
 /**
@@ -49,16 +47,16 @@ public class DialogController {
 
     //_______________Notiz_____________//
     @FXML
-    TextField notizAnlegenNameField;
+    TextField notizNameField;
 
     @FXML
-    TextArea notizAnlegenBeschreibungTextArea;
+    TextArea notizBeschreibungTextArea;
 
     @FXML
-    DatePicker notizAnlegenFaelligkeitDatePicker;
+    DatePicker notizFaelligkeitDatePicker;
 
     @FXML
-    CheckBox notizAnlegenPrioritaet;
+    CheckBox notizPrioritaetCheckBox;
 
     //_______________Choice-Boxen__________________//
     @FXML
@@ -72,16 +70,11 @@ public class DialogController {
 
     //_______________Kategorie______________//
     @FXML
-    TextField kategorieAnlegenNameField;
-
-    @FXML
-    TextField kategorieAendernNameField;
+    TextField kategorieNameField;
 
     //_______________Bearbeitungszustand______________//
     @FXML
-    TextField bearbeitungszustandAnlegenNameField;
-    @FXML
-    TextField bearbeitungszustandAendernNameField;
+    TextField bearbeitungszustandNameField;
 
 
     /**
@@ -136,13 +129,13 @@ public class DialogController {
         if (isInputValid(validateNotizErstellen())) {
             Notiz tmpNotiz = ModelObjectBuilder.getNotizObject();
 
-            LocalDate faelligkeit = notizAnlegenFaelligkeitDatePicker.getValue();
+            LocalDate faelligkeit = notizFaelligkeitDatePicker.getValue();
 
-            tmpNotiz.setTitle(notizAnlegenNameField.getText());
-            tmpNotiz.setBeschreibung(notizAnlegenBeschreibungTextArea.getText());
+            tmpNotiz.setTitle(notizNameField.getText());
+            tmpNotiz.setBeschreibung(notizBeschreibungTextArea.getText());
             tmpNotiz.setBearbeitungszustandID(bearbeitungszustandChoiceBox.getValue().getBearbeitungsZustandID());
             tmpNotiz.setKategorieID(kategorieChoiceBox.getValue().getKategorieID());
-            tmpNotiz.setPrioritaet(notizAnlegenPrioritaet.isSelected());
+            tmpNotiz.setPrioritaet(notizPrioritaetCheckBox.isSelected());
             tmpNotiz.setFaelligkeit(DateUtil.convertLocalDate(faelligkeit));
 
             notizService.addNotiz(tmpNotiz,DAOKonstanten.DEFAULT_NOTIZBLOCK_ID);
@@ -153,7 +146,24 @@ public class DialogController {
         }
     }
 
+    /**
+     * Löscht bestehende Notiz, wenn auf "Löschen" Button geklickt wird, oder ruft Error-Dialog auf, wenn
+     * Nutzereingaben falsch. Die Änderung wird direkt in die Datenbank übernommen
+     *
+     */
+    @FXML
+    private void handleBtnLoescheNotiz(){
 
+        if (isInputValid(validateNotizLoeschen())) {
+            Notiz zuLoeschendeNotiz = notizChoiceBox.getValue();
+
+            mainApp.getNotizListe().remove(zuLoeschendeNotiz);
+            notizService.deleteNotiz(zuLoeschendeNotiz.getNotizID());
+
+            System.out.println("Notiz wurde aus Liste und Datenbank gelöscht:" + mainApp.getNotizListe());
+            dialogStage.close();
+        }
+    }
 
     /**
      * Ändert bestehende Notiz, wenn auf "Anwenden" Button geklickt wird, oder ruft Error-Dialog auf, wenn
@@ -162,6 +172,7 @@ public class DialogController {
      */
     @FXML
     private void handleBtnAendereNotiz(){
+
         if (isInputValid(validateNotizAendern())) {
 
             System.out.println("Notiz wurde nicht geändert, muss noch implementiert werden");
@@ -181,21 +192,19 @@ public class DialogController {
 
         if (isInputValid(validateKategorieErstellen())) {
 
-            Kategorie tmpKategorie = ModelObjectBuilder.getKategorieObjekt(kategorieAnlegenNameField.getText());
+            Kategorie tmpKategorie = ModelObjectBuilder.getKategorieObjekt(kategorieNameField.getText());
 
             kategorieService.addKategorie(tmpKategorie);
             mainApp.getKategorieListe().add(tmpKategorie);
 
-            System.out.println("Kategorie erfolgreich in Liste und in Datenbank eingefügt");
+            System.out.println("Kategorie erfolgreich in Liste und in Datenbank eingefügt"+ mainApp.getKategorieListe());
             dialogStage.close();
         }
     }
 
-
-
     /**
      * Ändert bestehende Kategorie, wenn auf "Anwenden" Button geklickt wird, oder ruft Error-Dialog auf, wenn
-     * Nutzereingaben falsch
+     * Nutzereingaben falsch. Die Änderung wird direkt in die Datenbank übernommen
      * TODO Fertigschreiben, sobald Datenbank funktioniert
      */
     @FXML
@@ -206,6 +215,26 @@ public class DialogController {
             dialogStage.close();
         }
     }
+
+    /**
+     * Löscht bestehende Kategorie, wenn auf "Löschen" Button geklickt wird, oder ruft Error-Dialog auf, wenn
+     * Nutzereingaben falsch. Die Änderung wird direkt in die Datenbank übernommen
+     *
+     */
+    @FXML
+    private void handleBtnLoescheKategorie(){
+
+        if (isInputValid(validateKategorieLoeschen())) {
+            Kategorie zuLoeschendeKategorie = kategorieChoiceBox.getValue();
+
+            mainApp.getNotizListe().remove(zuLoeschendeKategorie);
+            kategorieService.deleteKategorie(zuLoeschendeKategorie.getKategorieID());
+
+            System.out.println("Kategorie wurde aus Liste und Datenbank gelöscht:" + mainApp.getKategorieListe());
+            dialogStage.close();
+        }
+    }
+
 
 
 
@@ -219,18 +248,16 @@ public class DialogController {
 
         if (isInputValid(validateBearbeitungszustandErstellen())) {
             Bearbeitungszustand tmpBearbeitungszustand = ModelObjectBuilder
-                    .getBearbeitungszustandObjekt(bearbeitungszustandAnlegenNameField.getText());
+                    .getBearbeitungszustandObjekt(bearbeitungszustandNameField.getText());
 
 
             bearbeitungszustandService.addBearbeitungszustand(tmpBearbeitungszustand);
             mainApp.getBearbeitungszustandListe().add(tmpBearbeitungszustand);
 
-            System.out.println("Bearbeitungszustand in Liste und in Datenbank eingefügt");
+            System.out.println("Bearbeitungszustand in Liste und in Datenbank eingefügt"+ mainApp.getBearbeitungszustandListe());
             dialogStage.close();
         }
     }
-
-
 
     /**
      * Ändert bestehenden Bearbeitungszustand, wenn auf "Anwenden" Button geklickt wird, oder ruft Error-Dialog auf, wenn
@@ -247,6 +274,24 @@ public class DialogController {
         }
     }
 
+    /**
+     * Löscht bestehenden Bearbeitungszustand, wenn auf "Löschen" Button geklickt wird, oder ruft Error-Dialog auf, wenn
+     * Nutzereingaben falsch
+     */
+    @FXML
+    private void handleBtnLoescheBearbeitungszustand(){
+
+        if (isInputValid(validateBearbeitungszustandLoeschen())) {
+            Bearbeitungszustand bestehenderBearbeitungszustand = bearbeitungszustandChoiceBox.getValue();
+            int bearbeitungszustandID = bestehenderBearbeitungszustand.getBearbeitungsZustandID();
+
+            mainApp.getBearbeitungszustandListe().remove(bestehenderBearbeitungszustand);
+            bearbeitungszustandService.deleteBearbeitungszustand(bearbeitungszustandID);
+
+            System.out.println("Bearbeitungszustand wurde in Liste und Datenbank gelöscht:" + mainApp.getBearbeitungszustandListe());
+            dialogStage.close();
+        }
+    }
 
 
 
@@ -257,11 +302,11 @@ public class DialogController {
      *
      */
     private String validateNotizErstellen() {
-        String notizName = notizAnlegenNameField.getText();
+        String notizName = notizNameField.getText();
         Kategorie kategorie = kategorieChoiceBox.getValue();
         Bearbeitungszustand bearbeitungszustand = bearbeitungszustandChoiceBox.getValue();
-        String beschreibung = notizAnlegenBeschreibungTextArea.getText();
-        LocalDate localDateFaelligkeit = notizAnlegenFaelligkeitDatePicker.getValue();
+        String beschreibung = notizBeschreibungTextArea.getText();
+        LocalDate localDateFaelligkeit = notizFaelligkeitDatePicker.getValue();
 
         String errorMessage = "";
 
@@ -292,10 +337,10 @@ public class DialogController {
      */
     private String validateNotizAendern(){
         Notiz bestehendeNotiz = notizChoiceBox.getValue();
-        String notizName = notizAnlegenNameField.getText();
+        String notizName = notizNameField.getText();
         Kategorie kategorie = kategorieChoiceBox.getValue();
-        String beschreibung = notizAnlegenBeschreibungTextArea.getText();
-        LocalDate localDateFaelligkeit = notizAnlegenFaelligkeitDatePicker.getValue();
+        String beschreibung = notizBeschreibungTextArea.getText();
+        LocalDate localDateFaelligkeit = notizFaelligkeitDatePicker.getValue();
 
         String errorMessage = "";
 
@@ -318,6 +363,25 @@ public class DialogController {
         return errorMessage;
     }
 
+    /**
+     * Validiert die Eingabefelder fuer die Änderung einer Notiz.
+     * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
+     * leerer String.
+     *
+     */
+    private String validateNotizLoeschen(){
+        Notiz bestehendeNotiz = notizChoiceBox.getValue();
+
+        String errorMessage = "";
+
+        if (ObjectValidator.isObjectNull(bestehendeNotiz)) {
+            errorMessage += I18nMessagesUtil.getErrorBestehendeNotizUngueltig() + "\n";
+        }
+
+        return errorMessage;
+    }
+
+
 
     /**
      * Validiert die Eingabefelder fuer die Eingabe zur Erstellung einer Kategorie.
@@ -326,7 +390,7 @@ public class DialogController {
      * TODO fertigschreiben sobald Datenbank funktioniert
      */
     private String validateKategorieErstellen() {
-        String kategorieName = kategorieAnlegenNameField.getText();
+        String kategorieName = kategorieNameField.getText();
 
         String errorMessage = "";
 
@@ -337,8 +401,6 @@ public class DialogController {
         return errorMessage;
     }
 
-
-
     /**
      * Validiert die Eingabefelder zur Änderung einer bestehenden Kategorie.
      * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
@@ -346,7 +408,7 @@ public class DialogController {
      * TODO fertigstellen sobald Datenbank funktioniert
      */
     private String validateKategorieAendern() {
-        String kategorieName = kategorieAendernNameField.getText();
+        String kategorieName = kategorieNameField.getText();
         Kategorie bestehendeKategorie = kategorieChoiceBox.getValue();
 
         String errorMessage = "";
@@ -361,6 +423,27 @@ public class DialogController {
         return errorMessage;
     }
 
+    /**
+     * Validiert die Eingabefelder zum Löschen einer bestehenden Kategorie.
+     * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
+     * leerer String.
+     * TODO isNotizMitKategorieVorhanden() fertigstellen sobald Service-Methode implementiert
+     */
+    private String validateKategorieLoeschen() {
+        Kategorie bestehendeKategorie = kategorieChoiceBox.getValue();
+
+        String errorMessage = "";
+
+        if(ObjectValidator.isObjectNull(bestehendeKategorie)){
+            errorMessage += I18nMessagesUtil.getErrorBestehendeKategorieUngueltig() + "\n";
+        }else if(ListValidator.isNotizMitKategorieVorhanden(bestehendeKategorie)){
+            errorMessage += I18nMessagesUtil.getErrorEsGibtNochNotizenMitDieserKategorie() + "\n";
+        }
+
+        return errorMessage;
+    }
+
+
 
 
     /**
@@ -369,7 +452,7 @@ public class DialogController {
      * leerer String.
      */
     private String validateBearbeitungszustandErstellen() {
-        String bearbeitungszustandName = bearbeitungszustandAnlegenNameField.getText();
+        String bearbeitungszustandName = bearbeitungszustandNameField.getText();
 
         String errorMessage = "";
 
@@ -380,8 +463,6 @@ public class DialogController {
         return errorMessage;
     }
 
-
-
     /**
      * Validiert die Eingabefelder zur Änderung eines Bearbeitungszustands.
      * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
@@ -389,7 +470,7 @@ public class DialogController {
      */
     private String validateBearbeitungszustandAendern() {
 
-        String bearbeitungszustandName = bearbeitungszustandAendernNameField.getText();
+        String bearbeitungszustandName = bearbeitungszustandNameField.getText();
         Bearbeitungszustand bestehenderBearbeitungszustand = bearbeitungszustandChoiceBox.getValue();
         String errorMessage = "";
 
@@ -398,6 +479,27 @@ public class DialogController {
         }
         if (StringValidator.isStringLeerOderNull(bearbeitungszustandName)) {
             errorMessage += I18nMessagesUtil.getErrorBearbeitungszustandnameUngueltig() + "\n";
+        }
+
+        return errorMessage;
+    }
+
+    /**
+     * Validiert die Eingabefelder zur Änderung eines Bearbeitungszustands.
+     * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
+     * leerer String.
+     */
+    private String validateBearbeitungszustandLoeschen() {
+
+        Bearbeitungszustand bestehenderBearbeitungszustand = bearbeitungszustandChoiceBox.getValue();
+
+        String errorMessage = "";
+
+        if(ObjectValidator.isObjectNull(bestehenderBearbeitungszustand)){
+            errorMessage += I18nMessagesUtil.getErrorBestehenderBearbeitungszustandUngueltig() + "\n";
+
+        }else if (ListValidator.isNotizMitBearbeitungszustandVorhanden(bestehenderBearbeitungszustand)) {
+            errorMessage += I18nMessagesUtil.getErrorEsGibtNochNotizenMitDiesemBearbeitungszustand() + "\n";
         }
 
         return errorMessage;

@@ -28,17 +28,14 @@
                   <MenuItem mnemonicParsing="false" onAction="#handleshowNotizAenderungsMaske" text="%menuitem-change-note" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="%menu-delete">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleshowKategorieLoeschungsMaske" text="%menuitem-delete-category" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleshowBearbeitungszustandLoeschungsMaske" text="%menuitem-delete-state" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleshowNotizLoeschungsMaske" text="%menuitem-delete-note" />
+               </items>
+            </Menu>
             <Menu mnemonicParsing="false" text="%menu-options">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="TODO" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="%menu-help">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="TODO" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="%menu-search">
                <items>
                   <MenuItem mnemonicParsing="false" text="TODO" />
                </items>

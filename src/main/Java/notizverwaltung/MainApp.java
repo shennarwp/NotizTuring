@@ -79,7 +79,6 @@ public class MainApp extends Application {
         System.out.println("\n\n\n\n"+notizListe);
         System.out.println("\n\n\n\n"+kategorieListe);
         System.out.println("\n\n\n\n"+bearbeitungszustandListe);
-
     }
 
 
