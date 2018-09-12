@@ -17,4 +17,6 @@ public interface KategorieService {
 
     public List<Kategorie> getAlleKategorien();
 
+    public String findKategorieName(int kategorieID);
+
 }

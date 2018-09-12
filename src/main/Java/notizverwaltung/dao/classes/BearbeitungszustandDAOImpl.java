@@ -41,7 +41,7 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
         initTransaction();
         transaction.begin();
 
-        Bearbeitungszustand bearbeitungszustand = entityManager.find(Bearbeitungszustand.class, bearbeitungszustandID);
+        Bearbeitungszustand bearbeitungszustand = entityManager.find(BearbeitungszustandImpl.class, bearbeitungszustandID);
         if(bearbeitungszustand == null) {
             finishTransaction();
             throw new IllegalArgumentException("bearbeitungszustand existiert nicht!");

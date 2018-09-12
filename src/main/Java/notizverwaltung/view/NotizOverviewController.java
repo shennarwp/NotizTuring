@@ -4,8 +4,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import notizverwaltung.MainApp;
+import notizverwaltung.builders.ServiceObjectBuilder;
 import notizverwaltung.i18n.I18nComponentsUtil;
+import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
+import notizverwaltung.service.classes.KategorieServiceImpl;
+import notizverwaltung.service.interfaces.KategorieService;
 
 
 public class NotizOverviewController {
@@ -25,6 +29,8 @@ public class NotizOverviewController {
 
     private MainApp mainApp;
 
+    private KategorieService kategorieService = ServiceObjectBuilder.getKategorieService();
+
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
@@ -39,7 +45,7 @@ public class NotizOverviewController {
         }
 
         datumLabel.setText(notiz.getFaelligkeit().toString());
-        kategorieLabel.setText(findKategorieName(notiz.getKategorieID()));
+        kategorieLabel.setText(kategorieService.findKategorieName(notiz.getKategorieID()));
         notizLabel.setText(notiz.getTitle());
     }
 
@@ -51,10 +57,5 @@ public class NotizOverviewController {
     @FXML
     private void handleMoveRight(){
         //TODO
-    }
-
-    private String findKategorieName(int KategorieID){
-        //TODO
-        return "Kategorie";
     }
 }

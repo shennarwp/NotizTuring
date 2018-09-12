@@ -67,4 +67,11 @@ public class KategorieServiceImpl implements KategorieService
 
 	    return new KategorieDAOImpl().getAlleKategorien();
 	}
+
+	@Override
+	public String findKategorieName(int kategorieID){
+		Kategorie kategorie = getKategorie(kategorieID);
+		String kategorieName = kategorie.getKategorieName();
+		return kategorieName;
+	}
 }
