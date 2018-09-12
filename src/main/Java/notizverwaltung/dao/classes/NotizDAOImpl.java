@@ -4,6 +4,7 @@ import notizverwaltung.dao.interfaces.NotizDAO;
 import notizverwaltung.model.classes.NotizImpl;
 import notizverwaltung.model.interfaces.Notiz;
 
+import javax.management.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -59,8 +60,21 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
     }
 
     @Override
-    public void updateNotiz(NotizImpl notiz) {
+    public void updateNotiz(Notiz notiz) {
+        initTransaction();
+        transaction.begin();
 
+        Notiz updatedNotiz = entityManager.find(NotizImpl.class, notiz.getNotizID());
+        if(updatedNotiz == null) {
+            finishTransaction();
+            throw new IllegalArgumentException("Notiz existiert nicht!");
+        }
+
+        entityManager.merge(notiz);
+
+
+        transaction.commit();
+        finishTransaction();
     }
 
     @Override

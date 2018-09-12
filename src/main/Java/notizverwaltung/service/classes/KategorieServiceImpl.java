@@ -44,7 +44,8 @@ public class KategorieServiceImpl implements KategorieService
 
 	@Override
 	public void updateKategorie (Kategorie kategorie) {
-
+		ObjectValidator.checkObObjectNullIst(kategorie);
+		kategorieDAO.updateKategorie(kategorie);
 	}
 
 	//Achtung nur löschen, wenn keine Artikel mehr eine Kategorie hat
