@@ -2,6 +2,7 @@ package notizverwaltung.service.classes;
 
 import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.service.interfaces.NotizFilterService;
+import notizverwaltung.validators.IntValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,61 +22,31 @@ public class NotizFilterServiceImpl implements NotizFilterService {
 
 
     @Override
-    public List<Notiz> filterAlleNotizenMitLambda(Predicate<Notiz> notizPredicate, List<Notiz> listeVonNotizen){
-        ArrayList<Notiz> neueListe = new ArrayList<>();
-        for (Notiz notiz:listeVonNotizen){
-            if(notizPredicate.test(notiz)){
-                neueListe.add(notiz);
-            }
-        }
-
-        return neueListe;
-    }
-
-    @Override
-    public List<Notiz> filterAlleNotizenMitPriorität(int notizblockID, List<Notiz> listeVonNotizen) {
-        ArrayList<Notiz> neueListe = new ArrayList<>();
-
-        for (Notiz notiz:listeVonNotizen){
-            if(notiz.getPrioritaet()==true){
-                neueListe.add(notiz);
-            }
-        }
-
-        return neueListe;
-    }
-
-    @Override
-    public List<Notiz> filterAlleNotizenOhnePriorität(int notizblockID, List<Notiz> listeVonNotizen) {
-        ArrayList<Notiz> neueListe = new ArrayList<>();
-
-        for (Notiz notiz:listeVonNotizen){
-            if(notiz.getPrioritaet()==false){
-                neueListe.add(notiz);
-            }
-        }
-        return neueListe;
-    }
-
-    //TODO Implementieren
-    public List<Notiz> filterAlleNotizenMiteinerBestimmtenKategorie(int kategorieID, int notizblock){
+    public List<Notiz> filterAlleNotizenMitLambda(int notizblockID, int bearbeitungszustandID, Predicate<Notiz> notizPredicate) {
         return null;
     }
 
-
     @Override
-    public List<Notiz> filterAlleNotizenMitEinemBearbeitunszustand(int bearbeitungszustandID, List<Notiz> listVonNotizen) {
-        ArrayList<Notiz> neueListe = new ArrayList<>();
-
-        for (Notiz notiz:listVonNotizen){
-            if(notiz.getBearbeitungszustandID() == bearbeitungszustandID){
-                neueListe.add(notiz);
-            }
-        }
+    public List<Notiz> filterAlleNotizenMitPriorität(int notizblockID, int bearbeitungszustandID) {
+        IntValidator.checkObIntNullOderNegativIst(notizblockID);
+        IntValidator.checkObIntNullOderNegativIst(bearbeitungszustandID);
 
 
-        return neueListe;
+
+        return null;
     }
 
+    @Override
+    public List<Notiz> filterAlleNotizenOhnePriorität(int notizblockID, int bearbeitungszustandID) {
+        IntValidator.checkObIntNullOderNegativIst(notizblockID);
+        IntValidator.checkObIntNullOderNegativIst(bearbeitungszustandID);
+        return null;
+    }
 
+    @Override
+    public List<Notiz> filterAlleNotizenMiteinerBestimmtenKategorie(int notizblockID, int kategorieID) {
+        IntValidator.checkObIntNullOderNegativIst(notizblockID);
+        IntValidator.checkObIntNullOderNegativIst(kategorieID);
+        return null;
+    }
 }

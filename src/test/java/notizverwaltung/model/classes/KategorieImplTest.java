@@ -43,15 +43,7 @@ class KategorieImplTest {
         assertThrows(StringIsEmptyException.class, () -> {kategorie.setKategorieName(leererstring);});
     }
 
-    /**
-     * Dies Methode setFarbe() ist derzeit nicht implementiert
-     */
-    @Test
-    void setFarbe() {
-        Color color = null;
-        Kategorie kategorie = new KategorieImpl();
-        assertThrows(ObjectIstNullException.class,()->{kategorie.setFarbe(color);});
-    }
+
 
     /**
      * Testet, was bei Übergabe einer Kategorie mit gleicher ID passiert

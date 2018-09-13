@@ -59,6 +59,11 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
     }
 
     @Override
+    public List<Notiz> getAlleNotizenvonEinerKategorie(int kategorieID) {
+        return null;
+    }
+
+    @Override
     public void updateNotiz(Notiz notiz) {
         initTransaction();
         transaction.begin();
