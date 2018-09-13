@@ -1,9 +1,11 @@
 package notizverwaltung.validators;
 
+import notizverwaltung.builders.ServiceObjectBuilder;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.service.classes.NotizServiceImpl;
+import notizverwaltung.service.interfaces.KategorieService;
 import notizverwaltung.service.interfaces.NotizService;
 
 import java.util.List;
@@ -14,14 +16,24 @@ import java.util.List;
  *
  * @author Michelle Blau
  */
-public class ListValidator {
+public class DaoContentValidator {
 
-    //TODO fertigschreiben, sobald getAlleNotizenvonEinerKategorie() implementiert ist
+
+    /**
+     * Prüft, ob es Notizen in der Datenbank gibt, die eine übergebene Kategorie nutzen
+     *
+     * @param kategorie zu der festgestellt werden soll, ob Notizen dieser zugeordnet sind
+     * @return true, wenn es zugeordnete Notizen gibt, sonst false
+     */
     public static boolean isNotizMitKategorieVorhanden(Kategorie kategorie) {
-        NotizService notizService = new NotizServiceImpl();
-        List<Notiz> notizenMitBestimmerKategorie = notizService.getAlleNotizenvonEinerKategorie(kategorie);
+        KategorieService kategorieService = ServiceObjectBuilder.getKategorieService();
+        long anzahlNotizen = kategorieService.getAnzahlNotizenInKategorie(kategorie.getKategorieID());
 
-        return true;
+        if (anzahlNotizen == 0){
+            return false;
+        }else{
+            return true;
+        }
     }
 
 
@@ -32,7 +44,7 @@ public class ListValidator {
      * @return true, wenn es zugeordnete Notizen gibt, sonst false
      */
     public static boolean isNotizMitBearbeitungszustandVorhanden(Bearbeitungszustand bearbeitungszustand){
-        NotizService notizService = new NotizServiceImpl();
+        NotizService notizService = ServiceObjectBuilder.getNotizService();
         int bearbeitungszustandID = bearbeitungszustand.getBearbeitungsZustandID();
         List<Notiz> notizenMitBestimmtemBearbeitungszustand = notizService.getAlleNotizenVonEinemBearbeitungszustand(bearbeitungszustandID);
 

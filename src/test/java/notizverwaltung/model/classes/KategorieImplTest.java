@@ -43,10 +43,47 @@ class KategorieImplTest {
         assertThrows(StringIsEmptyException.class, () -> {kategorie.setKategorieName(leererstring);});
     }
 
+    /**
+     * Dies Methode setFarbe() ist derzeit nicht implementiert
+     */
     @Test
     void setFarbe() {
         Color color = null;
         Kategorie kategorie = new KategorieImpl();
         assertThrows(ObjectIstNullException.class,()->{kategorie.setFarbe(color);});
+    }
+
+    /**
+     * Testet, was bei Übergabe einer Kategorie mit gleicher ID passiert
+     * Methode: equals()
+     * ->Erwartet wird der Rückgabewert true
+     */
+    @Test
+    void equalsKategorienSindGleich(){
+        Kategorie kat1 = new KategorieImpl();
+        kat1.setKategorieID(244);
+        Kategorie kat2 = new KategorieImpl();
+        kat2.setKategorieID(244);
+
+        boolean ergebnis = kat1.equals(kat2);
+
+        assertEquals(true, ergebnis);
+    }
+
+    /**
+     * Testet, was bei Übergabe einer Kategorie mit ungleicher ID passiert
+     * Methode: equals()
+     * ->Erwartet wird der Rückgabewert false
+     */
+    @Test
+    void equalsKategorienSindUngleich(){
+        Kategorie kat1 = new KategorieImpl();
+        kat1.setKategorieID(249);
+        Kategorie kat2 = new KategorieImpl();
+        kat2.setKategorieID(244);
+
+        boolean ergebnis = kat1.equals(kat2);
+
+        assertEquals(false, ergebnis);
     }
 }

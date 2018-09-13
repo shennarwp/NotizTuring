@@ -87,6 +87,18 @@ public class KategorieImpl implements Kategorie
     }
 
     @Override
+    public boolean equals(Object object){
+        if (object instanceof KategorieImpl){
+            KategorieImpl vergleichsKategorie = (KategorieImpl) object;
+
+            if (this.kategorieID == vergleichsKategorie.getKategorieID()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public String toString() {
         return getKategorieName();
     }

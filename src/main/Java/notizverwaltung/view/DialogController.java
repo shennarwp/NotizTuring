@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import notizverwaltung.MainApp;
 import notizverwaltung.builders.ModelObjectBuilder;
+import notizverwaltung.builders.ServiceObjectBuilder;
 import notizverwaltung.constants.DAOKonstanten;
 import notizverwaltung.i18n.I18nMessagesUtil;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
@@ -20,7 +21,7 @@ import notizverwaltung.service.interfaces.KategorieService;
 import notizverwaltung.service.interfaces.NotizService;
 import notizverwaltung.util.DateUtil;
 import notizverwaltung.util.FXUtil;
-import notizverwaltung.validators.ListValidator;
+import notizverwaltung.validators.DaoContentValidator;
 import notizverwaltung.validators.ObjectValidator;
 import notizverwaltung.validators.StringValidator;
 
@@ -40,9 +41,9 @@ public class DialogController {
     private MainApp mainApp;
     private Stage dialogStage;
 
-    private NotizService notizService = new NotizServiceImpl();
-    private KategorieService kategorieService = new KategorieServiceImpl();
-    private BearbeitungszustandService bearbeitungszustandService = new BearbeitungszustandServiceImpl();
+    private NotizService notizService = ServiceObjectBuilder.getNotizService();
+    private KategorieService kategorieService = ServiceObjectBuilder.getKategorieService();
+    private BearbeitungszustandService bearbeitungszustandService = ServiceObjectBuilder.getBearbeitungszustandService();
 
 
     //_______________Notiz_____________//
@@ -227,7 +228,7 @@ public class DialogController {
         if (isInputValid(validateKategorieLoeschen())) {
             Kategorie zuLoeschendeKategorie = kategorieChoiceBox.getValue();
 
-            mainApp.getNotizListe().remove(zuLoeschendeKategorie);
+            mainApp.getKategorieListe().remove(zuLoeschendeKategorie);
             kategorieService.deleteKategorie(zuLoeschendeKategorie.getKategorieID());
 
             System.out.println("Kategorie wurde aus Liste und Datenbank gelöscht:" + mainApp.getKategorieListe());
@@ -427,7 +428,7 @@ public class DialogController {
      * Validiert die Eingabefelder zum Löschen einer bestehenden Kategorie.
      * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
      * leerer String.
-     * TODO isNotizMitKategorieVorhanden() fertigstellen sobald Service-Methode implementiert
+     *
      */
     private String validateKategorieLoeschen() {
         Kategorie bestehendeKategorie = kategorieChoiceBox.getValue();
@@ -436,7 +437,8 @@ public class DialogController {
 
         if(ObjectValidator.isObjectNull(bestehendeKategorie)){
             errorMessage += I18nMessagesUtil.getErrorBestehendeKategorieUngueltig() + "\n";
-        }else if(ListValidator.isNotizMitKategorieVorhanden(bestehendeKategorie)){
+
+        }else if(DaoContentValidator.isNotizMitKategorieVorhanden(bestehendeKategorie)){
             errorMessage += I18nMessagesUtil.getErrorEsGibtNochNotizenMitDieserKategorie() + "\n";
         }
 
@@ -498,7 +500,7 @@ public class DialogController {
         if(ObjectValidator.isObjectNull(bestehenderBearbeitungszustand)){
             errorMessage += I18nMessagesUtil.getErrorBestehenderBearbeitungszustandUngueltig() + "\n";
 
-        }else if (ListValidator.isNotizMitBearbeitungszustandVorhanden(bestehenderBearbeitungszustand)) {
+        }else if (DaoContentValidator.isNotizMitBearbeitungszustandVorhanden(bestehenderBearbeitungszustand)) {
             errorMessage += I18nMessagesUtil.getErrorEsGibtNochNotizenMitDiesemBearbeitungszustand() + "\n";
         }
 
