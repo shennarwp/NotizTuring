@@ -5,6 +5,16 @@ import notizverwaltung.model.interfaces.Kategorie;
 
 import java.util.List;
 
+
+/**
+ *
+ * Die Klasse stellt Funktionalitäten für Kategorien bereit
+ *
+ *
+ * @author Tobias Gottschalk
+ * @version 1.0
+ * @since
+ */
 public interface KategorieService {
 
     public int addKategorie(Kategorie kategorie) throws IntIstNegativException;

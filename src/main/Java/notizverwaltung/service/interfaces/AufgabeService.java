@@ -4,6 +4,16 @@ import notizverwaltung.model.classes.AufgabeImpl;
 
 import java.util.List;
 
+
+/**
+ *
+ * Die Klasse stellt Funktionalitäten für Aufgaben bereit
+ *
+ *
+ * @author Tobias Gottschalk
+ * @version 1.0
+ * @since
+ */
 public interface AufgabeService {
 
     public AufgabeImpl getAufgabe(int notizID, int aufgabeID);
