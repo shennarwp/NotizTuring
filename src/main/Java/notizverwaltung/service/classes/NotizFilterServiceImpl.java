@@ -2,6 +2,7 @@ package notizverwaltung.service.classes;
 
 import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.service.interfaces.NotizFilterService;
+import notizverwaltung.validators.IntValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,16 +28,25 @@ public class NotizFilterServiceImpl implements NotizFilterService {
 
     @Override
     public List<Notiz> filterAlleNotizenMitPriorität(int notizblockID, int bearbeitungszustandID) {
+        IntValidator.checkObIntNullOderNegativIst(notizblockID);
+        IntValidator.checkObIntNullOderNegativIst(bearbeitungszustandID);
+
+
+
         return null;
     }
 
     @Override
     public List<Notiz> filterAlleNotizenOhnePriorität(int notizblockID, int bearbeitungszustandID) {
+        IntValidator.checkObIntNullOderNegativIst(notizblockID);
+        IntValidator.checkObIntNullOderNegativIst(bearbeitungszustandID);
         return null;
     }
 
     @Override
     public List<Notiz> filterAlleNotizenMiteinerBestimmtenKategorie(int notizblockID, int kategorieID) {
+        IntValidator.checkObIntNullOderNegativIst(notizblockID);
+        IntValidator.checkObIntNullOderNegativIst(kategorieID);
         return null;
     }
 }
