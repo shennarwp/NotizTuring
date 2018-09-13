@@ -11,6 +11,7 @@ public interface NotizFilterService {
 
     public List<Notiz> filterAlleNotizenMitPriorität(int notizblockID, List<Notiz> listVonNotizen);
     public List<Notiz> filterAlleNotizenOhnePriorität (int notizblockID, List<Notiz> listVonNotizen);
+    public List<Notiz> filterAlleNotizenMiteinerBestimmtenKategorie(int kategorieID, int notizblock);
 
     public List<Notiz> filterAlleNotizenMitEinemBearbeitunszustand(int bearbeitungszustandID, List<Notiz> listVonNotizen);
 }
