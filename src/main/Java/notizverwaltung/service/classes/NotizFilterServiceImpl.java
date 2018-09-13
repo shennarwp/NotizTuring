@@ -59,6 +59,8 @@ public class NotizFilterServiceImpl implements NotizFilterService {
 
     //TODO Implementieren
     public List<Notiz> filterAlleNotizenMiteinerBestimmtenKategorie(int kategorieID, int notizblock){
+        ArrayList<Notiz> neueListe =  new ArrayList<>();
+
         return null;
     }
 
