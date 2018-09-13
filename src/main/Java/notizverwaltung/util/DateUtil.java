@@ -1,6 +1,8 @@
 package notizverwaltung.util;
 
 
+import notizverwaltung.validators.ObjectValidator;
+
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -21,10 +23,12 @@ public class DateUtil {
      * @return
      */
     public static Date convertLocalDate(LocalDate localDate){
-        if (localDate == null){
-            return null; //TODO geht vielleicht anders
-        }
+        ObjectValidator.checkObObjectNullIst(localDate);
         Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
         return date;
+    }
+
+    public static LocalDate convertLocalDateInDate (Date date){
+        return null;
     }
 }

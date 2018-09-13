@@ -3,7 +3,6 @@ package notizverwaltung.validators;
 import notizverwaltung.exceptions.ObjectIstNullException;
 /**
  * Die Klasse stellt Methoden fuer das Pruefen von Objekten bereit
- *  TODO Validatoren mit JUnit testen
  * @author Tobias Gottschalk
  *
  * @version 1.0
