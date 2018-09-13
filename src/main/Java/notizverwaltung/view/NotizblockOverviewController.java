@@ -1,8 +1,10 @@
 package notizverwaltung.view;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.HBox;
@@ -63,36 +65,75 @@ public class NotizblockOverviewController {
         this.mainApp = mainApp;
 
         bearbeitungszustandListe = mainApp.getBearbeitungszustandListe();
+        setListener();
     }
 
     /**
-     * Die Bearbeitungszustaende des Notizblocks werden geladen.
-     * Fuer jedes Objekt in der Liste wird ein TitledPane angelegt. Dieser enthaelt
-     * einen ScrollPane und eine VBox um die Notizen darzustellen.
-     * Der Bearbeitungszustand wird dann in die HBox geladen.
-     * Schlussendlich werden die Notizen des Bearbeitungszustands geladen.
+     * Alle Bearbeitungszustaende des Notizblocks werden geladen.
      */
     public void ladeBearbeitungszustaende() {
-        try {
-            for (Bearbeitungszustand bazs : bearbeitungszustandListe) {
-                FXMLLoader loader = new FXMLLoader();
-                ResourceBundle bundle = I18nUtil.getComponentsResourceBundle();
-                loader.setLocation(MainApp.class
-                        .getResource(FXKonstanten.PFAD_BEARBEITUNGSZUSTAND_OVERVIEW_LAYOUT));
-                loader.setResources(bundle);
-                TitledPane spalte = (TitledPane) loader.load();
 
-                spalten.getChildren().add(spalte);
-
-                BearbeitungszustandOverviewController controller = loader.getController();
-                controller.setMainApp(mainApp);
-                controller.setBearbeitungszustand(bazs);
-                controller.ladeNotizen();
-
+            for(Bearbeitungszustand bazs : bearbeitungszustandListe) {
+                addBearbeitungszustand(bazs);
             }
-        } catch (IOException e) {
+    }
+
+    /**
+     * Ein Bearbeitungszustand wird zum Notizblock hinzugefuegt.
+     * Seine Notizen werden geladen.
+     *
+     * @param bazs Der entsprechende Bearbeitungszustand
+     */
+    public void addBearbeitungszustand(Bearbeitungszustand bazs) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            ResourceBundle bundle = I18nUtil.getComponentsResourceBundle();
+            loader.setLocation(MainApp.class
+                    .getResource(FXKonstanten.PFAD_BEARBEITUNGSZUSTAND_OVERVIEW_LAYOUT));
+            loader.setResources(bundle);
+            TitledPane spalte = (TitledPane) loader.load();
+            spalte.setId("" + bazs.getBearbeitungsZustandID());
+
+            spalten.getChildren().add(spalte);
+
+            BearbeitungszustandOverviewController controller = loader.getController();
+            controller.setMainApp(mainApp);
+            controller.setBearbeitungszustand(bazs);
+            controller.ladeNotizen();
+        }catch(IOException e){
             e.printStackTrace();
         }
+    }
+
+    public void removeBearbeitungszustand(Bearbeitungszustand bazs){
+        String bazsID = "" + bazs.getBearbeitungsZustandID();
+
+        for(Node spalte: spalten.getChildren()){
+            if(bazsID.equals(spalte.getId())){
+                spalten.getChildren().remove(spalte);
+            }
+        }
+    }
+
+    private void setListener(){
+        bearbeitungszustandListe.addListener(new ListChangeListener<Bearbeitungszustand>() {
+            @Override
+            public void onChanged(Change<? extends Bearbeitungszustand> c) {
+                while (c.next()) {
+                    if (c.wasAdded()) {
+                        for (Bearbeitungszustand bazs : c.getAddedSubList()) {
+                            addBearbeitungszustand(bazs);
+                        }
+                    }
+
+                    if (c.wasRemoved()) {
+                        for (Bearbeitungszustand bazs : c.getRemoved()) {
+                            removeBearbeitungszustand(bazs);
+                        }
+                    }
+                }
+            }
+        });
     }
 
 }
