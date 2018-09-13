@@ -1,8 +1,10 @@
 package notizverwaltung.view;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -16,6 +18,8 @@ import notizverwaltung.model.interfaces.Notiz;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Node;
+
 /**
  * Diese Klasse erzeugt einen Teil des Hauptanzeigefensters.
  * Die Bearbeitungszustaende werden hier bedient.
@@ -23,7 +27,7 @@ import java.util.ResourceBundle;
  * @author Johannes Gerwert
  * @version 12.09.2018
  */
-public class BearbeitungszustandOverviewController {
+public class BearbeitungszustandOverviewController{
 
     @FXML
     private TitledPane bearbeitungszustandTitle;
@@ -64,6 +68,7 @@ public class BearbeitungszustandOverviewController {
         this.mainApp = mainApp;
 
         notizListe = mainApp.getNotizListe();
+        setListener();
     }
 
     /**
@@ -79,30 +84,82 @@ public class BearbeitungszustandOverviewController {
 
     /**
      * Die Notizen die zu dem Bearbeitungsstatus gehoeren werden geladen.
-     * Sie werden in eine VBox eingefuegt.
      */
     public void ladeNotizen(){
+
+        for(Notiz notiz : notizListe){
+            addNotiz(notiz);
+        }
+
+
+    }
+
+    /**
+     * Eine Notiz wird in die VBox eingefuegt.
+     *
+     * @param notiz Die einzufuegende Notiz
+     */
+    public void addNotiz(Notiz notiz){
         //TODO: Fehler werfen, falls Bearbeitungsstatus nicht gesetzt.
         try{
-            for(Notiz notiz : notizListe){
-                if(this.bazs.getBearbeitungsZustandID() == notiz.getBearbeitungszustandID()){
-                    FXMLLoader loader = new FXMLLoader();
-                    ResourceBundle bundle = I18nUtil.getComponentsResourceBundle();
-                    loader.setLocation(MainApp.class
-                            .getResource(FXKonstanten.PFAD_NOTIZ_OVERVIEW_LAYOUT));
-                    loader.setResources(bundle);
-                    AnchorPane notizView = (AnchorPane) loader.load();
+            if(this.bazs.getBearbeitungsZustandID() == notiz.getBearbeitungszustandID()){
+                FXMLLoader loader = new FXMLLoader();
+                ResourceBundle bundle = I18nUtil.getComponentsResourceBundle();
+                loader.setLocation(MainApp.class
+                        .getResource(FXKonstanten.PFAD_NOTIZ_OVERVIEW_LAYOUT));
+                loader.setResources(bundle);
+                AnchorPane notizView = (AnchorPane) loader.load();
+                notizView.setId("" + notiz.getNotizID());
 
-                    notizen.getChildren().add(notizView);
+                notizen.getChildren().add(notizView);
 
-                    NotizOverviewController controller = loader.getController();
-                    controller.setMainApp(mainApp);
-                    controller.setNotiz(notiz);
-                }
+                NotizOverviewController controller = loader.getController();
+                controller.setMainApp(mainApp);
+                controller.setNotiz(notiz);
             }
-
         } catch(IOException e){
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Eine Notiz wird aus der VBox entfernt.
+     *
+     * @param notiz Die zu loeschende Notiz
+     */
+    public void removeNotiz(Notiz notiz){
+        String notizID = "" + notiz.getNotizID();
+
+        for(Node notizView: notizen.getChildren()){
+            if(notizID.equals(notizView.getId())){
+                notizen.getChildren().remove(notizView);
+            }
+        }
+    }
+
+    /**
+     * Ein Listener wird zur notizListe hinzugefuegt.
+     * Wenn eine Notiz zur Liste hinzugefuegt oder daraus entfernt wird,
+     * wird dies auch in der GUI dargestellt.
+     */
+    private void setListener(){
+        notizListe.addListener(new ListChangeListener<Notiz>() {
+            @Override
+            public void onChanged(Change<? extends Notiz> c) {
+                while(c.next()){
+                    if(c.wasAdded()){
+                        for(Notiz notiz : c.getAddedSubList()){
+                            addNotiz(notiz);
+                        }
+                    }
+
+                    if(c.wasRemoved()){
+                        for(Notiz notiz : c.getRemoved()){
+                            removeNotiz(notiz);
+                        }
+                    }
+                }
+            }
+        });
     }
 }

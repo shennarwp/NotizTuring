@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
  * @author Johannes Gerwert
  * @version 12.09.2018
  */
-public class NotizblockOverviewController {
+public class NotizblockOverviewController{
 
     @FXML
     private Tab notizblockName;
@@ -40,7 +40,7 @@ public class NotizblockOverviewController {
      * Konstruktor
      * Tut momentan nichts.
      */
-    public NotizblockOverviewController() {
+    public NotizblockOverviewController(){
 
     }
 
@@ -50,7 +50,7 @@ public class NotizblockOverviewController {
      * Der Standard Name fuer Notizbloecke wird in den Tab geladen.
      */
     @FXML
-    private void initialize() {
+    private void initialize(){
         notizblockName.setText(name);
     }
 
@@ -61,7 +61,7 @@ public class NotizblockOverviewController {
      *
      * @param mainApp Ein Verweis auf die MainApp.
      */
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(MainApp mainApp){
         this.mainApp = mainApp;
 
         bearbeitungszustandListe = mainApp.getBearbeitungszustandListe();
@@ -71,11 +71,11 @@ public class NotizblockOverviewController {
     /**
      * Alle Bearbeitungszustaende des Notizblocks werden geladen.
      */
-    public void ladeBearbeitungszustaende() {
+    public void ladeBearbeitungszustaende(){
 
-            for(Bearbeitungszustand bazs : bearbeitungszustandListe) {
-                addBearbeitungszustand(bazs);
-            }
+        for(Bearbeitungszustand bazs : bearbeitungszustandListe) {
+            addBearbeitungszustand(bazs);
+        }
     }
 
     /**
@@ -84,7 +84,7 @@ public class NotizblockOverviewController {
      *
      * @param bazs Der entsprechende Bearbeitungszustand
      */
-    public void addBearbeitungszustand(Bearbeitungszustand bazs) {
+    public void addBearbeitungszustand(Bearbeitungszustand bazs){
         try {
             FXMLLoader loader = new FXMLLoader();
             ResourceBundle bundle = I18nUtil.getComponentsResourceBundle();
@@ -105,6 +105,11 @@ public class NotizblockOverviewController {
         }
     }
 
+    /**
+     * Ein Bearbeitungsstatus wird vom Notizblock entfernt.
+     *
+     * @param bazs der zu entfernende Bearbeitungsstatus
+     */
     public void removeBearbeitungszustand(Bearbeitungszustand bazs){
         String bazsID = "" + bazs.getBearbeitungsZustandID();
 
@@ -115,6 +120,11 @@ public class NotizblockOverviewController {
         }
     }
 
+    /**
+     * Ein Listener wird zur bearbeitungszustandListe hinzugefuegt.
+     * Wenn ein Bearbeitungsstatus zur Liste hinzugefuegt oder daraus entfernt wird,
+     * wird dies auch in der GUI dargestellt.
+     */
     private void setListener(){
         bearbeitungszustandListe.addListener(new ListChangeListener<Bearbeitungszustand>() {
             @Override
