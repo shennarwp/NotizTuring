@@ -11,12 +11,6 @@ import javafx.stage.Stage;
 import notizverwaltung.constants.FXKonstanten;
 import notizverwaltung.MainApp;
 import notizverwaltung.i18n.I18nUtil;
-import notizverwaltung.model.classes.BearbeitungszustandImpl;
-import notizverwaltung.model.classes.KategorieImpl;
-import notizverwaltung.model.classes.NotizImpl;
-import notizverwaltung.model.interfaces.Bearbeitungszustand;
-import notizverwaltung.model.interfaces.Kategorie;
-import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.util.FXUtil;
 
 import java.io.IOException;
@@ -26,7 +20,7 @@ import java.util.ResourceBundle;
  * Diese Klasse gibt die Funktionalität für das Grundfenster aus der Klasse "MainApp" an.
  * In der RootLayout.fxml wird auf diese Klasse verwiesen.
  *
- * Die Funktionalität der Dialog-Fenster wird in einer anderen Klasse, "DialogController" zur Verfügung gestellt, hier
+ * Die Funktionalität der Dialog-Fenster wird in einer anderen Klasse, "AenderungsDialogController" zur Verfügung gestellt, hier
  * werden die Dialog-Fenster lediglich geöffnet
  * 
  * @author Michelle Blau
@@ -61,7 +55,7 @@ public class RootLayoutController {
     @FXML
     private void handleshowKategorieErstellungsMaske() {
 
-        //TODO: i18n
+        //TODO: i18n, Anzahlen anders überprüfen
         if(mainApp.getKategorieListe().size() == FXKonstanten.maxAnzahlKategorien){
             FXUtil.showZuVieleElementeWarningDialog("Zu viele Kategorien","Bitte bestehende Kategorien entfernen");
         } else{
@@ -76,7 +70,7 @@ public class RootLayoutController {
                 Scene scene = new Scene(borderPane);
                 this.dialogStage = new Stage();
                 this.dialogStage.setScene(scene);
-                DialogController controller = loader.getController();
+                ErstellungsDialogController controller = loader.getController();
                 controller.setMainApp(this.mainApp);
                 controller.setDialogStage(this.dialogStage);
 
@@ -98,7 +92,7 @@ public class RootLayoutController {
     @FXML
     private void handleshowBearbeitungszustandErstellungsMaske() {
 
-        //TODO: i18n
+        //TODO: i18n, Anzahlen anders überprüfen
         if(mainApp.getBearbeitungszustandListe().size() == FXKonstanten.maxAnzahlZustaende){
             FXUtil.showZuVieleElementeWarningDialog("Zu viele Bearbeitungszustände","Bitte bestehende Zustände entfernen");
         } else{
@@ -113,7 +107,7 @@ public class RootLayoutController {
                 Scene scene = new Scene(borderPane);
                 this.dialogStage = new Stage();
                 this.dialogStage.setScene(scene);
-                DialogController controller = loader.getController();
+                ErstellungsDialogController controller = loader.getController();
                 controller.setMainApp(this.mainApp);
                 controller.setDialogStage(this.dialogStage);
 
@@ -135,7 +129,7 @@ public class RootLayoutController {
     @FXML
     private void handleshowNotizErstellungsMaske() {
 
-        //TODO: i18n
+        //TODO: i18n, Anzahlen anders überprüfen
         if(mainApp.getNotizListe().size() == FXKonstanten.maxAnzahlNotizen){
             FXUtil.showZuVieleElementeWarningDialog("Zu viele Notizen","Bitte bestehende Notizen entfernen");
         } else{
@@ -150,7 +144,7 @@ public class RootLayoutController {
                 Scene scene = new Scene(borderPane);
                 this.dialogStage = new Stage();
                 this.dialogStage.setScene(scene);
-                DialogController controller = loader.getController();
+                ErstellungsDialogController controller = loader.getController();
                 controller.setMainApp(this.mainApp);
                 controller.setDialogStage(this.dialogStage);
 
@@ -169,7 +163,7 @@ public class RootLayoutController {
      */
     @FXML
     private void handleshowKategorieAenderungsMaske() {
-        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_KATEGORIE_AENDERUNGSDIALOG_LAYOUT);
+        showAenderungsDialogFensterMitAnchorPane(FXKonstanten.PFAD_KATEGORIE_AENDERUNGSDIALOG_LAYOUT);
     }
 
 
@@ -178,7 +172,7 @@ public class RootLayoutController {
      */
     @FXML
     private void handleshowZustandAenderungsMaske() {
-        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_ZUSTAND_AENDERUNGSDIALOG_LAYOUT);
+        showAenderungsDialogFensterMitAnchorPane(FXKonstanten.PFAD_ZUSTAND_AENDERUNGSDIALOG_LAYOUT);
     }
 
 
@@ -187,7 +181,7 @@ public class RootLayoutController {
      */
     @FXML
     private void handleshowNotizAenderungsMaske() {
-        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_NOTIZ_AENDERUNGSDIALOG_LAYOUT);
+        showAenderungsDialogFensterMitAnchorPane(FXKonstanten.PFAD_NOTIZ_AENDERUNGSDIALOG_LAYOUT);
     }
 
 
@@ -196,7 +190,7 @@ public class RootLayoutController {
      */
     @FXML
     private void handleshowNotizLoeschungsMaske() {
-        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_NOTIZ_LOESCHUNGSDIALOG_LAYOUT);
+        showLoeschungsDialogFensterMitAnchorPane(FXKonstanten.PFAD_NOTIZ_LOESCHUNGSDIALOG_LAYOUT);
     }
 
 
@@ -205,7 +199,7 @@ public class RootLayoutController {
      */
     @FXML
     private void handleshowKategorieLoeschungsMaske() {
-        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_KATEGORIE_LOESCHUNGSDIALOG_LAYOUT);
+        showLoeschungsDialogFensterMitAnchorPane(FXKonstanten.PFAD_KATEGORIE_LOESCHUNGSDIALOG_LAYOUT);
     }
 
     /**
@@ -213,16 +207,20 @@ public class RootLayoutController {
      */
     @FXML
     private void handleshowBearbeitungszustandLoeschungsMaske() {
-        showDialogFensterMitAnchorPane(FXKonstanten.PFAD_ZUSTAND_LOESCHUNGSDIALOG_LAYOUT);
+        showLoeschungsDialogFensterMitAnchorPane(FXKonstanten.PFAD_ZUSTAND_LOESCHUNGSDIALOG_LAYOUT);
     }
 
 
+
+
+
     /**
-     * Hilft dabei, neue Dialogfenster unter Angabe einer fxml-Datei zu erstellen und anzuzeigen
+     * Hilft dabei, neue Dialogfenster zum Ändern von Objekten
+     * unter Angabe einer fxml-Datei zu erstellen und anzuzeigen
      *
      * @param fxmlPfad Pfad zur fxml-Datei
      */
-    private void showDialogFensterMitAnchorPane(String fxmlPfad){
+    private void showAenderungsDialogFensterMitAnchorPane(String fxmlPfad){
         try {
             FXMLLoader loader = new FXMLLoader();
             ResourceBundle bundle = I18nUtil.getDialogResourceBundle();
@@ -234,7 +232,7 @@ public class RootLayoutController {
             Scene scene = new Scene(anchorPane);
             this.dialogStage = new Stage();
             this.dialogStage.setScene(scene);
-            DialogController controller = loader.getController();
+            AenderungsDialogController controller = loader.getController();
             controller.setMainApp(this.mainApp);
             controller.setDialogStage(this.dialogStage);
 
@@ -246,6 +244,40 @@ public class RootLayoutController {
             e.printStackTrace();
         }
     }
+
+
+
+    /**
+     * Hilft dabei, neue Dialogfenster zum Löschen
+     * unter Angabe einer fxml-Datei zu erstellen und anzuzeigen
+     *
+     * @param fxmlPfad Pfad zur fxml-Datei
+     */
+    private void showLoeschungsDialogFensterMitAnchorPane(String fxmlPfad){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            ResourceBundle bundle = I18nUtil.getDialogResourceBundle();
+            loader.setLocation(MainApp.class
+                    .getResource(fxmlPfad));
+            loader.setResources(bundle);
+            AnchorPane anchorPane = (AnchorPane) loader.load();
+
+            Scene scene = new Scene(anchorPane);
+            this.dialogStage = new Stage();
+            this.dialogStage.setScene(scene);
+            LoeschungsDialogController controller = loader.getController();
+            controller.setMainApp(this.mainApp);
+            controller.setDialogStage(this.dialogStage);
+
+            this.dialogStage.setTitle(FXKonstanten.DIALOG);
+            this.dialogStage.setResizable(false);
+            this.dialogStage.initModality(Modality.APPLICATION_MODAL);
+            this.dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * Schliesst das Programm.
