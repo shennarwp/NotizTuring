@@ -1,6 +1,7 @@
 package notizverwaltung.dao.interfaces;
 
 import notizverwaltung.model.classes.NotizImpl;
+import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public interface NotizDAO extends ObjectDAO {
     public void updateNotiz (Notiz notiz);
 
     public List<Notiz> getAlleNotizen();
+    public List<Notiz> getAlleNotizenvonEinerKategorie(int kategorieID);
 
     public List<Notiz> getAlleNotizenVomNotizblock(int notizblockID);
 

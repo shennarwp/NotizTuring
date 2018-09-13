@@ -30,7 +30,7 @@ public interface NotizService {
     //TODO Brauchen wir eine Methode zum Verändern der Spalte?
 
 
-    public List<Notiz> getAlleNotizenvonEinerKategorie(Kategorie kategorie);
+    public List<Notiz> getAlleNotizenvonEinerKategorie(int kategorieID);
     public List<Notiz> getAlleNotizenImNotizblock (int notizblockID);
     public List<Notiz> getAlleNotizen();
     public List<Notiz> getAlleNotizenVonEinemBearbeitungszustand(int bearbeitungszustandID);
