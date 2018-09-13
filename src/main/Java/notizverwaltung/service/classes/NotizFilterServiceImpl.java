@@ -21,63 +21,22 @@ public class NotizFilterServiceImpl implements NotizFilterService {
 
 
     @Override
-    public List<Notiz> filterAlleNotizenMitLambda(Predicate<Notiz> notizPredicate, List<Notiz> listeVonNotizen){
-        ArrayList<Notiz> neueListe = new ArrayList<>();
-        for (Notiz notiz:listeVonNotizen){
-            if(notizPredicate.test(notiz)){
-                neueListe.add(notiz);
-            }
-        }
-
-        return neueListe;
-    }
-
-    @Override
-    public List<Notiz> filterAlleNotizenMitPriorität(int notizblockID, List<Notiz> listeVonNotizen) {
-        ArrayList<Notiz> neueListe = new ArrayList<>();
-
-        for (Notiz notiz:listeVonNotizen){
-            if(notiz.getPrioritaet()==true){
-                neueListe.add(notiz);
-            }
-        }
-
-        return neueListe;
-    }
-
-    @Override
-    public List<Notiz> filterAlleNotizenOhnePriorität(int notizblockID, List<Notiz> listeVonNotizen) {
-        ArrayList<Notiz> neueListe = new ArrayList<>();
-
-        for (Notiz notiz:listeVonNotizen){
-            if(notiz.getPrioritaet()==false){
-                neueListe.add(notiz);
-            }
-        }
-        return neueListe;
-    }
-
-    //TODO Implementieren
-    public List<Notiz> filterAlleNotizenMiteinerBestimmtenKategorie(int kategorieID, int notizblock){
-        ArrayList<Notiz> neueListe =  new ArrayList<>();
-
+    public List<Notiz> filterAlleNotizenMitLambda(int notizblockID, int bearbeitungszustandID, Predicate<Notiz> notizPredicate) {
         return null;
     }
 
-
     @Override
-    public List<Notiz> filterAlleNotizenMitEinemBearbeitunszustand(int bearbeitungszustandID, List<Notiz> listVonNotizen) {
-        ArrayList<Notiz> neueListe = new ArrayList<>();
-
-        for (Notiz notiz:listVonNotizen){
-            if(notiz.getBearbeitungszustandID() == bearbeitungszustandID){
-                neueListe.add(notiz);
-            }
-        }
-
-
-        return neueListe;
+    public List<Notiz> filterAlleNotizenMitPriorität(int notizblockID, int bearbeitungszustandID) {
+        return null;
     }
 
+    @Override
+    public List<Notiz> filterAlleNotizenOhnePriorität(int notizblockID, int bearbeitungszustandID) {
+        return null;
+    }
 
+    @Override
+    public List<Notiz> filterAlleNotizenMiteinerBestimmtenKategorie(int notizblockID, int kategorieID) {
+        return null;
+    }
 }
