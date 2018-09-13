@@ -66,9 +66,11 @@ public class NotizServiceImpl implements NotizService {
     }
 
     @Override
-    public List<Notiz> getAlleNotizenvonEinerKategorie(Kategorie kategorie) {
-        return null;
+    public List<Notiz> getAlleNotizenvonEinerKategorie(int kategorieID) {
+        IntValidator.checkObIntNullOderNegativIst(kategorieID);
+        return notizDAO.getAlleNotizenvonEinerKategorie(kategorieID);
     }
+
 
 
     //TODO
