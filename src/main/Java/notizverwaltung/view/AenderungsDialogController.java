@@ -29,6 +29,7 @@ import notizverwaltung.validators.ObjectValidator;
 import notizverwaltung.validators.StringValidator;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * Stellt Funktionalität für die Dialog-Fenster zur Verfügung, welche Kategorien/Notizen/Bearbeitungszustände erzeugen/ändern/löschen
@@ -94,13 +95,12 @@ public class AenderungsDialogController {
             kategorieChoiceBox.getItems().addAll(mainApp.getKategorieListe());
         }
         if(!ObjectValidator.isObjectNull(notizChoiceBox)){
-
             notizChoiceBox.getItems().addAll(mainApp.getNotizListe());
+
             notizChoiceBox.getSelectionModel()
                     .selectedIndexProperty()
                     .addListener(getNotizChoiceBoxListener());
         }
-
     }
 
 
@@ -128,14 +128,29 @@ public class AenderungsDialogController {
     /**
      * Ändert bestehende Notiz, wenn auf "Anwenden" Button geklickt wird, oder ruft Error-Dialog auf, wenn
      * Nutzereingaben falsch. Die Änderung wird direkt in die Datenbank übernommen
-     * TODO Fertigschreiben, sobald Datenbank funktioniert
+     *
      */
     @FXML
     private void handleBtnAendereNotiz(){
 
-        if (isInputValid(validateNotizAendern())) {
+        if (FXUtil.isInputValid(validateNotizAendern())) {
 
-            System.out.println("Notiz wurde nicht geändert, muss noch implementiert werden");
+            Notiz zuAenderndeNotiz = notizChoiceBox.getValue();
+            String neuerName = notizNameField.getText();
+            Kategorie neueKategorie = kategorieChoiceBox.getValue();
+            String neueBeschreibung = notizBeschreibungTextArea.getText();
+            LocalDate neueFaelligkeit = notizFaelligkeitDatePicker.getValue();
+            boolean neuePrioritaet = notizPrioritaetCheckBox.isSelected();
+
+            zuAenderndeNotiz.setTitle(neuerName);
+            zuAenderndeNotiz.setKategorieID(neueKategorie.getKategorieID());
+            zuAenderndeNotiz.setBeschreibung(neueBeschreibung);
+            zuAenderndeNotiz.setFaelligkeit(DateUtil.convertLocalDateInDate(neueFaelligkeit));
+            zuAenderndeNotiz.setPrioritaet(neuePrioritaet);
+
+            notizService.updateNotiz(zuAenderndeNotiz);
+
+            System.out.println("Notiz wurde geändert in Liste und DB:" + mainApp.getNotizListe());
             dialogStage.close();
         }
     }
@@ -145,13 +160,19 @@ public class AenderungsDialogController {
     /**
      * Ändert bestehende Kategorie, wenn auf "Anwenden" Button geklickt wird, oder ruft Error-Dialog auf, wenn
      * Nutzereingaben falsch. Die Änderung wird direkt in die Datenbank übernommen
-     * TODO Fertigschreiben, sobald Datenbank funktioniert
      */
     @FXML
     private void handleBtnAendereKategorie(){
-        if (isInputValid(validateKategorieAendern())) {
+        if (FXUtil.isInputValid(validateKategorieAendern())) {
 
-            System.out.println("Kategorie wurde nicht geändert, muss noch implementiert werden");
+            Kategorie zuAenderndeKategorie = kategorieChoiceBox.getValue();
+            String neuerName = kategorieNameField.getText();
+
+            zuAenderndeKategorie.setKategorieName(neuerName);
+
+            kategorieService.updateKategorie(zuAenderndeKategorie);
+
+            System.out.println("Kategorie wurde geändert in Liste und DB: "+mainApp.getKategorieListe());
             dialogStage.close();
         }
     }
@@ -161,14 +182,20 @@ public class AenderungsDialogController {
     /**
      * Ändert bestehenden Bearbeitungszustand, wenn auf "Anwenden" Button geklickt wird, oder ruft Error-Dialog auf, wenn
      * Nutzereingaben falsch
-     * TODO Fertigschreiben, sobald Datenbank funktioniert
      */
     @FXML
     private void handleBtnAendereBearbeitungszustand(){
 
-        if (isInputValid(validateBearbeitungszustandAendern())) {
+        if (FXUtil.isInputValid(validateBearbeitungszustandAendern())) {
 
-            System.out.println("Bearbeitungszustand wurde nicht geändert, muss implementiert werden");
+            Bearbeitungszustand zuAendernderZustand = bearbeitungszustandChoiceBox.getValue();
+            String neuerName = bearbeitungszustandNameField.getText();
+
+            zuAendernderZustand.setName(neuerName);
+
+            bearbeitungszustandService.updateBearbeitungszustand(zuAendernderZustand);
+
+            System.out.println("Bearbeitungszustand geändert in Liste und DB: "+ mainApp.getBearbeitungszustandListe());
             dialogStage.close();
         }
     }
@@ -215,7 +242,6 @@ public class AenderungsDialogController {
      * Validiert die Eingabefelder zur Änderung einer bestehenden Kategorie.
      * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
      * leerer String.
-     * TODO fertigstellen sobald Datenbank funktioniert
      */
     private String validateKategorieAendern() {
         String kategorieName = kategorieNameField.getText();
@@ -257,48 +283,32 @@ public class AenderungsDialogController {
     }
 
 
-
-
-
     /**
-     * Validiert die eingegebenen Daten.
-     *
-     * @return true wenn die Nutzer-Eingabe gueltig ist, sonst false.
-     */
-    private boolean isInputValid(String errorMessage) {
-
-        if (StringValidator.isStringLeerOderNull(errorMessage)) {
-            return true;
-        } else {
-            FXUtil.showErrorDialog(I18nMessagesUtil.
-                            getErrorUngueltigeFelderString(),
-                    I18nMessagesUtil.getMessageKorrigiereUngueltigeFelderString(),
-                    errorMessage);
-
-            return false;
-        }
-    }
-
-
-    /**
-     * Erstellt einen Lambda-Ausdruck, der die Attribute einer Notiz in die GUI-Elemente übernimmt, sobald
+     * Erstellt einen ChangeListener, der die Attribute einer Notiz in die GUI übernimmt, sobald
      * eine Notiz in der ChoiceBox ausgewählt wird
-     * @return lambda - Schreibt die Attribute der gewählten Notiz in die GUI-Elemente hinein
+     * @return lambda - Schreibt die Attribute der gewählten Notiz in die GUI
      */
     private ChangeListener<Number> getNotizChoiceBoxListener(){
+
         ChangeListener<Number> lambda = new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 
-                Notiz tmpNotiz = notizChoiceBox.getItems()
-                        .get((Integer) newValue);
+                int aktuelleAuswahl = (Integer) newValue;
 
-                notizNameField.setText(tmpNotiz.getTitle());
-                notizBeschreibungTextArea.setText(tmpNotiz.getBeschreibung());
-                kategorieChoiceBox.setValue(kategorieService.getKategorie(tmpNotiz.getKategorieID()));
-                notizPrioritaetCheckBox.setSelected(tmpNotiz.getPrioritaet());
+                Notiz gewaehlteNotiz = notizChoiceBox.getItems().get(aktuelleAuswahl);
+                Date notizFaelligkeit = gewaehlteNotiz.getFaelligkeit();
+
+
+                notizNameField.setText(gewaehlteNotiz.getTitle());
+                notizBeschreibungTextArea.setText(gewaehlteNotiz.getBeschreibung());
+                kategorieChoiceBox.setValue(kategorieService.getKategorie(gewaehlteNotiz.getKategorieID()));
+                notizFaelligkeitDatePicker.setValue(DateUtil.convertDateInLocalDate(notizFaelligkeit));
+                notizPrioritaetCheckBox.setSelected(gewaehlteNotiz.getPrioritaet());
+
             }
         };
+
         return lambda;
     }
 

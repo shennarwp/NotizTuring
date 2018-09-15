@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import notizverwaltung.constants.FXKonstanten;
@@ -51,6 +50,7 @@ public class RootLayoutController {
 
     /**
      * Zeigt einen Dialog zur Erstellung einer neuen Kategorie
+     * beim Klicken auf "Neu -> Kategorie"
      */
     @FXML
     private void handleshowKategorieErstellungsMaske() {
@@ -59,35 +59,15 @@ public class RootLayoutController {
         if(mainApp.getKategorieListe().size() == FXKonstanten.maxAnzahlKategorien){
             FXUtil.showZuVieleElementeWarningDialog("Zu viele Kategorien","Bitte bestehende Kategorien entfernen");
         } else{
-            try {
-                FXMLLoader loader = new FXMLLoader();
-                ResourceBundle bundle = I18nUtil.getDialogResourceBundle();
-                loader.setLocation(MainApp.class
-                    .getResource(FXKonstanten.PFAD_KATEGORIE_ERSTELLUNGSDIALOG_LAYOUT));
-                loader.setResources(bundle);
-                BorderPane borderPane = (BorderPane) loader.load();
-
-                Scene scene = new Scene(borderPane);
-                this.dialogStage = new Stage();
-                this.dialogStage.setScene(scene);
-                ErstellungsDialogController controller = loader.getController();
-                controller.setMainApp(this.mainApp);
-                controller.setDialogStage(this.dialogStage);
-
-                this.dialogStage.setTitle(FXKonstanten.DIALOG);
-                this.dialogStage.setResizable(false);
-                this.dialogStage.initModality(Modality.APPLICATION_MODAL);
-                this.dialogStage.showAndWait();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            showErstellungsDialogFenster(FXKonstanten.PFAD_KATEGORIE_ERSTELLUNGSDIALOG_LAYOUT);
         }
     }
 
 
 
     /**
-     * Zeigt einen Dialog zur Erstellung eines neuen Bearbeitungszustands
+     * Zeigt einen Dialog zur Erstellung eines neuen Bearbeitungszustands beim Klicken auf
+     * "Neu -> Bearbeitungszustand"
      */
     @FXML
     private void handleshowBearbeitungszustandErstellungsMaske() {
@@ -96,28 +76,7 @@ public class RootLayoutController {
         if(mainApp.getBearbeitungszustandListe().size() == FXKonstanten.maxAnzahlZustaende){
             FXUtil.showZuVieleElementeWarningDialog("Zu viele Bearbeitungszustände","Bitte bestehende Zustände entfernen");
         } else{
-            try {
-                FXMLLoader loader = new FXMLLoader();
-                ResourceBundle bundle = I18nUtil.getDialogResourceBundle();
-                loader.setLocation(MainApp.class
-                        .getResource(FXKonstanten.PFAD_BEABREITUNGSZUSTAND_ERSTELLUNGSDIALOG_LAYOUT));
-                loader.setResources(bundle);
-                BorderPane borderPane = (BorderPane) loader.load();
-
-                Scene scene = new Scene(borderPane);
-                this.dialogStage = new Stage();
-                this.dialogStage.setScene(scene);
-                ErstellungsDialogController controller = loader.getController();
-                controller.setMainApp(this.mainApp);
-                controller.setDialogStage(this.dialogStage);
-
-                this.dialogStage.setTitle(FXKonstanten.DIALOG);
-                this.dialogStage.setResizable(false);
-                this.dialogStage.initModality(Modality.APPLICATION_MODAL);
-                this.dialogStage.showAndWait();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            showErstellungsDialogFenster(FXKonstanten.PFAD_BEABREITUNGSZUSTAND_ERSTELLUNGSDIALOG_LAYOUT);
         }
     }
 
@@ -125,6 +84,7 @@ public class RootLayoutController {
 
     /**
      * Zeigt einen Dialog zur Erstellung einer neuen Notiz
+     * beim Klicken auf "Neu -> Notiz"
      */
     @FXML
     private void handleshowNotizErstellungsMaske() {
@@ -133,28 +93,7 @@ public class RootLayoutController {
         if(mainApp.getNotizListe().size() == FXKonstanten.maxAnzahlNotizen){
             FXUtil.showZuVieleElementeWarningDialog("Zu viele Notizen","Bitte bestehende Notizen entfernen");
         } else{
-            try {
-                FXMLLoader loader = new FXMLLoader();
-                ResourceBundle bundle = I18nUtil.getDialogResourceBundle();
-                loader.setLocation(MainApp.class
-                        .getResource(FXKonstanten.PFAD_NOTIZ_ERSTELLUNGSDIALOG_LAYOUT));
-                loader.setResources(bundle);
-                BorderPane borderPane = (BorderPane) loader.load();
-
-                Scene scene = new Scene(borderPane);
-                this.dialogStage = new Stage();
-                this.dialogStage.setScene(scene);
-                ErstellungsDialogController controller = loader.getController();
-                controller.setMainApp(this.mainApp);
-                controller.setDialogStage(this.dialogStage);
-
-                this.dialogStage.setTitle(FXKonstanten.DIALOG);
-                this.dialogStage.setResizable(false);
-                this.dialogStage.initModality(Modality.APPLICATION_MODAL);
-                this.dialogStage.showAndWait();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            showErstellungsDialogFenster(FXKonstanten.PFAD_NOTIZ_ERSTELLUNGSDIALOG_LAYOUT);
         }
     }
 
@@ -163,7 +102,7 @@ public class RootLayoutController {
      */
     @FXML
     private void handleshowKategorieAenderungsMaske() {
-        showAenderungsDialogFensterMitAnchorPane(FXKonstanten.PFAD_KATEGORIE_AENDERUNGSDIALOG_LAYOUT);
+        showAenderungsDialogFenster(FXKonstanten.PFAD_KATEGORIE_AENDERUNGSDIALOG_LAYOUT);
     }
 
 
@@ -172,7 +111,7 @@ public class RootLayoutController {
      */
     @FXML
     private void handleshowZustandAenderungsMaske() {
-        showAenderungsDialogFensterMitAnchorPane(FXKonstanten.PFAD_ZUSTAND_AENDERUNGSDIALOG_LAYOUT);
+        showAenderungsDialogFenster(FXKonstanten.PFAD_ZUSTAND_AENDERUNGSDIALOG_LAYOUT);
     }
 
 
@@ -181,7 +120,7 @@ public class RootLayoutController {
      */
     @FXML
     private void handleshowNotizAenderungsMaske() {
-        showAenderungsDialogFensterMitAnchorPane(FXKonstanten.PFAD_NOTIZ_AENDERUNGSDIALOG_LAYOUT);
+        showAenderungsDialogFenster(FXKonstanten.PFAD_NOTIZ_AENDERUNGSDIALOG_LAYOUT);
     }
 
 
@@ -190,7 +129,7 @@ public class RootLayoutController {
      */
     @FXML
     private void handleshowNotizLoeschungsMaske() {
-        showLoeschungsDialogFensterMitAnchorPane(FXKonstanten.PFAD_NOTIZ_LOESCHUNGSDIALOG_LAYOUT);
+        showLoeschungsDialogFenster(FXKonstanten.PFAD_NOTIZ_LOESCHUNGSDIALOG_LAYOUT);
     }
 
 
@@ -199,7 +138,7 @@ public class RootLayoutController {
      */
     @FXML
     private void handleshowKategorieLoeschungsMaske() {
-        showLoeschungsDialogFensterMitAnchorPane(FXKonstanten.PFAD_KATEGORIE_LOESCHUNGSDIALOG_LAYOUT);
+        showLoeschungsDialogFenster(FXKonstanten.PFAD_KATEGORIE_LOESCHUNGSDIALOG_LAYOUT);
     }
 
     /**
@@ -207,20 +146,47 @@ public class RootLayoutController {
      */
     @FXML
     private void handleshowBearbeitungszustandLoeschungsMaske() {
-        showLoeschungsDialogFensterMitAnchorPane(FXKonstanten.PFAD_ZUSTAND_LOESCHUNGSDIALOG_LAYOUT);
+        showLoeschungsDialogFenster(FXKonstanten.PFAD_ZUSTAND_LOESCHUNGSDIALOG_LAYOUT);
     }
 
 
-
-
-
     /**
-     * Hilft dabei, neue Dialogfenster zum Ändern von Objekten
-     * unter Angabe einer fxml-Datei zu erstellen und anzuzeigen
+     * Hilfsmethode, erzeugt Dialogfenster zum Erstellen von Objekten und zeigt dieses an.
      *
      * @param fxmlPfad Pfad zur fxml-Datei
      */
-    private void showAenderungsDialogFensterMitAnchorPane(String fxmlPfad){
+    private void showErstellungsDialogFenster(String fxmlPfad){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            ResourceBundle bundle = I18nUtil.getDialogResourceBundle();
+            loader.setLocation(MainApp.class
+                    .getResource(fxmlPfad));
+            loader.setResources(bundle);
+            AnchorPane anchorPane = (AnchorPane) loader.load();
+
+            Scene scene = new Scene(anchorPane);
+            this.dialogStage = new Stage();
+            this.dialogStage.setScene(scene);
+            ErstellungsDialogController controller = loader.getController();
+            controller.setMainApp(this.mainApp);
+            controller.setDialogStage(this.dialogStage);
+
+            this.dialogStage.setTitle(FXKonstanten.DIALOG);
+            this.dialogStage.setResizable(false);
+            this.dialogStage.initModality(Modality.APPLICATION_MODAL);
+            this.dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * Hilfsmethode, erzeugt Dialogfenster zum Ändern von Objekten und zeigt dieses an.
+     *
+     * @param fxmlPfad Pfad zur fxml-Datei
+     */
+    private void showAenderungsDialogFenster(String fxmlPfad){
         try {
             FXMLLoader loader = new FXMLLoader();
             ResourceBundle bundle = I18nUtil.getDialogResourceBundle();
@@ -248,12 +214,11 @@ public class RootLayoutController {
 
 
     /**
-     * Hilft dabei, neue Dialogfenster zum Löschen
-     * unter Angabe einer fxml-Datei zu erstellen und anzuzeigen
+     * Hilfsmethode, erzeugt Dialogfenster zum Löschen von Objekten und zeigt dieses an.
      *
      * @param fxmlPfad Pfad zur fxml-Datei
      */
-    private void showLoeschungsDialogFensterMitAnchorPane(String fxmlPfad){
+    private void showLoeschungsDialogFenster(String fxmlPfad){
         try {
             FXMLLoader loader = new FXMLLoader();
             ResourceBundle bundle = I18nUtil.getDialogResourceBundle();

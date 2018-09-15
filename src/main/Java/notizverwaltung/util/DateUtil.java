@@ -18,17 +18,27 @@ public class DateUtil {
     /**
      * Konvertiert localDate-Objekt zu einem Date-Objekt
      *
-     * @param localDate
-     * @author "JB Nizet", Michelle Blau
-     * @return
+     * @param localDate soll zu einem Date-Objekt konvertiert werden
+     * @author Michelle Blau
+     * @return Date-Objekt
      */
-    public static Date convertLocalDate(LocalDate localDate){
+    public static Date convertLocalDateInDate(LocalDate localDate){
         ObjectValidator.checkObObjectNullIst(localDate);
         Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
         return date;
     }
 
-    public static LocalDate convertLocalDateInDate (Date date){
-        return null;
+
+    /**
+     * Konvertiert localDate-Objekt zu einem Date-Objekt
+     *
+     * @param date soll zu einem LocalDate-Objekt konvertiert werden
+     * @author Michelle Blau
+     * @return LocalDate-Objekt
+     */
+    public static LocalDate convertDateInLocalDate(Date date){
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        return localDate;
     }
 }

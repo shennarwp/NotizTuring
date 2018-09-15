@@ -16,7 +16,6 @@ import notizverwaltung.service.interfaces.KategorieService;
 import notizverwaltung.service.interfaces.NotizService;
 import notizverwaltung.util.DateUtil;
 import notizverwaltung.util.FXUtil;
-import notizverwaltung.validators.DaoContentValidator;
 import notizverwaltung.validators.ObjectValidator;
 import notizverwaltung.validators.StringValidator;
 
@@ -111,7 +110,7 @@ public class ErstellungsDialogController {
     @FXML
     private void handleBtnErstelleNotiz(){
 
-        if (isInputValid(validateNotizErstellen())) {
+        if (FXUtil.isInputValid(validateNotizErstellen())) {
             Notiz tmpNotiz = ModelObjectBuilder.getNotizObject();
 
             LocalDate faelligkeit = notizFaelligkeitDatePicker.getValue();
@@ -121,7 +120,7 @@ public class ErstellungsDialogController {
             tmpNotiz.setBearbeitungszustandID(bearbeitungszustandChoiceBox.getValue().getBearbeitungsZustandID());
             tmpNotiz.setKategorieID(kategorieChoiceBox.getValue().getKategorieID());
             tmpNotiz.setPrioritaet(notizPrioritaetCheckBox.isSelected());
-            tmpNotiz.setFaelligkeit(DateUtil.convertLocalDate(faelligkeit));
+            tmpNotiz.setFaelligkeit(DateUtil.convertLocalDateInDate(faelligkeit));
 
             notizService.addNotiz(tmpNotiz,DAOKonstanten.DEFAULT_NOTIZBLOCK_ID);
             mainApp.getNotizListe().add(tmpNotiz);
@@ -140,7 +139,7 @@ public class ErstellungsDialogController {
     @FXML
     private void handleBtnErstelleKategorie(){
 
-        if (isInputValid(validateKategorieErstellen())) {
+        if (FXUtil.isInputValid(validateKategorieErstellen())) {
 
             Kategorie tmpKategorie = ModelObjectBuilder.getKategorieObjekt(kategorieNameField.getText());
 
@@ -161,7 +160,7 @@ public class ErstellungsDialogController {
     @FXML
     private void handleBtnErstelleBearbeitungszustand(){
 
-        if (isInputValid(validateBearbeitungszustandErstellen())) {
+        if (FXUtil.isInputValid(validateBearbeitungszustandErstellen())) {
             Bearbeitungszustand tmpBearbeitungszustand = ModelObjectBuilder
                     .getBearbeitungszustandObjekt(bearbeitungszustandNameField.getText());
 
@@ -247,23 +246,4 @@ public class ErstellungsDialogController {
         return errorMessage;
     }
 
-
-    /**
-     * Validiert die eingegebenen Daten.
-     *
-     * @return true wenn die Nutzer-Eingabe gueltig ist, sonst false.
-     */
-    private boolean isInputValid(String errorMessage) {
-
-        if (StringValidator.isStringLeerOderNull(errorMessage)) {
-            return true;
-        } else {
-            FXUtil.showErrorDialog(I18nMessagesUtil.
-                            getErrorUngueltigeFelderString(),
-                    I18nMessagesUtil.getMessageKorrigiereUngueltigeFelderString(),
-                    errorMessage);
-
-            return false;
-        }
-    }
 }

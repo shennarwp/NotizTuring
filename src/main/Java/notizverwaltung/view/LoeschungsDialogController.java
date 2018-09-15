@@ -93,7 +93,7 @@ public class LoeschungsDialogController {
     @FXML
     private void handleBtnLoescheNotiz(){
 
-        if (isInputValid(validateNotizLoeschen())) {
+        if (FXUtil.isInputValid(validateNotizLoeschen())) {
             Notiz zuLoeschendeNotiz = notizChoiceBox.getValue();
 
             mainApp.getNotizListe().remove(zuLoeschendeNotiz);
@@ -113,7 +113,7 @@ public class LoeschungsDialogController {
     @FXML
     private void handleBtnLoescheKategorie(){
 
-        if (isInputValid(validateKategorieLoeschen())) {
+        if (FXUtil.isInputValid(validateKategorieLoeschen())) {
             Kategorie zuLoeschendeKategorie = kategorieChoiceBox.getValue();
 
             mainApp.getKategorieListe().remove(zuLoeschendeKategorie);
@@ -133,7 +133,7 @@ public class LoeschungsDialogController {
     @FXML
     private void handleBtnLoescheBearbeitungszustand(){
 
-        if (isInputValid(validateBearbeitungszustandLoeschen())) {
+        if (FXUtil.isInputValid(validateBearbeitungszustandLoeschen())) {
             Bearbeitungszustand bestehenderBearbeitungszustand = bearbeitungszustandChoiceBox.getValue();
             int bearbeitungszustandID = bestehenderBearbeitungszustand.getBearbeitungsZustandID();
 
@@ -211,24 +211,4 @@ public class LoeschungsDialogController {
         return errorMessage;
     }
 
-
-
-    /**
-     * Validiert die eingegebenen Daten.
-     *
-     * @return true wenn die Nutzer-Eingabe gueltig ist, sonst false.
-     */
-    private boolean isInputValid(String errorMessage) {
-
-        if (StringValidator.isStringLeerOderNull(errorMessage)) {
-            return true;
-        } else {
-            FXUtil.showErrorDialog(I18nMessagesUtil.
-                            getErrorUngueltigeFelderString(),
-                    I18nMessagesUtil.getMessageKorrigiereUngueltigeFelderString(),
-                    errorMessage);
-
-            return false;
-        }
-    }
 }

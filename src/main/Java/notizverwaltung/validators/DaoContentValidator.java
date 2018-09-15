@@ -5,6 +5,7 @@ import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.service.classes.NotizServiceImpl;
+import notizverwaltung.service.interfaces.BearbeitungszustandService;
 import notizverwaltung.service.interfaces.KategorieService;
 import notizverwaltung.service.interfaces.NotizService;
 
@@ -27,7 +28,8 @@ public class DaoContentValidator {
      */
     public static boolean isNotizMitKategorieVorhanden(Kategorie kategorie) {
         KategorieService kategorieService = ServiceObjectBuilder.getKategorieService();
-        long anzahlNotizen = kategorieService.getAnzahlNotizenInKategorie(kategorie.getKategorieID());
+        int id = kategorie.getKategorieID();
+        long anzahlNotizen = kategorieService.getAnzahlNotizenInKategorie(id);
 
         if (anzahlNotizen == 0){
             return false;
@@ -44,11 +46,11 @@ public class DaoContentValidator {
      * @return true, wenn es zugeordnete Notizen gibt, sonst false
      */
     public static boolean isNotizMitBearbeitungszustandVorhanden(Bearbeitungszustand bearbeitungszustand){
-        NotizService notizService = ServiceObjectBuilder.getNotizService();
-        int bearbeitungszustandID = bearbeitungszustand.getBearbeitungsZustandID();
-        List<Notiz> notizenMitBestimmtemBearbeitungszustand = notizService.getAlleNotizenVonEinemBearbeitungszustand(bearbeitungszustandID);
+        BearbeitungszustandService bearbeitungszustandService = ServiceObjectBuilder.getBearbeitungszustandService();
+        int id = bearbeitungszustand.getBearbeitungsZustandID();
+        long anzahlNotizen = bearbeitungszustandService.getAnzahlNotizenInBearbeitungszustand(id);
 
-        if (notizenMitBestimmtemBearbeitungszustand.size() == 0){
+        if (anzahlNotizen == 0){
             return false;
         }else{
             return true;

@@ -1,6 +1,8 @@
 package notizverwaltung.util;
 
 import javafx.scene.control.Alert;
+import notizverwaltung.i18n.I18nMessagesUtil;
+import notizverwaltung.validators.StringValidator;
 
 /**
  * Stellt Warning- bzw. Errordialoge zur Verfügung
@@ -41,4 +43,25 @@ public class FXUtil {
         dialog.setHeaderText(header);
         dialog.showAndWait();
     }
+
+
+    /**
+     * Validiert die eingegebenen Daten.
+     *
+     * @return true wenn die Nutzer-Eingabe gueltig ist, sonst false.
+     */
+    public static boolean isInputValid(String errorMessage) {
+
+        if (StringValidator.isStringLeerOderNull(errorMessage)) {
+            return true;
+        } else {
+            showErrorDialog(I18nMessagesUtil.
+                            getErrorUngueltigeFelderString(),
+                    I18nMessagesUtil.getMessageKorrigiereUngueltigeFelderString(),
+                    errorMessage);
+
+            return false;
+        }
+    }
+
 }
