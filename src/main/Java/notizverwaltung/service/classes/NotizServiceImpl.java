@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  *
- * Die Klasse stellt Funktionalitäten für Notizen bereit
+ * Die Klasse stellt Funktionalitaeten für Notizen bereit
  *
  *
  * @author Tobias Gottschalk
@@ -27,17 +27,32 @@ public class NotizServiceImpl implements NotizService {
 
     private NotizDAO notizDAO;
 
-    //TODO Olbertz hat den Konstruktor so in seinem Beispiel aufgebaut. Warum sollte man das machen? Kann man es auch weglassen -> abklären
+
+    /**
+     * Konstruktor
+     * @param notizDAO Nimmt ein NotizDAO Objekt entgegen
+     * @throws ObjectIstNullException
+     */
     public NotizServiceImpl(NotizDAO notizDAO) throws ObjectIstNullException {
         ObjectValidator.checkObObjectNullIst(notizDAO);
         this.notizDAO = notizDAO;
 
     }
 
+    /**
+     * Default Konstruktor
+     * @throws ObjectIstNullException
+     */
     public NotizServiceImpl() throws ObjectIstNullException {
         this(DaoObjectBuilder.getNotizDaoObject());
     }
 
+    /**
+     * Fuegt eine Notiz in die Datenbank ein
+     * @param notiz Ein Notiz Objekt
+     * @param notizblockID NotizblockID in welches die Notiz hinzugefuegt werden soll
+     * @return Liefert den Primary Key des in der Datenbank erstellte Notizobjeckt zurueck
+     */
     @Override
     public int addNotiz(Notiz notiz, int notizblockID) {
         //TODO Was passiert, wenn in DAO ein Fehler passiert?
@@ -47,17 +62,29 @@ public class NotizServiceImpl implements NotizService {
         return notizID;
     }
 
+    /**
+     * @param notizID nimmt eine NotizID entgegen
+     * @return Liefert ein Notizobjekt zurueck
+     */
     @Override
     public Notiz getNotiz(int notizID) {
         return notizDAO.getNotiz(notizID);
     }
 
+    /**
+     * Speichert ein Notizobjekt wieder in die Datenbank nachdem es geändert wurde
+     * @param notiz Ein Notizobjekt
+     */
     @Override
     public void updateNotiz(Notiz notiz) {
         ObjectValidator.checkObObjectNullIst(notiz);
         notizDAO.updateNotiz(notiz);
     }
 
+    /**
+     * Die Methode loescht eine Notiz aus der Datenbank
+     * @param notizID Die ID der Notiz
+     */
     @Override
     public void deleteNotiz(int notizID) {
         IntValidator.checkObIntNullOderNegativIst(notizID);
@@ -65,6 +92,10 @@ public class NotizServiceImpl implements NotizService {
 
     }
 
+    /**
+     * @param kategorieID Die ID der Kategorie
+     * @return Gibt eine Liste<Notiz> mit einer bestimmten Kategorie zurueck
+     */
     @Override
     public List<Notiz> getAlleNotizenvonEinerKategorie(int kategorieID) {
         IntValidator.checkObIntNullOderNegativIst(kategorieID);
