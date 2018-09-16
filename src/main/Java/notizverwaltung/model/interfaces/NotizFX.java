@@ -7,7 +7,7 @@ import java.util.Date;
 public interface NotizFX {
 
     public int getNotizID();
-    public void setID(int notizID);
+    public void setNotizID(int notizID);
 
     public String getTitle();
     public void setTitle(String title);
@@ -31,6 +31,10 @@ public interface NotizFX {
     public Date getErinnerung();
     public void setErinnerung(Date erinnerung);
 
+
     public Date getErstellung();
+    public void setErstellung(Date erstellung);
+
+
 
 }

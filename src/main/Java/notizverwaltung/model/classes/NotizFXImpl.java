@@ -1,9 +1,6 @@
 package notizverwaltung.model.classes;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import notizverwaltung.model.interfaces.NotizFX;
 import notizverwaltung.validators.IntValidator;
 import notizverwaltung.validators.ObjectValidator;
@@ -25,6 +22,21 @@ public class NotizFXImpl implements NotizFX {
     private ObjectProperty<Date> erstellung;
     private IntegerProperty notizblockID;
 
+    public NotizFXImpl(){
+        notizID = new SimpleIntegerProperty();
+        title = new SimpleStringProperty();
+        kategorieID = new SimpleIntegerProperty();
+        bearbeitungszustandID = new SimpleIntegerProperty();
+        beschreibung = new SimpleStringProperty();;
+        prioritaet = new SimpleBooleanProperty();
+        faelligkeit = new SimpleObjectProperty<Date>();
+        istErinnerungGesetzt = new SimpleBooleanProperty();
+        erinnerung = new SimpleObjectProperty<Date>();;
+        erstellung = new SimpleObjectProperty<Date>();
+        notizblockID = new SimpleIntegerProperty();;
+
+    }
+
 
     @Override
     public int getNotizID() {
@@ -32,9 +44,10 @@ public class NotizFXImpl implements NotizFX {
     }
 
     @Override
-    public void setID(int notizID) {
+    public void setNotizID(int notizID) {
         IntValidator.checkObIntNullOderNegativIst(notizID);
         this.notizID.set(notizID);
+
     }
 
     @Override
@@ -131,5 +144,12 @@ public class NotizFXImpl implements NotizFX {
     @Override
     public Date getErstellung() {
         return erstellung.get();
+    }
+
+    @Override
+    public void setErstellung(Date erstellung) {
+        ObjectValidator.checkObObjectNullIst(erstellung);
+        this.erinnerung.set(erstellung);
+
     }
 }

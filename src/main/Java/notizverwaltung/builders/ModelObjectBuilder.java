@@ -67,4 +67,8 @@ public class ModelObjectBuilder
         return aufgabe;
     }
 
+    public static NotizFX getNotizFXObjekt(){
+        return new NotizFXImpl();
+    }
+
 }

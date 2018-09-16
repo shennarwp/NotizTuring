@@ -3,12 +3,9 @@ package notizverwaltung.builders;
 import notizverwaltung.exceptions.ObjectIstNullException;
 import notizverwaltung.service.classes.BearbeitungszustandServiceImpl;
 import notizverwaltung.service.classes.KategorieServiceImpl;
+import notizverwaltung.service.classes.NotizFXServiceImpl;
 import notizverwaltung.service.classes.NotizServiceImpl;
-import notizverwaltung.service.interfaces.AufgabeService;
-import notizverwaltung.service.interfaces.BearbeitungszustandService;
-import notizverwaltung.service.interfaces.KategorieService;
-import notizverwaltung.service.interfaces.NotizService;
-
+import notizverwaltung.service.interfaces.*;
 
 
 /**
@@ -49,6 +46,11 @@ public class ServiceObjectBuilder {
             oe.printStackTrace();
         }
         return bearbeitungszustandService;
+    }
+
+    public static NotizFXService getNotizFXService(){
+        return new NotizFXServiceImpl();
+
     }
 
 

@@ -74,7 +74,7 @@ public class NotizImpl implements Notiz
 
     public NotizImpl(){
         this.notizblockID = DAOKonstanten.DEFAULT_NOTIZBLOCK_ID;
-        //TODO Erstellungsdatum muss noch in den Konstruktor
+        this.erstellung = new Date();
     }
 
     //____________________ID____________________
