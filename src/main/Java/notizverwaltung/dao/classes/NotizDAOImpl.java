@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * @author Shenna RWP
+ * @author Agra Bimantara 
  */
 public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
 {
@@ -59,11 +60,6 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
     }
 
     @Override
-    public List<Notiz> getAlleNotizenvonEinerKategorie(int kategorieID) {
-        return null;
-    }
-
-    @Override
     public void updateNotiz(Notiz notiz) {
         initTransaction();
         transaction.begin();
@@ -105,6 +101,21 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
                 .createQuery("SELECT n FROM NotizImpl n WHERE n.notizblockID = :notizblockID", Notiz.class)
                 .setParameter("notizblockID", notizblockID)
                 .getResultList();
+
+        transaction.commit();
+        finishTransaction();
+
+        return notizList;
+    }
+
+    @Override
+    public List<Notiz> getAlleNotizenvonEinerKategorie(int kategorieID) {
+       initTransaction();
+       transaction.begin();
+
+       List<Notiz> notizList = entityManager.createQuery("SELECT n FROM NotizImpl n WHERE n.kategorieID = :kategorieID", Notiz.class)
+               .setParameter("kategorieID", kategorieID)
+               .getResultList();
 
         transaction.commit();
         finishTransaction();
