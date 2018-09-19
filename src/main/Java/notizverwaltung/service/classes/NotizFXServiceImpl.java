@@ -30,6 +30,21 @@ public class NotizFXServiceImpl implements NotizFXService {
     }
 
     @Override
+    public Notiz wrapNotizFXinNotiz(NotizFX notizFX){
+        Notiz notiz = ModelObjectBuilder.getNotizObject();
+
+        notiz.setID(notizFX.getNotizID().getValue());
+        notiz.setTitle(notizFX.getTitle().getValue());
+        notiz.setKategorieID(notizFX.getKategorieID().getValue());
+        notiz.setBearbeitungszustandID(notizFX.getBearbeitungszustandID().getValue());
+        notiz.setBeschreibung(notizFX.getBeschreibung().getValue());
+        notiz.setPrioritaet(notizFX.getPrioritaet().getValue());
+        notiz.setFaelligkeit(notizFX.getFaelligkeit().getValue());
+
+        return notiz;
+    }
+
+    @Override
     public List<NotizFX> convertInNotizFXList(List<Notiz> notizListe){
         List<NotizFX> notizFXListe = new ArrayList<>();
 
