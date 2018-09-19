@@ -194,6 +194,24 @@ public class NotizImpl implements Notiz
     }
 
 
+    /**
+     * Notizen sind gleich, wenn sie die gleiche ID haben
+     * Vergleicht 2 Notizen
+     * @param object zu vergleichende Notiz
+     * @return true, wenn Notizen gleich, sonst false
+     */
+    @Override
+    public boolean equals(Object object){
+        if (object instanceof NotizImpl){
+            NotizImpl vergleichsNotiz = (NotizImpl) object;
+
+            if (this.notizID == vergleichsNotiz.getNotizID()){
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String toString(){
         return getTitle();

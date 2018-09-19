@@ -65,6 +65,24 @@ public class BearbeitungszustandImpl implements Bearbeitungszustand
 //		this.position = position;
 	}
 
+	/**
+	 * Bearbeitungszustände sind gleich, wenn sie die gleiche ID haben
+	 * Vergleicht 2 Bearbeitungszustände
+	 * @param object zu vergleichender Bearbeitungszustand
+	 * @return true, wenn Zustände gleich, sonst false
+	 */
+	@Override
+	public boolean equals(Object object){
+		if (object instanceof BearbeitungszustandImpl){
+			BearbeitungszustandImpl vergleichsZustand = (BearbeitungszustandImpl) object;
+
+			if (this.bearbeitungszustandID == vergleichsZustand.getBearbeitungsZustandID()){
+				return true;
+			}
+		}
+		return false;
+	}
+
 	@Override
 	public String toString() {
 		return getName();
