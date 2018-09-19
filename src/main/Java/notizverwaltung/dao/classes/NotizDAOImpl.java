@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * @author Shenna RWP
- * @author Agra Bimantara 
+ * @author Agra Bimantara
  */
 public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
 {
@@ -121,5 +121,21 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
         finishTransaction();
 
         return notizList;
+    }
+
+    @Override
+    public List<Notiz> getAlleNotizenMitPrioritaet(boolean prioritaet) {
+        initTransaction();
+        transaction.begin();
+
+        List<Notiz> notizList = entityManager.createQuery("SELECT n FROM NotizImpl n WHERE n.prioritaet = :prioritaet", Notiz.class)
+                .setParameter("prioritaet", prioritaet)
+                .getResultList();
+
+        transaction.commit();
+        finishTransaction();
+
+        return notizList;
+
     }
 }

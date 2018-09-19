@@ -35,6 +35,7 @@ public interface NotizService {
     public List<Notiz> getAlleNotizen();
     public List<Notiz> getAlleNotizenVonEinemBearbeitungszustand(int bearbeitungszustandID);
     public List<Notiz> getAlleNotizenVomNotizblock(int NotizblockID);
+    public List<Notiz> getAlleNotizenMitPrioritaet(boolean prioritaet);
 
 
  }

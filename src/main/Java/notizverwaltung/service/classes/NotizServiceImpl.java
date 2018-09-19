@@ -131,4 +131,10 @@ public class NotizServiceImpl implements NotizService {
         IntValidator.checkObIntNullOderNegativIst(notizblockID);
         return new NotizblockDAOImpl().getAlleNotizenVomNotizblock(notizblockID);
     }
+
+    @Override
+    public List<Notiz> getAlleNotizenMitPrioritaet(boolean prioritaet){
+        ObjectValidator.checkObObjectNullIst(prioritaet);
+        return notizDAO.getAlleNotizenMitPrioritaet(prioritaet);
+    }
 }
