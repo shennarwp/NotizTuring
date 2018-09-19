@@ -5,6 +5,9 @@ import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.model.interfaces.NotizFX;
 import notizverwaltung.service.interfaces.NotizFXService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NotizFXServiceImpl implements NotizFXService {
 
     @Override
@@ -24,6 +27,17 @@ public class NotizFXServiceImpl implements NotizFXService {
 
 
         return notizFX;
+    }
+
+    @Override
+    public List<NotizFX> convertInNotizFXList(List<Notiz> notizListe){
+        List<NotizFX> notizFXListe = new ArrayList<>();
+
+        for(Notiz notiz : notizListe){
+            NotizFX notizFX = wrapNotizInNotizFX(notiz);
+            notizFXListe.add(notizFX);
+        }
+        return notizFXListe;
     }
 
 
