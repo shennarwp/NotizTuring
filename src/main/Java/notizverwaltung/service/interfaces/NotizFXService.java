@@ -9,6 +9,9 @@ public interface NotizFXService {
 
     public NotizFX wrapNotizInNotizFX (Notiz notiz);
 
+    public Notiz wrapNotizFXinNotiz(NotizFX notizFX);
+
     public List<NotizFX> convertInNotizFXList(List<Notiz> notizListe);
+
 
 }

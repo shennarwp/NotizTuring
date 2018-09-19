@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="473.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="notizverwaltung.view.AenderungsDialogController">
    <children>
-      <ChoiceBox fx:id="notizChoiceBox" layoutX="241.0" layoutY="40.0" prefHeight="31.0" prefWidth="205.0" />
+      <ChoiceBox fx:id="notizFXChoiceBox" layoutX="241.0" layoutY="40.0" prefHeight="31.0" prefWidth="205.0" />
       <Label layoutX="32.0" layoutY="45.0" text="%dialog-note" />
       <Label layoutX="30.0" layoutY="162.0" text="%dialog-notecategory" />
       <Label layoutX="30.0" layoutY="215.0" text="%dialog-notedescription" />

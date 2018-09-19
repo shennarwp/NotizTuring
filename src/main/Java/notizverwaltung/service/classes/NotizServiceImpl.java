@@ -132,9 +132,10 @@ public class NotizServiceImpl implements NotizService {
         return new NotizblockDAOImpl().getAlleNotizenVomNotizblock(notizblockID);
     }
 
-    @Override
-    public List<Notiz> getAlleNotizenMitPrioritaet(boolean prioritaet){
-        ObjectValidator.checkObObjectNullIst(prioritaet);
-        return notizDAO.getAlleNotizenMitPrioritaet(prioritaet);
-    }
+//TODO In eigene Filterklasse auslagern
+//    @Override
+//    public List<Notiz> getAlleNotizenMitPrioritaet(boolean prioritaet){
+//        ObjectValidator.checkObObjectNullIst(prioritaet);
+//        return notizDAO.getAlleNotizenMitPrioritaet(prioritaet);
+//    }
 }
