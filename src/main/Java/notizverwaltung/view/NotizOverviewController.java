@@ -1,5 +1,7 @@
 package notizverwaltung.view;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -11,6 +13,10 @@ import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.model.interfaces.NotizFX;
 import notizverwaltung.service.classes.KategorieServiceImpl;
 import notizverwaltung.service.interfaces.KategorieService;
+
+import java.util.Date;
+
+import static notizverwaltung.util.DateUtil.convertDateInLocalDate;
 
 /**
  * Diese Klasse erzeugt einen Teil des Hauptanzeigefensters.
@@ -78,15 +84,46 @@ public class NotizOverviewController {
     public void setNotizFX(NotizFX notizFX){
         this.notizFX = notizFX;
 
+        //--------------------------------------------------------------------------------------------------------------
+        // zeigt Prioritaet an und updatet diese
         if(notizFX.getPrioritaet().getValue()){
             prioritaetLabel.setText(I18nComponentsUtil.getStandardPriorityHigh());
         }else{
             prioritaetLabel.setText(I18nComponentsUtil.getStandardPriorityLow());
         }
+        notizFX.getPrioritaet().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(notizFX.getPrioritaet().getValue()){
+                    prioritaetLabel.setText(I18nComponentsUtil.getStandardPriorityHigh());
+                }else{
+                    prioritaetLabel.setText(I18nComponentsUtil.getStandardPriorityLow());
+                }
+            }
+        });
 
-        //TODO: Besser Loesung zur Datumsanzeige finden
-        datumLabel.textProperty().bind(notizFX.getFaelligkeit().asString());
-        kategorieLabel.textProperty().bind(notizFX.getKategorieID().asString());
+        //--------------------------------------------------------------------------------------------------------------
+        //zeigt Faelligkeitsdatum an und updatet dieses
+        datumLabel.setText(convertDateInLocalDate(notizFX.getFaelligkeit().getValue()).toString());
+        notizFX.getFaelligkeit().addListener(new ChangeListener<Date>() {
+            @Override
+            public void changed(ObservableValue<? extends Date> observable, Date oldValue, Date newValue) {
+                datumLabel.setText(convertDateInLocalDate(notizFX.getFaelligkeit().getValue()).toString());
+            }
+        });
+
+        //--------------------------------------------------------------------------------------------------------------
+        //zeigt Kategorie Namen an und updatet diesen
+        kategorieLabel.setText(kategorieService.findKategorieName(notizFX.getKategorieID().getValue()));
+        notizFX.getKategorieID().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                kategorieLabel.setText(kategorieService.findKategorieName(notizFX.getKategorieID().getValue()));
+            }
+        });
+
+        //--------------------------------------------------------------------------------------------------------------
+        // zeigt Notiz Namen an und updatet diesen
         notizLabel.textProperty().bind(notizFX.getTitle());
     }
 
