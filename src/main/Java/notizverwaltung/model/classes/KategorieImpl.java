@@ -86,6 +86,13 @@ public class KategorieImpl implements Kategorie
 //        this.farbe = farbe;
     }
 
+
+    /**
+     * Kategorien sind gleich, wenn sie die gleiche ID haben
+     * Vergleicht 2 Kategorien
+     * @param object zu vergleichende Kategorie
+     * @return true, wenn Kategorien gleich, sonst false
+     */
     @Override
     public boolean equals(Object object){
         if (object instanceof KategorieImpl){

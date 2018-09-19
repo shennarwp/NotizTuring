@@ -4,6 +4,7 @@ import notizverwaltung.exceptions.IntIstNegativException;
 import notizverwaltung.exceptions.ObjectIstNullException;
 import notizverwaltung.exceptions.StringIsEmptyException;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
+import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.validators.StringValidator;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -83,5 +84,39 @@ class NotizImplTest {
 
     @Test
     void setErinnerung() {
+    }
+
+    /**
+     * Testet, was bei Übergabe einer Notiz mit gleicher ID passiert
+     * Methode: equals()
+     * ->Erwartet wird der Rückgabewert true
+     */
+    @Test
+    void equalsNotizenSindGleich(){
+        Notiz notiz1 = new NotizImpl();
+        notiz1.setID(244);
+        Notiz notiz2 = new NotizImpl();
+        notiz2.setID(244);
+
+        boolean ergebnis = notiz1.equals(notiz2);
+
+        assertEquals(true, ergebnis);
+    }
+
+    /**
+     * Testet, was bei Übergabe einer Notiz mit ungleicher ID passiert
+     * Methode: equals()
+     * ->Erwartet wird der Rückgabewert false
+     */
+    @Test
+    void equalsNotizenSindUngleich(){
+        Notiz notiz1 = new NotizImpl();
+        notiz1.setID(249);
+        Notiz notiz2 = new NotizImpl();
+        notiz2.setID(244);
+
+        boolean ergebnis = notiz1.equals(notiz2);
+
+        assertEquals(false, ergebnis);
     }
 }

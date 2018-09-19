@@ -11,6 +11,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import notizverwaltung.builders.ModelObjectBuilder;
+import notizverwaltung.builders.ServiceObjectBuilder;
 import notizverwaltung.constants.DAOKonstanten;
 import notizverwaltung.constants.FXKonstanten;
 import notizverwaltung.dao.classes.NotizDAOImpl;
@@ -23,18 +24,14 @@ import notizverwaltung.model.classes.KategorieImpl;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
-import notizverwaltung.service.classes.BearbeitungszustandServiceImpl;
-import notizverwaltung.service.classes.KategorieServiceImpl;
-import notizverwaltung.service.classes.NotizServiceImpl;
-import notizverwaltung.service.classes.NotizblockServiceImpl;
-import notizverwaltung.service.interfaces.BearbeitungszustandService;
-import notizverwaltung.service.interfaces.KategorieService;
-import notizverwaltung.service.interfaces.NotizService;
-import notizverwaltung.service.interfaces.NotizblockService;
+import notizverwaltung.model.interfaces.NotizFX;
+import notizverwaltung.service.classes.*;
+import notizverwaltung.service.interfaces.*;
 import notizverwaltung.view.GesamtOverviewController;
 import notizverwaltung.view.NotizblockOverviewController;
 import notizverwaltung.view.RootLayoutController;
 
+import javax.xml.ws.Service;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
@@ -59,25 +56,28 @@ public class MainApp extends Application {
 
     /**
      * Die Kategorien, Notizen und Bearbeitungszustände befinden sich in einer ObservableList
+     * TODO Objectbuilder benutzen
      */
     private ObservableList<Kategorie> kategorieListe = FXCollections.observableArrayList();
     private ObservableList<Notiz> notizListe = FXCollections.observableArrayList();
     private ObservableList<Bearbeitungszustand> bearbeitungszustandListe = FXCollections.observableArrayList();
+    private ObservableList<NotizFX> notizFXListe = FXCollections.observableArrayList();
 
-    private NotizblockService notizblockService = new NotizblockServiceImpl();
     private NotizService notizService = new NotizServiceImpl();
     private KategorieService kategorieService = new KategorieServiceImpl();
     private BearbeitungszustandService bearbeitungszustandService = new BearbeitungszustandServiceImpl();
+    private NotizFXService notizFXService = ServiceObjectBuilder.getNotizFXService();
 
 
     /**
      * Fülle die Listen mit entsprechenden Daten, dies sind noch Testdaten für die GUI.
      */
-    public MainApp() throws StringIsEmptyException, ObjectIstNullException {
+    public MainApp() {
 
         initializeListenMitDatenbankInhalt();
 
         System.out.println("\n\n\n\n"+notizListe);
+        System.out.println("\n\n\n\n"+notizFXListe);
         System.out.println("\n\n\n\n"+kategorieListe);
         System.out.println("\n\n\n\n"+bearbeitungszustandListe);
     }
@@ -165,11 +165,15 @@ public class MainApp extends Application {
     }
 
     public ObservableList<Notiz> getNotizListe() {
-        return notizListe;
+        return this.notizListe;
     }
 
     public ObservableList<Bearbeitungszustand> getBearbeitungszustandListe() {
-        return bearbeitungszustandListe;
+        return this.bearbeitungszustandListe;
+    }
+
+    public ObservableList<NotizFX> getNotizFXListe() {
+        return this.notizFXListe;
     }
 
 
@@ -180,28 +184,10 @@ public class MainApp extends Application {
         notizListe.addAll(notizService.getAlleNotizenVomNotizblock(DAOKonstanten.DEFAULT_NOTIZBLOCK_ID));
         kategorieListe.addAll(kategorieService.getAlleKategorien());
         bearbeitungszustandListe.addAll(bearbeitungszustandService.getAllBearbeitungszustand());
+        notizFXListe.addAll(notizFXService.convertInNotizFXList(notizListe));
     }
 
 
-    /**
-     * Initialisiert die ObservableLists mit Kategorien und Bearbeitungszuständen, keine Verbindung zur Datenbank
-     */
-    private void initializeListenMitTestdaten(){
-        Kategorie kat1 = ModelObjectBuilder.getKategorieObjekt("Prog 3");
-        Kategorie kat2 = ModelObjectBuilder.getKategorieObjekt("Mathe");
-        Kategorie kat3 = ModelObjectBuilder.getKategorieObjekt("Englisch");
-        kategorieListe.add(kat1);
-        kategorieListe.add(kat2);
-        kategorieListe.add(kat3);
-
-        Bearbeitungszustand bz1 = new BearbeitungszustandImpl("To-Do");
-        Bearbeitungszustand bz2 = new BearbeitungszustandImpl("In Bearbeitung");
-        Bearbeitungszustand bz3 = new BearbeitungszustandImpl("Erledigt");
-        bearbeitungszustandListe.add(bz1);
-        bearbeitungszustandListe.add(bz2);
-        bearbeitungszustandListe.add(bz3);
-
-    }
 
     /**
      * Führt launch()-Methode aus, sollte aus Kompatibilitätsgründen nicht verändert werden

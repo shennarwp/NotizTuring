@@ -179,8 +179,8 @@ public class NotizFXImpl implements NotizFX {
 
     @Override
     public void setErinnerung(Date erinnerung) {
-        ObjectValidator.checkObObjectNullIst(erinnerung);
-        this.erinnerung.set(erinnerung);
+//        ObjectValidator.checkObObjectNullIst(erinnerung);
+//        this.erinnerung.set(erinnerung);
     }
 
     @Override
@@ -190,8 +190,8 @@ public class NotizFXImpl implements NotizFX {
 
     @Override
     public void setErstellung(Date erstellung) {
-        ObjectValidator.checkObObjectNullIst(erstellung);
-        this.erinnerung.set(erstellung);
+//        ObjectValidator.checkObObjectNullIst(erstellung);
+//        this.erinnerung.set(erstellung);
 
     }
 }
