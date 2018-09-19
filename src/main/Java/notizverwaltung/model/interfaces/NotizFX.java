@@ -1,38 +1,50 @@
 package notizverwaltung.model.interfaces;
 
-import notizverwaltung.exceptions.StringIsEmptyException;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.StringProperty;
 
 import java.util.Date;
 
+/**
+ *  Das Interface stellt die Methoden für die Modelklasse bereit
+ *
+ * @author Tobias Gottschalk
+
+ *
+ * @version 1.0
+ */
+
 public interface NotizFX {
 
-    public int getNotizID();
+    public IntegerProperty getNotizID();
     public void setNotizID(int notizID);
 
-    public String getTitle();
+    public StringProperty getTitle();
     public void setTitle(String title);
 
-    public int getKategorieID();
+    public IntegerProperty getKategorieID();
     public void setKategorieID(int kategorieID);
 
-    public int getBearbeitungszustandID();
+    public IntegerProperty getBearbeitungszustandID();
     public void setBearbeitungszustandID(int bearbeitungszustandID);
 
-    public String getBeschreibung();
+    public StringProperty getBeschreibung();
     public void setBeschreibung(String beschreibung);
 
-    public boolean getPrioritaet();
+    public BooleanProperty getPrioritaet();
     public void setPrioritaet(boolean prioritaet);
 
-    public Date getFaelligkeit();
+    public ObjectProperty<Date> getFaelligkeit();
     public void setFaelligkeit(Date faelligkeit);
 
-    public boolean istErinnerungGesetzt();
-    public Date getErinnerung();
+    public BooleanProperty istErinnerungGesetzt();
+    public ObjectProperty<Date> getErinnerung();
     public void setErinnerung(Date erinnerung);
 
 
-    public Date getErstellung();
+    public ObjectProperty<Date> getErstellung();
     public void setErstellung(Date erstellung);
 
 

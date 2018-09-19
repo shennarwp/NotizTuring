@@ -8,6 +8,14 @@ import notizverwaltung.validators.StringValidator;
 
 import java.util.Date;
 
+/**
+ *  Klasse fuer NotizFX. Die Klasse implementiert das NotizFX Interface.
+ *
+ * @author Tobias Gottschalk
+ *
+ * @version 1.0
+ */
+
 public class NotizFXImpl implements NotizFX {
 
     private IntegerProperty notizID;
@@ -38,11 +46,19 @@ public class NotizFXImpl implements NotizFX {
     }
 
 
+    /**
+     *
+     * @return Gibt die NotizID als IntegerProperty zueureck
+     */
     @Override
-    public int getNotizID() {
-        return notizID.get();
+    public IntegerProperty getNotizID() {
+        return notizID;
     }
 
+    /**
+     * Setzt die NotizID
+     * @param notizID NotizID
+     */
     @Override
     public void setNotizID(int notizID) {
         IntValidator.checkObIntNullOderNegativIst(notizID);
@@ -50,11 +66,17 @@ public class NotizFXImpl implements NotizFX {
 
     }
 
+    /**
+     * @return Liefert den Title der Notiz als Stringproperty zurueck
+     */
     @Override
-    public String getTitle() {
-        return title.get();
+    public StringProperty getTitle() {
+        return title;
     }
 
+    /**
+     * @param title Title als String. Der String darf nicht leer sein.
+     */
     @Override
     public void setTitle(String title) {
         StringValidator.checkObStringLeerOderNullIst(title);
@@ -63,11 +85,18 @@ public class NotizFXImpl implements NotizFX {
         //this.title.setValue(title);
     }
 
+    /**
+     * @return Liefert die KategorieID als IntegerProperty zurueck
+     */
     @Override
-    public int getKategorieID() {
-        return kategorieID.get();
+    public IntegerProperty getKategorieID() {
+        return kategorieID;
     }
 
+    /**
+     * Die Methode setzt die KategorieID
+     * @param kategorieID KategorieID als Integer. Der Integer darf nicht kleiner als 1 sein
+     */
     @Override
     public void setKategorieID(int kategorieID) {
         IntValidator.checkObIntNullOderNegativIst(kategorieID);
@@ -75,9 +104,12 @@ public class NotizFXImpl implements NotizFX {
 
     }
 
+    /**
+     * @return Liefert die ID des Bearbeitungszustand als IntegerProperty zurueck
+     */
     @Override
-    public int getBearbeitungszustandID() {
-        return bearbeitungszustandID.get();
+    public IntegerProperty getBearbeitungszustandID() {
+        return bearbeitungszustandID;
     }
 
     @Override
@@ -88,11 +120,18 @@ public class NotizFXImpl implements NotizFX {
 
     }
 
+    /**
+     * @return Liefert die Beschreibung der Notiz als StringProperty zurueck
+     */
     @Override
-    public String getBeschreibung() {
-        return beschreibung.get();
+    public StringProperty getBeschreibung() {
+        return beschreibung;
     }
 
+    /**
+     * Die Methode setzt die Beschreibung
+     * @param beschreibung Beschreibung als String. Der String darf nicht leer oder null sein.
+     */
     @Override
     public void setBeschreibung(String beschreibung) {
         StringValidator.checkObStringLeerOderNullIst(beschreibung);
@@ -100,9 +139,12 @@ public class NotizFXImpl implements NotizFX {
 
     }
 
+    /**
+     * @return
+     */
     @Override
-    public boolean getPrioritaet() {
-        return prioritaet.get();
+    public BooleanProperty getPrioritaet() {
+        return prioritaet;
     }
 
     @Override
@@ -112,8 +154,8 @@ public class NotizFXImpl implements NotizFX {
     }
 
     @Override
-    public Date getFaelligkeit() {
-        return faelligkeit.get();
+    public ObjectProperty<Date> getFaelligkeit() {
+        return faelligkeit;
     }
 
     @Override
@@ -126,13 +168,13 @@ public class NotizFXImpl implements NotizFX {
 
     //TODO muss ich noch schauen wie das besten gemacht wird
     @Override
-    public boolean istErinnerungGesetzt() {
-        return istErinnerungGesetzt.get();
+    public BooleanProperty istErinnerungGesetzt() {
+        return istErinnerungGesetzt;
     }
 
     @Override
-    public Date getErinnerung() {
-        return erinnerung.get();
+    public ObjectProperty<Date> getErinnerung() {
+        return erinnerung;
     }
 
     @Override
@@ -142,8 +184,8 @@ public class NotizFXImpl implements NotizFX {
     }
 
     @Override
-    public Date getErstellung() {
-        return erstellung.get();
+    public ObjectProperty<Date> getErstellung() {
+        return erstellung;
     }
 
     @Override
