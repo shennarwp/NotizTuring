@@ -38,6 +38,7 @@ public class NotizOverviewController {
     @FXML
     private ComboBox spaltenWahlBox;
 
+    //TODO: entfernen
     private Notiz notiz;
     private NotizFX notizFX;
 
@@ -67,6 +68,8 @@ public class NotizOverviewController {
      * @param notiz Die Notiz, die zum Controller gehoert
      */
     public void setNotiz(Notiz notiz){
+        //TODO: entfernen
+
         this.notiz = notiz;
 
         if(notiz.getPrioritaet()){
