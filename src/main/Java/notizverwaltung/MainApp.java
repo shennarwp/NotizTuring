@@ -90,7 +90,6 @@ public class MainApp extends Application {
      */
     @Override
     public void start(Stage primaryStage) {
-        System.out.println(kategorieListe.size() + notizListe.size() + bearbeitungszustandListe.size());
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle(FXKonstanten.ANWENDUNG_NAME);
         //initSpalten();
