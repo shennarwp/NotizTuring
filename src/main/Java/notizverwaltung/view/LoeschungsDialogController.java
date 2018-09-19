@@ -4,23 +4,19 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import notizverwaltung.MainApp;
-import notizverwaltung.builders.ModelObjectBuilder;
 import notizverwaltung.builders.ServiceObjectBuilder;
-import notizverwaltung.constants.DAOKonstanten;
 import notizverwaltung.i18n.I18nMessagesUtil;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
+import notizverwaltung.model.interfaces.NotizFX;
 import notizverwaltung.service.interfaces.BearbeitungszustandService;
 import notizverwaltung.service.interfaces.KategorieService;
+import notizverwaltung.service.interfaces.NotizFXService;
 import notizverwaltung.service.interfaces.NotizService;
-import notizverwaltung.util.DateUtil;
 import notizverwaltung.util.FXUtil;
 import notizverwaltung.validators.DaoContentValidator;
 import notizverwaltung.validators.ObjectValidator;
-import notizverwaltung.validators.StringValidator;
-
-import java.time.LocalDate;
 
 public class LoeschungsDialogController {
     private MainApp mainApp;
@@ -29,6 +25,7 @@ public class LoeschungsDialogController {
     private NotizService notizService = ServiceObjectBuilder.getNotizService();
     private KategorieService kategorieService = ServiceObjectBuilder.getKategorieService();
     private BearbeitungszustandService bearbeitungszustandService = ServiceObjectBuilder.getBearbeitungszustandService();
+    private NotizFXService notizFXService = ServiceObjectBuilder.getNotizFXService();
 
 
     //_______________Choice-Boxen__________________//
@@ -39,7 +36,7 @@ public class LoeschungsDialogController {
     ChoiceBox<Bearbeitungszustand> bearbeitungszustandChoiceBox;
 
     @FXML
-    ChoiceBox<Notiz> notizChoiceBox;
+    ChoiceBox<NotizFX> notizFXChoiceBox;
 
 
 
@@ -55,8 +52,8 @@ public class LoeschungsDialogController {
         if(!ObjectValidator.isObjectNull(kategorieChoiceBox)){
             kategorieChoiceBox.getItems().addAll(mainApp.getKategorieListe());
         }
-        if(!ObjectValidator.isObjectNull(notizChoiceBox)){
-            notizChoiceBox.getItems().addAll(mainApp.getNotizListe());
+        if(!ObjectValidator.isObjectNull(notizFXChoiceBox)){
+            notizFXChoiceBox.getItems().addAll(mainApp.getNotizFXListe());
         }
 
     }
@@ -94,12 +91,12 @@ public class LoeschungsDialogController {
     private void handleBtnLoescheNotiz(){
 
         if (FXUtil.isInputValid(validateNotizLoeschen())) {
-            Notiz zuLoeschendeNotiz = notizChoiceBox.getValue();
+            NotizFX zuLoeschendeNotizFX = notizFXChoiceBox.getValue();
 
-            mainApp.getNotizListe().remove(zuLoeschendeNotiz);
-            notizService.deleteNotiz(zuLoeschendeNotiz.getNotizID());
+            mainApp.getNotizFXListe().remove(zuLoeschendeNotizFX);
+            notizService.deleteNotiz(zuLoeschendeNotizFX.getNotizID().getValue());
 
-            System.out.println("Notiz wurde aus Liste und Datenbank gelöscht:" + mainApp.getNotizListe());
+            System.out.println("Notiz wurde aus Liste und Datenbank gelöscht:" + mainApp.getNotizFXListe());
             dialogStage.close();
         }
     }
@@ -154,11 +151,11 @@ public class LoeschungsDialogController {
      *
      */
     private String validateNotizLoeschen(){
-        Notiz bestehendeNotiz = notizChoiceBox.getValue();
+        NotizFX bestehendeNotizFX = notizFXChoiceBox.getValue();
 
         String errorMessage = "";
 
-        if (ObjectValidator.isObjectNull(bestehendeNotiz)) {
+        if (ObjectValidator.isObjectNull(bestehendeNotizFX)) {
             errorMessage += I18nMessagesUtil.getErrorBestehendeNotizUngueltig() + "\n";
         }
 

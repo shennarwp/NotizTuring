@@ -29,7 +29,7 @@ import java.util.Date;
 
 /**
  * Stellt Funktionalität für die Dialog-Fenster zur Verfügung, welche Kategorien/Notizen/Bearbeitungszustände erzeugen/ändern/löschen
- *  TODO falls Zeit, den AenderungsDialogController in mehrere Controller-Klassen aufteilen... aber nur am Ende des Projekts
+ *
  *  TODO System.out.printlns rausnehmen, sobald fertig geschrieben und getestet
  *
  * @author Michelle Blau

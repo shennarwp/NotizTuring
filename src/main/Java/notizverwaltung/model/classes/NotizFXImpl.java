@@ -194,4 +194,11 @@ public class NotizFXImpl implements NotizFX {
 //        this.erinnerung.set(erstellung);
 
     }
+
+    @Override
+    public String toString(){
+        return title.getValue();
+    }
+
+
 }
