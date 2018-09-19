@@ -8,6 +8,7 @@ import notizverwaltung.builders.ServiceObjectBuilder;
 import notizverwaltung.i18n.I18nComponentsUtil;
 import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
+import notizverwaltung.model.interfaces.NotizFX;
 import notizverwaltung.service.classes.KategorieServiceImpl;
 import notizverwaltung.service.interfaces.KategorieService;
 
@@ -32,6 +33,7 @@ public class NotizOverviewController {
     private ComboBox spaltenWahlBox;
 
     private Notiz notiz;
+    private NotizFX notizFX;
 
     private MainApp mainApp;
 
@@ -71,6 +73,21 @@ public class NotizOverviewController {
         datumLabel.setText(notiz.getFaelligkeit().toString());
         kategorieLabel.setText(kategorieService.findKategorieName(notiz.getKategorieID()));
         notizLabel.setText(notiz.getTitle());
+    }
+
+    public void setNotizFX(NotizFX notizFX){
+        this.notizFX = notizFX;
+
+        if(notizFX.getPrioritaet().getValue()){
+            prioritaetLabel.setText(I18nComponentsUtil.getStandardPriorityHigh());
+        }else{
+            prioritaetLabel.setText(I18nComponentsUtil.getStandardPriorityLow());
+        }
+
+        //TODO: Besser Loesung zur Datumsanzeige finden
+        datumLabel.textProperty().bind(notizFX.getFaelligkeit().asString());
+        kategorieLabel.textProperty().bind(notizFX.getKategorieID().asString());
+        notizLabel.textProperty().bind(notizFX.getTitle());
     }
 
     /**

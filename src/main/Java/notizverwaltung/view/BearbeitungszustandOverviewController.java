@@ -14,6 +14,7 @@ import notizverwaltung.i18n.I18nComponentsUtil;
 import notizverwaltung.i18n.I18nUtil;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.Notiz;
+import notizverwaltung.model.interfaces.NotizFX;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
@@ -36,6 +37,7 @@ public class BearbeitungszustandOverviewController{
 
     private String name = I18nComponentsUtil.getStandardStatusName();
     private ObservableList<Notiz> notizListe;
+    private ObservableList<NotizFX> notizFXListe;
     private Bearbeitungszustand bazs;
 
     private MainApp mainApp;
@@ -68,6 +70,7 @@ public class BearbeitungszustandOverviewController{
         this.mainApp = mainApp;
 
         notizListe = mainApp.getNotizListe();
+        notizFXListe = mainApp.getNotizFXListe();
         setListener();
     }
 
@@ -87,8 +90,12 @@ public class BearbeitungszustandOverviewController{
      */
     public void ladeNotizen(){
 
-        for(Notiz notiz : notizListe){
-            addNotiz(notiz);
+//        for(Notiz notiz : notizListe){
+//            addNotiz(notiz);
+//        }
+
+        for(NotizFX notizFX: notizFXListe){
+            addNotizFX(notizFX);
         }
 
 
@@ -116,6 +123,29 @@ public class BearbeitungszustandOverviewController{
                 NotizOverviewController controller = loader.getController();
                 controller.setMainApp(mainApp);
                 controller.setNotiz(notiz);
+            }
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void addNotizFX(NotizFX notizFX){
+        //TODO: Fehler werfen, falls Bearbeitungsstatus nicht gesetzt.
+        try{
+            if(this.bazs.getBearbeitungsZustandID() == notizFX.getBearbeitungszustandID().getValue()){
+                FXMLLoader loader = new FXMLLoader();
+                ResourceBundle bundle = I18nUtil.getComponentsResourceBundle();
+                loader.setLocation(MainApp.class
+                        .getResource(FXKonstanten.PFAD_NOTIZ_OVERVIEW_LAYOUT));
+                loader.setResources(bundle);
+                AnchorPane notizView = (AnchorPane) loader.load();
+                notizView.setId("" + notizFX.getNotizID().getValue());
+
+                notizen.getChildren().add(notizView);
+
+                NotizOverviewController controller = loader.getController();
+                controller.setMainApp(mainApp);
+                controller.setNotizFX(notizFX);
             }
         } catch(IOException e){
             e.printStackTrace();
