@@ -36,7 +36,10 @@ public class BearbeitungszustandOverviewController{
     private VBox notizen;
 
     private String name = I18nComponentsUtil.getStandardStatusName();
+
+    //TODO: entfernen
     private ObservableList<Notiz> notizListe;
+
     private ObservableList<NotizFX> notizFXListe;
     private Bearbeitungszustand bazs;
 
@@ -69,7 +72,9 @@ public class BearbeitungszustandOverviewController{
     public void setMainApp(MainApp mainApp){
         this.mainApp = mainApp;
 
+        //TODO: entfernen
         notizListe = mainApp.getNotizListe();
+
         notizFXListe = mainApp.getNotizFXListe();
         setListener();
     }
@@ -90,6 +95,7 @@ public class BearbeitungszustandOverviewController{
      */
     public void ladeNotizen(){
 
+//        TODO: entfernen
 //        for(Notiz notiz : notizListe){
 //            addNotiz(notiz);
 //        }
@@ -107,7 +113,8 @@ public class BearbeitungszustandOverviewController{
      * @param notiz Die einzufuegende Notiz
      */
     public void addNotiz(Notiz notiz){
-        //TODO: Fehler werfen, falls Bearbeitungsstatus nicht gesetzt.
+        //TODO: Methode entfernen
+
         try{
             if(this.bazs.getBearbeitungsZustandID() == notiz.getBearbeitungszustandID()){
                 FXMLLoader loader = new FXMLLoader();
@@ -158,9 +165,21 @@ public class BearbeitungszustandOverviewController{
      * @param notiz Die zu loeschende Notiz
      */
     public void removeNotiz(Notiz notiz){
+        //TODO: Methode entfernen
+
         String notizID = "" + notiz.getNotizID();
 
-        for(Node notizView: notizen.getChildren()){
+        for(Node notizView : notizen.getChildren()){
+            if(notizID.equals(notizView.getId())){
+                notizen.getChildren().remove(notizView);
+            }
+        }
+    }
+
+    public void removeNotizFX(NotizFX notizFX){
+        String notizID = "" + notizFX.getNotizID().getValue();
+
+        for(Node notizView : notizen.getChildren()){
             if(notizID.equals(notizView.getId())){
                 notizen.getChildren().remove(notizView);
             }
@@ -173,19 +192,19 @@ public class BearbeitungszustandOverviewController{
      * wird dies auch in der GUI dargestellt.
      */
     private void setListener(){
-        notizListe.addListener(new ListChangeListener<Notiz>() {
+        notizFXListe.addListener(new ListChangeListener<NotizFX>() {
             @Override
-            public void onChanged(Change<? extends Notiz> c) {
+            public void onChanged(Change<? extends NotizFX> c) {
                 while(c.next()){
                     if(c.wasAdded()){
-                        for(Notiz notiz : c.getAddedSubList()){
-                            addNotiz(notiz);
+                        for(NotizFX notizFX : c.getAddedSubList()){
+                            addNotizFX(notizFX);
                         }
                     }
 
                     if(c.wasRemoved()){
-                        for(Notiz notiz : c.getRemoved()){
-                            removeNotiz(notiz);
+                        for(NotizFX notizFX : c.getRemoved()){
+                            removeNotizFX(notizFX);
                         }
                     }
                 }
