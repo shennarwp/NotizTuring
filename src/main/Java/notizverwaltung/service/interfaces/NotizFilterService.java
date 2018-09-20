@@ -11,16 +11,16 @@ import java.util.function.Predicate;
  *
  *
  * @author Kevin Engelhardt
+ * @author Shenna RWP
  * @version 1.0
- * @since
  */
 public interface NotizFilterService {
 
-    public List<Notiz> filterAlleNotizenMitLambda (int notizblockID, Predicate<Notiz> notizPredicate);
+    List<Notiz> filterAlleNotizenMitLambda (int notizblockID, Predicate<Notiz> notizPredicate);
 
-    public List<Notiz> filterAlleNotizenMitPriorität(int notizblockID, int bearbeitungszustandID);
-    public List<Notiz> filterAlleNotizenOhnePriorität (int notizblockID,int bearbeitungszustandID);
-    public List<Notiz> filterAlleNotizenMiteinerBestimmtenKategorie(int notizblockID,int kategorieID);
+    List<Notiz> filterAlleNotizenMitPrioritaet(int notizblockID, int bearbeitungszustandID);
+    List<Notiz> filterAlleNotizenOhnePrioritaet (int notizblockID,int bearbeitungszustandID);
+    List<Notiz> filterAlleNotizenMiteinerBestimmtenKategorie(int notizblockID,int kategorieID);
 
 
 }

@@ -2,6 +2,7 @@ package notizverwaltung.service.classes;
 
 import notizverwaltung.builders.DaoObjectBuilder;
 import notizverwaltung.dao.interfaces.NotizDAO;
+import notizverwaltung.exceptions.ObjectIstNullException;
 import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.service.interfaces.NotizFilterService;
 import notizverwaltung.validators.IntValidator;
@@ -22,7 +23,6 @@ import java.util.stream.Collectors;
  * @author Tobias Gottschalk
  * @author Shenna RWP
  * @version 1.0
- * @since
  */
 public class NotizFilterServiceImpl implements NotizFilterService {
 
@@ -31,15 +31,15 @@ public class NotizFilterServiceImpl implements NotizFilterService {
 
     /**
      * Konstruktor fuer Filterklasse
-     * @param notizDAO
+     * @param notizDAO notizDAO-Objekt, zum Kommunikation mit dem Datenbank
      */
-    public NotizFilterServiceImpl(NotizDAO notizDAO){
+    public NotizFilterServiceImpl(NotizDAO notizDAO) throws ObjectIstNullException {
         ObjectValidator.checkObObjectNullIst(notizDAO);
         this.notizDAO = notizDAO;
 
     }
 
-    public NotizFilterServiceImpl(){
+    public NotizFilterServiceImpl() throws ObjectIstNullException{
         this(DaoObjectBuilder.getNotizDaoObject());
     }
 
@@ -47,7 +47,7 @@ public class NotizFilterServiceImpl implements NotizFilterService {
      * Die Methode bietet die Moeglichkeit mit Lambda-Ausdruecken eine Liste zu filtern
      * @param notizblockID Integer, darf nicht kleiner als 1 sein
      * @param notizPredicate Predicate Lampda Ausdruck
-     * @return
+     * @return gefilterte Notizen
      */
     @Override
     public List<Notiz> filterAlleNotizenMitLambda(int notizblockID, Predicate<Notiz> notizPredicate) {
@@ -65,10 +65,10 @@ public class NotizFilterServiceImpl implements NotizFilterService {
      * @return Liefert eine gefilterte Liste zurueck
      */
     @Override
-    public List<Notiz> filterAlleNotizenMitPriorität(int notizblockID, int bearbeitungszustandID) {
+    public List<Notiz> filterAlleNotizenMitPrioritaet(int notizblockID, int bearbeitungszustandID) {
         IntValidator.checkObIntNullOderNegativIst(notizblockID);
         IntValidator.checkObIntNullOderNegativIst(bearbeitungszustandID);
-        Predicate<Notiz> mitPriotitaetPredicate = notiz -> notiz.getPrioritaet() == true &&
+        Predicate<Notiz> mitPriotitaetPredicate = notiz -> notiz.getPrioritaet() &&
                                                            notiz.getBearbeitungszustandID() == bearbeitungszustandID;
         return filterAlleNotizenMitLambda(notizblockID, mitPriotitaetPredicate);
     }
@@ -80,10 +80,10 @@ public class NotizFilterServiceImpl implements NotizFilterService {
      * @return Liefert eine gefilterte Liste zurueck
      */
     @Override
-    public List<Notiz> filterAlleNotizenOhnePriorität(int notizblockID, int bearbeitungszustandID) {
+    public List<Notiz> filterAlleNotizenOhnePrioritaet(int notizblockID, int bearbeitungszustandID) {
         IntValidator.checkObIntNullOderNegativIst(notizblockID);
         IntValidator.checkObIntNullOderNegativIst(bearbeitungszustandID);
-        Predicate<Notiz> ohnePriotitaetPredicate = notiz -> notiz.getPrioritaet() == false &&
+        Predicate<Notiz> ohnePriotitaetPredicate = notiz -> !notiz.getPrioritaet() &&
                                                             notiz.getBearbeitungszustandID() == bearbeitungszustandID;
         return filterAlleNotizenMitLambda(notizblockID, ohnePriotitaetPredicate);
     }
