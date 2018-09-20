@@ -128,9 +128,12 @@ public class ErstellungsDialogController {
             Notiz tmpNotiz = notizFXService.wrapNotizFXinNotiz(tmpNotizFX);
 
             notizService.addNotiz(tmpNotiz,DAOKonstanten.DEFAULT_NOTIZBLOCK_ID);
+            tmpNotizFX.setNotizID(tmpNotiz.getNotizID());
+
             mainApp.getNotizFXListe().add(tmpNotizFX);
 
             System.out.println("Notiz erfolgreich in Liste eingefügt und in DB geschrieben:" + mainApp.getNotizFXListe());
+            System.out.println("ID der erstellten Notiz:" + tmpNotiz.getNotizID());
             dialogStage.close();
         }
     }
