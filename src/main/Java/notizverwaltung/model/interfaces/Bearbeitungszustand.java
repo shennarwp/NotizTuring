@@ -2,6 +2,8 @@ package notizverwaltung.model.interfaces;
 
 import notizverwaltung.exceptions.StringIsEmptyException;
 
+
+
 public interface Bearbeitungszustand
 {
 

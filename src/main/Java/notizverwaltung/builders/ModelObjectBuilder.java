@@ -19,11 +19,11 @@ import java.util.Date;
  * @author Agra Bimantara
  * @author Shenna RWP
  */
-public class ModelObjectBuilder
-{
+public class ModelObjectBuilder {
 
     /**
      * erstelle ein NutzerProfil-Objekt
+     *
      * @param nutzerprofilID die ID von Nutzer
      * @return Implementation von Nutzerprofil
      */
@@ -33,15 +33,25 @@ public class ModelObjectBuilder
 
     /**
      * erstelle ein Notizblock-Objekt
+     *
      * @param notizblockID die ID von Notizblock
      * @return Implementation von Notizblock
      */
-    public static Notizblock getNotizblockObject (int notizblockID) {
+    public static Notizblock getNotizblockObject(int notizblockID) {
         return new NotizblockImpl();
     }
 
     /**
+     * erstelle ein Bearbeitungszustand-Objekt
+     *
+     * @return Implementation von Bearbeitungszustand
+     */
+
+    public static Bearbeitungszustand getBearbeitungszustandObject(){ return new BearbeitungszustandImpl();}
+
+    /**
      * erstelle ein Notiz-Objekt
+     *
      * @return Implementation von Notiz
      */
     public static Notiz getNotizObject() {
@@ -50,6 +60,16 @@ public class ModelObjectBuilder
 
     /**
      * erstelle ein Kategorie-Objekt
+     *
+     * @return Implementation von Kategorie
+     */
+    public static Kategorie getKategorieObject() {
+        return new KategorieImpl();
+    }
+
+    /**
+     * erstelle ein Kategorie-Objekt
+     *
      * @param kategorieName name von der Kategorie, darf nicht leer sein
      * @return Implementation von Kategorie
      */
@@ -65,6 +85,7 @@ public class ModelObjectBuilder
 
     /**
      * erstelle ein Bearbeitungszustand-Objekt
+     *
      * @param nameDerSpalte name von der Bearbeitungszustand, darf nicht leer sein
      * @return Implementation von Bearbeitungszustand
      */
@@ -80,8 +101,9 @@ public class ModelObjectBuilder
 
     /**
      * erstelle einAufgaben-Objekt
+     *
      * @param beschreibung beschreibung von der Aufgabe
-     * @param bearbeitet checkbox, ob es schon bearbeitet oder nicht
+     * @param bearbeitet   checkbox, ob es schon bearbeitet oder nicht
      * @return Implementation von der Aufgabe
      */
     public static Aufgabe getAufgabeObject(String beschreibung, boolean bearbeitet) {
@@ -96,10 +118,31 @@ public class ModelObjectBuilder
 
     /**
      * erstelle ein NotizFX-Objekt
+     *
      * @return Implementation von NotizFX
      */
-    public static NotizFX getNotizFXObjekt(){
+    public static NotizFX getNotizFXObjekt() {
         return new NotizFXImpl();
     }
 
+    /**
+     * erstelle ein KategorieFX-Objekt
+     *
+     * @return Implementation von KategorieFX
+     */
+    public static KategorieFX getKategorieFXObjekt() {
+        return new KategorieFXImpl();
+    }
+
+    /**
+     * erstelle ein Bearbeitungszustand-Objekt
+     *
+     * @return Implementation von BearbeitungszustandFX
+     */
+
+    public static BearbeitungszustandFX getBearbeitungszustandFXObjekt() {
+        return new BearbeitungszustandFXImpl();
+    }
 }
+
+
