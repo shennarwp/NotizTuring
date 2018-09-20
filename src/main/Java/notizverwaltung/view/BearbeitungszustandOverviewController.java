@@ -168,6 +168,14 @@ public class BearbeitungszustandOverviewController{
         });
     }
 
+    /**
+     * Dem Bearbeitungszustand der Notiz wird ein Listener hinzugefuegt.
+     * Wenn der Bearbeitungszustand geaendert wird, wird das zur Notiz gehoerende JavaFX
+     * Element aus der Liste geloescht und wieder neu eingefuegt.
+     * Dadurch wird die Notiz im richtigen Bearbeitungszustand eingeordnet.
+     *
+     * @param notizFX
+     */
     private void addMoveListener(NotizFX notizFX){
         IntegerProperty bazsID = notizFX.getBearbeitungszustandID();
 
