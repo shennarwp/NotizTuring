@@ -1,5 +1,8 @@
 package notizverwaltung.view;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -89,6 +92,7 @@ public class BearbeitungszustandOverviewController{
 
         for(NotizFX notizFX: notizFXListe){
             addNotizFX(notizFX);
+            addMoveListener(notizFX);
         }
 
 
@@ -150,6 +154,7 @@ public class BearbeitungszustandOverviewController{
                     if(c.wasAdded()){
                         for(NotizFX notizFX : c.getAddedSubList()){
                             addNotizFX(notizFX);
+                            addMoveListener(notizFX);
                         }
                     }
 
@@ -159,6 +164,18 @@ public class BearbeitungszustandOverviewController{
                         }
                     }
                 }
+            }
+        });
+    }
+
+    private void addMoveListener(NotizFX notizFX){
+        IntegerProperty bazsID = notizFX.getBearbeitungszustandID();
+
+        bazsID.addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                removeNotizFX(notizFX);
+                addNotizFX(notizFX);
             }
         });
     }
