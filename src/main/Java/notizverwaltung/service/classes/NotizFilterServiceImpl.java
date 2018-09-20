@@ -44,7 +44,7 @@ public class NotizFilterServiceImpl implements NotizFilterService {
     }
 
     /**
-     * Die Methode bittet die Moeglichkeit mit Lambda-Ausdruecken eine Liste zu filtern
+     * Die Methode bietet die Moeglichkeit mit Lambda-Ausdruecken eine Liste zu filtern
      * @param notizblockID Integer, darf nicht kleiner als 1 sein
      * @param notizPredicate Predicate Lampda Ausdruck
      * @return
