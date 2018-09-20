@@ -7,6 +7,14 @@ import notizverwaltung.validators.IntValidator;
 import notizverwaltung.validators.ObjectValidator;
 import notizverwaltung.validators.StringValidator;
 
+/**
+ * Klasse fuer KategorieFX. Die Klasse implementiert das KategorieFX Interface.
+ *
+ * @author Kevin Engelhardt
+ *
+ * @version 1.0
+ */
+
 public class KategorieFXImpl implements KategorieFX {
 
     private IntegerProperty kategorieID;

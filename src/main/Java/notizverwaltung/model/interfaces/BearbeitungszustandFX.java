@@ -5,7 +5,7 @@ import javafx.beans.property.StringProperty;
 
 /**
  * Das Interface stellt die Methoden für die Modellklasse bereit
- * @autho Kevin Engelhardt
+ * @author Kevin Engelhardt
  *
  * @version 1.0
  */
