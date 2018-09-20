@@ -41,6 +41,7 @@ public class BearbeitungszustandFXImpl implements BearbeitungszustandFX {
 
     }
 
+
     @Override
     public StringProperty getName() {
         return name;

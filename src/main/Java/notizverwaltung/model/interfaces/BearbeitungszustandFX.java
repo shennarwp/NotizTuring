@@ -15,7 +15,7 @@ public interface BearbeitungszustandFX {
     public IntegerProperty getBearbeitungsZustandID();
     public void setBearbeitungsZustandID(int bearbeitungszustandID);
 
-    public StringProperty getNameDerSpalte();
+    public StringProperty getName();
     public void setName(String nameDerSpalte);
 
     public IntegerProperty getPosition();
