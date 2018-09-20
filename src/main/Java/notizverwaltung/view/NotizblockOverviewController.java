@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
  * Die tabs werden hier generiert. Sie stellen die Notizbloecke dar.
  *
  * @author Johannes Gerwert
- * @version 12.09.2018
+ * @version 20.09.2018
  */
 public class NotizblockOverviewController{
 

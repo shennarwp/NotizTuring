@@ -26,7 +26,7 @@ import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Node;
  * Die Bearbeitungszustaende werden hier bedient.
  *
  * @author Johannes Gerwert
- * @version 12.09.2018
+ * @version 20.09.2018
  */
 public class BearbeitungszustandOverviewController{
 
@@ -37,8 +37,6 @@ public class BearbeitungszustandOverviewController{
 
     private String name = I18nComponentsUtil.getStandardStatusName();
 
-    //TODO: entfernen
-    private ObservableList<Notiz> notizListe;
 
     private ObservableList<NotizFX> notizFXListe;
     private Bearbeitungszustand bazs;
@@ -72,9 +70,6 @@ public class BearbeitungszustandOverviewController{
     public void setMainApp(MainApp mainApp){
         this.mainApp = mainApp;
 
-        //TODO: entfernen
-        notizListe = mainApp.getNotizListe();
-
         notizFXListe = mainApp.getNotizFXListe();
         setListener();
     }
@@ -95,11 +90,6 @@ public class BearbeitungszustandOverviewController{
      */
     public void ladeNotizen(){
 
-//        TODO: entfernen
-//        for(Notiz notiz : notizListe){
-//            addNotiz(notiz);
-//        }
-
         for(NotizFX notizFX: notizFXListe){
             addNotizFX(notizFX);
         }
@@ -110,32 +100,9 @@ public class BearbeitungszustandOverviewController{
     /**
      * Eine Notiz wird in die VBox eingefuegt.
      *
-     * @param notiz Die einzufuegende Notiz
+     * @param notizFX Die einzufuegende Notiz
      */
-    public void addNotiz(Notiz notiz){
-        //TODO: Methode entfernen
-
-        try{
-            if(this.bazs.getBearbeitungsZustandID() == notiz.getBearbeitungszustandID()){
-                FXMLLoader loader = new FXMLLoader();
-                ResourceBundle bundle = I18nUtil.getComponentsResourceBundle();
-                loader.setLocation(MainApp.class
-                        .getResource(FXKonstanten.PFAD_NOTIZ_OVERVIEW_LAYOUT));
-                loader.setResources(bundle);
-                AnchorPane notizView = (AnchorPane) loader.load();
-                notizView.setId("" + notiz.getNotizID());
-
-                notizen.getChildren().add(notizView);
-
-                NotizOverviewController controller = loader.getController();
-                controller.setMainApp(mainApp);
-            }
-        } catch(IOException e){
-            e.printStackTrace();
-        }
-    }
-
-    public void addNotizFX(NotizFX notizFX){
+    private void addNotizFX(NotizFX notizFX){
         //TODO: Fehler werfen, falls Bearbeitungsstatus nicht gesetzt.
         try{
             if(this.bazs.getBearbeitungsZustandID() == notizFX.getBearbeitungszustandID().getValue()){
@@ -161,21 +128,9 @@ public class BearbeitungszustandOverviewController{
     /**
      * Eine Notiz wird aus der VBox entfernt.
      *
-     * @param notiz Die zu loeschende Notiz
+     * @param notizFX Die zu loeschende Notiz
      */
-    public void removeNotiz(Notiz notiz){
-        //TODO: Methode entfernen
-
-        String notizID = "" + notiz.getNotizID();
-
-        for(Node notizView : notizen.getChildren()){
-            if(notizID.equals(notizView.getId())){
-                notizen.getChildren().remove(notizView);
-            }
-        }
-    }
-
-    public void removeNotizFX(NotizFX notizFX){
+    private void removeNotizFX(NotizFX notizFX){
         String notizID = "" + notizFX.getNotizID().getValue();
 
         for(Node notizView : notizen.getChildren()){

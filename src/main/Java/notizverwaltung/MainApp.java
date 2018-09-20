@@ -45,7 +45,7 @@ import java.util.ResourceBundle;
  *
  * @author Michelle Blau
  * @author Johannes Gerwert
- * @version 12.09.2018
+ * @version 20.09.2018
  */
 
 public class MainApp extends Application {

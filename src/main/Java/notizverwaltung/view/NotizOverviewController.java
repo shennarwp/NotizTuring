@@ -29,7 +29,7 @@ import static notizverwaltung.util.DateUtil.convertDateInLocalDate;
  * Die Notizen werden hier bedient.
  *
  * @author Johannes Gerwert
- * @version 12.09.2018
+ * @version 20.09.2018
  */
 public class NotizOverviewController {
 
@@ -65,7 +65,7 @@ public class NotizOverviewController {
 
     /**
      * Die Umgebung in der das Bedienelement agiert wird gesetzt.
-     * //TODO: ComboBox Kommentar
+     * Der Inhalt der Liste zur Spaltenwahl wird eingerichtet.
      * @param mainApp Ein Verweis auf die MainApp.
      */
     public void setMainApp(MainApp mainApp) {
@@ -75,6 +75,12 @@ public class NotizOverviewController {
 
     }
 
+    /**
+     * Die anzuzeigende Notiz wird dem Objekt zugewiesen.
+     * Die anzuzeigenden Daten werden den entsprechenden FXML Objekten zugewiesen.
+     *
+     * @param notizFX Die anzuzeigende Notiz
+     */
     public void setNotizFX(NotizFX notizFX){
         this.notizFX = notizFX;
 
@@ -144,6 +150,7 @@ public class NotizOverviewController {
 
             notizService.updateNotiz(tmpNotiz);
 
+            //TODO: entfernen
             System.out.println("\n\n\n\n\n\nDie Notiz wurde nach links bewegt!!!");
         }
     }
@@ -173,11 +180,14 @@ public class NotizOverviewController {
 
             notizService.updateNotiz(tmpNotiz);
 
+            //TODO: entfernen
             System.out.println("\n\n\n\n\n\nDie Notiz wurde nach rechts bewegt!!!");
         }
     }
 
-    //TODO: Kommentar
+    /**
+     * Die Notiz wird zu der Spalte bewegt, die in der ComboBox ausgewaehlt wurde.
+     */
     @FXML
     private void handleMoveToBearbeitungszustand(){
 
