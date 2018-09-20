@@ -13,13 +13,10 @@ import notizverwaltung.constants.FXKonstanten;
 import notizverwaltung.i18n.I18nComponentsUtil;
 import notizverwaltung.i18n.I18nUtil;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
-import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.model.interfaces.NotizFX;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
-
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Node;
 
 /**
  * Diese Klasse erzeugt einen Teil des Hauptanzeigefensters.
@@ -71,7 +68,7 @@ public class BearbeitungszustandOverviewController{
         this.mainApp = mainApp;
 
         notizFXListe = mainApp.getNotizFXListe();
-        setListener();
+        addNotizListener();
     }
 
     /**
@@ -145,7 +142,7 @@ public class BearbeitungszustandOverviewController{
      * Wenn eine Notiz zur Liste hinzugefuegt oder daraus entfernt wird,
      * wird dies auch in der GUI dargestellt.
      */
-    private void setListener(){
+    private void addNotizListener(){
         notizFXListe.addListener(new ListChangeListener<NotizFX>() {
             @Override
             public void onChanged(Change<? extends NotizFX> c) {

@@ -41,14 +41,14 @@ class NotizFilterServiceImplTest {
     void filterAlleNotizenOhnePrioritätNotizblockIDIstNegativ() {
         int testInt = -1;
         NotizFilterServiceImpl notizFilterService = new NotizFilterServiceImpl();
-        assertThrows(IntIstNegativException.class, () -> {notizFilterService.filterAlleNotizenOhnePriorität(testInt,1);});
+        assertThrows(IntIstNegativException.class, () -> {notizFilterService.filterAlleNotizenOhnePrioritaet(testInt,1);});
     }
 
     @Test
     void filterAlleNotizenOhnePrioritätBearbeitungszustandIDIstNegativ() {
         int testInt = -1;
         NotizFilterServiceImpl notizFilterService = new NotizFilterServiceImpl();
-        assertThrows(IntIstNegativException.class, () -> {notizFilterService.filterAlleNotizenOhnePriorität(testInt,1);});
+        assertThrows(IntIstNegativException.class, () -> {notizFilterService.filterAlleNotizenOhnePrioritaet(testInt,1);});
     }
 
 
