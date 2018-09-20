@@ -16,7 +16,7 @@ import java.util.function.Predicate;
  */
 public interface NotizFilterService {
 
-    public List<Notiz> filterAlleNotizenMitLambda (int notizblockID,int bearbeitungszustandID,Predicate<Notiz> notizPredicate);
+    public List<Notiz> filterAlleNotizenMitLambda (int notizblockID, Predicate<Notiz> notizPredicate);
 
     public List<Notiz> filterAlleNotizenMitPriorität(int notizblockID, int bearbeitungszustandID);
     public List<Notiz> filterAlleNotizenOhnePriorität (int notizblockID,int bearbeitungszustandID);
