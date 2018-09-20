@@ -10,6 +10,7 @@ import notizverwaltung.validators.ObjectValidator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 
 /**
@@ -50,15 +51,11 @@ public class NotizFilterServiceImpl implements NotizFilterService {
      */
     @Override
     public List<Notiz> filterAlleNotizenMitLambda(int notizblockID, Predicate<Notiz> notizPredicate) {
-        List<Notiz> listeMitGefiltertenNotizen = new ArrayList<>();
         List<Notiz> listMitAllenNotizen = notizDAO.getAlleNotizenVomNotizblock(notizblockID);
 
-        for(Notiz notiz : listMitAllenNotizen){
-            if(notizPredicate.test(notiz)){
-                listeMitGefiltertenNotizen.add(notiz);
-            }
-        }
-        return listeMitGefiltertenNotizen;
+        return listMitAllenNotizen.stream()
+                                  .filter(notizPredicate)
+                                  .collect(Collectors.toList());
     }
 
     /**
