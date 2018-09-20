@@ -51,7 +51,7 @@ public class NotizSortServiceImpl implements NotizSortService {
 
 	/**
 	 * sortiert alle Notizen aufsteigend nach Faelligkeitsdatum
-	 * @param notizblockID
+	 * @param notizblockID Integer, darf nicht kleiner als 1
 	 * @return aufsteigend sortierende Liste von Notizen
 	 */
 	@Override
@@ -62,7 +62,7 @@ public class NotizSortServiceImpl implements NotizSortService {
 
 	/**
 	 * sortiert alle Notizen absteigend nach Faelligkeitsdatum
-	 * @param notizblockID
+	 * @param notizblockID Integer, darf nicht kleiner als 1
 	 * @return absteigend sortierende Liste von Notizen
 	 */
 	@Override
