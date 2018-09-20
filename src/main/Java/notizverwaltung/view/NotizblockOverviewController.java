@@ -65,7 +65,7 @@ public class NotizblockOverviewController{
         this.mainApp = mainApp;
 
         bearbeitungszustandListe = mainApp.getBearbeitungszustandListe();
-        setListener();
+        addBearbeitungszustandListener();
     }
 
     /**
@@ -125,7 +125,7 @@ public class NotizblockOverviewController{
      * Wenn ein Bearbeitungsstatus zur Liste hinzugefuegt oder daraus entfernt wird,
      * wird dies auch in der GUI dargestellt.
      */
-    private void setListener(){
+    private void addBearbeitungszustandListener(){
         bearbeitungszustandListe.addListener(new ListChangeListener<Bearbeitungszustand>() {
             @Override
             public void onChanged(Change<? extends Bearbeitungszustand> c) {

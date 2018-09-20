@@ -129,7 +129,6 @@ public class BearbeitungszustandOverviewController{
 
                 NotizOverviewController controller = loader.getController();
                 controller.setMainApp(mainApp);
-                controller.setNotiz(notiz);
             }
         } catch(IOException e){
             e.printStackTrace();

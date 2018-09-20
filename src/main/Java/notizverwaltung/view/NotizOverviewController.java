@@ -2,19 +2,25 @@ package notizverwaltung.view;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import notizverwaltung.MainApp;
 import notizverwaltung.builders.ServiceObjectBuilder;
 import notizverwaltung.i18n.I18nComponentsUtil;
+import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.model.interfaces.NotizFX;
 import notizverwaltung.service.classes.KategorieServiceImpl;
+import notizverwaltung.service.interfaces.BearbeitungszustandService;
 import notizverwaltung.service.interfaces.KategorieService;
+import notizverwaltung.service.interfaces.NotizFXService;
+import notizverwaltung.service.interfaces.NotizService;
 
 import java.util.Date;
+import java.util.ListIterator;
 
 import static notizverwaltung.util.DateUtil.convertDateInLocalDate;
 
@@ -36,15 +42,18 @@ public class NotizOverviewController {
     @FXML
     private Label notizLabel;
     @FXML
-    private ComboBox spaltenWahlBox;
+    private ComboBox<Bearbeitungszustand> spaltenWahlBox;
 
-    //TODO: entfernen
-    private Notiz notiz;
     private NotizFX notizFX;
+
+    private ObservableList<Bearbeitungszustand> bearbeitungszustandListe;
 
     private MainApp mainApp;
 
     private KategorieService kategorieService = ServiceObjectBuilder.getKategorieService();
+    private BearbeitungszustandService bearbeitungszustandService = ServiceObjectBuilder.getBearbeitungszustandService();
+    private NotizFXService notizFXService = ServiceObjectBuilder.getNotizFXService();
+    private NotizService notizService = ServiceObjectBuilder.getNotizService();
 
     /**
      * Konstruktor
@@ -56,32 +65,14 @@ public class NotizOverviewController {
 
     /**
      * Die Umgebung in der das Bedienelement agiert wird gesetzt.
+     * //TODO: ComboBox Kommentar
      * @param mainApp Ein Verweis auf die MainApp.
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
-    }
+        bearbeitungszustandListe = mainApp.getBearbeitungszustandListe();
+        spaltenWahlBox.setItems(bearbeitungszustandListe);
 
-    /**
-     * Die Notiz, die zu diesem Controller gehoert wird festgelegt.
-     * Danach werden alle Notiz spezifischen Labels beschriftet.
-     * @param notiz Die Notiz, die zum Controller gehoert
-     */
-    public void setNotiz(Notiz notiz){
-        //TODO: entfernen
-
-        this.notiz = notiz;
-
-        if(notiz.getPrioritaet()){
-            prioritaetLabel.setText(I18nComponentsUtil.getStandardPriorityHigh());
-        }else{
-            prioritaetLabel.setText(I18nComponentsUtil.getStandardPriorityLow());
-        }
-
-        //TODO: Bessere Loesung zur Datumsanzeige finden
-        datumLabel.setText(notiz.getFaelligkeit().toString());
-        kategorieLabel.setText(kategorieService.findKategorieName(notiz.getKategorieID()));
-        notizLabel.setText(notiz.getTitle());
     }
 
     public void setNotizFX(NotizFX notizFX){
@@ -135,7 +126,26 @@ public class NotizOverviewController {
      */
     @FXML
     private void handleMoveLeft(){
-        //TODO
+        int bearbeitungszustandID;
+        Bearbeitungszustand bazs;
+        Notiz tmpNotiz;
+        int position;
+        ListIterator<Bearbeitungszustand> iterator;
+
+        bearbeitungszustandID = notizFX.getBearbeitungszustandID().getValue();
+        bazs = bearbeitungszustandService.getBearbeitungszustand(bearbeitungszustandID);
+        position = bearbeitungszustandListe.indexOf(bazs);
+        iterator = bearbeitungszustandListe.listIterator(position);
+
+        if(iterator.hasPrevious()){
+
+            notizFX.setBearbeitungszustandID(iterator.previous().getBearbeitungsZustandID());
+            tmpNotiz = notizFXService.wrapNotizFXinNotiz(notizFX);
+
+            notizService.updateNotiz(tmpNotiz);
+
+            System.out.println("\n\n\n\n\n\nDie Notiz wurde nach links bewegt!!!");
+        }
     }
 
     /**
@@ -143,6 +153,44 @@ public class NotizOverviewController {
      */
     @FXML
     private void handleMoveRight(){
-        //TODO
+
+        int bearbeitungszustandID;
+        Bearbeitungszustand bazs;
+        Notiz tmpNotiz;
+        int position;
+        ListIterator<Bearbeitungszustand> iterator;
+
+        bearbeitungszustandID = notizFX.getBearbeitungszustandID().getValue();
+        bazs = bearbeitungszustandService.getBearbeitungszustand(bearbeitungszustandID);
+        position = bearbeitungszustandListe.indexOf(bazs);
+        iterator = bearbeitungszustandListe.listIterator(position);
+        iterator.next();
+
+        if(iterator.hasNext()){
+
+            notizFX.setBearbeitungszustandID(iterator.next().getBearbeitungsZustandID());
+            tmpNotiz = notizFXService.wrapNotizFXinNotiz(notizFX);
+
+            notizService.updateNotiz(tmpNotiz);
+
+            System.out.println("\n\n\n\n\n\nDie Notiz wurde nach rechts bewegt!!!");
+        }
+    }
+
+    //TODO: Kommentar
+    @FXML
+    private void handleMoveToBearbeitungszustand(){
+
+        Bearbeitungszustand bazs;
+        Notiz tmpNotiz;
+        bazs = (Bearbeitungszustand) spaltenWahlBox.getValue();
+
+        //TODO: entfernen
+        System.out.println("\n\n\n\n\n\nDie Notiz wurde zu Bearbeitungszustand NR." + bazs.getBearbeitungsZustandID() + " bewegt!!!");
+
+        notizFX.setBearbeitungszustandID(bazs.getBearbeitungsZustandID());
+        tmpNotiz = notizFXService.wrapNotizFXinNotiz(notizFX);
+
+        notizService.updateNotiz(tmpNotiz);
     }
 }
