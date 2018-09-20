@@ -19,10 +19,10 @@ import java.util.stream.Collectors;
 public class NotizSortServiceImpl implements NotizSortService {
 
 	private NotizDAO notizDAO;
-	Comparator<Notiz> aufsteigendFaelligkeit = Comparator.comparing(Notiz::getFaelligkeit);
+	private Comparator<Notiz> aufsteigendFaelligkeit = Comparator.comparing(Notiz::getFaelligkeit);
 	/**
 	 * Konstruktor fuer Filterklasse
-	 * @param notizDAO
+	 * @param notizDAO notizDAO-Objeckt, für Kommunikation mit dem Datenbank
 	 */
 	public NotizSortServiceImpl(NotizDAO notizDAO){
 		ObjectValidator.checkObObjectNullIst(notizDAO);
