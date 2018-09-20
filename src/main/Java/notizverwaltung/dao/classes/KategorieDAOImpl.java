@@ -9,6 +9,7 @@ import javax.persistence.NoResultException;
 import java.util.List;
 
 /**
+ * Klasse für Datenbank-Methode von Kategorie
  * @author Agra Bimantara
  * @author Shenna RWP
  */
@@ -19,6 +20,11 @@ public class KategorieDAOImpl extends ObjectDAOImpl implements KategorieDAO
         super();
     }
 
+    /**
+     * erstelle neue Kategorie in Datenbank
+     * @param kategorie
+     * @return neue Kategorie
+     */
     @Override
     public int addKategorie(Kategorie kategorie) {
         initTransaction();
@@ -35,6 +41,11 @@ public class KategorieDAOImpl extends ObjectDAOImpl implements KategorieDAO
         return kategorieID;
     }
 
+    /**
+     * suche eine bestimmte Kategorie
+     * @param kategorieID
+     * @return bestimmte Kategorie
+     */
     @Override
     public Kategorie getKategorie(int kategorieID) {
         initTransaction();
@@ -50,6 +61,11 @@ public class KategorieDAOImpl extends ObjectDAOImpl implements KategorieDAO
         return kategorie;
     }
 
+    /**
+     * prüfe, ob die Kategorie existiert oder nicht
+     * @param kategorieName
+     * @return bestimmte Kategorie
+     */
     @Override
     public int istKategorieExist(String kategorieName) {
         initTransaction();
@@ -68,8 +84,10 @@ public class KategorieDAOImpl extends ObjectDAOImpl implements KategorieDAO
         return kategorieID;
     }
 
-
-
+    /**
+     * Kategorie in Datenbank ändern
+     * @param kategorie
+     */
     @Override
     public void updateKategorie(Kategorie kategorie) {
         initTransaction();
@@ -86,6 +104,11 @@ public class KategorieDAOImpl extends ObjectDAOImpl implements KategorieDAO
 
         finishTransaction();
     }
+
+    /**
+     * lösche bestimmte Kategorie in Datenbank
+     * @param kategorieID
+     */
     @Override
     public void deleteKategorie(int kategorieID) {
         initTransaction();
@@ -104,6 +127,11 @@ public class KategorieDAOImpl extends ObjectDAOImpl implements KategorieDAO
         finishTransaction();
     }
 
+    /**
+     * suche die Summe von alle Notizen in einer bestimmten Kategorie
+     * @param kategorieID
+     * @return die Summe von alle Notizen in einer bestimmten Kategorie
+     */
     @Override
     public long getAnzahlNotizenInKategorie(int kategorieID) {
         initTransaction();
@@ -117,6 +145,10 @@ public class KategorieDAOImpl extends ObjectDAOImpl implements KategorieDAO
         return anzahlNotizen;
     }
 
+    /**
+     * suche Liste von alle vorhandenen Kategorien in Datenbank
+     * @return Liste von alle vorhandenen Kategorien in Datenbank
+     */
     @Override
     public List<Kategorie> getAlleKategorien() {
         initTransaction();

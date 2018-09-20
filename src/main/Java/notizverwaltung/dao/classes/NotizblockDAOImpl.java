@@ -11,21 +11,35 @@ import javax.persistence.NoResultException;
 import java.util.List;
 
 /**
+ * Klasse für Datenbank-Methode von Notizblock
  * @author Agra Bimantara
  */
 
 public class NotizblockDAOImpl extends ObjectDAOImpl implements NotizblockDAO {
+
+    /**
+     * suche einer bestimmte Notizblock
+     * @return null
+     */
     @Override
     public NotizblockImpl getNotizblock() {
         return null;
     }
 
+    /**
+     * erstelle neuer Notizblock in Datenbank
+     * @param notizblockImpl
+     * @return neuer Notizblock
+     */
     @Override
     public int addNotizblock(NotizblockImpl notizblockImpl) {
         return 0;
     }
 
-
+    /**
+     * lösche bestimmter Notizblock in Datenbank
+     * @param notizblockID
+     */
     @Override
     public void deleteNotizblock(int notizblockID) {
             initTransaction();
@@ -44,6 +58,11 @@ public class NotizblockDAOImpl extends ObjectDAOImpl implements NotizblockDAO {
             finishTransaction();
     }
 
+    /**
+     * suche alle vorhandenen Notizen von einem bestimmten Notizblock
+     * @param notizblockID
+     * @return alle vorhandenen Notizen von einem bestimmten Notizblock
+     */
     @Override
     public List<Notiz> getAlleNotizenVomNotizblock(int notizblockID) {
         initTransaction();
@@ -60,6 +79,11 @@ public class NotizblockDAOImpl extends ObjectDAOImpl implements NotizblockDAO {
         return notizList;
     }
 
+    /**
+     * suche alle vorhandenen Kategorien von einem bestimmten Notizblock
+     * @param notizblockID
+     * @return alle vorhandenen Kategorien von einem bestimmten Notizblock
+     */
     @Override
     public List<Kategorie> getAlleKategorienVomNotizblock(int notizblockID) {
         initTransaction();
@@ -76,6 +100,11 @@ public class NotizblockDAOImpl extends ObjectDAOImpl implements NotizblockDAO {
         return kategorieList;
     }
 
+    /**
+     * suche alle vorhandenen Bearbeitungszustände von einem bestimmten Notizblock
+     * @param notizblockID
+     * @return alle vorhandenen Bearbeitungszustände von einem bestimmten Notizblock
+     */
     @Override
     public List<Bearbeitungszustand> getAlleBearbeitungszustaendeVomNotizblock(int notizblockID) {
         initTransaction();

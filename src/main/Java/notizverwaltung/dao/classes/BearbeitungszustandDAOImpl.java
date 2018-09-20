@@ -10,6 +10,7 @@ import javax.persistence.NoResultException;
 import java.util.List;
 
 /**
+ * Klasse für Datenbank-Methode von Bearbeitungszutand
  * @author Agra Bimantara
  * @author Shenna RWP
  */
@@ -20,6 +21,11 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
         super();
     }
 
+    /**
+     * erstelle neue Bearbeitungszustand in Datenbank
+     * @param bearbeitungszustand
+     * @return neue Bearbeitungszustand
+     */
     @Override
     public int addBearbeitungszustand(Bearbeitungszustand bearbeitungszustand) {
         initTransaction();
@@ -36,6 +42,11 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
         return bearbeitungszustandID ;
     }
 
+    /**
+     * suche einer bestimmte Bearbeitungszutand
+     * @param bearbeitungszustandID
+     * @return einer bestimmte Bearbeitungszutand
+     */
     @Override
     public Bearbeitungszustand getBearbeitungszustand(int bearbeitungszustandID) {
         initTransaction();
@@ -51,6 +62,10 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
         return bearbeitungszustand;
     }
 
+    /**
+     * suche Liste von alle vorhandenen Bearbeitungszustände in Datenbank
+     * @return alle vorhandenen Bearbeitungszustände in Datenbank
+     */
     @Override
     public List<Bearbeitungszustand> getAlleBearbeitungszustand() {
         initTransaction();
@@ -63,6 +78,11 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
         return listBearbeitungszutand;
     }
 
+    /**
+     * prüfe, ob der Bearbeitungszutand existiert oder nicht
+     * @param bearbeitungszustand
+     * @return bestimmter Bearbeitungszutand
+     */
     @Override
     public int istBearbeitungszustandExist(String bearbeitungszustand) {
         initTransaction();
@@ -81,6 +101,10 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
         return bearbeitungszustandID;
     }
 
+    /**
+     * Bearbeitungszutand in Datenbank ändern
+     * @param bearbeitungszustand
+     */
     @Override
     public void updateBearbeitungszustand(Bearbeitungszustand bearbeitungszustand) {
         initTransaction();
@@ -98,6 +122,10 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
 
     }
 
+    /**
+     * lösche bestimmter Bearbeitungszutand in Datenbank
+     * @param bearbeitungszustandID
+     */
     @Override
     public void deleteBearbeitungszustand(int bearbeitungszustandID) {
         initTransaction();
@@ -115,6 +143,11 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
         finishTransaction();
     }
 
+    /**
+     * suche die Summe von alle Notizen in einem bestimmten Bearbeitungszutand
+     * @param bearbeitungszustandID
+     * @return die Summe von alle Notizen in einem bestimmten Bearbeitungszutand
+     */
     @Override
     public long getAnzahlNotizenInBearbeitungszustand(int bearbeitungszustandID) {
         initTransaction();
@@ -129,6 +162,11 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
         return anzahlNotizen;
     }
 
+    /**
+     * suche alle vorhandenen Notizen von einem bestimmten Bearbeitungszustand
+     * @param bearbeitungszustandID
+     * @return alle vorhandenen Notizen von einem bestimmten Bearbeitungszustand
+     */
     @Override
     public List<Notiz> getAlleNotizenVonEinemBearbeitungszustand(int bearbeitungszustandID) {
         initTransaction();
@@ -145,6 +183,11 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
         return notizList;
     }
 
+    /**
+     * suche alle vorhandenen Bearbeitungszustände von einem bestimmten Notizblock
+     * @param notizblockID
+     * @return alle vorhandenen Bearbeitungszustände von einem bestimmten Notizblock
+     */
     @Override
     public List<Bearbeitungszustand> getAlleBearbeitungszustaendeVomNotizblock(int notizblockID)
     {

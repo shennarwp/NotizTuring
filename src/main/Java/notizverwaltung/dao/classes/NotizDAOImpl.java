@@ -9,6 +9,7 @@ import java.util.List;
 
 
 /**
+ * Klasse für Datenbank-Methode von Notiz
  * @author Shenna RWP
  * @author Agra Bimantara
  */
@@ -18,6 +19,13 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
         super();
     }
 
+
+    /**
+     * erstelle neue Notiz in Datenbank
+     * @param notiz
+     * @param notizblockID
+     * @return neue Notiz
+     */
     @Override
     public int addNotiz(Notiz notiz, int notizblockID) {
         initTransaction();
@@ -30,6 +38,12 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
         finishTransaction();
         return notizID;
     }
+
+    /**
+     * suche eine bestimmte Notiz
+     * @param notizID
+     * @return gesuchte bestimmte Notiz
+     */
 
     @Override
     public Notiz getNotiz(int notizID) {
@@ -46,6 +60,10 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
         return notiz;
     }
 
+    /**
+     * suche alle vorhandenen Notizen in Datenbank
+     * @return alle vorhandenen Notizen in Datenbank
+     */
     @Override
     public List<Notiz> getAlleNotizen() {
         initTransaction();
@@ -58,6 +76,11 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
         finishTransaction();
         return listNotiz;
     }
+
+    /**
+     * die Notiz in Datenbank ändern
+     * @param notiz
+     */
 
     @Override
     public void updateNotiz(Notiz notiz) {
@@ -76,6 +99,11 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
 
     }
 
+    /**
+     * lösche bestimmte Notiz in Datenbank
+     * @param notizID
+     */
+
     @Override
     public void deleteNotiz(int notizID) {
         initTransaction();
@@ -92,6 +120,11 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
         finishTransaction();
     }
 
+    /**
+     * suche alle vorhandenen Notizen von einem bestimmten Notizblock
+     * @param notizblockID
+     * @return alle vorhandenen Notizen von einem bestimmten Notizblock
+     */
     @Override
     public List<Notiz> getAlleNotizenVomNotizblock(int notizblockID) {
         initTransaction();
@@ -108,6 +141,11 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
         return notizList;
     }
 
+    /**
+     * suche alle vorhandenen Notizen von einer bestimmten Kategorie
+     * @param kategorieID
+     * @return alle vorhandenen Notizen von einer bestimmten Kategorie
+     */
     @Override
     public List<Notiz> getAlleNotizenvonEinerKategorie(int kategorieID) {
        initTransaction();
@@ -123,6 +161,11 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
         return notizList;
     }
 
+    /**
+     * suche alle vorhandenen Notizen von einer bestimmten Priorität
+     * @param prioritaet
+     * @return alle vorhandenen Notizen von einer bestimmten Priorität
+     */
     @Override
     public List<Notiz> getAlleNotizenMitPrioritaet(boolean prioritaet) {
         initTransaction();
