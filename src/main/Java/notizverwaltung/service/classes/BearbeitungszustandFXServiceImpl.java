@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ *Klasse fuer BearbeitungszustandFXServiceImpl. Implementiert das Interface BearbeitungszustandFXService.
+ * @author Kevin Engelhardt
+ * @version 1.0
  */
 
 public class BearbeitungszustandFXServiceImpl implements BearbeitungszustandFXService {

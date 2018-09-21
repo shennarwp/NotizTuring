@@ -27,10 +27,19 @@ public class KategorieFXImpl implements KategorieFX {
         farbe = new SimpleObjectProperty();
     }
 
+    /**
+     *
+     * @return gibt KategorieID als IntegerProperty  zurueck.
+     */
     @Override
     public IntegerProperty getKategorieID() {
         return kategorieID;
     }
+
+    /**
+     *
+     * @param kategorieID als int, int darf nicht kleiner 0 sein.
+     */
 
     @Override
     public void setKategorieID(int kategorieID) {
@@ -39,10 +48,19 @@ public class KategorieFXImpl implements KategorieFX {
 
     }
 
+    /**
+     *
+     * @return Gibt KategorieName als StringProperty zurueck.
+     */
     @Override
     public StringProperty getKategorieName() {
         return kategorieName;
     }
+
+    /**
+     *
+     * @param name als String, String darf nicht leer sein.
+     */
 
     @Override
     public void setKategorieName(String name) {
@@ -50,11 +68,19 @@ public class KategorieFXImpl implements KategorieFX {
         this.kategorieName.set(name);
     }
 
+    /**
+     *
+     * @return Gibt Farbe als ObjectProperty zurueck.
+     */
     @Override
     public ObjectProperty getFarbe() {
         return farbe;
     }
 
+    /**
+     *
+     * @param farbe als Color Object, darf nicht null sein.
+     */
     @Override
     public void setFarbe(Color farbe) {
         ObjectValidator.checkObObjectNullIst(farbe);

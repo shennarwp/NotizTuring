@@ -9,6 +9,12 @@ import notizverwaltung.service.interfaces.KategorieFXService;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Klasse fuer KategorieFXServiceImpl. Die Klasse implementiert das Interface KategorieFXService
+ * @author Kevin Engelhardt
+ * @version 1.0
+ */
+
 public class KategorieFXServiceImpl implements KategorieFXService {
     @Override
     public KategorieFX wrapKategorie(Kategorie kategorie) {
