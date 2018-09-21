@@ -15,7 +15,7 @@ import java.util.List;
 
 public interface KategorieFXService {
 
-    public KategorieFX wrapKategorieInKategorieFX (Kategorie kategorie);
-    public Kategorie wrapKategorieFXInKategorie(KategorieFX kategorieFX);
+    public KategorieFX wrapKategorie(Kategorie kategorie);
+    public Kategorie unwrapKategorieFX(KategorieFX kategorieFX);
     public List<KategorieFX> convertInKategorieFXList(List<Kategorie> kategorieListe);
 }

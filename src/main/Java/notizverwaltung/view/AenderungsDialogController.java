@@ -10,20 +10,13 @@ import javafx.stage.Stage;
 import notizverwaltung.MainApp;
 import notizverwaltung.builders.ServiceObjectBuilder;
 import notizverwaltung.i18n.I18nMessagesUtil;
-import notizverwaltung.model.interfaces.Bearbeitungszustand;
-import notizverwaltung.model.interfaces.Kategorie;
-import notizverwaltung.model.interfaces.Notiz;
-import notizverwaltung.model.interfaces.NotizFX;
-import notizverwaltung.service.interfaces.BearbeitungszustandService;
-import notizverwaltung.service.interfaces.KategorieService;
-import notizverwaltung.service.interfaces.NotizFXService;
-import notizverwaltung.service.interfaces.NotizService;
+import notizverwaltung.model.interfaces.*;
+import notizverwaltung.service.interfaces.*;
 import notizverwaltung.util.DateUtil;
 import notizverwaltung.util.FXUtil;
 import notizverwaltung.validators.ObjectValidator;
 import notizverwaltung.validators.StringValidator;
 
-import javax.xml.ws.Service;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -45,6 +38,8 @@ public class AenderungsDialogController {
     private KategorieService kategorieService = ServiceObjectBuilder.getKategorieService();
     private BearbeitungszustandService bearbeitungszustandService = ServiceObjectBuilder.getBearbeitungszustandService();
     private NotizFXService notizFXService = ServiceObjectBuilder.getNotizFXService();
+    private KategorieFXService kategorieFXService = ServiceObjectBuilder.getKategorieFXService();
+    private BearbeitungszustandFXService bearbeitungszustandFXService = ServiceObjectBuilder.getBearbeitungszustandFXService();
 
 
     //_______________Notiz_____________//
@@ -62,10 +57,10 @@ public class AenderungsDialogController {
 
     //_______________Choice-Boxen__________________//
     @FXML
-    ChoiceBox<Kategorie> kategorieChoiceBox;
+    ChoiceBox<KategorieFX> kategorieFXChoiceBox;
 
     @FXML
-    ChoiceBox<Bearbeitungszustand> bearbeitungszustandChoiceBox;
+    ChoiceBox<BearbeitungszustandFX> bearbeitungszustandFXChoiceBox;
 
     @FXML
     ChoiceBox<NotizFX> notizFXChoiceBox;
@@ -85,11 +80,11 @@ public class AenderungsDialogController {
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
-        if(!ObjectValidator.isObjectNull(bearbeitungszustandChoiceBox)){
-            bearbeitungszustandChoiceBox.getItems().addAll(mainApp.getBearbeitungszustandListe());
+        if(!ObjectValidator.isObjectNull(bearbeitungszustandFXChoiceBox)){
+            bearbeitungszustandFXChoiceBox.getItems().addAll(mainApp.getBearbeitungszustandFXListe());
         }
-        if(!ObjectValidator.isObjectNull(kategorieChoiceBox)){
-            kategorieChoiceBox.getItems().addAll(mainApp.getKategorieListe());
+        if(!ObjectValidator.isObjectNull(kategorieFXChoiceBox)){
+            kategorieFXChoiceBox.getItems().addAll(mainApp.getKategorieFXListe());
         }
         if(!ObjectValidator.isObjectNull(notizFXChoiceBox)){
             notizFXChoiceBox.getItems().addAll(mainApp.getNotizFXListe());
@@ -134,7 +129,10 @@ public class AenderungsDialogController {
 
             NotizFX zuAenderndeNotizFX = notizFXChoiceBox.getValue();
             String neuerName = notizNameField.getText();
-            Kategorie neueKategorie = kategorieChoiceBox.getValue();
+
+            KategorieFX kategorieFX = kategorieFXChoiceBox.getValue();
+            Kategorie neueKategorie = kategorieFXService.unwrapKategorieFX(kategorieFX);
+
             String neueBeschreibung = notizBeschreibungTextArea.getText();
             LocalDate neueFaelligkeit = notizFaelligkeitDatePicker.getValue();
             boolean neuePrioritaet = notizPrioritaetCheckBox.isSelected();
@@ -145,7 +143,7 @@ public class AenderungsDialogController {
             zuAenderndeNotizFX.setFaelligkeit(DateUtil.convertLocalDateInDate(neueFaelligkeit));
             zuAenderndeNotizFX.setPrioritaet(neuePrioritaet);
 
-            notizService.updateNotiz(notizFXService.wrapNotizFXinNotiz(zuAenderndeNotizFX));
+            notizService.updateNotiz(notizFXService.unwrapNotizFX(zuAenderndeNotizFX));
 
             System.out.println("Notiz wurde geändert in Liste und DB:" + mainApp.getNotizFXListe());
             dialogStage.close();
@@ -162,14 +160,16 @@ public class AenderungsDialogController {
     private void handleBtnAendereKategorie(){
         if (FXUtil.isInputValid(validateKategorieAendern())) {
 
-            Kategorie zuAenderndeKategorie = kategorieChoiceBox.getValue();
+            KategorieFX zuAenderndeKategorieFX = kategorieFXChoiceBox.getValue();
+
             String neuerName = kategorieNameField.getText();
 
-            zuAenderndeKategorie.setKategorieName(neuerName);
+            zuAenderndeKategorieFX.setKategorieName(neuerName);
 
+            Kategorie zuAenderndeKategorie = kategorieFXService.unwrapKategorieFX(zuAenderndeKategorieFX);
             kategorieService.updateKategorie(zuAenderndeKategorie);
 
-            System.out.println("Kategorie wurde geändert in Liste und DB: "+mainApp.getKategorieListe());
+            System.out.println("Kategorie wurde geändert in Liste und DB: "+mainApp.getKategorieFXListe());
             dialogStage.close();
         }
     }
@@ -185,14 +185,16 @@ public class AenderungsDialogController {
 
         if (FXUtil.isInputValid(validateBearbeitungszustandAendern())) {
 
-            Bearbeitungszustand zuAendernderZustand = bearbeitungszustandChoiceBox.getValue();
-            String neuerName = bearbeitungszustandNameField.getText();
+            BearbeitungszustandFX zuAendernderZustandFX = bearbeitungszustandFXChoiceBox.getValue();
 
-            zuAendernderZustand.setName(neuerName);
+            String neuerName = bearbeitungszustandNameField.getText();
+            zuAendernderZustandFX.setName(neuerName);
+
+            Bearbeitungszustand zuAendernderZustand = bearbeitungszustandFXService.unwrapBearbeitungszustandFX(zuAendernderZustandFX);
 
             bearbeitungszustandService.updateBearbeitungszustand(zuAendernderZustand);
 
-            System.out.println("Bearbeitungszustand geändert in Liste und DB: "+ mainApp.getBearbeitungszustandListe());
+            System.out.println("Bearbeitungszustand geändert in Liste und DB: "+ mainApp.getBearbeitungszustandFXListe());
             dialogStage.close();
         }
     }
@@ -208,8 +210,11 @@ public class AenderungsDialogController {
     private String validateNotizAendern(){
         NotizFX bestehendeNotizFX = notizFXChoiceBox.getValue();
         String notizName = notizNameField.getText();
-        Kategorie kategorie = kategorieChoiceBox.getValue();
+
+        KategorieFX kategorieFX = kategorieFXChoiceBox.getValue();
+
         String beschreibung = notizBeschreibungTextArea.getText();
+
         LocalDate localDateFaelligkeit = notizFaelligkeitDatePicker.getValue();
 
         String errorMessage = "";
@@ -220,7 +225,7 @@ public class AenderungsDialogController {
         if (StringValidator.isStringLeerOderNull(notizName)) {
             errorMessage += I18nMessagesUtil.getErrorNotiznameUngueltig() + "\n";
         }
-        if (ObjectValidator.isObjectNull(kategorie)) {
+        if (ObjectValidator.isObjectNull(kategorieFX)) {
             errorMessage += I18nMessagesUtil.getErrorBestehendeKategorieUngueltig() + "\n";
         }
         if (StringValidator.isStringLeerOderNull(beschreibung)) {
@@ -242,11 +247,11 @@ public class AenderungsDialogController {
      */
     private String validateKategorieAendern() {
         String kategorieName = kategorieNameField.getText();
-        Kategorie bestehendeKategorie = kategorieChoiceBox.getValue();
+        KategorieFX bestehendeKategorieFX = kategorieFXChoiceBox.getValue();
 
         String errorMessage = "";
 
-        if(ObjectValidator.isObjectNull(bestehendeKategorie)){
+        if(ObjectValidator.isObjectNull(bestehendeKategorieFX)){
             errorMessage += I18nMessagesUtil.getErrorBestehendeKategorieUngueltig() + "\n";
         }
         if (StringValidator.isStringLeerOderNull(kategorieName)) {
@@ -266,10 +271,10 @@ public class AenderungsDialogController {
     private String validateBearbeitungszustandAendern() {
 
         String bearbeitungszustandName = bearbeitungszustandNameField.getText();
-        Bearbeitungszustand bestehenderBearbeitungszustand = bearbeitungszustandChoiceBox.getValue();
+        BearbeitungszustandFX bestehenderZustandFX = bearbeitungszustandFXChoiceBox.getValue();
         String errorMessage = "";
 
-        if(ObjectValidator.isObjectNull(bestehenderBearbeitungszustand)){
+        if(ObjectValidator.isObjectNull(bestehenderZustandFX)){
             errorMessage += I18nMessagesUtil.getErrorBestehenderBearbeitungszustandUngueltig() + "\n";
         }
         if (StringValidator.isStringLeerOderNull(bearbeitungszustandName)) {
@@ -296,10 +301,13 @@ public class AenderungsDialogController {
                 NotizFX gewaehlteNotizFX = notizFXChoiceBox.getItems().get(aktuelleAuswahl);
                 Date notizFaelligkeit = gewaehlteNotizFX.getFaelligkeit().getValue();
 
+                int tmpKategorieID = gewaehlteNotizFX.getKategorieID().getValue();
+                Kategorie tmpKategorie = kategorieService.getKategorie(tmpKategorieID);
+
 
                 notizNameField.setText(gewaehlteNotizFX.getTitle().getValue());
                 notizBeschreibungTextArea.setText(gewaehlteNotizFX.getBeschreibung().getValue());
-                kategorieChoiceBox.setValue(kategorieService.getKategorie(gewaehlteNotizFX.getKategorieID().getValue()));
+                kategorieFXChoiceBox.setValue(kategorieFXService.wrapKategorie(tmpKategorie));
                 notizFaelligkeitDatePicker.setValue(DateUtil.convertDateInLocalDate(notizFaelligkeit));
                 notizPrioritaetCheckBox.setSelected(gewaehlteNotizFX.getPrioritaet().getValue());
 

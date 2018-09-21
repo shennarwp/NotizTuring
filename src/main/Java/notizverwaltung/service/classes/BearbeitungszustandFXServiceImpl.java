@@ -1,11 +1,8 @@
 package notizverwaltung.service.classes;
 
-import javafx.scene.paint.Color;
 import notizverwaltung.builders.ModelObjectBuilder;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.BearbeitungszustandFX;
-import notizverwaltung.model.interfaces.Kategorie;
-import notizverwaltung.model.interfaces.KategorieFX;
 import notizverwaltung.service.interfaces.BearbeitungszustandFXService;
 
 import java.util.ArrayList;
@@ -17,18 +14,18 @@ import java.util.List;
 
 public class BearbeitungszustandFXServiceImpl implements BearbeitungszustandFXService {
     @Override
-    public BearbeitungszustandFX wrapBearbeitzungszustandInBearbeitungszustandFX(Bearbeitungszustand bearbeitungszustand) {
+    public BearbeitungszustandFX wrapBearbeitungszustand(Bearbeitungszustand bearbeitungszustand) {
         BearbeitungszustandFX bearbeitungszustandFX = ModelObjectBuilder.getBearbeitungszustandFXObjekt();
 
         bearbeitungszustandFX.setBearbeitungsZustandID(bearbeitungszustand.getBearbeitungsZustandID());
         bearbeitungszustandFX.setName(bearbeitungszustand.getName());
-        bearbeitungszustandFX.setPosition(bearbeitungszustand.getPosition());
+        //bearbeitungszustandFX.setPosition(bearbeitungszustand.getPosition());
         return bearbeitungszustandFX;
 
     }
 
     @Override
-    public Bearbeitungszustand wrapBearbeitungszustandFXinBearbeitungszustand(BearbeitungszustandFX bearbeitungszustandFX) {
+    public Bearbeitungszustand unwrapBearbeitungszustandFX(BearbeitungszustandFX bearbeitungszustandFX) {
         Bearbeitungszustand bearbeitungszustand = ModelObjectBuilder.getBearbeitungszustandObject();
 
         bearbeitungszustand.setBearbeitungszustandID(bearbeitungszustandFX.getBearbeitungsZustandID().getValue());
@@ -45,7 +42,7 @@ public class BearbeitungszustandFXServiceImpl implements BearbeitungszustandFXSe
         List<BearbeitungszustandFX> bearbeitungszustandFXListe = new ArrayList<>();
 
         for(Bearbeitungszustand bearbeitungszustand : bearbeitungszustandListe){
-            BearbeitungszustandFX bearbeitungszustandFX = wrapBearbeitzungszustandInBearbeitungszustandFX(bearbeitungszustand);
+            BearbeitungszustandFX bearbeitungszustandFX = wrapBearbeitungszustand(bearbeitungszustand);
             bearbeitungszustandFXListe.add(bearbeitungszustandFX);
         }
         return bearbeitungszustandFXListe;

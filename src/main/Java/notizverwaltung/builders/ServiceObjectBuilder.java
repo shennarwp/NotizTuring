@@ -66,6 +66,24 @@ public class ServiceObjectBuilder {
     }
 
     /**
+     * erstelle ein KategorieFXService-Objekt
+     * @return Implementation von KategorieFXService
+     */
+    public static KategorieFXService getKategorieFXService(){
+        return new KategorieFXServiceImpl();
+
+    }
+
+    /**
+     * erstelle ein BearbeitungszustandFXService-Objekt
+     * @return Implementation von BearbeitungszustandFXService
+     */
+    public static BearbeitungszustandFXService getBearbeitungszustandFXService(){
+        return new BearbeitungszustandFXServiceImpl();
+
+    }
+
+    /**
      * erstelle ein NotizFilterService-Objekt
      * @return Implementation von NotizFilterSevice
      */

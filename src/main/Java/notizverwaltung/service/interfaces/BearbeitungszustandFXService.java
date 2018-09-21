@@ -15,7 +15,7 @@ import java.util.List;
 
 public interface BearbeitungszustandFXService {
 
-    public BearbeitungszustandFX wrapBearbeitzungszustandInBearbeitungszustandFX (Bearbeitungszustand bearbeitungszustand);
-    public Bearbeitungszustand wrapBearbeitungszustandFXinBearbeitungszustand (BearbeitungszustandFX bearbeitungszustandFX);
+    public BearbeitungszustandFX wrapBearbeitungszustand(Bearbeitungszustand bearbeitungszustand);
+    public Bearbeitungszustand unwrapBearbeitungszustandFX(BearbeitungszustandFX bearbeitungszustandFX);
     public List<BearbeitungszustandFX> convertInBearbeitungszustandFXList(List<Bearbeitungszustand> bearbeitungszustandListe);
 }

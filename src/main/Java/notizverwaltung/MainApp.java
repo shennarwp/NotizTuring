@@ -21,10 +21,7 @@ import notizverwaltung.exceptions.StringIsEmptyException;
 import notizverwaltung.i18n.I18nUtil;
 import notizverwaltung.model.classes.BearbeitungszustandImpl;
 import notizverwaltung.model.classes.KategorieImpl;
-import notizverwaltung.model.interfaces.Bearbeitungszustand;
-import notizverwaltung.model.interfaces.Kategorie;
-import notizverwaltung.model.interfaces.Notiz;
-import notizverwaltung.model.interfaces.NotizFX;
+import notizverwaltung.model.interfaces.*;
 import notizverwaltung.service.classes.*;
 import notizverwaltung.service.interfaces.*;
 import notizverwaltung.view.GesamtOverviewController;
@@ -56,17 +53,21 @@ public class MainApp extends Application {
 
     /**
      * Die Kategorien, Notizen und Bearbeitungszustände befinden sich in einer ObservableList
-     * TODO Objectbuilder benutzen
+     *
      */
     private ObservableList<Kategorie> kategorieListe = FXCollections.observableArrayList();
     private ObservableList<Notiz> notizListe = FXCollections.observableArrayList();
     private ObservableList<Bearbeitungszustand> bearbeitungszustandListe = FXCollections.observableArrayList();
     private ObservableList<NotizFX> notizFXListe = FXCollections.observableArrayList();
+    private ObservableList<KategorieFX> kategorieFXListe = FXCollections.observableArrayList();
+    private ObservableList<BearbeitungszustandFX> bearbeitungszustandFXListe = FXCollections.observableArrayList();
 
-    private NotizService notizService = new NotizServiceImpl();
-    private KategorieService kategorieService = new KategorieServiceImpl();
-    private BearbeitungszustandService bearbeitungszustandService = new BearbeitungszustandServiceImpl();
+    private NotizService notizService = ServiceObjectBuilder.getNotizService();
+    private KategorieService kategorieService = ServiceObjectBuilder.getKategorieService();
+    private BearbeitungszustandService bearbeitungszustandService = ServiceObjectBuilder.getBearbeitungszustandService();
     private NotizFXService notizFXService = ServiceObjectBuilder.getNotizFXService();
+    private KategorieFXService kategorieFXService = ServiceObjectBuilder.getKategorieFXService();
+    private BearbeitungszustandFXService bearbeitungszustandFXService = ServiceObjectBuilder.getBearbeitungszustandFXService();
 
 
     /**
@@ -79,7 +80,9 @@ public class MainApp extends Application {
         System.out.println("\n\n\n\n"+notizListe);
         System.out.println("\n\n\n\n"+notizFXListe);
         System.out.println("\n\n\n\n"+kategorieListe);
+        System.out.println("\n\n\n\n"+kategorieFXListe);
         System.out.println("\n\n\n\n"+bearbeitungszustandListe);
+        System.out.println("\n\n\n\n"+bearbeitungszustandFXListe);
     }
 
 
@@ -175,6 +178,14 @@ public class MainApp extends Application {
         return this.notizFXListe;
     }
 
+    public ObservableList<KategorieFX> getKategorieFXListe(){
+        return this.kategorieFXListe;
+    }
+
+    public ObservableList<BearbeitungszustandFX> getBearbeitungszustandFXListe(){
+        return this.bearbeitungszustandFXListe;
+    }
+
 
     /**
      * Initialisiert die ObservableLists mit Notizen, Kategorien, Bearbeitungszuständen, durch Verbindung zur Datenbank
@@ -183,7 +194,11 @@ public class MainApp extends Application {
         notizListe.addAll(notizService.getAlleNotizenVomNotizblock(DAOKonstanten.DEFAULT_NOTIZBLOCK_ID));
         kategorieListe.addAll(kategorieService.getAlleKategorien());
         bearbeitungszustandListe.addAll(bearbeitungszustandService.getAllBearbeitungszustand());
+
         notizFXListe.addAll(notizFXService.convertInNotizFXList(notizListe));
+        kategorieFXListe.addAll(kategorieFXService.convertInKategorieFXList(kategorieListe));
+        bearbeitungszustandFXListe.addAll(bearbeitungszustandFXService.convertInBearbeitungszustandFXList(bearbeitungszustandListe));
+
     }
 
 

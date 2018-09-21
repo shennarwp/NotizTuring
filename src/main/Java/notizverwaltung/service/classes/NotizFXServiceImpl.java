@@ -11,7 +11,7 @@ import java.util.List;
 public class NotizFXServiceImpl implements NotizFXService {
 
     @Override
-    public NotizFX wrapNotizInNotizFX(Notiz notiz) {
+    public NotizFX wrapNotiz(Notiz notiz) {
         NotizFX notizFX = ModelObjectBuilder.getNotizFXObjekt();
 
         notizFX.setNotizID(notiz.getNotizID());
@@ -30,7 +30,7 @@ public class NotizFXServiceImpl implements NotizFXService {
     }
 
     @Override
-    public Notiz wrapNotizFXinNotiz(NotizFX notizFX){
+    public Notiz unwrapNotizFX(NotizFX notizFX){
         Notiz notiz = ModelObjectBuilder.getNotizObject();
 
         notiz.setID(notizFX.getNotizID().getValue());
@@ -49,7 +49,7 @@ public class NotizFXServiceImpl implements NotizFXService {
         List<NotizFX> notizFXListe = new ArrayList<>();
 
         for(Notiz notiz : notizListe){
-            NotizFX notizFX = wrapNotizInNotizFX(notiz);
+            NotizFX notizFX = wrapNotiz(notiz);
             notizFXListe.add(notizFX);
         }
         return notizFXListe;

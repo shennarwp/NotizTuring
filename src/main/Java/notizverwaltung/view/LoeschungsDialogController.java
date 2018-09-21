@@ -6,14 +6,8 @@ import javafx.stage.Stage;
 import notizverwaltung.MainApp;
 import notizverwaltung.builders.ServiceObjectBuilder;
 import notizverwaltung.i18n.I18nMessagesUtil;
-import notizverwaltung.model.interfaces.Bearbeitungszustand;
-import notizverwaltung.model.interfaces.Kategorie;
-import notizverwaltung.model.interfaces.Notiz;
-import notizverwaltung.model.interfaces.NotizFX;
-import notizverwaltung.service.interfaces.BearbeitungszustandService;
-import notizverwaltung.service.interfaces.KategorieService;
-import notizverwaltung.service.interfaces.NotizFXService;
-import notizverwaltung.service.interfaces.NotizService;
+import notizverwaltung.model.interfaces.*;
+import notizverwaltung.service.interfaces.*;
 import notizverwaltung.util.FXUtil;
 import notizverwaltung.validators.DaoContentValidator;
 import notizverwaltung.validators.ObjectValidator;
@@ -26,14 +20,16 @@ public class LoeschungsDialogController {
     private KategorieService kategorieService = ServiceObjectBuilder.getKategorieService();
     private BearbeitungszustandService bearbeitungszustandService = ServiceObjectBuilder.getBearbeitungszustandService();
     private NotizFXService notizFXService = ServiceObjectBuilder.getNotizFXService();
+    private KategorieFXService kategorieFXService = ServiceObjectBuilder.getKategorieFXService();
+    private BearbeitungszustandFXService bearbeitungszustandFXService = ServiceObjectBuilder.getBearbeitungszustandFXService();
 
 
     //_______________Choice-Boxen__________________//
     @FXML
-    ChoiceBox<Kategorie> kategorieChoiceBox;
+    ChoiceBox<KategorieFX> kategorieFXChoiceBox;
 
     @FXML
-    ChoiceBox<Bearbeitungszustand> bearbeitungszustandChoiceBox;
+    ChoiceBox<BearbeitungszustandFX> bearbeitungszustandFXChoiceBox;
 
     @FXML
     ChoiceBox<NotizFX> notizFXChoiceBox;
@@ -46,11 +42,11 @@ public class LoeschungsDialogController {
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
-        if(!ObjectValidator.isObjectNull(bearbeitungszustandChoiceBox)){
-            bearbeitungszustandChoiceBox.getItems().addAll(mainApp.getBearbeitungszustandListe());
+        if(!ObjectValidator.isObjectNull(bearbeitungszustandFXChoiceBox)){
+            bearbeitungszustandFXChoiceBox.getItems().addAll(mainApp.getBearbeitungszustandFXListe());
         }
-        if(!ObjectValidator.isObjectNull(kategorieChoiceBox)){
-            kategorieChoiceBox.getItems().addAll(mainApp.getKategorieListe());
+        if(!ObjectValidator.isObjectNull(kategorieFXChoiceBox)){
+            kategorieFXChoiceBox.getItems().addAll(mainApp.getKategorieFXListe());
         }
         if(!ObjectValidator.isObjectNull(notizFXChoiceBox)){
             notizFXChoiceBox.getItems().addAll(mainApp.getNotizFXListe());
@@ -111,12 +107,12 @@ public class LoeschungsDialogController {
     private void handleBtnLoescheKategorie(){
 
         if (FXUtil.isInputValid(validateKategorieLoeschen())) {
-            Kategorie zuLoeschendeKategorie = kategorieChoiceBox.getValue();
+            KategorieFX zuLoeschendeKategorieFX = kategorieFXChoiceBox.getValue();
 
-            mainApp.getKategorieListe().remove(zuLoeschendeKategorie);
-            kategorieService.deleteKategorie(zuLoeschendeKategorie.getKategorieID());
+            mainApp.getKategorieFXListe().remove(zuLoeschendeKategorieFX);
+            kategorieService.deleteKategorie(zuLoeschendeKategorieFX.getKategorieID().getValue());
 
-            System.out.println("Kategorie wurde aus Liste und Datenbank gelöscht:" + mainApp.getKategorieListe());
+            System.out.println("Kategorie wurde aus Liste und Datenbank gelöscht:" + mainApp.getKategorieFXListe());
             dialogStage.close();
         }
     }
@@ -131,13 +127,13 @@ public class LoeschungsDialogController {
     private void handleBtnLoescheBearbeitungszustand(){
 
         if (FXUtil.isInputValid(validateBearbeitungszustandLoeschen())) {
-            Bearbeitungszustand bestehenderBearbeitungszustand = bearbeitungszustandChoiceBox.getValue();
-            int bearbeitungszustandID = bestehenderBearbeitungszustand.getBearbeitungsZustandID();
+            BearbeitungszustandFX bestehenderBearbeitungszustandFX = bearbeitungszustandFXChoiceBox.getValue();
+            int bearbeitungszustandID = bestehenderBearbeitungszustandFX.getBearbeitungsZustandID().getValue();
 
-            mainApp.getBearbeitungszustandListe().remove(bestehenderBearbeitungszustand);
+            mainApp.getBearbeitungszustandFXListe().remove(bestehenderBearbeitungszustandFX);
             bearbeitungszustandService.deleteBearbeitungszustand(bearbeitungszustandID);
 
-            System.out.println("Bearbeitungszustand wurde in Liste und Datenbank gelöscht:" + mainApp.getBearbeitungszustandListe());
+            System.out.println("Bearbeitungszustand wurde in Liste und Datenbank gelöscht:" + mainApp.getBearbeitungszustandFXListe());
             dialogStage.close();
         }
     }
@@ -171,15 +167,19 @@ public class LoeschungsDialogController {
      *
      */
     private String validateKategorieLoeschen() {
-        Kategorie bestehendeKategorie = kategorieChoiceBox.getValue();
+        KategorieFX bestehendeKategorieFX = kategorieFXChoiceBox.getValue();
+        Kategorie tmpKategorie;
 
         String errorMessage = "";
 
-        if(ObjectValidator.isObjectNull(bestehendeKategorie)){
+        if(ObjectValidator.isObjectNull(bestehendeKategorieFX)){
             errorMessage += I18nMessagesUtil.getErrorBestehendeKategorieUngueltig() + "\n";
 
-        }else if(DaoContentValidator.isNotizMitKategorieVorhanden(bestehendeKategorie)){
-            errorMessage += I18nMessagesUtil.getErrorEsGibtNochNotizenMitDieserKategorie() + "\n";
+        }else{
+            tmpKategorie = kategorieFXService.unwrapKategorieFX(bestehendeKategorieFX);
+            if(DaoContentValidator.isNotizMitKategorieVorhanden(tmpKategorie)){
+                errorMessage += I18nMessagesUtil.getErrorEsGibtNochNotizenMitDieserKategorie() + "\n";
+            }
         }
 
         return errorMessage;
@@ -194,15 +194,20 @@ public class LoeschungsDialogController {
      */
     private String validateBearbeitungszustandLoeschen() {
 
-        Bearbeitungszustand bestehenderBearbeitungszustand = bearbeitungszustandChoiceBox.getValue();
+        BearbeitungszustandFX bestehenderZustandFX = bearbeitungszustandFXChoiceBox.getValue();
+        Bearbeitungszustand tmpZustand;
 
         String errorMessage = "";
 
-        if(ObjectValidator.isObjectNull(bestehenderBearbeitungszustand)){
+        if(ObjectValidator.isObjectNull(bestehenderZustandFX)){
             errorMessage += I18nMessagesUtil.getErrorBestehenderBearbeitungszustandUngueltig() + "\n";
 
-        }else if (DaoContentValidator.isNotizMitBearbeitungszustandVorhanden(bestehenderBearbeitungszustand)) {
-            errorMessage += I18nMessagesUtil.getErrorEsGibtNochNotizenMitDiesemBearbeitungszustand() + "\n";
+        }else{
+            tmpZustand = bearbeitungszustandFXService.unwrapBearbeitungszustandFX(bestehenderZustandFX);
+
+            if (DaoContentValidator.isNotizMitBearbeitungszustandVorhanden(tmpZustand)) {
+                errorMessage += I18nMessagesUtil.getErrorEsGibtNochNotizenMitDiesemBearbeitungszustand() + "\n";
+            }
         }
 
         return errorMessage;

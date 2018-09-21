@@ -22,7 +22,7 @@
             <Button mnemonicParsing="false" onAction="#handleBtnCancel" text="%dialog-cancel" />
         </buttons>
       </ButtonBar>
-      <ChoiceBox fx:id="kategorieChoiceBox" layoutX="241.0" layoutY="162.0" prefHeight="31.0" prefWidth="205.0" />
+      <ChoiceBox fx:id="kategorieFXChoiceBox" layoutX="241.0" layoutY="162.0" prefHeight="31.0" prefWidth="205.0" />
       <TextArea fx:id="notizBeschreibungTextArea" layoutX="241.0" layoutY="215.0" prefHeight="146.0" prefWidth="205.0" />
       <Label layoutX="30.0" layoutY="380.0" text="%dialog-notefinaldate" />
       <DatePicker fx:id="notizFaelligkeitDatePicker" layoutX="241.0" layoutY="375.0" prefHeight="31.0" prefWidth="205.0" />

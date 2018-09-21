@@ -36,7 +36,7 @@ public class TestklasseFuerNotizFXServiceImpl {
 
 
 
-        notizFX = notizFXService.wrapNotizInNotizFX(notiz2);
+        notizFX = notizFXService.wrapNotiz(notiz2);
         System.out.println("Debug");
         System.out.println(notizFX.getErstellung());
         System.out.println(notizFX.getErstellung());

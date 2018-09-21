@@ -10,10 +10,8 @@ import notizverwaltung.MainApp;
 import notizverwaltung.builders.ServiceObjectBuilder;
 import notizverwaltung.i18n.I18nComponentsUtil;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
-import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.model.interfaces.NotizFX;
-import notizverwaltung.service.classes.KategorieServiceImpl;
 import notizverwaltung.service.interfaces.BearbeitungszustandService;
 import notizverwaltung.service.interfaces.KategorieService;
 import notizverwaltung.service.interfaces.NotizFXService;
@@ -146,7 +144,7 @@ public class NotizOverviewController {
         if(iterator.hasPrevious()){
 
             notizFX.setBearbeitungszustandID(iterator.previous().getBearbeitungsZustandID());
-            tmpNotiz = notizFXService.wrapNotizFXinNotiz(notizFX);
+            tmpNotiz = notizFXService.unwrapNotizFX(notizFX);
 
             notizService.updateNotiz(tmpNotiz);
 
@@ -176,7 +174,7 @@ public class NotizOverviewController {
         if(iterator.hasNext()){
 
             notizFX.setBearbeitungszustandID(iterator.next().getBearbeitungsZustandID());
-            tmpNotiz = notizFXService.wrapNotizFXinNotiz(notizFX);
+            tmpNotiz = notizFXService.unwrapNotizFX(notizFX);
 
             notizService.updateNotiz(tmpNotiz);
 
@@ -199,7 +197,7 @@ public class NotizOverviewController {
         System.out.println("\n\n\n\n\n\nDie Notiz wurde zu Bearbeitungszustand NR." + bazs.getBearbeitungsZustandID() + " bewegt!!!");
 
         notizFX.setBearbeitungszustandID(bazs.getBearbeitungsZustandID());
-        tmpNotiz = notizFXService.wrapNotizFXinNotiz(notizFX);
+        tmpNotiz = notizFXService.unwrapNotizFX(notizFX);
 
         notizService.updateNotiz(tmpNotiz);
     }

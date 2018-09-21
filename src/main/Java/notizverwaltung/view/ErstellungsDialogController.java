@@ -8,14 +8,8 @@ import notizverwaltung.builders.ModelObjectBuilder;
 import notizverwaltung.builders.ServiceObjectBuilder;
 import notizverwaltung.constants.DAOKonstanten;
 import notizverwaltung.i18n.I18nMessagesUtil;
-import notizverwaltung.model.interfaces.Bearbeitungszustand;
-import notizverwaltung.model.interfaces.Kategorie;
-import notizverwaltung.model.interfaces.Notiz;
-import notizverwaltung.model.interfaces.NotizFX;
-import notizverwaltung.service.interfaces.BearbeitungszustandService;
-import notizverwaltung.service.interfaces.KategorieService;
-import notizverwaltung.service.interfaces.NotizFXService;
-import notizverwaltung.service.interfaces.NotizService;
+import notizverwaltung.model.interfaces.*;
+import notizverwaltung.service.interfaces.*;
 import notizverwaltung.util.DateUtil;
 import notizverwaltung.util.FXUtil;
 import notizverwaltung.validators.ObjectValidator;
@@ -31,6 +25,8 @@ public class ErstellungsDialogController {
     private KategorieService kategorieService = ServiceObjectBuilder.getKategorieService();
     private BearbeitungszustandService bearbeitungszustandService = ServiceObjectBuilder.getBearbeitungszustandService();
     private NotizFXService notizFXService = ServiceObjectBuilder.getNotizFXService();
+    private KategorieFXService kategorieFXService = ServiceObjectBuilder.getKategorieFXService();
+    private BearbeitungszustandFXService bearbeitungszustandFXService = ServiceObjectBuilder.getBearbeitungszustandFXService();
 
 
     //_______________Notiz_____________//
@@ -48,10 +44,10 @@ public class ErstellungsDialogController {
 
     //_______________Choice-Boxen__________________//
     @FXML
-    ChoiceBox<Kategorie> kategorieChoiceBox;
+    ChoiceBox<KategorieFX> kategorieFXChoiceBox;
 
     @FXML
-    ChoiceBox<Bearbeitungszustand> bearbeitungszustandChoiceBox;
+    ChoiceBox<BearbeitungszustandFX> bearbeitungszustandFXChoiceBox;
 
     @FXML
     ChoiceBox<NotizFX> notizFXChoiceBox;
@@ -71,11 +67,11 @@ public class ErstellungsDialogController {
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
-        if(!ObjectValidator.isObjectNull(bearbeitungszustandChoiceBox)){
-            bearbeitungszustandChoiceBox.getItems().addAll(mainApp.getBearbeitungszustandListe());
+        if(!ObjectValidator.isObjectNull(bearbeitungszustandFXChoiceBox)){
+            bearbeitungszustandFXChoiceBox.getItems().addAll(mainApp.getBearbeitungszustandFXListe());
         }
-        if(!ObjectValidator.isObjectNull(kategorieChoiceBox)){
-            kategorieChoiceBox.getItems().addAll(mainApp.getKategorieListe());
+        if(!ObjectValidator.isObjectNull(kategorieFXChoiceBox)){
+            kategorieFXChoiceBox.getItems().addAll(mainApp.getKategorieFXListe());
         }
         if(!ObjectValidator.isObjectNull(notizFXChoiceBox)){
             notizFXChoiceBox.getItems().addAll(mainApp.getNotizFXListe());
@@ -114,26 +110,26 @@ public class ErstellungsDialogController {
     private void handleBtnErstelleNotiz(){
 
         if (FXUtil.isInputValid(validateNotizErstellen())) {
-            NotizFX tmpNotizFX = ModelObjectBuilder.getNotizFXObjekt();
+            Notiz tmpNotiz = ModelObjectBuilder.getNotizObject();
 
             LocalDate faelligkeit = notizFaelligkeitDatePicker.getValue();
+            int kategorieID = kategorieFXChoiceBox.getValue().getKategorieID().getValue();
+            int zustandID = bearbeitungszustandFXChoiceBox.getValue().getBearbeitungsZustandID().getValue();
 
-            tmpNotizFX.setTitle(notizNameField.getText());
-            tmpNotizFX.setBeschreibung(notizBeschreibungTextArea.getText());
-            tmpNotizFX.setBearbeitungszustandID(bearbeitungszustandChoiceBox.getValue().getBearbeitungsZustandID());
-            tmpNotizFX.setKategorieID(kategorieChoiceBox.getValue().getKategorieID());
-            tmpNotizFX.setPrioritaet(notizPrioritaetCheckBox.isSelected());
-            tmpNotizFX.setFaelligkeit(DateUtil.convertLocalDateInDate(faelligkeit));
-
-            Notiz tmpNotiz = notizFXService.wrapNotizFXinNotiz(tmpNotizFX);
+            tmpNotiz.setTitle(notizNameField.getText());
+            tmpNotiz.setBeschreibung(notizBeschreibungTextArea.getText());
+            tmpNotiz.setBearbeitungszustandID(zustandID);
+            tmpNotiz.setKategorieID(kategorieID);
+            tmpNotiz.setPrioritaet(notizPrioritaetCheckBox.isSelected());
+            tmpNotiz.setFaelligkeit(DateUtil.convertLocalDateInDate(faelligkeit));
 
             notizService.addNotiz(tmpNotiz,DAOKonstanten.DEFAULT_NOTIZBLOCK_ID);
-            tmpNotizFX.setNotizID(tmpNotiz.getNotizID());
 
+            NotizFX tmpNotizFX = notizFXService.wrapNotiz(tmpNotiz);
             mainApp.getNotizFXListe().add(tmpNotizFX);
 
             System.out.println("Notiz erfolgreich in Liste eingefügt und in DB geschrieben:" + mainApp.getNotizFXListe());
-            System.out.println("ID der erstellten Notiz:" + tmpNotiz.getNotizID());
+            System.out.println("ID der erstellten Notiz:" + tmpNotiz.getNotizID() +"und FX: " + tmpNotizFX.getNotizID() );
             dialogStage.close();
         }
     }
@@ -150,11 +146,12 @@ public class ErstellungsDialogController {
         if (FXUtil.isInputValid(validateKategorieErstellen())) {
 
             Kategorie tmpKategorie = ModelObjectBuilder.getKategorieObjekt(kategorieNameField.getText());
-
             kategorieService.addKategorie(tmpKategorie);
-            mainApp.getKategorieListe().add(tmpKategorie);
 
-            System.out.println("Kategorie erfolgreich in Liste und in Datenbank eingefügt"+ mainApp.getKategorieListe());
+            KategorieFX tmpKategorieFX = kategorieFXService.wrapKategorie(tmpKategorie);
+            mainApp.getKategorieFXListe().add(tmpKategorieFX);
+
+            System.out.println("Kategorie erfolgreich in Liste und in Datenbank eingefügt"+ mainApp.getKategorieFXListe());
             dialogStage.close();
         }
     }
@@ -169,14 +166,16 @@ public class ErstellungsDialogController {
     private void handleBtnErstelleBearbeitungszustand(){
 
         if (FXUtil.isInputValid(validateBearbeitungszustandErstellen())) {
-            Bearbeitungszustand tmpBearbeitungszustand = ModelObjectBuilder
+            Bearbeitungszustand tmpZustand = ModelObjectBuilder
                     .getBearbeitungszustandObjekt(bearbeitungszustandNameField.getText());
 
 
-            bearbeitungszustandService.addBearbeitungszustand(tmpBearbeitungszustand);
-            mainApp.getBearbeitungszustandListe().add(tmpBearbeitungszustand);
+            bearbeitungszustandService.addBearbeitungszustand(tmpZustand);
 
-            System.out.println("Bearbeitungszustand in Liste und in Datenbank eingefügt"+ mainApp.getBearbeitungszustandListe());
+            BearbeitungszustandFX tmpZustandFX = bearbeitungszustandFXService.wrapBearbeitungszustand(tmpZustand);
+            mainApp.getBearbeitungszustandFXListe().add(tmpZustandFX);
+
+            System.out.println("Bearbeitungszustand in Liste und in Datenbank eingefügt"+ mainApp.getBearbeitungszustandFXListe());
             dialogStage.close();
         }
     }
@@ -191,8 +190,11 @@ public class ErstellungsDialogController {
      */
     private String validateNotizErstellen() {
         String notizName = notizNameField.getText();
-        Kategorie kategorie = kategorieChoiceBox.getValue();
-        Bearbeitungszustand bearbeitungszustand = bearbeitungszustandChoiceBox.getValue();
+
+        KategorieFX kategorieFX = kategorieFXChoiceBox.getValue();
+
+        BearbeitungszustandFX bearbeitungszustandFX = bearbeitungszustandFXChoiceBox.getValue();
+
         String beschreibung = notizBeschreibungTextArea.getText();
         LocalDate localDateFaelligkeit = notizFaelligkeitDatePicker.getValue();
 
@@ -201,10 +203,10 @@ public class ErstellungsDialogController {
         if (StringValidator.isStringLeerOderNull(notizName)) {
             errorMessage += I18nMessagesUtil.getErrorNotiznameUngueltig() + "\n";
         }
-        if (ObjectValidator.isObjectNull(kategorie)) {
+        if (ObjectValidator.isObjectNull(kategorieFX)) {
             errorMessage += I18nMessagesUtil.getErrorBestehendeKategorieUngueltig() + "\n";
         }
-        if (ObjectValidator.isObjectNull(bearbeitungszustand)) {
+        if (ObjectValidator.isObjectNull(bearbeitungszustandFX)) {
             errorMessage += I18nMessagesUtil.getErrorBestehenderBearbeitungszustandUngueltig() + "\n";
         }
         if (StringValidator.isStringLeerOderNull(beschreibung)) {

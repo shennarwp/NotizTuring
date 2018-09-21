@@ -11,7 +11,7 @@ import java.util.List;
 
 public class KategorieFXServiceImpl implements KategorieFXService {
     @Override
-    public KategorieFX wrapKategorieInKategorieFX(Kategorie kategorie) {
+    public KategorieFX wrapKategorie(Kategorie kategorie) {
         KategorieFX kategorieFX = ModelObjectBuilder.getKategorieFXObjekt();
 
         kategorieFX.setKategorieID(kategorie.getKategorieID());
@@ -22,7 +22,7 @@ public class KategorieFXServiceImpl implements KategorieFXService {
     }
 
     @Override
-    public Kategorie wrapKategorieFXInKategorie(KategorieFX kategorieFX) {
+    public Kategorie unwrapKategorieFX(KategorieFX kategorieFX) {
         Kategorie kategorie = ModelObjectBuilder.getKategorieObject();
 
         kategorie.setKategorieID(kategorieFX.getKategorieID().getValue());
@@ -38,7 +38,7 @@ public class KategorieFXServiceImpl implements KategorieFXService {
 
         for(Kategorie kategorie : kategorieListe)
         {
-            KategorieFX kategorieFX = wrapKategorieInKategorieFX(kategorie);
+            KategorieFX kategorieFX = wrapKategorie(kategorie);
             kategorieFXListe.add(kategorieFX);
         }
         return kategorieFXListe;

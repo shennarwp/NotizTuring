@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface NotizFXService {
 
-    public NotizFX wrapNotizInNotizFX (Notiz notiz);
+    public NotizFX wrapNotiz(Notiz notiz);
 
-    public Notiz wrapNotizFXinNotiz(NotizFX notizFX);
+    public Notiz unwrapNotizFX(NotizFX notizFX);
 
     public List<NotizFX> convertInNotizFXList(List<Notiz> notizListe);
 
