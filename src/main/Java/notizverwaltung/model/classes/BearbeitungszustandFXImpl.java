@@ -64,6 +64,26 @@ public class BearbeitungszustandFXImpl implements BearbeitungszustandFX {
         this.position.set(position);
     }
 
+
+    /**
+     * BearbeitungszustandFX  sind gleich, wenn sie die gleiche ID haben
+     * @param object zu vergleichendes BearbeitungszustandFX
+     * @return true, wenn ID gleich, sonst false
+     */
+    @Override
+    public boolean equals(Object object){
+        if (object instanceof BearbeitungszustandFX){
+            BearbeitungszustandFX vergleichsZustandFX = (BearbeitungszustandFX) object;
+            int vergleichdsID = vergleichsZustandFX.getBearbeitungsZustandID().getValue();
+            int eigeneID = this.bearbeitzustandID.getValue();
+
+            if (eigeneID == vergleichdsID){
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String toString(){ return name.getValue(); }
 

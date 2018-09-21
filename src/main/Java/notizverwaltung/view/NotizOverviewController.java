@@ -10,12 +10,10 @@ import notizverwaltung.MainApp;
 import notizverwaltung.builders.ServiceObjectBuilder;
 import notizverwaltung.i18n.I18nComponentsUtil;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
+import notizverwaltung.model.interfaces.BearbeitungszustandFX;
 import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.model.interfaces.NotizFX;
-import notizverwaltung.service.interfaces.BearbeitungszustandService;
-import notizverwaltung.service.interfaces.KategorieService;
-import notizverwaltung.service.interfaces.NotizFXService;
-import notizverwaltung.service.interfaces.NotizService;
+import notizverwaltung.service.interfaces.*;
 
 import java.util.Date;
 import java.util.ListIterator;
@@ -27,7 +25,7 @@ import static notizverwaltung.util.DateUtil.convertDateInLocalDate;
  * Die Notizen werden hier bedient.
  *
  * @author Johannes Gerwert
- * @version 20.09.2018
+ * @version 21.09.2018
  */
 public class NotizOverviewController {
 
@@ -40,16 +38,17 @@ public class NotizOverviewController {
     @FXML
     private Label notizLabel;
     @FXML
-    private ComboBox<Bearbeitungszustand> spaltenWahlBox;
+    private ComboBox<BearbeitungszustandFX> spaltenWahlBox;
 
     private NotizFX notizFX;
 
-    private ObservableList<Bearbeitungszustand> bearbeitungszustandListe;
+    private ObservableList<BearbeitungszustandFX> bearbeitungszustandFXListe;
 
     private MainApp mainApp;
 
     private KategorieService kategorieService = ServiceObjectBuilder.getKategorieService();
     private BearbeitungszustandService bearbeitungszustandService = ServiceObjectBuilder.getBearbeitungszustandService();
+    private BearbeitungszustandFXService bearbeitungszustandFXService = ServiceObjectBuilder.getBearbeitungszustandFXService();
     private NotizFXService notizFXService = ServiceObjectBuilder.getNotizFXService();
     private NotizService notizService = ServiceObjectBuilder.getNotizService();
 
@@ -68,8 +67,8 @@ public class NotizOverviewController {
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
-        bearbeitungszustandListe = mainApp.getBearbeitungszustandListe();
-        spaltenWahlBox.setItems(bearbeitungszustandListe);
+        bearbeitungszustandFXListe = mainApp.getBearbeitungszustandFXListe();
+        spaltenWahlBox.setItems(bearbeitungszustandFXListe);
 
     }
 
@@ -132,18 +131,20 @@ public class NotizOverviewController {
     private void handleMoveLeft(){
         int bearbeitungszustandID;
         Bearbeitungszustand bazs;
+        BearbeitungszustandFX bazsFX;
         Notiz tmpNotiz;
         int position;
-        ListIterator<Bearbeitungszustand> iterator;
+        ListIterator<BearbeitungszustandFX> iterator;
 
         bearbeitungszustandID = notizFX.getBearbeitungszustandID().getValue();
         bazs = bearbeitungszustandService.getBearbeitungszustand(bearbeitungszustandID);
-        position = bearbeitungszustandListe.indexOf(bazs);
-        iterator = bearbeitungszustandListe.listIterator(position);
+        bazsFX = bearbeitungszustandFXService.wrapBearbeitungszustand(bazs);
+        position = bearbeitungszustandFXListe.indexOf(bazsFX);
+        iterator = bearbeitungszustandFXListe.listIterator(position);
 
         if(iterator.hasPrevious()){
 
-            notizFX.setBearbeitungszustandID(iterator.previous().getBearbeitungsZustandID());
+            notizFX.setBearbeitungszustandID(iterator.previous().getBearbeitungsZustandID().getValue());
             tmpNotiz = notizFXService.unwrapNotizFX(notizFX);
 
             notizService.updateNotiz(tmpNotiz);
@@ -161,19 +162,21 @@ public class NotizOverviewController {
 
         int bearbeitungszustandID;
         Bearbeitungszustand bazs;
+        BearbeitungszustandFX bazsFX;
         Notiz tmpNotiz;
         int position;
-        ListIterator<Bearbeitungszustand> iterator;
+        ListIterator<BearbeitungszustandFX> iterator;
 
         bearbeitungszustandID = notizFX.getBearbeitungszustandID().getValue();
         bazs = bearbeitungszustandService.getBearbeitungszustand(bearbeitungszustandID);
-        position = bearbeitungszustandListe.indexOf(bazs);
-        iterator = bearbeitungszustandListe.listIterator(position);
+        bazsFX = bearbeitungszustandFXService.wrapBearbeitungszustand(bazs);
+        position = bearbeitungszustandFXListe.indexOf(bazsFX);
+        iterator = bearbeitungszustandFXListe.listIterator(position);
         iterator.next();
 
         if(iterator.hasNext()){
 
-            notizFX.setBearbeitungszustandID(iterator.next().getBearbeitungsZustandID());
+            notizFX.setBearbeitungszustandID(iterator.next().getBearbeitungsZustandID().getValue());
             tmpNotiz = notizFXService.unwrapNotizFX(notizFX);
 
             notizService.updateNotiz(tmpNotiz);
@@ -189,14 +192,14 @@ public class NotizOverviewController {
     @FXML
     private void handleMoveToBearbeitungszustand(){
 
-        Bearbeitungszustand bazs;
+        BearbeitungszustandFX bazsFX;
         Notiz tmpNotiz;
-        bazs = (Bearbeitungszustand) spaltenWahlBox.getValue();
+        bazsFX = spaltenWahlBox.getValue();
 
         //TODO: entfernen
-        System.out.println("\n\n\n\n\n\nDie Notiz wurde zu Bearbeitungszustand NR." + bazs.getBearbeitungsZustandID() + " bewegt!!!");
+        System.out.println("\n\n\n\n\n\nDie Notiz wurde zu Bearbeitungszustand NR." + bazsFX.getBearbeitungsZustandID().getValue() + " bewegt!!!");
 
-        notizFX.setBearbeitungszustandID(bazs.getBearbeitungsZustandID());
+        notizFX.setBearbeitungszustandID(bazsFX.getBearbeitungsZustandID().getValue());
         tmpNotiz = notizFXService.unwrapNotizFX(notizFX);
 
         notizService.updateNotiz(tmpNotiz);

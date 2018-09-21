@@ -13,6 +13,7 @@ import notizverwaltung.constants.FXKonstanten;
 import notizverwaltung.i18n.I18nComponentsUtil;
 import notizverwaltung.i18n.I18nUtil;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
+import notizverwaltung.model.interfaces.BearbeitungszustandFX;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
@@ -22,7 +23,7 @@ import java.util.ResourceBundle;
  * Die tabs werden hier generiert. Sie stellen die Notizbloecke dar.
  *
  * @author Johannes Gerwert
- * @version 20.09.2018
+ * @version 21.09.2018
  */
 public class NotizblockOverviewController{
 
@@ -32,7 +33,7 @@ public class NotizblockOverviewController{
     private HBox spalten;
 
     private String name = I18nComponentsUtil.getStandardNotepadName();
-    private ObservableList<Bearbeitungszustand> bearbeitungszustandListe;
+    private ObservableList<BearbeitungszustandFX> bearbeitungszustandFXListe;
 
     private MainApp mainApp;
 
@@ -64,7 +65,7 @@ public class NotizblockOverviewController{
     public void setMainApp(MainApp mainApp){
         this.mainApp = mainApp;
 
-        bearbeitungszustandListe = mainApp.getBearbeitungszustandListe();
+        bearbeitungszustandFXListe = mainApp.getBearbeitungszustandFXListe();
         addBearbeitungszustandListener();
     }
 
@@ -73,7 +74,7 @@ public class NotizblockOverviewController{
      */
     public void ladeBearbeitungszustaende(){
 
-        for(Bearbeitungszustand bazs : bearbeitungszustandListe) {
+        for(BearbeitungszustandFX bazs : bearbeitungszustandFXListe) {
             addBearbeitungszustand(bazs);
         }
     }
@@ -84,7 +85,7 @@ public class NotizblockOverviewController{
      *
      * @param bazs Der entsprechende Bearbeitungszustand
      */
-    public void addBearbeitungszustand(Bearbeitungszustand bazs){
+    public void addBearbeitungszustand(BearbeitungszustandFX bazs){
         try {
             FXMLLoader loader = new FXMLLoader();
             ResourceBundle bundle = I18nUtil.getComponentsResourceBundle();
@@ -92,7 +93,7 @@ public class NotizblockOverviewController{
                     .getResource(FXKonstanten.PFAD_BEARBEITUNGSZUSTAND_OVERVIEW_LAYOUT));
             loader.setResources(bundle);
             TitledPane spalte = (TitledPane) loader.load();
-            spalte.setId("" + bazs.getBearbeitungsZustandID());
+            spalte.setId("" + bazs.getBearbeitungsZustandID().getValue());
 
             spalten.getChildren().add(spalte);
 
@@ -110,8 +111,8 @@ public class NotizblockOverviewController{
      *
      * @param bazs der zu entfernende Bearbeitungsstatus
      */
-    public void removeBearbeitungszustand(Bearbeitungszustand bazs){
-        String bazsID = "" + bazs.getBearbeitungsZustandID();
+    public void removeBearbeitungszustand(BearbeitungszustandFX bazs){
+        String bazsID = "" + bazs.getBearbeitungsZustandID().getValue();
 
         for(Node spalte: spalten.getChildren()){
             if(bazsID.equals(spalte.getId())){
@@ -121,23 +122,23 @@ public class NotizblockOverviewController{
     }
 
     /**
-     * Ein Listener wird zur bearbeitungszustandListe hinzugefuegt.
+     * Ein Listener wird zur bearbeitungszustandFXListe hinzugefuegt.
      * Wenn ein Bearbeitungsstatus zur Liste hinzugefuegt oder daraus entfernt wird,
      * wird dies auch in der GUI dargestellt.
      */
     private void addBearbeitungszustandListener(){
-        bearbeitungszustandListe.addListener(new ListChangeListener<Bearbeitungszustand>() {
+        bearbeitungszustandFXListe.addListener(new ListChangeListener<BearbeitungszustandFX>() {
             @Override
-            public void onChanged(Change<? extends Bearbeitungszustand> c) {
+            public void onChanged(Change<? extends BearbeitungszustandFX> c) {
                 while (c.next()) {
                     if (c.wasAdded()) {
-                        for (Bearbeitungszustand bazs : c.getAddedSubList()) {
+                        for (BearbeitungszustandFX bazs : c.getAddedSubList()) {
                             addBearbeitungszustand(bazs);
                         }
                     }
 
                     if (c.wasRemoved()) {
-                        for (Bearbeitungszustand bazs : c.getRemoved()) {
+                        for (BearbeitungszustandFX bazs : c.getRemoved()) {
                             removeBearbeitungszustand(bazs);
                         }
                     }

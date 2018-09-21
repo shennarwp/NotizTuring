@@ -15,7 +15,7 @@ import notizverwaltung.MainApp;
 import notizverwaltung.constants.FXKonstanten;
 import notizverwaltung.i18n.I18nComponentsUtil;
 import notizverwaltung.i18n.I18nUtil;
-import notizverwaltung.model.interfaces.Bearbeitungszustand;
+import notizverwaltung.model.interfaces.BearbeitungszustandFX;
 import notizverwaltung.model.interfaces.NotizFX;
 
 import java.io.IOException;
@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
  * Die Bearbeitungszustaende werden hier bedient.
  *
  * @author Johannes Gerwert
- * @version 20.09.2018
+ * @version 21.09.2018
  */
 public class BearbeitungszustandOverviewController{
 
@@ -39,7 +39,7 @@ public class BearbeitungszustandOverviewController{
 
 
     private ObservableList<NotizFX> notizFXListe;
-    private Bearbeitungszustand bazs;
+    private BearbeitungszustandFX bazs;
 
     private MainApp mainApp;
 
@@ -80,9 +80,9 @@ public class BearbeitungszustandOverviewController{
      * TitledPane geladen.
      * @param bazs Der Bearbeitungszustand, der zu diesem Controller gehoert.
      */
-    public void setBearbeitungszustand(Bearbeitungszustand bazs){
+    public void setBearbeitungszustand(BearbeitungszustandFX bazs){
         this.bazs = bazs;
-        bearbeitungszustandTitle.setText(this.bazs.getName());
+        bearbeitungszustandTitle.textProperty().bind((this.bazs.getName()));
     }
 
     /**
@@ -91,7 +91,7 @@ public class BearbeitungszustandOverviewController{
     public void ladeNotizen(){
 
         for(NotizFX notizFX: notizFXListe){
-            addNotizFX(notizFX);
+            addNotiz(notizFX);
             addMoveListener(notizFX);
         }
 
@@ -103,10 +103,10 @@ public class BearbeitungszustandOverviewController{
      *
      * @param notizFX Die einzufuegende Notiz
      */
-    private void addNotizFX(NotizFX notizFX){
+    private void addNotiz(NotizFX notizFX){
         //TODO: Fehler werfen, falls Bearbeitungsstatus nicht gesetzt.
         try{
-            if(this.bazs.getBearbeitungsZustandID() == notizFX.getBearbeitungszustandID().getValue()){
+            if(this.bazs.getBearbeitungsZustandID().getValue() == notizFX.getBearbeitungszustandID().getValue()){
                 FXMLLoader loader = new FXMLLoader();
                 ResourceBundle bundle = I18nUtil.getComponentsResourceBundle();
                 loader.setLocation(MainApp.class
@@ -131,7 +131,7 @@ public class BearbeitungszustandOverviewController{
      *
      * @param notizFX Die zu loeschende Notiz
      */
-    private void removeNotizFX(NotizFX notizFX){
+    private void removeNotiz(NotizFX notizFX){
         String notizID = "" + notizFX.getNotizID().getValue();
 
         for(Node notizView : notizen.getChildren()){
@@ -153,14 +153,14 @@ public class BearbeitungszustandOverviewController{
                 while(c.next()){
                     if(c.wasAdded()){
                         for(NotizFX notizFX : c.getAddedSubList()){
-                            addNotizFX(notizFX);
+                            addNotiz(notizFX);
                             addMoveListener(notizFX);
                         }
                     }
 
                     if(c.wasRemoved()){
                         for(NotizFX notizFX : c.getRemoved()){
-                            removeNotizFX(notizFX);
+                            removeNotiz(notizFX);
                         }
                     }
                 }
@@ -182,8 +182,8 @@ public class BearbeitungszustandOverviewController{
         bazsID.addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                removeNotizFX(notizFX);
-                addNotizFX(notizFX);
+                removeNotiz(notizFX);
+                addNotiz(notizFX);
             }
         });
     }

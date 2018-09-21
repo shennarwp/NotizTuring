@@ -195,6 +195,27 @@ public class NotizFXImpl implements NotizFX {
 
     }
 
+
+    /**
+     * NotizFX sind gleich, wenn sie die gleiche ID haben
+     * @param object zu vergleichende NotizFX
+     * @return true, wenn ID gleich, sonst false
+     */
+    @Override
+    public boolean equals(Object object){
+        if (object instanceof NotizFX){
+            NotizFX vergleichsNotizFX = (NotizFXImpl) object;
+            int vergleichdsID = vergleichsNotizFX.getNotizID().getValue();
+            int eigeneID = this.notizID.getValue();
+
+            if (eigeneID == vergleichdsID){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     @Override
     public String toString(){
         return title.getValue();
