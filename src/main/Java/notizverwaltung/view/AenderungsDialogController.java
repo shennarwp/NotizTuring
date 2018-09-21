@@ -81,13 +81,13 @@ public class AenderungsDialogController {
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
         if(!ObjectValidator.isObjectNull(bearbeitungszustandFXChoiceBox)){
-            bearbeitungszustandFXChoiceBox.getItems().addAll(mainApp.getBearbeitungszustandFXListe());
+            bearbeitungszustandFXChoiceBox.setItems(mainApp.getBearbeitungszustandFXListe());
         }
         if(!ObjectValidator.isObjectNull(kategorieFXChoiceBox)){
-            kategorieFXChoiceBox.getItems().addAll(mainApp.getKategorieFXListe());
+            kategorieFXChoiceBox.setItems(mainApp.getKategorieFXListe());
         }
         if(!ObjectValidator.isObjectNull(notizFXChoiceBox)){
-            notizFXChoiceBox.getItems().addAll(mainApp.getNotizFXListe());
+            notizFXChoiceBox.setItems(mainApp.getNotizFXListe());
 
             notizFXChoiceBox.getSelectionModel()
                     .selectedIndexProperty()
@@ -307,7 +307,8 @@ public class AenderungsDialogController {
 
                 notizNameField.setText(gewaehlteNotizFX.getTitle().getValue());
                 notizBeschreibungTextArea.setText(gewaehlteNotizFX.getBeschreibung().getValue());
-                kategorieFXChoiceBox.setValue(kategorieFXService.wrapKategorie(tmpKategorie));
+                KategorieFX kategorieFX = kategorieFXService.wrapKategorie(tmpKategorie);
+                kategorieFXChoiceBox.setValue(kategorieFX);
                 notizFaelligkeitDatePicker.setValue(DateUtil.convertDateInLocalDate(notizFaelligkeit));
                 notizPrioritaetCheckBox.setSelected(gewaehlteNotizFX.getPrioritaet().getValue());
 

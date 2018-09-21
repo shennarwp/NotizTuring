@@ -61,6 +61,25 @@ public class KategorieFXImpl implements KategorieFX {
         this.farbe.set(farbe);
     }
 
+    /**
+     * KategorieFX sind gleich, wenn sie die gleiche ID haben
+     * @param object zu vergleichende KategorieFX
+     * @return true, wenn KategorieFX gleich, sonst false
+     */
+    @Override
+    public boolean equals(Object object){
+        if (object instanceof KategorieFX){
+            KategorieFX vergleichsKategorieFX = (KategorieFXImpl) object;
+            int vergleichdsID = vergleichsKategorieFX.getKategorieID().getValue();
+            int eigeneID = this.kategorieID.getValue();
+
+            if (eigeneID == vergleichdsID){
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String toString(){return kategorieName.getValue();}
 }
