@@ -1,6 +1,7 @@
 package notizverwaltung.service.classes;
 
 import notizverwaltung.builders.DaoObjectBuilder;
+import notizverwaltung.dao.classes.NotizDAOImpl;
 import notizverwaltung.dao.interfaces.NotizDAO;
 import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.service.interfaces.NotizSortService;
@@ -72,4 +73,5 @@ public class NotizSortServiceImpl implements NotizSortService {
 		Collections.reverse(notizList);
 		return notizList;
 	}
+
 }

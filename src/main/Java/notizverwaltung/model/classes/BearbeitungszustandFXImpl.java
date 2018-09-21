@@ -29,10 +29,18 @@ public class BearbeitungszustandFXImpl implements BearbeitungszustandFX {
         position = new SimpleIntegerProperty();
     }
 
+    /**
+     *
+     * @return Gibt die BearbeitunszustandID als IntegerProperty zureuck.
+     */
     @Override
     public IntegerProperty getBearbeitungsZustandID() {
         return bearbeitzustandID;
     }
+
+    /**
+     * @param bearbeitungszustandID  als int, int darf nicht kleiner 0 sein.
+     */
 
     @Override
     public void setBearbeitungsZustandID(int bearbeitungszustandID) {
@@ -41,22 +49,39 @@ public class BearbeitungszustandFXImpl implements BearbeitungszustandFX {
 
     }
 
+    /**
+     *
+     * @return liefert den Name des Bearbeitungszustands als Stringproperty zurueck.
+     */
 
     @Override
     public StringProperty getName() {
         return name;
     }
 
+    /**
+     *
+     * @param nameDerSpalte als String. String darf nicht leer sein.
+     */
     @Override
     public void setName(String nameDerSpalte) {
         StringValidator.checkObStringLeerOderNullIst(nameDerSpalte);
         this.name.set(nameDerSpalte);
     }
 
+    /**
+     *
+     * @return liefert Position des Bearbeitunszustands zurueck.
+     */
+
     @Override
     public IntegerProperty getPosition() {
         return position;
     }
+
+    /**
+     * @param position als int, int darf nicht kleiner 0 sein.
+     */
 
     @Override
     public void setPosition(int position) {
