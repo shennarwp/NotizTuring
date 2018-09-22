@@ -1,5 +1,7 @@
 package notizverwaltung.view;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -9,11 +11,9 @@ import javafx.scene.control.Label;
 import notizverwaltung.MainApp;
 import notizverwaltung.builders.ServiceObjectBuilder;
 import notizverwaltung.i18n.I18nComponentsUtil;
-import notizverwaltung.model.interfaces.Bearbeitungszustand;
-import notizverwaltung.model.interfaces.BearbeitungszustandFX;
-import notizverwaltung.model.interfaces.Notiz;
-import notizverwaltung.model.interfaces.NotizFX;
+import notizverwaltung.model.interfaces.*;
 import notizverwaltung.service.interfaces.*;
+import org.eclipse.persistence.internal.sessions.DirectCollectionChangeRecord;
 
 import java.util.Date;
 import java.util.ListIterator;
@@ -43,6 +43,7 @@ public class NotizOverviewController {
     private NotizFX notizFX;
 
     private ObservableList<BearbeitungszustandFX> bearbeitungszustandFXListe;
+    private ObservableList<KategorieFX> kategorieFXListe;
 
     private MainApp mainApp;
 
@@ -63,12 +64,15 @@ public class NotizOverviewController {
     /**
      * Die Umgebung in der das Bedienelement agiert wird gesetzt.
      * Der Inhalt der Liste zur Spaltenwahl wird eingerichtet.
+     *
      * @param mainApp Ein Verweis auf die MainApp.
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
         bearbeitungszustandFXListe = mainApp.getBearbeitungszustandFXListe();
         spaltenWahlBox.setItems(bearbeitungszustandFXListe);
+
+        kategorieFXListe = mainApp.getKategorieFXListe();
 
     }
 
@@ -111,11 +115,11 @@ public class NotizOverviewController {
 
         //--------------------------------------------------------------------------------------------------------------
         //zeigt Kategorie Namen an und updatet diesen
-        kategorieLabel.setText(kategorieService.findKategorieName(notizFX.getKategorieID().getValue()));
+        kategorieLabel.textProperty().bind((findKategorieFXName(notizFX.getKategorieID().getValue())));
         notizFX.getKategorieID().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                kategorieLabel.setText(kategorieService.findKategorieName(notizFX.getKategorieID().getValue()));
+                kategorieLabel.textProperty().bind((findKategorieFXName(notizFX.getKategorieID().getValue())));
             }
         });
 
@@ -204,4 +208,24 @@ public class NotizOverviewController {
 
         notizService.updateNotiz(tmpNotiz);
     }
+
+    /**
+     * Hilfsmethode um das Namensproperty einer Kategorie anhand der ID zu erhalten.
+     *
+     * @param kategorieID Die ID der zu findenden Kategorie
+     * @return Das gefundene Namensproperty
+     */
+    private StringProperty findKategorieFXName(int kategorieID){
+
+        StringProperty kategorieName = new SimpleStringProperty();
+
+        for(KategorieFX kategorieFX : kategorieFXListe){
+            if(kategorieID == kategorieFX.getKategorieID().getValue()){
+                kategorieName = kategorieFX.getKategorieName();
+            }
+        }
+
+        return kategorieName;
+    }
+
 }
