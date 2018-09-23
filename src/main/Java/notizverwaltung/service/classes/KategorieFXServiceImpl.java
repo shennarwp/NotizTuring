@@ -1,10 +1,16 @@
 package notizverwaltung.service.classes;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.paint.Color;
+import notizverwaltung.builders.DaoObjectBuilder;
 import notizverwaltung.builders.ModelObjectBuilder;
+import notizverwaltung.builders.ServiceObjectBuilder;
+import notizverwaltung.dao.interfaces.KategorieDAO;
 import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.KategorieFX;
 import notizverwaltung.service.interfaces.KategorieFXService;
+import notizverwaltung.validators.IntValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,5 +54,25 @@ public class KategorieFXServiceImpl implements KategorieFXService {
             kategorieFXListe.add(kategorieFX);
         }
         return kategorieFXListe;
+    }
+
+    /**
+     * Die Methode liefert zu einer KategorieID eine Stringproperty mit dem Name der
+     * Kategorie zurueck
+     * @param kategorieID Integer, darf nicht nicht kleiner als 1 sein
+     * @return Liefert ein StringProperty mit dem Kategorie Name zurueck
+     */
+    @Override
+    public StringProperty getKategorieNamePropertyVonKategorieID(int kategorieID) {
+        IntValidator.checkObIntNullOderNegativIst(kategorieID);
+
+        KategorieDAO kategorieDAO = DaoObjectBuilder.getKategorieDaoObject();
+        StringProperty kategorieIDProperty = new SimpleStringProperty();
+
+        kategorieIDProperty.set(kategorieDAO.getKategorieNameVonKategorieID(kategorieID));
+
+        return kategorieIDProperty;
+
+
     }
 }

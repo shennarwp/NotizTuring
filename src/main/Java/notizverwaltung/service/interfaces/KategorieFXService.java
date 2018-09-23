@@ -1,5 +1,6 @@
 package notizverwaltung.service.interfaces;
 
+import javafx.beans.property.StringProperty;
 import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.KategorieFX;
 
@@ -18,4 +19,5 @@ public interface KategorieFXService {
     public KategorieFX wrapKategorie(Kategorie kategorie);
     public Kategorie unwrapKategorieFX(KategorieFX kategorieFX);
     public List<KategorieFX> convertInKategorieFXList(List<Kategorie> kategorieListe);
+    public StringProperty getKategorieNamePropertyVonKategorieID(int KategorieID);
 }

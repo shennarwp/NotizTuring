@@ -1,5 +1,6 @@
 package notizverwaltung.dao.classes;
 
+import javafx.beans.property.StringProperty;
 import notizverwaltung.dao.interfaces.KategorieDAO;
 import notizverwaltung.model.classes.KategorieImpl;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
@@ -158,6 +159,21 @@ public class KategorieDAOImpl extends ObjectDAOImpl implements KategorieDAO
         finishTransaction();
 
         return listKategorie;
+    }
+
+    public String getKategorieNameVonKategorieID(int kategorieID) {
+        initTransaction();
+        transaction.begin();
+        String kategorieName = entityManager.createQuery("SELECT k.kategorieName FROM KategorieImpl k WHERE k.kategorieID = :id", String.class)
+                                .setParameter("id", kategorieID)
+                                .getSingleResult();
+
+
+
+        transaction.commit();
+        finishTransaction();
+
+        return kategorieName;
     }
 
 }

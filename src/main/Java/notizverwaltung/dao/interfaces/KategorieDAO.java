@@ -32,6 +32,8 @@ public interface KategorieDAO extends ObjectDAO {
     //suche Liste von alle vorhandenen Kategorien in Datenbank
     public List<Kategorie> getAlleKategorien();
 
+    public String getKategorieNameVonKategorieID(int kategorieID);
+
 
 
 }

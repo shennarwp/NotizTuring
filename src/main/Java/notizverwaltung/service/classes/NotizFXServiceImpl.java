@@ -8,6 +8,11 @@ import notizverwaltung.service.interfaces.NotizFXService;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Inteface für NotizFX Service
+ * @author Kevin Engelhardt
+ * @version 1.0
+ */
 public class NotizFXServiceImpl implements NotizFXService {
 
     @Override
