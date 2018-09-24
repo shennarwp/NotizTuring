@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
  * Die Bearbeitungszustaende werden hier bedient.
  *
  * @author Johannes Gerwert
- * @version 21.09.2018
+ * @version 24.09.2018
  */
 public class BearbeitungszustandOverviewController{
 
@@ -94,8 +94,7 @@ public class BearbeitungszustandOverviewController{
             addNotiz(notizFX);
             addMoveListener(notizFX);
         }
-
-
+        
     }
 
     /**
@@ -173,7 +172,7 @@ public class BearbeitungszustandOverviewController{
      * Element aus der Liste geloescht und wieder neu eingefuegt.
      * Dadurch wird die Notiz im richtigen Bearbeitungszustand eingeordnet.
      *
-     * @param notizFX
+     * @param notizFX Die Notiz, der ein listener hinzugefuegt werden soll
      */
     private void addMoveListener(NotizFX notizFX){
         IntegerProperty bazsID = notizFX.getBearbeitungszustandID();

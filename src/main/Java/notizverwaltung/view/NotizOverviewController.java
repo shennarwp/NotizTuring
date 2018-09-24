@@ -25,7 +25,7 @@ import static notizverwaltung.util.DateUtil.convertDateInLocalDate;
  * Die Notizen werden hier bedient.
  *
  * @author Johannes Gerwert
- * @version 21.09.2018
+ * @version 24.09.2018
  */
 public class NotizOverviewController {
 
