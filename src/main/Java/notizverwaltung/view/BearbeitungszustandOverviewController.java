@@ -104,7 +104,6 @@ public class BearbeitungszustandOverviewController{
      * @param notizFX Die einzufuegende Notiz
      */
     private void addNotiz(NotizFX notizFX){
-        //TODO: Fehler werfen, falls Bearbeitungsstatus nicht gesetzt.
         try{
             if(this.bazs.getBearbeitungsZustandID().getValue() == notizFX.getBearbeitungszustandID().getValue()){
                 FXMLLoader loader = new FXMLLoader();
