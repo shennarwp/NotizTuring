@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
  * kleinen Beispiel wird nur eine Ressourcendatei verwendet, doch es kann durchaus sinnvoll
  * sein, mehrere solcher Dateien zu definieren, z.B. fuer Beschriftungen, Fehlermeldungen usw. 
  * @author christopher
+ * @author Michelle Blau
  *
  */
 public class I18nUtil {

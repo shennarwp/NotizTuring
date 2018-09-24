@@ -1,6 +1,7 @@
 package notizverwaltung.validators;
 
 import notizverwaltung.builders.ServiceObjectBuilder;
+import notizverwaltung.constants.DAOKonstanten;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
@@ -12,10 +13,11 @@ import notizverwaltung.service.interfaces.NotizService;
 import java.util.List;
 
 /**
- * Überprüft, ob noch Notizen in der Datenbank exisiteren, die einer bestimmten Kategorie oder
- * einem bestimmten Bearbeitungszustand zugeordnet sind
+ * Stellt Methoden zum Überprüfen von Datenbankinhalten zur Verfügung.
+ * Diese Methoden werden für die GUI verwendet.
  *
  * @author Michelle Blau
+ * @version 24.09.2018
  */
 public class DaoContentValidator {
 
@@ -57,4 +59,55 @@ public class DaoContentValidator {
         }
     }
 
+
+    /**
+     * Überprüft, ob die max. mögliche Anzahl an Kategorien in der DB erreicht wurde
+     *
+     * @return true, wenn max. Anzahl erreicht, sonst false
+     */
+    public static boolean isMaximumKategorienErreicht(){
+        KategorieService kategorieService = ServiceObjectBuilder.getKategorieService();
+        long anzahlKategorienInDB = kategorieService.getAlleKategorien().size();
+
+        if (anzahlKategorienInDB >= DAOKonstanten.MAX_ANZAHL_KATEGORIEN){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+    /**
+     * Überprüft, ob die max. mögliche Anzahl an Bearbeitungszustaenden in der DB erreicht wurde
+     *
+     * @return true, wenn max. Anzahl erreicht, sonst false
+     */
+    public static boolean isMaximumZustaendeErreicht(){
+        BearbeitungszustandService bearbeitungszustandService = ServiceObjectBuilder.getBearbeitungszustandService();
+        long anzahlZustaendeInDB = bearbeitungszustandService.getAllBearbeitungszustand().size();
+
+        if (anzahlZustaendeInDB >= DAOKonstanten.MAX_ANZAHL_ZUSTAENDE){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+    /**
+     * Überprüft, ob die max. mögliche Anzahl Notizen in der DB erreicht wurde
+     *
+     * @return true, wenn max. Anzahl erreicht, sonst false
+     */
+    public static boolean isMaximumNotizenErreicht(){
+        NotizService notizService = ServiceObjectBuilder.getNotizService();
+        List<Notiz> notizListe = notizService.getAlleNotizenVomNotizblock(DAOKonstanten.STANDARD_NOTIZBLOCK_ID);
+        long anzahlNotizenInDB = notizListe.size();
+
+        if (anzahlNotizenInDB >= DAOKonstanten.MAX_ANZAHL_NOTIZEN){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

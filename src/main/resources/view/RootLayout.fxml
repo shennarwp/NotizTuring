@@ -35,16 +35,6 @@
                   <MenuItem mnemonicParsing="false" onAction="#handleshowNotizLoeschungsMaske" text="%menuitem-delete-note" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="%menu-options">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="TODO" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="%menu-filter">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="TODO" />
-               </items>
-            </Menu>
             <Menu mnemonicParsing="false" text="%menu-sort">
                <items>
                   <MenuItem mnemonicParsing="false" text="TODO" />

@@ -10,28 +10,18 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import notizverwaltung.builders.ModelObjectBuilder;
 import notizverwaltung.builders.ServiceObjectBuilder;
 import notizverwaltung.constants.DAOKonstanten;
 import notizverwaltung.constants.FXKonstanten;
-import notizverwaltung.dao.classes.NotizDAOImpl;
-import notizverwaltung.dao.interfaces.NotizDAO;
-import notizverwaltung.exceptions.ObjectIstNullException;
-import notizverwaltung.exceptions.StringIsEmptyException;
 import notizverwaltung.i18n.I18nUtil;
-import notizverwaltung.model.classes.BearbeitungszustandImpl;
-import notizverwaltung.model.classes.KategorieImpl;
 import notizverwaltung.model.interfaces.*;
-import notizverwaltung.service.classes.*;
 import notizverwaltung.service.interfaces.*;
 import notizverwaltung.view.GesamtOverviewController;
 import notizverwaltung.view.NotizblockOverviewController;
 import notizverwaltung.view.RootLayoutController;
 
-import javax.xml.ws.Service;
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -42,46 +32,45 @@ import java.util.ResourceBundle;
  *
  * @author Michelle Blau
  * @author Johannes Gerwert
- * @version 20.09.2018
+ * @version 24.09.2018
  */
 
 public class MainApp extends Application {
-
 
     private Stage primaryStage;
     private BorderPane rootBorderPane;
 
     /**
      * Die Kategorien, Notizen und Bearbeitungszustände befinden sich in einer ObservableList
-     *
      */
-    private ObservableList<Kategorie> kategorieListe = FXCollections.observableArrayList();
-    private ObservableList<Notiz> notizListe = FXCollections.observableArrayList();
-    private ObservableList<Bearbeitungszustand> bearbeitungszustandListe = FXCollections.observableArrayList();
     private ObservableList<NotizFX> notizFXListe = FXCollections.observableArrayList();
     private ObservableList<KategorieFX> kategorieFXListe = FXCollections.observableArrayList();
     private ObservableList<BearbeitungszustandFX> bearbeitungszustandFXListe = FXCollections.observableArrayList();
 
+    /**
+     * Service-Objekte zum Laden aus der Datenbank
+     */
     private NotizService notizService = ServiceObjectBuilder.getNotizService();
     private KategorieService kategorieService = ServiceObjectBuilder.getKategorieService();
     private BearbeitungszustandService bearbeitungszustandService = ServiceObjectBuilder.getBearbeitungszustandService();
+
+    /**
+     * Service-Objekte zum Konvertieren zwischen normaler Modellklasse u. FX Modellklasse
+     */
     private NotizFXService notizFXService = ServiceObjectBuilder.getNotizFXService();
     private KategorieFXService kategorieFXService = ServiceObjectBuilder.getKategorieFXService();
     private BearbeitungszustandFXService bearbeitungszustandFXService = ServiceObjectBuilder.getBearbeitungszustandFXService();
 
 
     /**
-     * Fülle die Listen mit entsprechenden Daten, dies sind noch Testdaten für die GUI.
+     * Füllt die ObservableLists mit entsprechenden Daten aus der Datenbank
      */
     public MainApp() {
 
         initializeListenMitDatenbankInhalt();
 
-        System.out.println("\n\n\n\n"+notizListe);
         System.out.println("\n\n\n\n"+notizFXListe);
-        System.out.println("\n\n\n\n"+kategorieListe);
         System.out.println("\n\n\n\n"+kategorieFXListe);
-        System.out.println("\n\n\n\n"+bearbeitungszustandListe);
         System.out.println("\n\n\n\n"+bearbeitungszustandFXListe);
     }
 
@@ -103,7 +92,7 @@ public class MainApp extends Application {
 
 
     /**
-     * Initialisiert das RootLayout innerhalb des "rootBorderPane" mit dem Grundgeruest der Anwendung.
+     * Initialisiert das Grundfenster und die Menü-Leiste.
      */
     public void initRootLayout() {
         try {
@@ -162,17 +151,6 @@ public class MainApp extends Application {
         }
     }
 
-    public ObservableList<Kategorie> getKategorieListe(){
-        return this.kategorieListe;
-    }
-
-    public ObservableList<Notiz> getNotizListe() {
-        return this.notizListe;
-    }
-
-    public ObservableList<Bearbeitungszustand> getBearbeitungszustandListe() {
-        return this.bearbeitungszustandListe;
-    }
 
     public ObservableList<NotizFX> getNotizFXListe() {
         return this.notizFXListe;
@@ -188,10 +166,16 @@ public class MainApp extends Application {
 
 
     /**
-     * Initialisiert die ObservableLists mit Notizen, Kategorien, Bearbeitungszuständen, durch Verbindung zur Datenbank
+     * Lädt normale Modellklassen aus der Datenbank und konvertiert diese um. Speichert
+     * die konvertierten Objekte jeweils in einer ObservableList.
      */
     private void initializeListenMitDatenbankInhalt(){
-        notizListe.addAll(notizService.getAlleNotizenVomNotizblock(DAOKonstanten.DEFAULT_NOTIZBLOCK_ID));
+
+        ArrayList<Notiz> notizListe = new ArrayList<>();
+        ArrayList<Kategorie> kategorieListe =  new ArrayList<>();
+        ArrayList<Bearbeitungszustand> bearbeitungszustandListe =  new ArrayList<>();
+
+        notizListe.addAll(notizService.getAlleNotizenVomNotizblock(DAOKonstanten.STANDARD_NOTIZBLOCK_ID));
         kategorieListe.addAll(kategorieService.getAlleKategorien());
         bearbeitungszustandListe.addAll(bearbeitungszustandService.getAllBearbeitungszustand());
 

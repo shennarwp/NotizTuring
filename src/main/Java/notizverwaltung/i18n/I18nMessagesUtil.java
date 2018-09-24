@@ -19,8 +19,17 @@ public abstract class I18nMessagesUtil {
 	private static final String ERROR_KATEGORIE_WIRD_NOCH_VERWENDET = "message-error-category-still-used";
 	private static final String ERROR_BEARBEITUNGSZUSTAND_WIRD_NOCH_VERWENDET = "message-error-state-still-used";
 
+	private static final String ERROR_BEARBEITUNGSZUSTAND_EXISTIERT_BEREITS = "message-error-state-already-exists";
+	private static final String ERROR_KATEGORIE_EXISTIERT_BEREITS = "message-error-category-already-exists";
+
 	private static final String ERROR_UNGUELTIGE_FELDER ="error-invalid-fields";
 	private static final String ERROR_KORRIGIERE_UNGUELTIGE_FELDER ="message-correct-invalid-fields";
+	private static final String ERROR_SONDERZEICHEN_VORHANDEN="message-error-special-characters";
+
+	private static final String WARNING ="message-warning";
+	private static final String WARNING_ZU_VIELE_KATEGORIEN ="message-warning-too-many-categories";
+	private static final String WARNING_ZU_VIELE_ZUSTAENDE ="message-warning-too-many-states";
+	private static final String WARNING_ZU_VIELE_NOTIZEN ="message-warning-too-many-notes";
 
 
 	private static ResourceBundle resourceBundle;
@@ -81,5 +90,33 @@ public abstract class I18nMessagesUtil {
 
 	public static String getErrorEsGibtNochNotizenMitDiesemBearbeitungszustand() {
 		return resourceBundle.getString(ERROR_BEARBEITUNGSZUSTAND_WIRD_NOCH_VERWENDET);
+	}
+
+	public static String getWarningTitel(){
+		return resourceBundle.getString(WARNING);
+	}
+
+	public static String getWarningZuVieleKategorien(){
+		return resourceBundle.getString(WARNING_ZU_VIELE_KATEGORIEN);
+	}
+
+	public static String getWarningZuVieleZustaende(){
+		return resourceBundle.getString(WARNING_ZU_VIELE_ZUSTAENDE);
+	}
+
+	public static String getWarningZuVieleNotizen(){
+		return resourceBundle.getString(WARNING_ZU_VIELE_NOTIZEN);
+	}
+
+	public static String getErrorBearbeitungszustandnameVorhanden() {
+		return resourceBundle.getString(ERROR_BEARBEITUNGSZUSTAND_EXISTIERT_BEREITS);
+	}
+
+	public static String getErrorKategorienameVorhanden(){
+		return resourceBundle.getString(ERROR_KATEGORIE_EXISTIERT_BEREITS);
+	}
+
+	public static String getErrorSonderzeichenVorhanden() {
+		return resourceBundle.getString(ERROR_SONDERZEICHEN_VORHANDEN);
 	}
 }

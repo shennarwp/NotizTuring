@@ -1,5 +1,6 @@
 package notizverwaltung.view;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -123,7 +124,7 @@ public class ErstellungsDialogController {
             tmpNotiz.setPrioritaet(notizPrioritaetCheckBox.isSelected());
             tmpNotiz.setFaelligkeit(DateUtil.convertLocalDateInDate(faelligkeit));
 
-            notizService.addNotiz(tmpNotiz,DAOKonstanten.DEFAULT_NOTIZBLOCK_ID);
+            notizService.addNotiz(tmpNotiz,DAOKonstanten.STANDARD_NOTIZBLOCK_ID);
 
             NotizFX tmpNotizFX = notizFXService.wrapNotiz(tmpNotiz);
             mainApp.getNotizFXListe().add(tmpNotizFX);
@@ -227,12 +228,20 @@ public class ErstellungsDialogController {
      *
      */
     private String validateKategorieErstellen() {
+        ObservableList<KategorieFX> guiKategorieListe = mainApp.getKategorieFXListe();
         String kategorieName = kategorieNameField.getText();
 
         String errorMessage = "";
 
         if (StringValidator.isStringLeerOderNull(kategorieName)) {
             errorMessage += I18nMessagesUtil.getErrorKategorienameUngueltig() + "\n";
+        }else{
+            if(FXUtil.isKategorieNameInListe(kategorieName, guiKategorieListe)){
+                errorMessage += I18nMessagesUtil.getErrorKategorienameVorhanden() + "\n";
+            }
+            if(StringValidator.isSonderzeichenVorhanden(kategorieName)){
+                errorMessage += I18nMessagesUtil.getErrorSonderzeichenVorhanden() + "\n";
+            }
         }
 
         return errorMessage;
@@ -245,15 +254,26 @@ public class ErstellungsDialogController {
      * leerer String.
      */
     private String validateBearbeitungszustandErstellen() {
+        ObservableList<BearbeitungszustandFX> guiZustandListe = mainApp.getBearbeitungszustandFXListe();
         String bearbeitungszustandName = bearbeitungszustandNameField.getText();
 
         String errorMessage = "";
 
         if (StringValidator.isStringLeerOderNull(bearbeitungszustandName)) {
             errorMessage += I18nMessagesUtil.getErrorBearbeitungszustandnameUngueltig() + "\n";
+        }else{
+            if(FXUtil.isZustandNameInListe(bearbeitungszustandName, guiZustandListe)){
+                errorMessage += I18nMessagesUtil.getErrorBearbeitungszustandnameVorhanden() + "\n";
+            }
+            if(StringValidator.isSonderzeichenVorhanden(bearbeitungszustandName)){
+                errorMessage += I18nMessagesUtil.getErrorSonderzeichenVorhanden() + "\n";
+            }
         }
 
         return errorMessage;
     }
+
+
+
 
 }
