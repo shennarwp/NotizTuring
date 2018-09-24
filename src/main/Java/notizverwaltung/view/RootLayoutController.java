@@ -1,6 +1,8 @@
 package notizverwaltung.view;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,11 +14,13 @@ import notizverwaltung.constants.FXKonstanten;
 import notizverwaltung.MainApp;
 import notizverwaltung.i18n.I18nMessagesUtil;
 import notizverwaltung.i18n.I18nUtil;
+import notizverwaltung.model.interfaces.NotizFX;
 import notizverwaltung.service.interfaces.KategorieService;
 import notizverwaltung.util.FXUtil;
 import notizverwaltung.validators.DaoContentValidator;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 /**
@@ -78,7 +82,6 @@ public class RootLayoutController {
     @FXML
     private void handleshowBearbeitungszustandErstellungsMaske() {
 
-        //TODO: i18n, Anzahlen anders überprüfen
         if(DaoContentValidator.isMaximumZustaendeErreicht()){
             FXUtil.showZuVieleElementeWarning(I18nMessagesUtil.getWarningZuVieleZustaende());
         } else{
@@ -95,7 +98,6 @@ public class RootLayoutController {
     @FXML
     private void handleshowNotizErstellungsMaske() {
 
-        //TODO: i18n, Anzahlen anders überprüfen
         if(DaoContentValidator.isMaximumNotizenErreicht()){
             FXUtil.showZuVieleElementeWarning(I18nMessagesUtil.getWarningZuVieleNotizen());
         } else{
@@ -249,6 +251,23 @@ public class RootLayoutController {
         }
     }
 
+
+    @FXML
+    private void handleSortiereNotizenAufsteigend(){
+        ObservableList<NotizFX> notizListe = mainApp.getNotizFXListe();
+        System.out.println(notizListe);
+
+        Comparator<NotizFX> comparator = new Comparator<NotizFX>() {
+            @Override
+            public int compare(NotizFX o1, NotizFX o2) {
+                return o1.compareTo(o2);
+            }
+        };
+
+        notizListe.sort(comparator);
+        System.out.println(notizListe);
+
+    }
 
     /**
      * Schliesst das Programm.

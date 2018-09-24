@@ -37,7 +37,7 @@
             </Menu>
             <Menu mnemonicParsing="false" text="%menu-sort">
                <items>
-                  <MenuItem mnemonicParsing="false" text="TODO" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleSortiereNotizenAufsteigend" text="%menuitem-sort-by-date" />
                </items>
             </Menu>
         </menus>

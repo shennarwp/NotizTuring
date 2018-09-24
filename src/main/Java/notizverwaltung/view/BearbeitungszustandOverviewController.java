@@ -163,6 +163,10 @@ public class BearbeitungszustandOverviewController{
                             removeNotiz(notizFX);
                         }
                     }
+
+                    if(c.wasPermutated()){
+                        //TODO wenn die Notiz-Liste sortiert wurde, aktualisiere bitte irgendwie die Ansicht
+                    }
                 }
             }
         });
