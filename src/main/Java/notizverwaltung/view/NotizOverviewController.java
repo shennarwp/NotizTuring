@@ -25,7 +25,7 @@ import static notizverwaltung.util.DateUtil.convertDateInLocalDate;
  * Die Notizen werden hier bedient.
  *
  * @author Johannes Gerwert
- * @version 21.09.2018
+ * @version 24.09.2018
  */
 public class NotizOverviewController {
 
@@ -48,6 +48,7 @@ public class NotizOverviewController {
     private MainApp mainApp;
 
     private KategorieService kategorieService = ServiceObjectBuilder.getKategorieService();
+    private KategorieFXService kategorieFXService = ServiceObjectBuilder.getKategorieFXService();
     private BearbeitungszustandService bearbeitungszustandService = ServiceObjectBuilder.getBearbeitungszustandService();
     private BearbeitungszustandFXService bearbeitungszustandFXService = ServiceObjectBuilder.getBearbeitungszustandFXService();
     private NotizFXService notizFXService = ServiceObjectBuilder.getNotizFXService();
@@ -115,11 +116,15 @@ public class NotizOverviewController {
 
         //--------------------------------------------------------------------------------------------------------------
         //zeigt Kategorie Namen an und updatet diesen
-        kategorieLabel.textProperty().bind((findKategorieFXName(notizFX.getKategorieID().getValue())));
+        kategorieLabel.textProperty().bind(
+                findKategorieFXName(notizFX.getKategorieID().getValue())
+        );
         notizFX.getKategorieID().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                kategorieLabel.textProperty().bind((findKategorieFXName(notizFX.getKategorieID().getValue())));
+                kategorieLabel.textProperty().bind(
+                        findKategorieFXName(notizFX.getKategorieID().getValue())
+                );
             }
         });
 
@@ -152,9 +157,6 @@ public class NotizOverviewController {
             tmpNotiz = notizFXService.unwrapNotizFX(notizFX);
 
             notizService.updateNotiz(tmpNotiz);
-
-            //TODO: entfernen
-            System.out.println("\n\n\n\n\n\nDie Notiz wurde nach links bewegt!!!");
         }
     }
 
@@ -184,9 +186,6 @@ public class NotizOverviewController {
             tmpNotiz = notizFXService.unwrapNotizFX(notizFX);
 
             notizService.updateNotiz(tmpNotiz);
-
-            //TODO: entfernen
-            System.out.println("\n\n\n\n\n\nDie Notiz wurde nach rechts bewegt!!!");
         }
     }
 
@@ -199,9 +198,6 @@ public class NotizOverviewController {
         BearbeitungszustandFX bazsFX;
         Notiz tmpNotiz;
         bazsFX = spaltenWahlBox.getValue();
-
-        //TODO: entfernen
-        System.out.println("\n\n\n\n\n\nDie Notiz wurde zu Bearbeitungszustand NR." + bazsFX.getBearbeitungsZustandID().getValue() + " bewegt!!!");
 
         notizFX.setBearbeitungszustandID(bazsFX.getBearbeitungsZustandID().getValue());
         tmpNotiz = notizFXService.unwrapNotizFX(notizFX);

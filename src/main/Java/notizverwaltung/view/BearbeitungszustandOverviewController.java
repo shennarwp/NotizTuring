@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
  * Die Bearbeitungszustaende werden hier bedient.
  *
  * @author Johannes Gerwert
- * @version 21.09.2018
+ * @version 24.09.2018
  */
 public class BearbeitungszustandOverviewController{
 
@@ -95,7 +95,6 @@ public class BearbeitungszustandOverviewController{
             addMoveListener(notizFX);
         }
 
-
     }
 
     /**
@@ -104,7 +103,6 @@ public class BearbeitungszustandOverviewController{
      * @param notizFX Die einzufuegende Notiz
      */
     private void addNotiz(NotizFX notizFX){
-        //TODO: Fehler werfen, falls Bearbeitungsstatus nicht gesetzt.
         try{
             if(this.bazs.getBearbeitungsZustandID().getValue() == notizFX.getBearbeitungszustandID().getValue()){
                 FXMLLoader loader = new FXMLLoader();
@@ -165,7 +163,8 @@ public class BearbeitungszustandOverviewController{
                     }
 
                     if(c.wasPermutated()){
-                        //TODO wenn die Notiz-Liste sortiert wurde, aktualisiere bitte irgendwie die Ansicht
+                        notizen.getChildren().clear();
+                        ladeNotizen();
                     }
                 }
             }
@@ -178,7 +177,7 @@ public class BearbeitungszustandOverviewController{
      * Element aus der Liste geloescht und wieder neu eingefuegt.
      * Dadurch wird die Notiz im richtigen Bearbeitungszustand eingeordnet.
      *
-     * @param notizFX
+     * @param notizFX Die Notiz, der ein listener hinzugefuegt werden soll
      */
     private void addMoveListener(NotizFX notizFX){
         IntegerProperty bazsID = notizFX.getBearbeitungszustandID();
