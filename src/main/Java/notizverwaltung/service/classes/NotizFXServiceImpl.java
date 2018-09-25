@@ -4,12 +4,13 @@ import notizverwaltung.builders.ModelObjectBuilder;
 import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.model.interfaces.NotizFX;
 import notizverwaltung.service.interfaces.NotizFXService;
+import notizverwaltung.validators.ObjectValidator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Inteface für NotizFX Service
+ * Klasse NotizFXServiceImpl implementiert NotizFXService Interface
  * @author Kevin Engelhardt
  * @version 1.0
  */
@@ -17,6 +18,7 @@ public class NotizFXServiceImpl implements NotizFXService {
 
     @Override
     public NotizFX wrapNotiz(Notiz notiz) {
+        ObjectValidator.checkObObjectNullIst(notiz);
         NotizFX notizFX = ModelObjectBuilder.getNotizFXObjekt();
 
         notizFX.setNotizID(notiz.getNotizID());
@@ -36,6 +38,7 @@ public class NotizFXServiceImpl implements NotizFXService {
 
     @Override
     public Notiz unwrapNotizFX(NotizFX notizFX){
+        ObjectValidator.checkObObjectNullIst(notizFX);
         Notiz notiz = ModelObjectBuilder.getNotizObject();
 
         notiz.setID(notizFX.getNotizID().getValue());
@@ -51,6 +54,7 @@ public class NotizFXServiceImpl implements NotizFXService {
 
     @Override
     public List<NotizFX> convertInNotizFXList(List<Notiz> notizListe){
+        ObjectValidator.checkObObjectNullIst(notizListe);
         List<NotizFX> notizFXListe = new ArrayList<>();
 
         for(Notiz notiz : notizListe){
