@@ -10,17 +10,22 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import notizverwaltung.builders.ServiceObjectBuilder;
+import notizverwaltung.constants.DAOKonstanten;
 import notizverwaltung.constants.FXKonstanten;
 import notizverwaltung.MainApp;
 import notizverwaltung.i18n.I18nMessagesUtil;
 import notizverwaltung.i18n.I18nUtil;
+import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.model.interfaces.NotizFX;
 import notizverwaltung.service.interfaces.KategorieService;
+import notizverwaltung.service.interfaces.NotizFXService;
+import notizverwaltung.service.interfaces.NotizService;
 import notizverwaltung.util.FXUtil;
 import notizverwaltung.validators.DaoContentValidator;
 
 import java.io.IOException;
 import java.util.Comparator;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -277,4 +282,20 @@ public class RootLayoutController {
         System.exit(0);
     }
 
+    @FXML
+    private void handleSortierenDeaktivieren(){
+
+
+        ObservableList<NotizFX> notizFXListe = mainApp.getNotizFXListe();
+
+        Comparator<NotizFX> comparator = new Comparator<NotizFX>() {
+            @Override
+            public int compare(NotizFX o1, NotizFX o2) {
+                return o1.getNotizID().get() - o2.getNotizID().get();
+            }
+        };
+
+        notizFXListe.sort(comparator);
+
+    }
 }

@@ -5,7 +5,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="notizverwaltung.view.RootLayoutController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="notizverwaltung.view.RootLayoutController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -38,6 +38,7 @@
             <Menu mnemonicParsing="false" text="%menu-sort">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#handleSortiereNotizenAufsteigend" text="%menuitem-sort-by-date" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleSortierenDeaktivieren" text="%menuitem-unsort" />
                </items>
             </Menu>
         </menus>
