@@ -11,6 +11,7 @@ import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.KategorieFX;
 import notizverwaltung.service.interfaces.KategorieFXService;
 import notizverwaltung.validators.IntValidator;
+import notizverwaltung.validators.ObjectValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ import java.util.List;
 public class KategorieFXServiceImpl implements KategorieFXService {
     @Override
     public KategorieFX wrapKategorie(Kategorie kategorie) {
+        ObjectValidator.checkObObjectNullIst(kategorie);
         KategorieFX kategorieFX = ModelObjectBuilder.getKategorieFXObjekt();
 
         kategorieFX.setKategorieID(kategorie.getKategorieID());
@@ -35,6 +37,7 @@ public class KategorieFXServiceImpl implements KategorieFXService {
 
     @Override
     public Kategorie unwrapKategorieFX(KategorieFX kategorieFX) {
+        ObjectValidator.checkObObjectNullIst(kategorieFX);
         Kategorie kategorie = ModelObjectBuilder.getKategorieObject();
 
         kategorie.setKategorieID(kategorieFX.getKategorieID().getValue());
@@ -45,7 +48,7 @@ public class KategorieFXServiceImpl implements KategorieFXService {
 
     @Override
     public List<KategorieFX> convertInKategorieFXList(List<Kategorie> kategorieListe) {
-
+        ObjectValidator.checkObObjectNullIst(kategorieListe);
         List<KategorieFX> kategorieFXListe = new ArrayList<>();
 
         for(Kategorie kategorie : kategorieListe)

@@ -39,11 +39,9 @@ public class FXKonstanten {
     public static final String ANWENDUNG_NAME = "Notizverwaltung";
     public static final String DIALOG = "Dialog";
 
-    public static final int maxAnzahlKategorien = 30;
-    public static final int maxAnzahlZustaende = 10;
-    public static final int maxAnzahlNotizen = 150;
 
-    public static final int STANDARD_NOTIZBLOCK_ANZAHL = 1;
-    public static final int STANDARD_NOTIZBLOCK_ID = 1;
+
+
+
 
 }

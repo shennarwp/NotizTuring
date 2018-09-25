@@ -4,6 +4,7 @@ import notizverwaltung.builders.ModelObjectBuilder;
 import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import notizverwaltung.model.interfaces.BearbeitungszustandFX;
 import notizverwaltung.service.interfaces.BearbeitungszustandFXService;
+import notizverwaltung.validators.ObjectValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
 public class BearbeitungszustandFXServiceImpl implements BearbeitungszustandFXService {
     @Override
     public BearbeitungszustandFX wrapBearbeitungszustand(Bearbeitungszustand bearbeitungszustand) {
+        ObjectValidator.checkObObjectNullIst(bearbeitungszustand);
         BearbeitungszustandFX bearbeitungszustandFX = ModelObjectBuilder.getBearbeitungszustandFXObjekt();
 
         bearbeitungszustandFX.setBearbeitungsZustandID(bearbeitungszustand.getBearbeitungsZustandID());
@@ -28,6 +30,7 @@ public class BearbeitungszustandFXServiceImpl implements BearbeitungszustandFXSe
 
     @Override
     public Bearbeitungszustand unwrapBearbeitungszustandFX(BearbeitungszustandFX bearbeitungszustandFX) {
+        ObjectValidator.checkObObjectNullIst(bearbeitungszustandFX);
         Bearbeitungszustand bearbeitungszustand = ModelObjectBuilder.getBearbeitungszustandObject();
 
         bearbeitungszustand.setBearbeitungszustandID(bearbeitungszustandFX.getBearbeitungsZustandID().getValue());
@@ -41,6 +44,7 @@ public class BearbeitungszustandFXServiceImpl implements BearbeitungszustandFXSe
 
     @Override
     public List<BearbeitungszustandFX> convertInBearbeitungszustandFXList(List<Bearbeitungszustand> bearbeitungszustandListe) {
+        ObjectValidator.checkObObjectNullIst(bearbeitungszustandListe);
         List<BearbeitungszustandFX> bearbeitungszustandFXListe = new ArrayList<>();
 
         for(Bearbeitungszustand bearbeitungszustand : bearbeitungszustandListe){

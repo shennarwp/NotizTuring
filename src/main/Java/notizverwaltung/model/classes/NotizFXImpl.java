@@ -216,6 +216,19 @@ public class NotizFXImpl implements NotizFX {
     }
 
 
+    /** TODO JUNIT TEST
+     * Hilft beim Vergleichen und Sortieren von Notizen, in Abhängigkeit von ihrem Fälligkeitsdatum
+     * @param vergleichsNotiz
+     * @return -1, 0 , oder 1, wenn "faelligkeitDieserNotiz" kleiner, gleich, größer ist
+     */
+    @Override
+    public int compareTo(NotizFX vergleichsNotiz){
+        Date faelligkeitDieserNotiz = this.getFaelligkeit().getValue();
+        Date vergleichsFaelligkeit = vergleichsNotiz.getFaelligkeit().getValue();
+
+        return faelligkeitDieserNotiz.compareTo(vergleichsFaelligkeit);
+    }
+
     @Override
     public String toString(){
         return title.getValue();

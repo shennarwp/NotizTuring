@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
  * Die tabs werden hier generiert. Sie stellen die Notizbloecke dar.
  *
  * @author Johannes Gerwert
- * @version 21.09.2018
+ * @version 24.09.2018
  */
 public class NotizblockOverviewController{
 
@@ -93,7 +93,7 @@ public class NotizblockOverviewController{
                     .getResource(FXKonstanten.PFAD_BEARBEITUNGSZUSTAND_OVERVIEW_LAYOUT));
             loader.setResources(bundle);
             TitledPane spalte = (TitledPane) loader.load();
-            spalte.setId("" + bazs.getBearbeitungsZustandID().getValue());
+            spalte.setId(bazs.getBearbeitungsZustandID().asString().getValue());
 
             spalten.getChildren().add(spalte);
 
@@ -112,7 +112,7 @@ public class NotizblockOverviewController{
      * @param bazs der zu entfernende Bearbeitungsstatus
      */
     public void removeBearbeitungszustand(BearbeitungszustandFX bazs){
-        String bazsID = "" + bazs.getBearbeitungsZustandID().getValue();
+        String bazsID = bazs.getBearbeitungsZustandID().asString().getValue();
 
         for(Node spalte: spalten.getChildren()){
             if(bazsID.equals(spalte.getId())){

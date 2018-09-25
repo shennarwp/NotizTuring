@@ -1,21 +1,14 @@
 package notizverwaltung.model.classes;
 
-import javafx.scene.paint.Color;
-import notizverwaltung.builders.ModelObjectBuilder;
-import notizverwaltung.builders.ServiceObjectBuilder;
 import notizverwaltung.constants.DAOKonstanten;
-import notizverwaltung.exceptions.IntIstNegativException;
 import notizverwaltung.exceptions.ObjectIstNullException;
 import notizverwaltung.exceptions.StringIsEmptyException;
-import notizverwaltung.model.interfaces.Bearbeitungszustand;
-import notizverwaltung.model.interfaces.Kategorie;
 import notizverwaltung.model.interfaces.Notiz;
 import notizverwaltung.validators.IntValidator;
 import notizverwaltung.validators.ObjectValidator;
 import notizverwaltung.validators.StringValidator;
 
 import javax.persistence.*;
-import java.io.IOException;
 import java.util.Date;
 
 /**
@@ -73,7 +66,7 @@ public class NotizImpl implements Notiz
     
 
     public NotizImpl(){
-        this.notizblockID = DAOKonstanten.DEFAULT_NOTIZBLOCK_ID;
+        this.notizblockID = DAOKonstanten.STANDARD_NOTIZBLOCK_ID;
         this.erstellung = new Date();
     }
 
