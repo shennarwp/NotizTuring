@@ -3,6 +3,7 @@ package notizverwaltung.validators;
 
 import notizverwaltung.exceptions.StringIsEmptyException;
 
+
 /**
  * Die Klasse beinhaltet Methoden zur Ueberprufung von Strings
  *
@@ -12,6 +13,9 @@ import notizverwaltung.exceptions.StringIsEmptyException;
  */
 
 public class StringValidator {
+
+    public static final String STRING_OHNE_SONDERZEICHEN_REGEX = "[A-Za-z0-9 ÄäÖöÜüß]*";
+
 
     /**
      * Die Methode ueberprueft, ob der String leer oder null ist
@@ -35,5 +39,19 @@ public class StringValidator {
         if (isStringLeerOderNull(zuUeberpruefenderString)){
             throw new StringIsEmptyException();
         }
+    }
+
+    /**
+     * Prueft, ob ein uebergebener String Sonderzeichen enthaelt
+     * @param zuUeberpruefenderString
+     * @return true, wenn Sonderzeichen vorhanden, sonst false
+     */
+    public static boolean isSonderzeichenVorhanden(String zuUeberpruefenderString){
+        //TODO JUNIT TEST
+
+        if (zuUeberpruefenderString.matches(STRING_OHNE_SONDERZEICHEN_REGEX)){
+            return false;
+        }
+        return true;
     }
 }

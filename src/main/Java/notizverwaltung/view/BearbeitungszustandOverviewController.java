@@ -94,7 +94,7 @@ public class BearbeitungszustandOverviewController{
             addNotiz(notizFX);
             addMoveListener(notizFX);
         }
-        
+
     }
 
     /**
@@ -160,6 +160,11 @@ public class BearbeitungszustandOverviewController{
                         for(NotizFX notizFX : c.getRemoved()){
                             removeNotiz(notizFX);
                         }
+                    }
+
+                    if(c.wasPermutated()){
+                        notizen.getChildren().clear();
+                        ladeNotizen();
                     }
                 }
             }

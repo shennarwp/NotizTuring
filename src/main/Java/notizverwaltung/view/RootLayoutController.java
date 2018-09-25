@@ -1,34 +1,45 @@
 package notizverwaltung.view;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import notizverwaltung.builders.ServiceObjectBuilder;
 import notizverwaltung.constants.FXKonstanten;
 import notizverwaltung.MainApp;
+import notizverwaltung.i18n.I18nMessagesUtil;
 import notizverwaltung.i18n.I18nUtil;
+import notizverwaltung.model.interfaces.NotizFX;
+import notizverwaltung.service.interfaces.KategorieService;
 import notizverwaltung.util.FXUtil;
+import notizverwaltung.validators.DaoContentValidator;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 /**
- * Diese Klasse gibt die Funktionalität für das Grundfenster aus der Klasse "MainApp" an.
- * In der RootLayout.fxml wird auf diese Klasse verwiesen.
+ * Diese Klasse ermöglicht das Öffnen von Dialogfenstern via Menüleiste mit vorheriger Überprüfung von DB-Inhalten
  *
- * Die Funktionalität der Dialog-Fenster wird in einer anderen Klasse, "AenderungsDialogController" zur Verfügung gestellt, hier
- * werden die Dialog-Fenster lediglich geöffnet
+ * Die Dialogfenster werden lediglich geöffnet.
+ *
+ * Die Klassen "ÄnderungsDialogController", "ErstellungsDialogController", "LöschungsDialogController" beinhalten
+ * entsprechende Funktionalität.
  * 
  * @author Michelle Blau
- * @version 12.09.2018
+ * @version 24.09.2018
  */
 
 
 public class RootLayoutController {
 
+
+    private KategorieService kategorieService = ServiceObjectBuilder.getKategorieService();
 
 	/**
 	 * Eine Referenz auf das Hauptprogramm, wichtig zum Verändern der Kategorien/Notizen/Bearbeitungszustände.
@@ -55,9 +66,8 @@ public class RootLayoutController {
     @FXML
     private void handleshowKategorieErstellungsMaske() {
 
-        //TODO: i18n, Anzahlen anders überprüfen
-        if(mainApp.getKategorieListe().size() == FXKonstanten.maxAnzahlKategorien){
-            FXUtil.showZuVieleElementeWarningDialog("Zu viele Kategorien","Bitte bestehende Kategorien entfernen");
+        if(DaoContentValidator.isMaximumKategorienErreicht()){
+            FXUtil.showZuVieleElementeWarning(I18nMessagesUtil.getWarningZuVieleKategorien());
         } else{
             showErstellungsDialogFenster(FXKonstanten.PFAD_KATEGORIE_ERSTELLUNGSDIALOG_LAYOUT);
         }
@@ -72,9 +82,8 @@ public class RootLayoutController {
     @FXML
     private void handleshowBearbeitungszustandErstellungsMaske() {
 
-        //TODO: i18n, Anzahlen anders überprüfen
-        if(mainApp.getBearbeitungszustandListe().size() == FXKonstanten.maxAnzahlZustaende){
-            FXUtil.showZuVieleElementeWarningDialog("Zu viele Bearbeitungszustände","Bitte bestehende Zustände entfernen");
+        if(DaoContentValidator.isMaximumZustaendeErreicht()){
+            FXUtil.showZuVieleElementeWarning(I18nMessagesUtil.getWarningZuVieleZustaende());
         } else{
             showErstellungsDialogFenster(FXKonstanten.PFAD_BEABREITUNGSZUSTAND_ERSTELLUNGSDIALOG_LAYOUT);
         }
@@ -89,9 +98,8 @@ public class RootLayoutController {
     @FXML
     private void handleshowNotizErstellungsMaske() {
 
-        //TODO: i18n, Anzahlen anders überprüfen
-        if(mainApp.getNotizListe().size() == FXKonstanten.maxAnzahlNotizen){
-            FXUtil.showZuVieleElementeWarningDialog("Zu viele Notizen","Bitte bestehende Notizen entfernen");
+        if(DaoContentValidator.isMaximumNotizenErreicht()){
+            FXUtil.showZuVieleElementeWarning(I18nMessagesUtil.getWarningZuVieleNotizen());
         } else{
             showErstellungsDialogFenster(FXKonstanten.PFAD_NOTIZ_ERSTELLUNGSDIALOG_LAYOUT);
         }
@@ -243,6 +251,23 @@ public class RootLayoutController {
         }
     }
 
+
+    @FXML
+    private void handleSortiereNotizenAufsteigend(){
+        ObservableList<NotizFX> notizListe = mainApp.getNotizFXListe();
+        System.out.println(notizListe);
+
+        Comparator<NotizFX> comparator = new Comparator<NotizFX>() {
+            @Override
+            public int compare(NotizFX o1, NotizFX o2) {
+                return o1.compareTo(o2);
+            }
+        };
+
+        notizListe.sort(comparator);
+        System.out.println(notizListe);
+
+    }
 
     /**
      * Schliesst das Programm.

@@ -2,6 +2,7 @@ package notizverwaltung.view;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.TextArea;
@@ -246,6 +247,7 @@ public class AenderungsDialogController {
      * leerer String.
      */
     private String validateKategorieAendern() {
+        ObservableList<KategorieFX> guiKategorieListe = mainApp.getKategorieFXListe();
         String kategorieName = kategorieNameField.getText();
         KategorieFX bestehendeKategorieFX = kategorieFXChoiceBox.getValue();
 
@@ -256,6 +258,13 @@ public class AenderungsDialogController {
         }
         if (StringValidator.isStringLeerOderNull(kategorieName)) {
             errorMessage += I18nMessagesUtil.getErrorKategorienameUngueltig() + "\n";
+        }else{
+            if(FXUtil.isKategorieNameInListe(kategorieName, guiKategorieListe)){
+                errorMessage += I18nMessagesUtil.getErrorKategorienameVorhanden() + "\n";
+            }
+            if(StringValidator.isSonderzeichenVorhanden(kategorieName)){
+                errorMessage += I18nMessagesUtil.getErrorSonderzeichenVorhanden() + "\n";
+            }
         }
 
         return errorMessage;
@@ -270,6 +279,7 @@ public class AenderungsDialogController {
      */
     private String validateBearbeitungszustandAendern() {
 
+        ObservableList<BearbeitungszustandFX> guiZustandListe = mainApp.getBearbeitungszustandFXListe();
         String bearbeitungszustandName = bearbeitungszustandNameField.getText();
         BearbeitungszustandFX bestehenderZustandFX = bearbeitungszustandFXChoiceBox.getValue();
         String errorMessage = "";
@@ -279,6 +289,13 @@ public class AenderungsDialogController {
         }
         if (StringValidator.isStringLeerOderNull(bearbeitungszustandName)) {
             errorMessage += I18nMessagesUtil.getErrorBearbeitungszustandnameUngueltig() + "\n";
+        }else{
+            if(FXUtil.isZustandNameInListe(bearbeitungszustandName, guiZustandListe)){
+                errorMessage += I18nMessagesUtil.getErrorBearbeitungszustandnameVorhanden() + "\n";
+            }
+            if(StringValidator.isSonderzeichenVorhanden(bearbeitungszustandName)){
+                errorMessage += I18nMessagesUtil.getErrorSonderzeichenVorhanden() + "\n";
+            }
         }
 
         return errorMessage;

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -106,6 +107,83 @@ class NotizFXImplTest {
 
         assertEquals(false, ergebnis);
     }
+
+
+    /**
+     * Testet, was bei Übergabe einer NotizFXImpl mit gleichem Fälligkeitsdatum passiert
+     * Methode: compareTo()
+     * ->Erwartet wird der Rückgabewert 0
+     */
+    @Test
+    void compareToFaelligkeitenGleich(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, 7);
+        Date naechsteWoche = calendar.getTime();
+
+        NotizFXImpl notizFX1 = new NotizFXImpl();
+        notizFX1.setFaelligkeit(naechsteWoche);
+
+        NotizFXImpl notizFX2 = new NotizFXImpl();
+        notizFX2.setFaelligkeit(naechsteWoche);
+
+        int ergebnis = notizFX1.compareTo(notizFX2);
+
+        assertEquals(0, ergebnis);
+    }
+
+
+    /**
+     * Testet, was bei Übergabe einer NotizFXImpl mit kleinerem Fälligkeitsdatum passiert
+     * Methode: compareTo()
+     * ->Erwartet wird der Rückgabewert 1
+     */
+    @Test
+    void compareToFaelligkeitDesArgumentsKleiner(){
+        Calendar calendar1 = Calendar.getInstance();
+        calendar1.add(Calendar.DAY_OF_YEAR, 7);
+        Date naechsteWoche = calendar1.getTime();
+
+        NotizFXImpl notizFX1 = new NotizFXImpl();
+        notizFX1.setFaelligkeit(naechsteWoche);
+
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.add(Calendar.DAY_OF_YEAR, 6);
+        Date sechsTage = calendar2.getTime();
+
+        NotizFXImpl notizFX2 = new NotizFXImpl();
+        notizFX2.setFaelligkeit(sechsTage);
+
+        int ergebnis = notizFX1.compareTo(notizFX2);
+
+        assertEquals(1, ergebnis);
+    }
+
+    /**
+     * Testet, was bei Übergabe einer NotizFXImpl mit größerem Fälligkeitsdatum passiert
+     * Methode: compareTo()
+     * ->Erwartet wird der Rückgabewert -1
+     */
+    @Test
+    void compareToFaelligkeitDesArgumentsGroesser(){
+        Calendar calendar1 = Calendar.getInstance();
+        calendar1.add(Calendar.DAY_OF_YEAR, 7);
+        Date naechsteWoche = calendar1.getTime();
+
+        NotizFXImpl notizFX1 = new NotizFXImpl();
+        notizFX1.setFaelligkeit(naechsteWoche);
+
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.add(Calendar.DAY_OF_YEAR, 8);
+        Date achtTage = calendar2.getTime();
+
+        NotizFXImpl notizFX2 = new NotizFXImpl();
+        notizFX2.setFaelligkeit(achtTage);
+
+        int ergebnis = notizFX1.compareTo(notizFX2);
+
+        assertEquals(-1, ergebnis);
+    }
+
 
 
 //TODO J Unit Methoden auskommentieren, falls in Klasse NotizFXImpl implementiert.

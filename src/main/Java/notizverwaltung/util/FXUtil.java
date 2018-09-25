@@ -1,7 +1,10 @@
 package notizverwaltung.util;
 
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import notizverwaltung.i18n.I18nMessagesUtil;
+import notizverwaltung.model.interfaces.BearbeitungszustandFX;
+import notizverwaltung.model.interfaces.KategorieFX;
 import notizverwaltung.validators.StringValidator;
 
 /**
@@ -33,13 +36,12 @@ public class FXUtil {
 
     /**
      * Zeigt Warnung, falls die Anzahl an möglichen Kategorien/Notizen/Bearbeitungszuständen erreicht ist
-     * @param titel Dialog-Titel
      * @param header Dialog-Überschrift
      */
-    public static void showZuVieleElementeWarningDialog(String titel, String header){
+    public static void showZuVieleElementeWarning(String header){
         Alert dialog = new Alert(Alert.AlertType.WARNING);
-        //TODO: i18n
-        dialog.setTitle(titel);
+
+        dialog.setTitle(I18nMessagesUtil.getWarningTitel());
         dialog.setHeaderText(header);
         dialog.showAndWait();
     }
@@ -64,4 +66,49 @@ public class FXUtil {
         }
     }
 
+
+    /** TODO JUNIT TEST
+     * Prüft, ob ein uebergebener Name eines Bearbeitungszustands bereits in der GUI existiert
+     * (ignoriert Groß-/Kleinschreibung)
+     *
+     * @param zustandName Name des Zustands
+     * @return true, wenn es einen Zustand mit diesem Namen schon in der GUI gibt, sonst false
+     */
+    public static boolean isZustandNameInListe(String zustandName, ObservableList<BearbeitungszustandFX> guiZustandListe){
+        zustandName = zustandName.toLowerCase();
+        String vergleichsName = null;
+
+        for(BearbeitungszustandFX zustandFX : guiZustandListe){
+            vergleichsName = zustandFX.getName().getValue();
+            vergleichsName = vergleichsName.toLowerCase();
+
+            if(vergleichsName.equals(zustandName)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    /** TODO JUNIT TEST
+     * Prüft, ob ein uebergebener Name eine Kategorie bereits in der GUI existiert
+     * (ignoriert Groß-/Kleinschreibung)
+     *
+     * @param kategorieName Name der Kategorie
+     * @return true, wenn es eine Kategorie mit diesem Namen schon in der GUI gibt, sonst false
+     */
+    public static boolean isKategorieNameInListe(String kategorieName, ObservableList<KategorieFX> guiKategorieListe) {
+        kategorieName = kategorieName.toLowerCase();
+        String vergleichsName = null;
+
+        for(KategorieFX kategorieFX : guiKategorieListe){
+            vergleichsName = kategorieFX.getKategorieName().getValue();
+            vergleichsName = vergleichsName.toLowerCase();
+
+            if(vergleichsName.equals(kategorieName)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

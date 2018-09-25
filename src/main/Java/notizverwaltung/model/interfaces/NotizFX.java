@@ -4,6 +4,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
+import notizverwaltung.model.classes.NotizFXImpl;
 
 import java.util.Date;
 
@@ -16,7 +17,7 @@ import java.util.Date;
  * @version 1.0
  */
 
-public interface NotizFX {
+public interface NotizFX extends Comparable<NotizFX> {
 
     public IntegerProperty getNotizID();
     public void setNotizID(int notizID);
