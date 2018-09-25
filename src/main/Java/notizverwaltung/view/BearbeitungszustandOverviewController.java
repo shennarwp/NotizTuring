@@ -104,7 +104,7 @@ public class BearbeitungszustandOverviewController{
      */
     private void addNotiz(NotizFX notizFX){
         try{
-            if(this.bazs.getBearbeitungsZustandID().getValue() == notizFX.getBearbeitungszustandID().getValue()){
+            if(this.bazs.getBearbeitungsZustandID().getValue().equals(notizFX.getBearbeitungszustandID().getValue())){
                 FXMLLoader loader = new FXMLLoader();
                 ResourceBundle bundle = I18nUtil.getComponentsResourceBundle();
                 loader.setLocation(MainApp.class

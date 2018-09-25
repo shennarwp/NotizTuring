@@ -185,6 +185,7 @@ public class NotizOverviewController {
             notizFX.setBearbeitungszustandID(iterator.next().getBearbeitungsZustandID().getValue());
             tmpNotiz = notizFXService.unwrapNotizFX(notizFX);
 
+
             notizService.updateNotiz(tmpNotiz);
         }
     }
