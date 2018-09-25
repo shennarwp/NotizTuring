@@ -164,7 +164,9 @@ public class BearbeitungszustandOverviewController{
 
                     if(c.wasPermutated()){
                         notizen.getChildren().clear();
-                        ladeNotizen();
+                        for(NotizFX notizFX: notizFXListe){
+                            addNotiz(notizFX);
+                        }
                     }
                 }
             }
