@@ -178,8 +178,8 @@ public class RootLayoutController {
             AnchorPane anchorPane = (AnchorPane) loader.load();
 
             Scene scene = new Scene(anchorPane);
-            this.dialogStage = new Stage();
-            this.dialogStage.setScene(scene);
+            Stage dialogStage = new Stage();
+            dialogStage.setScene(scene);
             ErstellungsDialogController controller = loader.getController();
             controller.setMainApp(this.mainApp);
             controller.setDialogStage(this.dialogStage);
@@ -254,6 +254,33 @@ public class RootLayoutController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void showNotizAnzeigeDialog(){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            ResourceBundle bundle = I18nUtil.getDialogResourceBundle();
+            loader.setLocation(MainApp.class
+                    .getResource(FXKonstanten.PFAD_NOTIZ_ANZEIGEN_LAYOUT));
+            loader.setResources(bundle);
+            AnchorPane anchorPane = (AnchorPane) loader.load();
+
+            Scene scene = new Scene(anchorPane);
+            this.dialogStage = new Stage();
+            this.dialogStage.setScene(scene);
+            LoeschungsDialogController controller = loader.getController();
+            controller.setMainApp(this.mainApp);
+            controller.setDialogStage(this.dialogStage);
+
+            this.dialogStage.setTitle(FXKonstanten.DIALOG);
+            this.dialogStage.setResizable(false);
+            this.dialogStage.initModality(Modality.APPLICATION_MODAL);
+            this.dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

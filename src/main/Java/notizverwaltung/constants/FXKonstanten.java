@@ -33,6 +33,8 @@ public class FXKonstanten {
     public static final String PFAD_BEARBEITUNGSZUSTAND_OVERVIEW_LAYOUT = "/view/overviews/BearbeitungszustandOverview.fxml";
     public static final String PFAD_NOTIZ_OVERVIEW_LAYOUT = "/view/overviews/NotizOverview.fxml";
 
+    public static final String PFAD_NOTIZ_ANZEIGEN_LAYOUT = "/view/dialoge/NotizAnzeigenDialog.fxml";
+
     //----------------------------------------------------------------------------------------------
     //Konstanten
 

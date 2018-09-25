@@ -6,17 +6,26 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import notizverwaltung.MainApp;
 import notizverwaltung.builders.ServiceObjectBuilder;
+import notizverwaltung.constants.FXKonstanten;
 import notizverwaltung.i18n.I18nComponentsUtil;
+import notizverwaltung.i18n.I18nUtil;
 import notizverwaltung.model.interfaces.*;
 import notizverwaltung.service.interfaces.*;
 import org.eclipse.persistence.internal.sessions.DirectCollectionChangeRecord;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.ListIterator;
+import java.util.ResourceBundle;
 
 import static notizverwaltung.util.DateUtil.convertDateInLocalDate;
 
@@ -206,11 +215,45 @@ public class NotizOverviewController {
         notizService.updateNotiz(tmpNotiz);
     }
 
+
+    @FXML
+    private void showNotizAnzeigeDialog(){
+
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            ResourceBundle bundle = I18nUtil.getDialogResourceBundle();
+            loader.setLocation(MainApp.class
+                    .getResource(FXKonstanten.PFAD_NOTIZ_ANZEIGEN_LAYOUT));
+            loader.setResources(bundle);
+            AnchorPane anchorPane = (AnchorPane) loader.load();
+
+            Stage dialogStage = new Stage();
+            Scene scene = new Scene(anchorPane);
+            dialogStage.setScene(scene);
+
+            NotizAnzeigenController notizAnzeigenController = loader.getController();
+            notizAnzeigenController.setDialogStage(dialogStage);
+            notizAnzeigenController.showNotizFXDetails(notizFX);
+
+
+            dialogStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+
+
+
     /**
      * Hilfsmethode um das Namensproperty einer Kategorie anhand der ID zu erhalten.
      *
      * @param kategorieID Die ID der zu findenden Kategorie
      * @return Das gefundene Namensproperty
+
      */
     private StringProperty findKategorieFXName(int kategorieID){
 
