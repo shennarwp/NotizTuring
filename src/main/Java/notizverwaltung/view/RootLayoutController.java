@@ -178,8 +178,8 @@ public class RootLayoutController {
             AnchorPane anchorPane = (AnchorPane) loader.load();
 
             Scene scene = new Scene(anchorPane);
-            Stage dialogStage = new Stage();
-            dialogStage.setScene(scene);
+            this.dialogStage = new Stage();
+            this.dialogStage.setScene(scene);
             ErstellungsDialogController controller = loader.getController();
             controller.setMainApp(this.mainApp);
             controller.setDialogStage(this.dialogStage);
