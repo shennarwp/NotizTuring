@@ -18,15 +18,15 @@
                 <Button mnemonicParsing="false" onMouseClicked="#handleBtnCancel" text="%dialog-close" />
             </buttons>
         </ButtonBar>
-        <TextField fx:id="kategorieNameField" layoutX="241.0" layoutY="162.0" prefHeight="31.0" prefWidth="205.0" />
-        <TextArea fx:id="notizBeschreibungTextArea" layoutX="241.0" layoutY="215.0" prefHeight="146.0" prefWidth="205.0" />
+        <TextField fx:id="kategorieNameField" editable="false" layoutX="241.0" layoutY="162.0" prefHeight="31.0" prefWidth="205.0" />
+        <TextArea fx:id="notizBeschreibungTextArea" editable="false" layoutX="241.0" layoutY="215.0" prefHeight="146.0" prefWidth="205.0" />
         <Label layoutX="30.0" layoutY="380.0" text="%dialog-notefinaldate" />
-        <TextField fx:id="notizFaelligkeitField" layoutX="241.0" layoutY="375.0" prefHeight="31.0" prefWidth="205.0" />
+        <TextField fx:id="notizFaelligkeitField" editable="false" layoutX="241.0" layoutY="375.0" prefHeight="31.0" prefWidth="205.0" />
         <Label layoutX="30.0" layoutY="39.0" text="%dialog-notename" />
-        <TextField fx:id="notizNameField" layoutX="241.0" layoutY="32.0" prefHeight="31.0" prefWidth="205.0" />
+        <TextField fx:id="notizNameField" editable="false" layoutX="241.0" layoutY="32.0" prefHeight="31.0" prefWidth="205.0" />
         <CheckBox fx:id="notizPrioritaetCheckBox" layoutX="241.0" layoutY="429.0" mnemonicParsing="false" />
         <Label layoutX="32.0" layoutY="429.0" text="%dialog-notepriority" />
-      <Label layoutX="30.0" layoutY="103.0" prefHeight="17.0" prefWidth="102.0" text="\%dialog-state" />
-      <TextField fx:id="notizBearbeitungszustandField" layoutX="241.0" layoutY="96.0" prefHeight="31.0" prefWidth="205.0" />
+      <Label layoutX="30.0" layoutY="103.0" prefHeight="17.0" prefWidth="102.0" text="%dialog-state" />
+      <TextField fx:id="notizBearbeitungszustandField" editable="false" layoutX="241.0" layoutY="96.0" prefHeight="31.0" prefWidth="205.0" />
     </children>
 </AnchorPane>

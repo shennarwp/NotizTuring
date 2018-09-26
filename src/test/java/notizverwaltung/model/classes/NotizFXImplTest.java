@@ -199,5 +199,4 @@ class NotizFXImplTest {
  //       assertThrows(ObjectIstNullException.class, () -> {notizFXImpl.setErstellung(objectIsNull);});
  //   }
 
-
 }
