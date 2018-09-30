@@ -2,14 +2,12 @@ package notizverwaltung.model.classes;
 
 
 import notizverwaltung.exceptions.IntIstNegativException;
-import notizverwaltung.exceptions.ObjectIstNullException;
 import notizverwaltung.exceptions.StringIsEmptyException;
 import notizverwaltung.model.interfaces.Kategorie;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.jupiter.api.Test;
 
-import javafx.scene.paint.Color;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,20 +21,23 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class KategorieImplTest {
 
-    @BeforeEach
-    void setUp() {
-    }
 
-    @AfterEach
-    void tearDown() {
-    }
-
+    /**
+     * Testet ob die Methode auf einen negativen Integer
+     * Methode: setKategorieID
+     * Erwartet: IntIstNegativException
+     */
     @Test
     void setKategorieID() {
         Kategorie kategorie = new KategorieImpl();
         assertThrows(IntIstNegativException.class, () -> {kategorie.setKategorieID(-1);});
     }
 
+    /**
+     * Testet ob die Methode auf einen leeren String
+     * Methode: setKategorieName
+     * Erwartet: StringIsEmptyException
+     */
     @Test
     void setKategorieName() {
         String leererstring = " ";
