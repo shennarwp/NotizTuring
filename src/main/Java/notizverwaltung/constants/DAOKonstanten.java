@@ -2,7 +2,7 @@ package notizverwaltung.constants;
 
 
 /**
- * Stellt Konstanten für GUI zur Verfügung, die von der Datenbank vorgegeben sind.
+ * Stellt Konstanten für GUI zur Verfuegung, die von der Datenbank vorgegeben sind.
  *
  * @author Michelle Blau
  * @version 24.09.2018

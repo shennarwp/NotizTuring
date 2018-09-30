@@ -19,10 +19,10 @@ import notizverwaltung.validators.StringValidator;
 import java.time.LocalDate;
 
 /**
- * Stellt Funktionalität für die Dialog-Fenster zur Verfügung, welche
- * Kategorien/Notizen/Bearbeitungszustände neu anlegen.
+ * Stellt Funktionalitaet fuer die Dialog-Fenster zur Verfuegung, welche
+ * Kategorien/Notizen/Bearbeitungszustaende neu anlegen.
  *
- * Dabei werden Nutzereingaben überprüft.
+ * Dabei werden Nutzereingaben ueberprueft.
  *
  *
  *
@@ -93,7 +93,7 @@ public class ErstellungsDialogController {
 
 
     /**
-     * Setzt Referenz auf die aufgerufene dialogStage, also das geöffnete Dialogfenster
+     * Setzt Referenz auf die aufgerufene dialogStage, also das geoeffnete Dialogfenster
      *
      * @param dialogStage
      */
@@ -114,8 +114,8 @@ public class ErstellungsDialogController {
 
 
     /**
-     * Erstellt neue Notiz, wenn auf "Hinzufügen" Button geklickt wird, oder ruft Error-Dialog auf, wenn
-     * Nutzereingaben falsch. Die Notiz wird direkt in die Datenbank übernommen.
+     * Erstellt neue Notiz, wenn auf "Hinzufuegen" Button geklickt wird, oder ruft Error-Dialog auf, wenn
+     * Nutzereingaben falsch. Die Notiz wird direkt in die Datenbank uebernommen.
      *
      */
     @FXML
@@ -146,8 +146,8 @@ public class ErstellungsDialogController {
 
 
     /**
-     * Erstellt neue Kategorie, wenn auf "Hinzufügen" Button geklickt wird, oder ruft Error-Dialog auf, wenn
-     * Nutzereingaben falsch. Die Kategorie wird direkt in die Datenbank übernommen.
+     * Erstellt neue Kategorie, wenn auf "Hinzufuegen" Button geklickt wird, oder ruft Error-Dialog auf, wenn
+     * Nutzereingaben falsch. Die Kategorie wird direkt in die Datenbank uebernommen.
      *
      */
     @FXML
@@ -167,8 +167,8 @@ public class ErstellungsDialogController {
 
 
     /**
-     * Erstellt neuen Bearbeitungszustand, wenn auf "Hinzufügen" Button geklickt wird, oder ruft Error-Dialog auf, wenn
-     * Nutzereingaben falsch. Der Bearbeitungszustand wird direkt in die Datenbank übernommen.
+     * Erstellt neuen Bearbeitungszustand, wenn auf "Hinzufuegen" Button geklickt wird, oder ruft Error-Dialog auf, wenn
+     * Nutzereingaben falsch. Der Bearbeitungszustand wird direkt in die Datenbank uebernommen.
      *
      */
     @FXML

@@ -1,7 +1,7 @@
 package notizverwaltung.constants;
 
 /**
- * Stellt Konstanten für die GUI zur Verfügung
+ * Stellt Konstanten für die GUI zur Verfuegung
  *
  *
  * @author Michelle Blau

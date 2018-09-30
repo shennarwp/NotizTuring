@@ -3,7 +3,7 @@ package notizverwaltung.i18n;
 import java.util.ResourceBundle;
 
 /**
- * Stellt internationalisierte Strings zur Verfügung, die für Fehlermeldungen oder
+ * Stellt internationalisierte Strings zur Verfuegung, die für Fehlermeldungen oder
  * Warnmeldungen verwendet werden.
  * Verwendete Ressourcendatei: "messages"
  *
