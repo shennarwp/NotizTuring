@@ -27,4 +27,33 @@ class StringValidatorTest {
 
         assertEquals(false, bool);
     }
+
+    /**
+     * Testet, was bei Übergabe eines Strings mit Sonderzeichen passiert
+     * Methode: isSonderzeichenVorhanden()
+     * ->Erwartet wird der Rückgabewert true
+     * @author Michelle Blau
+     */
+    @Test
+    void isSonderzeichenVorhandenMitSonderzeichen(){
+        String sonderzeichenString = "-$Hallo_Welt$-";
+        boolean ergebnis = StringValidator.isSonderzeichenVorhanden(sonderzeichenString);
+
+        assertEquals(true, ergebnis);
+    }
+
+    /**
+     * Testet, was bei Übergabe eines Strings ohne Sonderzeichen passiert
+     * Methode: isSonderzeichenVorhanden()
+     * ->Erwartet wird der Rückgabewert false
+     * @author Michelle Blau
+     */
+    @Test
+    void isSonderzeichenVorhandenOhneSonderzeichen(){
+        String normalerString = "Hallo Welt";
+        boolean ergebnis = StringValidator.isSonderzeichenVorhanden(normalerString);
+
+        assertEquals(false, ergebnis);
+    }
+
 }

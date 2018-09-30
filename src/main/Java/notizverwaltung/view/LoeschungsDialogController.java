@@ -11,7 +11,17 @@ import notizverwaltung.service.interfaces.*;
 import notizverwaltung.util.FXUtil;
 import notizverwaltung.validators.DaoContentValidator;
 import notizverwaltung.validators.ObjectValidator;
-
+/**
+ * Stellt Funktionalität für die Dialog-Fenster zur Verfügung, welche
+ * bestehende Kategorien/Notizen/Bearbeitungszustände löschen.
+ *
+ * Dabei werden Nutzereingaben überprüft.
+ *
+ *  TODO System.out.printlns rausnehmen, sobald fertig geschrieben und getestet
+ *
+ * @author Michelle Blau
+ * @version 29.09.2018
+ */
 public class LoeschungsDialogController {
     private MainApp mainApp;
     private Stage dialogStage;
@@ -80,7 +90,7 @@ public class LoeschungsDialogController {
 
     /**
      * Löscht bestehende Notiz, wenn auf "Löschen" Button geklickt wird, oder ruft Error-Dialog auf, wenn
-     * Nutzereingaben falsch. Die Änderung wird direkt in die Datenbank übernommen
+     * Nutzereingaben falsch. Dies wird direkt in die Datenbank übernommen.
      *
      */
     @FXML
@@ -100,7 +110,7 @@ public class LoeschungsDialogController {
 
     /**
      * Löscht bestehende Kategorie, wenn auf "Löschen" Button geklickt wird, oder ruft Error-Dialog auf, wenn
-     * Nutzereingaben falsch. Die Änderung wird direkt in die Datenbank übernommen
+     * Nutzereingaben falsch. Dies wird direkt in die Datenbank übernommen.
      *
      */
     @FXML
@@ -121,7 +131,7 @@ public class LoeschungsDialogController {
 
     /**
      * Löscht bestehenden Bearbeitungszustand, wenn auf "Löschen" Button geklickt wird, oder ruft Error-Dialog auf, wenn
-     * Nutzereingaben falsch
+     * Nutzereingaben falsch. Dies wird direkt in die Datenbank übernommen.
      */
     @FXML
     private void handleBtnLoescheBearbeitungszustand(){
@@ -141,10 +151,10 @@ public class LoeschungsDialogController {
 
 
     /**
-     * Validiert die Eingabefelder fuer die Änderung einer Notiz.
+     * Validiert die Eingabefelder zum Löschen einer Notiz.
+     *
      * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
      * leerer String.
-     *
      */
     private String validateNotizLoeschen(){
         NotizFX bestehendeNotizFX = notizFXChoiceBox.getValue();
@@ -162,6 +172,7 @@ public class LoeschungsDialogController {
 
     /**
      * Validiert die Eingabefelder zum Löschen einer bestehenden Kategorie.
+     *
      * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
      * leerer String.
      *
@@ -188,7 +199,8 @@ public class LoeschungsDialogController {
 
 
     /**
-     * Validiert die Eingabefelder zur Änderung eines Bearbeitungszustands.
+     * Validiert die Eingabefelder zum Löschen eines Bearbeitungszustands.
+     *
      * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
      * leerer String.
      */

@@ -70,6 +70,8 @@ public class BearbeitungszustandImpl implements Bearbeitungszustand
 	 * Vergleicht 2 Bearbeitungszustände
 	 * @param object zu vergleichender Bearbeitungszustand
 	 * @return true, wenn Zustände gleich, sonst false
+	 *
+	 * @author Michelle Blau
 	 */
 	@Override
 	public boolean equals(Object object){

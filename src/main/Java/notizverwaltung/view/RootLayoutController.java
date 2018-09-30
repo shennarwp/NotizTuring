@@ -29,12 +29,14 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * Diese Klasse ermöglicht das Öffnen von Dialogfenstern via Menüleiste mit vorheriger Überprüfung von DB-Inhalten
+ * Diese Klasse stattet die Menüleiste des Grundfensters mit Funktionalität aus:
  *
- * Die Dialogfenster werden lediglich geöffnet.
+ * Sie ermöglicht das Öffnen von Dialogfenstern mit vorheriger Überprüfung von DB-Inhalten.
+ * Ebenfalls wird das Sortieren der Notizen ermöglicht.
+ *
  *
  * Die Klassen "ÄnderungsDialogController", "ErstellungsDialogController", "LöschungsDialogController" beinhalten
- * entsprechende Funktionalität.
+ * entsprechende Funktionalität für die Dialogfenster.
  * 
  * @author Michelle Blau
  * @version 24.09.2018
@@ -67,6 +69,7 @@ public class RootLayoutController {
     /**
      * Zeigt einen Dialog zur Erstellung einer neuen Kategorie
      * beim Klicken auf "Neu -> Kategorie"
+     * Prüft vorher, ob zu viele Kategorien angelegt wurden.
      */
     @FXML
     private void handleshowKategorieErstellungsMaske() {
@@ -83,6 +86,7 @@ public class RootLayoutController {
     /**
      * Zeigt einen Dialog zur Erstellung eines neuen Bearbeitungszustands beim Klicken auf
      * "Neu -> Bearbeitungszustand"
+     * Prüft vorher, ob zu viele Bearbeitungszustände angelegt wurden.
      */
     @FXML
     private void handleshowBearbeitungszustandErstellungsMaske() {
@@ -99,6 +103,7 @@ public class RootLayoutController {
     /**
      * Zeigt einen Dialog zur Erstellung einer neuen Notiz
      * beim Klicken auf "Neu -> Notiz"
+     * Prüft vorher, ob zu viele Notizen angelegt wurden.
      */
     @FXML
     private void handleshowNotizErstellungsMaske() {
@@ -256,38 +261,14 @@ public class RootLayoutController {
         }
     }
 
-    @FXML
-    private void showNotizAnzeigeDialog(){
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            ResourceBundle bundle = I18nUtil.getDialogResourceBundle();
-            loader.setLocation(MainApp.class
-                    .getResource(FXKonstanten.PFAD_NOTIZ_ANZEIGEN_LAYOUT));
-            loader.setResources(bundle);
-            AnchorPane anchorPane = (AnchorPane) loader.load();
 
-            Scene scene = new Scene(anchorPane);
-            this.dialogStage = new Stage();
-            this.dialogStage.setScene(scene);
-            LoeschungsDialogController controller = loader.getController();
-            controller.setMainApp(this.mainApp);
-            controller.setDialogStage(this.dialogStage);
-
-            this.dialogStage.setTitle(FXKonstanten.DIALOG);
-            this.dialogStage.setResizable(false);
-            this.dialogStage.initModality(Modality.APPLICATION_MODAL);
-            this.dialogStage.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-
+    /**
+     * Sortiert die Notizen aufsteigend anhand ihrer compareTo()-Methode,
+     * also abhängig vom Fälligkeitsdatum
+     */
     @FXML
     private void handleSortiereNotizenAufsteigend(){
         ObservableList<NotizFX> notizListe = mainApp.getNotizFXListe();
-        System.out.println(notizListe);
 
         Comparator<NotizFX> comparator = new Comparator<NotizFX>() {
             @Override
@@ -295,11 +276,10 @@ public class RootLayoutController {
                 return o1.compareTo(o2);
             }
         };
-
         notizListe.sort(comparator);
-        System.out.println(notizListe);
 
     }
+
 
     /**
      * Schliesst das Programm.
@@ -309,6 +289,12 @@ public class RootLayoutController {
         System.exit(0);
     }
 
+
+    /**
+     * Sortiert die Notizen anhand ihrer ID.
+     * Dies stellt die ursprüngliche Sortierung, wie sie beim Start der Notizverwaltung vorliegt,
+     * wieder her.
+     */
     @FXML
     private void handleSortierenDeaktivieren(){
 

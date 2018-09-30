@@ -91,6 +91,8 @@ public class KategorieFXImpl implements KategorieFX {
      * KategorieFX sind gleich, wenn sie die gleiche ID haben
      * @param object zu vergleichende KategorieFX
      * @return true, wenn KategorieFX gleich, sonst false
+     *
+     * @author Michelle Blau
      */
     @Override
     public boolean equals(Object object){

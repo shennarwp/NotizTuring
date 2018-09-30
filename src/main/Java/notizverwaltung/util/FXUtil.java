@@ -8,7 +8,10 @@ import notizverwaltung.model.interfaces.KategorieFX;
 import notizverwaltung.validators.StringValidator;
 
 /**
- * Stellt Warning- bzw. Errordialoge zur Verfügung
+ * Stellt Werkzeugmethoden für die GUI zur Verfügung:
+ *
+ * -Anzeigen von Error-/Warning-Dialogen
+ * -Überprüfung von Inhalten der ObservableLists
  *
  * @author Michelle Blau
  * @version 08.09.2018
@@ -20,8 +23,7 @@ public class FXUtil {
 
     /**
      * Zeigt einen Fehlerdialog an.
-     * @param titel Der Titel des Dialogs. Der Name der Anwendung wird durch Doppelpunkt
-     * getrennt vor dem Titel angezeigt.
+     * @param titel Der Titel des Dialogs.
      * @param header Die Überschrift, die über der Nachricht angezeigt wird.
      * @param message Die Nachricht, die in dem Dialog angezeigt wird.
      */
@@ -35,7 +37,8 @@ public class FXUtil {
     }
 
     /**
-     * Zeigt Warnung, falls die Anzahl an möglichen Kategorien/Notizen/Bearbeitungszuständen erreicht ist
+     * Zeigt Warnung; die max. Anzahl an Kategorien/Notizen/Bearbeitungszuständen
+     * ist in der DB erreicht
      * @param header Dialog-Überschrift
      */
     public static void showZuVieleElementeWarning(String header){
@@ -67,8 +70,8 @@ public class FXUtil {
     }
 
 
-    /** TODO JUNIT TEST
-     * Prüft, ob ein uebergebener Name eines Bearbeitungszustands bereits in der GUI existiert
+    /**
+     * Prüft, ob ein übergebener Name eines Bearbeitungszustands bereits in der GUI existiert
      * (ignoriert Groß-/Kleinschreibung)
      *
      * @param zustandName Name des Zustands
@@ -90,8 +93,8 @@ public class FXUtil {
     }
 
 
-    /** TODO JUNIT TEST
-     * Prüft, ob ein uebergebener Name eine Kategorie bereits in der GUI existiert
+    /**
+     * Prüft, ob ein übergebener Name eine Kategorie bereits in der GUI existiert
      * (ignoriert Groß-/Kleinschreibung)
      *
      * @param kategorieName Name der Kategorie
@@ -100,6 +103,8 @@ public class FXUtil {
     public static boolean isKategorieNameInListe(String kategorieName, ObservableList<KategorieFX> guiKategorieListe) {
         kategorieName = kategorieName.toLowerCase();
         String vergleichsName = null;
+
+
 
         for(KategorieFX kategorieFX : guiKategorieListe){
             vergleichsName = kategorieFX.getKategorieName().getValue();

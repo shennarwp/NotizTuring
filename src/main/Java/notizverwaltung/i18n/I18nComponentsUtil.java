@@ -2,7 +2,7 @@ package notizverwaltung.i18n;
 
 import java.util.ResourceBundle;
 //TODO Kommentare
-public class I18nComponentsUtil {
+public abstract class I18nComponentsUtil {
 
     private static final String MENU_FILE = "menu-file";
     private static final String MENU_NEW = "menu-new";

@@ -22,12 +22,15 @@ import java.time.LocalDate;
 import java.util.Date;
 
 /**
- * Stellt Funktionalität für die Dialog-Fenster zur Verfügung, welche Kategorien/Notizen/Bearbeitungszustände erzeugen/ändern/löschen
+ * Stellt Funktionalität für die Dialog-Fenster zur Verfügung, welche
+ * bestehende Kategorien/Notizen/Bearbeitungszustände verändern.
+ *
+ * Dabei werden Nutzereingaben überprüft.
  *
  *  TODO System.out.printlns rausnehmen, sobald fertig geschrieben und getestet
  *
  * @author Michelle Blau
- * @version 12.09.2018
+ * @version 29.09.2018
  */
 
 public class AenderungsDialogController {
@@ -204,9 +207,9 @@ public class AenderungsDialogController {
 
     /**
      * Validiert die Eingabefelder fuer die Änderung einer Notiz.
+     *
      * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
      * leerer String.
-     *
      */
     private String validateNotizAendern(){
         NotizFX bestehendeNotizFX = notizFXChoiceBox.getValue();
@@ -243,6 +246,7 @@ public class AenderungsDialogController {
 
     /**
      * Validiert die Eingabefelder zur Änderung einer bestehenden Kategorie.
+     *
      * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
      * leerer String.
      */
@@ -274,6 +278,7 @@ public class AenderungsDialogController {
 
     /**
      * Validiert die Eingabefelder zur Änderung eines Bearbeitungszustands.
+     *
      * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
      * leerer String.
      */
@@ -303,8 +308,10 @@ public class AenderungsDialogController {
 
 
     /**
-     * Erstellt einen ChangeListener, der die Attribute einer Notiz in die GUI übernimmt, sobald
-     * eine Notiz in der ChoiceBox ausgewählt wird
+     * Erstellt einen ChangeListener:
+     * Bei Wahl einer Notiz in der Choice-Box werden die Attribute der Notiz
+     * in der GUI sichtbar gemacht.
+     *
      * @return lambda - Schreibt die Attribute der gewählten Notiz in die GUI
      */
     private ChangeListener<Number> getNotizChoiceBoxListener(){

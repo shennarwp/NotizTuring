@@ -41,7 +41,6 @@ public class BearbeitungszustandFXImpl implements BearbeitungszustandFX {
     /**
      * @param bearbeitungszustandID  als int, int darf nicht kleiner 0 sein.
      */
-
     @Override
     public void setBearbeitungsZustandID(int bearbeitungszustandID) {
         IntValidator.checkObIntNullOderNegativIst((bearbeitungszustandID));
@@ -53,7 +52,6 @@ public class BearbeitungszustandFXImpl implements BearbeitungszustandFX {
      *
      * @return liefert den Name des Bearbeitungszustands als Stringproperty zurueck.
      */
-
     @Override
     public StringProperty getName() {
         return name;
@@ -73,7 +71,6 @@ public class BearbeitungszustandFXImpl implements BearbeitungszustandFX {
      *
      * @return liefert Position des Bearbeitunszustands zurueck.
      */
-
     @Override
     public IntegerProperty getPosition() {
         return position;
@@ -82,7 +79,6 @@ public class BearbeitungszustandFXImpl implements BearbeitungszustandFX {
     /**
      * @param position als int, int darf nicht kleiner 0 sein.
      */
-
     @Override
     public void setPosition(int position) {
         IntValidator.checkObIntNullOderNegativIst(position);
@@ -94,6 +90,8 @@ public class BearbeitungszustandFXImpl implements BearbeitungszustandFX {
      * BearbeitungszustandFX  sind gleich, wenn sie die gleiche ID haben
      * @param object zu vergleichendes BearbeitungszustandFX
      * @return true, wenn ID gleich, sonst false
+     *
+     * @author Michelle Blau
      */
     @Override
     public boolean equals(Object object){

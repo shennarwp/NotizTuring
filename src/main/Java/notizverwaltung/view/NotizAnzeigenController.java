@@ -21,6 +21,9 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+/**
+ * @author Tobias Gottschalk
+ */
 
 public class NotizAnzeigenController {
 

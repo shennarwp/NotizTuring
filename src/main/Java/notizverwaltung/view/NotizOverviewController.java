@@ -216,6 +216,9 @@ public class NotizOverviewController {
     }
 
 
+    /**
+     * @author Tobias Gottschalk
+     */
     @FXML
     private void showNotizAnzeigeDialog(){
 
@@ -230,6 +233,7 @@ public class NotizOverviewController {
             Stage dialogStage = new Stage();
             Scene scene = new Scene(anchorPane);
             dialogStage.setScene(scene);
+            dialogStage.initModality(Modality.APPLICATION_MODAL);
 
             NotizAnzeigenController notizAnzeigenController = loader.getController();
             notizAnzeigenController.setDialogStage(dialogStage);

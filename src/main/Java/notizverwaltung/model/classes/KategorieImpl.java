@@ -92,6 +92,8 @@ public class KategorieImpl implements Kategorie
      * Vergleicht 2 Kategorien
      * @param object zu vergleichende Kategorie
      * @return true, wenn Kategorien gleich, sonst false
+     *
+     * @author Michelle Blau
      */
     @Override
     public boolean equals(Object object){

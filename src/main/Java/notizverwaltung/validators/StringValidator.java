@@ -42,12 +42,13 @@ public class StringValidator {
     }
 
     /**
-     * Prueft, ob ein uebergebener String Sonderzeichen enthaelt
+     * Prüft, ob ein übergebener String Sonderzeichen enthaelt
      * @param zuUeberpruefenderString
      * @return true, wenn Sonderzeichen vorhanden, sonst false
+     *
+     * @author Michelle Blau
      */
     public static boolean isSonderzeichenVorhanden(String zuUeberpruefenderString){
-        //TODO JUNIT TEST
 
         if (zuUeberpruefenderString.matches(STRING_OHNE_SONDERZEICHEN_REGEX)){
             return false;

@@ -18,6 +18,17 @@ import notizverwaltung.validators.StringValidator;
 
 import java.time.LocalDate;
 
+/**
+ * Stellt Funktionalität für die Dialog-Fenster zur Verfügung, welche
+ * Kategorien/Notizen/Bearbeitungszustände neu anlegen.
+ *
+ * Dabei werden Nutzereingaben überprüft.
+ *
+ *  TODO System.out.printlns rausnehmen, sobald fertig geschrieben und getestet
+ *
+ * @author Michelle Blau
+ * @version 29.09.2018
+ */
 public class ErstellungsDialogController {
     private MainApp mainApp;
     private Stage dialogStage;
@@ -184,10 +195,10 @@ public class ErstellungsDialogController {
 
 
     /**
-     * Validiert die Eingabefelder fuer die Eingabe zur Erstellung einer Notiz.
+     * Validiert die Eingabefelder zur Erstellung einer Notiz.
+     *
      * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
      * leerer String.
-     *
      */
     private String validateNotizErstellen() {
         String notizName = notizNameField.getText();
@@ -222,10 +233,10 @@ public class ErstellungsDialogController {
 
 
     /**
-     * Validiert die Eingabefelder fuer die Eingabe zur Erstellung einer Kategorie.
+     * Validiert die Eingabefelder zur Erstellung einer Kategorie.
+     *
      * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
      * leerer String.
-     *
      */
     private String validateKategorieErstellen() {
         ObservableList<KategorieFX> guiKategorieListe = mainApp.getKategorieFXListe();
@@ -249,7 +260,8 @@ public class ErstellungsDialogController {
 
 
     /**
-     * Validiert die Eingabefelder fuer die Eingabe zur Erstellung eines Bearbeitungszustands.
+     * Validiert die Eingabefelder zur Erstellung eines Bearbeitungszustands.
+     *
      * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
      * leerer String.
      */

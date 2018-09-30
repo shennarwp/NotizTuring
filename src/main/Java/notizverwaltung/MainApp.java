@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 
 /**
  * Hauptprogramm, welches die GUI initialisiert
- * Kategorien, Notizen, Bearbeitungszustände befinden sich jeweils in einer ObversableList.
+ * Kategorien, Notizen, Bearbeitungszustände befinden sich jeweils in einer ObservableList.
  *
  * Die Funktionalität der GUI-Elemente wird durch entsprechende Controller-Klassen und FXML zur Verfügung gestellt.
  *
@@ -68,10 +68,6 @@ public class MainApp extends Application {
     public MainApp() {
 
         initializeListenMitDatenbankInhalt();
-
-        System.out.println("\n\n\n\n"+notizFXListe);
-        System.out.println("\n\n\n\n"+kategorieFXListe);
-        System.out.println("\n\n\n\n"+bearbeitungszustandFXListe);
     }
 
 
@@ -84,7 +80,6 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle(FXKonstanten.ANWENDUNG_NAME);
-        //initSpalten();
         initRootLayout();
         showGesamtOverview();
 
