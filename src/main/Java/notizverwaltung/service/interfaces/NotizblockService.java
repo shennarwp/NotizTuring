@@ -16,6 +16,17 @@ import java.util.List;
  */
 public interface NotizblockService {
 
+	/**
+	 * Die Methode gibt eine Liste mit allen Kategorien von einem Notizblock zurueck
+	 * @param notizblockID NotizblockID als Integer. Der Integer darf nicht kleiner als 1 sein
+	 * @return Liefert eine Liste von Kategorien zurueck
+	 */
 	public List<Kategorie> getAlleKategorienVomNotizblock(int notizblockID);
+
+
+	/**Die Methode gibt eine Liste mit allen Bearbeitungszuständen von einem bestimmten Notizblock zurueck
+	 * @param notizblockID NotizblockID als Integer. Der Integer darf nicht kleiner als 1 sein
+	 * @return Liste von Bearbeitungszustände
+	 */
 	public List<Bearbeitungszustand> getAlleBearbeitungszustaendeVomNotizblock(int notizblockID);
 }

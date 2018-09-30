@@ -55,9 +55,10 @@ public class NotizServiceImpl implements NotizService {
      */
     @Override
     public int addNotiz(Notiz notiz, int notizblockID) {
-        //TODO Was passiert, wenn in DAO ein Fehler passiert?
+        ObjectValidator.checkObObjectNullIst(notiz);
+        IntValidator.checkObIntNullOderNegativIst(notizblockID);
         int notizID = notizDAO.addNotiz(notiz, notizblockID);
-        IntValidator.checkObIntNullOderNegativIst(notizID);
+
         notiz.setID(notizID);
         return notizID;
     }
@@ -103,21 +104,21 @@ public class NotizServiceImpl implements NotizService {
     }
 
 
-
-    //TODO
-    @Override
-    public List<Notiz> getAlleNotizenImNotizblock(int notizblockID) {
-        IntValidator.checkObIntNullOderNegativIst(notizblockID);
-        return notizDAO.getAlleNotizenVomNotizblock(notizblockID);
-    }
-
-
+    /**
+     *
+     * @return Gibt eine Liste mit alles Notizen zurueck
+     */
     @Override
     public List<Notiz> getAlleNotizen()
     {
         return new NotizDAOImpl().getAlleNotizen();
     }
 
+    /**
+     * Methode gibt eine Liste von Notizen in Abhängikeit vom Bearbeitungszustand zurueck
+     * @param bearbeitungszustand BearbeitungszustandsID. Integer darf nicht kleiner als 1 sein
+     * @return Liefert eine Liste von Notizen zurueck
+     */
     @Override
     public List<Notiz> getAlleNotizenVonEinemBearbeitungszustand(int bearbeitungszustand)
     {
@@ -125,17 +126,17 @@ public class NotizServiceImpl implements NotizService {
         return new BearbeitungszustandDAOImpl().getAlleNotizenVonEinemBearbeitungszustand(bearbeitungszustand);
     }
 
+    /**
+     * Gibt eine Liste von Notzinen in Abhänigkeit von dem Notizblock zurueck.
+     * @param notizblockID NotizblockID als Integer. Darf nicht kleiner als 1 sein.
+     * @return Liefert eine Liste von Notizen
+     */
     @Override
     public List<Notiz> getAlleNotizenVomNotizblock(int notizblockID)
     {
         IntValidator.checkObIntNullOderNegativIst(notizblockID);
-        return new NotizblockDAOImpl().getAlleNotizenVomNotizblock(notizblockID);
+        return notizDAO.getAlleNotizenVomNotizblock(notizblockID);
     }
 
-//TODO In eigene Filterklasse auslagern
-//    @Override
-//    public List<Notiz> getAlleNotizenMitPrioritaet(boolean prioritaet){
-//        ObjectValidator.checkObObjectNullIst(prioritaet);
-//        return notizDAO.getAlleNotizenMitPrioritaet(prioritaet);
-//    }
+
 }

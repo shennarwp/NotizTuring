@@ -14,6 +14,9 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class StringValidatorTest {
 
+    /**
+     * Testet, ob eine die Methode true zurueck liefert, wenn der Methode ein leerer String uebergeben wird
+     */
     @org.junit.Test
     void isStringLeerOderNullTrue() {
         String leererString = " ";
@@ -22,6 +25,9 @@ class StringValidatorTest {
         assertEquals(true, bool);
     }
 
+    /**
+     * Testet, ob die Methode false zurueck liefert, wenn der zuueberpruefende String nicht leer ist.
+     */
     void isStringLeerOderNullFalse() {
         String leererString = "Test String";
         boolean bool = StringValidator.isStringLeerOderNull(leererString);

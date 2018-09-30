@@ -23,6 +23,10 @@ public class NutzerprofilImpl implements Nutzerprofil
         this.nutzerprofilID = nutzerprofilID;
     }
 
+    /**
+     * ToString Methode
+     * @return Liefert die NutzerprofilID als String zurueck
+     */
     @Override
     public String toString(){
         return new Integer(getNutzerprofilID()).toString();

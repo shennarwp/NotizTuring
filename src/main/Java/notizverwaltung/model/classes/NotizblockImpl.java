@@ -23,6 +23,10 @@ public class NotizblockImpl implements Notizblock
         this.notizblockID = notizblockID;
     }
 
+    /**
+     * ToString Methode. Liefert die NotizblockID als String
+     * @return String
+     */
     @Override
     public String toString(){
         return new Integer(getNotizblockID()).toString();

@@ -11,6 +11,7 @@ public class ObjectValidator {
 
 
     /**
+     * Validator prueft ob ein Objekt Null ist
      * @param zuUberpruefendesObject
      * @throws ObjectIstNullException wirft eine Exception, wenn das Objekt null ist
      */
