@@ -37,6 +37,7 @@ public class DateUtil {
      * @return LocalDate-Objekt
      */
     public static LocalDate convertDateInLocalDate(Date date){
+        ObjectValidator.checkObObjectNullIst(date);
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
         return localDate;
