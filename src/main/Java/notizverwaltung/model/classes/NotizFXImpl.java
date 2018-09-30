@@ -70,6 +70,7 @@ public class NotizFXImpl implements NotizFX {
     }
 
     /**
+     * Die Methode liefert ein den Title als StringProperty
      * @return Liefert den Title der Notiz als Stringproperty zurueck
      */
     @Override
@@ -78,6 +79,7 @@ public class NotizFXImpl implements NotizFX {
     }
 
     /**
+     * Die Methode setzt den Title
      * @param title Title als String. Der String darf nicht leer sein.
      */
     @Override
@@ -89,6 +91,7 @@ public class NotizFXImpl implements NotizFX {
     }
 
     /**
+     * Die Methode liefert ein KategorieID als Integer
      * @return Liefert die KategorieID als IntegerProperty zurueck
      */
     @Override
@@ -108,6 +111,7 @@ public class NotizFXImpl implements NotizFX {
     }
 
     /**
+     * Die Methode liefert den Bearbeitungszustand einer Notiz als IntegerProperty
      * @return Liefert die ID des Bearbeitungszustand als IntegerProperty zurueck
      */
     @Override
@@ -128,6 +132,7 @@ public class NotizFXImpl implements NotizFX {
     }
 
     /**
+     * Die Methode gibt die Beschreibung als StringProperty zurueck
      * @return Liefert die Beschreibung der Notiz als StringProperty zurueck
      */
     @Override
@@ -147,24 +152,37 @@ public class NotizFXImpl implements NotizFX {
     }
 
     /**
-     * @return
+     * Die Methode liefert ein BooleanProperty Objekt zurueck
+     * @return Prioritaet als BooleanProperty
      */
     @Override
     public BooleanProperty getPrioritaet() {
         return prioritaet;
     }
 
+    /**
+     * Die Methode setzt die Prioritaet als boolean
+     * @param prioritaet als boolean
+     */
     @Override
     public void setPrioritaet(boolean prioritaet) {
         this.prioritaet.set(prioritaet);
 
     }
 
+    /**
+     * Die Methode gibt das Faelligkeitsdatum als ein ObjectProperty mit Typ Date zurueck
+     * @return ObjectProperty mit Type Date
+     */
     @Override
     public ObjectProperty<Date> getFaelligkeit() {
         return faelligkeit;
     }
 
+    /**
+     * Die Methode setzt das Faelligkeitsdatum
+     * @param faelligkeit Date Objekt
+     */
     @Override
     public void setFaelligkeit(Date faelligkeit) {
         ObjectValidator.checkObObjectNullIst(faelligkeit);
@@ -172,33 +190,51 @@ public class NotizFXImpl implements NotizFX {
 
 
     }
-
-
+    
+    /**
+     * Die Methode liefert ein BooleanProperty zurueck
+     * @return BooleanProperty. Value ist true, wenn das Erinnerungsdatum gesetzt ist. Anderenfalls ist das Value false
+     */
     @Override
     public BooleanProperty istErinnerungGesetzt() {
         return istErinnerungGesetzt;
     }
 
+    /**
+     * Die Methode liefert ein ObjectProperty mit dem Typ Date zurueck. Das Date Objekt, ist das
+     * Erinnerungsdatum der Notiz
+     * @return ObjectProperty
+     */
     @Override
     public ObjectProperty<Date> getErinnerung() {
         return erinnerung;
     }
 
+    /**
+     * Die Methode setzt ein Erinnerungsdatum
+     * @param erinnerung Erinnerung als Date Objekt
+     */
     @Override
     public void setErinnerung(Date erinnerung) {
-//        ObjectValidator.checkObObjectNullIst(erinnerung);
-//        this.erinnerung.set(erinnerung);
+        this.erinnerung.set(erinnerung);
     }
 
+    /**
+     * Die Methode liefert ein das Erstellungsdatum als ObjectProperty zurueck
+     * @return ObjectProperty mit Type Date
+     */
     @Override
     public ObjectProperty<Date> getErstellung() {
         return erstellung;
     }
 
+    /**
+     * Die Methode setzt das Erstellungsdatum
+     * @param erstellung Erstelldatum als Date
+     */
     @Override
     public void setErstellung(Date erstellung) {
-//        ObjectValidator.checkObObjectNullIst(erstellung);
-//        this.erinnerung.set(erstellung);
+       this.erinnerung.set(erstellung);
 
     }
 
@@ -239,6 +275,10 @@ public class NotizFXImpl implements NotizFX {
         return faelligkeitDieserNotiz.compareTo(vergleichsFaelligkeit);
     }
 
+    /**
+     * toString Methode
+     * @return Title einer Notiz als String
+     */
     @Override
     public String toString(){
         return title.getValue();
