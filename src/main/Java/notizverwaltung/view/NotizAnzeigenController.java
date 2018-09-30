@@ -2,19 +2,11 @@ package notizverwaltung.view;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import notizverwaltung.MainApp;
-import notizverwaltung.constants.FXKonstanten;
-import notizverwaltung.i18n.I18nUtil;
-import notizverwaltung.model.interfaces.BearbeitungszustandFX;
-import notizverwaltung.model.interfaces.KategorieFX;
+import notizverwaltung.exceptions.ObjectIstNullException;
 import notizverwaltung.model.interfaces.NotizFX;
-
+import notizverwaltung.validators.ObjectValidator;
 
 
 import java.io.IOException;
@@ -22,6 +14,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 /**
+ * Klasse zum Anziegen des Inhalts einer Notiz
  * @author Tobias Gottschalk
  */
 
@@ -52,40 +45,15 @@ public class NotizAnzeigenController {
     TextField bearbeitungszustandNameField;
 
 
-/*
+    /**
+     * Die Methode entnimmt der NotizFX, welche uebergeben wurde, alle Informationen und
+     * schreibt sie in die entsprechenden GUI Elemente
+     * @param notizFX NotizFX Objekt
+     * @throws ObjectIstNullException wirft eine Exception, wenn das Objekt null ist
+     */
     @FXML
-    public void showNotizAnzeigeDialog(NotizFX notizFX){
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            ResourceBundle bundle = I18nUtil.getDialogResourceBundle();
-            loader.setLocation(MainApp.class
-                    .getResource(FXKonstanten.PFAD_NOTIZ_ANZEIGEN_LAYOUT));
-            loader.setResources(bundle);
-            AnchorPane anchorPane = (AnchorPane) loader.load();
-
-            this.dialogStage = new Stage();
-            Scene scene = new Scene(anchorPane);
-            this.dialogStage.setScene(scene);
-
-           NotizAnzeigenController controller = loader.getController();
-
-
-            this.dialogStage.setTitle(FXKonstanten.DIALOG);
-            this.dialogStage.setResizable(false);
-            this.dialogStage.initModality(Modality.APPLICATION_MODAL);
-
-            showNotizFXDetails(notizFX);
-            this.dialogStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    */
-
-    @FXML
-    public void showNotizFXDetails(NotizFX notizFX){
+    public void showNotizFXDetails(NotizFX notizFX) throws ObjectIstNullException {
+        ObjectValidator.checkObObjectNullIst(notizFX);
 
         ObjectProperty<Date> erinnerung = notizFX.getFaelligkeit();
 
@@ -105,16 +73,24 @@ public class NotizAnzeigenController {
 
     }
 
+    /**
+     * Handler fuer den Cancel Button. Wenn der Button gedrueckt wird,
+     * schliesst sich das Fenster
+     */
     @FXML
     private void handleBtnCancel(){
 
-        System.out.println("Tes2t");
-        //TODO Ist aus einem Grund null
         dialogStage.close();
 
     }
 
-    public void setDialogStage(Stage stage){
+    /**
+     * Die Methode setzt die Stage
+     * @param stage Object
+     * @throws ObjectIstNullException wirft eine Exception, wenn das Objekt null ist
+     */
+    public void setDialogStage(Stage stage)throws ObjectIstNullException{
+        ObjectValidator.checkObObjectNullIst(stage);
         this.dialogStage = stage;
     }
 
