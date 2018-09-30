@@ -15,12 +15,31 @@ import java.util.List;
  */
 
 public interface KategorieFXService {
-    //Wandelt Kategorie in KategorieFX um
+    /**
+     * Wandelt Kategorie in KategorieFX um
+     * @param kategorie
+     * @return kategorieFX
+     */
     public KategorieFX wrapKategorie(Kategorie kategorie);
-    //Wandelt KategorieFX in Kategorie um
+
+    /**
+     * Wandelt KategorieFX in Kategorie um
+     * @param kategorieFX
+     * @return kategorie
+     */
     public Kategorie unwrapKategorieFX(KategorieFX kategorieFX);
-    //Wandelt kategorieListe in kategorieFXListe um
+
+    /**
+     * Wandelt kategorieListe in kategorieFXListe um
+     * @param kategorieListe
+     * @return ategorieFXListe
+     */
     public List<KategorieFX> convertInKategorieFXList(List<Kategorie> kategorieListe);
-    //Gibt Kategorie Name mittels KategorieID zurueck
+
+    /**
+     * Gibt Kategorie Name mittels KategorieID zurueck
+     * @param KategorieID
+     * @return kategorieIDProperty
+     */
     public StringProperty getKategorieNamePropertyVonKategorieID(int KategorieID);
 }
