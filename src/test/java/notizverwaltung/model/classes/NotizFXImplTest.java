@@ -185,18 +185,4 @@ class NotizFXImplTest {
     }
 
 
-
-//TODO J Unit Methoden auskommentieren, falls in Klasse NotizFXImpl implementiert.
-  //  @Test
-  //  void setErinnerung() {
-  //      NotizFXImpl notizFXImpl = new NotizFXImpl();
-  //      assertThrows(ObjectIstNullException.class, () -> {notizFXImpl.setErinnerung(objectIsNull);});
-  //  }
-
- //   @Test
- //   void setErstellung() {
- //       NotizFXImpl notizFXImpl = new NotizFXImpl();
- //       assertThrows(ObjectIstNullException.class, () -> {notizFXImpl.setErstellung(objectIsNull);});
- //   }
-
 }
