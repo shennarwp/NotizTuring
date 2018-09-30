@@ -39,19 +39,40 @@ public interface Notiz
 
     //____________________BESCHREIBUNG____________________
     public String getBeschreibung();
+
+    /**
+     * Die Methode setzt eine neue Beschreibung in die Notiz
+     * @param beschreibung String
+     * @throws StringIsEmptyException wirft eine Exception
+     */
     public void setBeschreibung(String beschreibung) throws StringIsEmptyException;
+
 
     //____________________PRIORITÄT____________________
     public boolean getPrioritaet();
+
     public void setPrioritaet(boolean prioritaet);
 
     //____________________FÄLLIGKEIT____________________
     public Date getFaelligkeit();
+
     public void setFaelligkeit(Date faelligkeit) throws ObjectIstNullException;
 
     //____________________ERRINERUNG____________________
     public boolean istErinnerungGesetzt();
+
+    /**
+     * Die Methode liefert das Erinnerungsdatum einer Notiz
+     * @return Erinnerungsdatum als Date Objekt
+     */
     public Date getErinnerung();
+
+
+    /**
+     * Die Methode setzt eine neue Erinnerung in der Notiz
+     * @param erinnerung Erinnerung als Date Objekt
+     * @throws ObjectIstNullException wirf eine Exception
+     */
     public void setErinnerung(Date erinnerung) throws ObjectIstNullException;
 
     //____________________ERSTELLUNG____________________
