@@ -61,7 +61,7 @@ public class KategorieFXServiceImpl implements KategorieFXService {
     /**
      * Methode wandelt KategorieListe in KategorieFX Liste um
      * @param kategorieListe
-     * @return List<KategorieFX>
+     * @return List von KategorieFX
      */
 
     @Override

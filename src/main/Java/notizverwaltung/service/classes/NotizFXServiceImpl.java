@@ -66,7 +66,7 @@ public class NotizFXServiceImpl implements NotizFXService {
     /**
      * Methode wandelt notizListe in NotizFX Liste um
      * @param notizListe
-     * @return List<NotizFX>
+     * @return List von NotizFX
      */
     @Override
     public List<NotizFX> convertInNotizFXList(List<Notiz> notizListe){

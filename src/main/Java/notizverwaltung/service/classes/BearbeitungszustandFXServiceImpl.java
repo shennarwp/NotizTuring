@@ -57,7 +57,7 @@ public class BearbeitungszustandFXServiceImpl implements BearbeitungszustandFXSe
     /**
      * Methode wandelt BearbeitungszustandList in BearbeitungszustandFXList um
      * @param bearbeitungszustandListe
-     * @return List<BearbeitungszustandFX>
+     * @return List von BearbeitungszustandFX
      */
 
     @Override
