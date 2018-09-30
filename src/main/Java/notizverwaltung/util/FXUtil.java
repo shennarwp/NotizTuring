@@ -53,6 +53,7 @@ public class FXUtil {
     /**
      * Validiert die eingegebenen Daten.
      *
+     * @param errorMessage leerer String, falls Nutzereingabe gueltig
      * @return true wenn die Nutzer-Eingabe gueltig ist, sonst false.
      */
     public static boolean isInputValid(String errorMessage) {
