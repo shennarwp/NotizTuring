@@ -21,7 +21,6 @@ import java.util.List;
  *
  * @author Tobias Gottschalk
  * @version 1.0
- * @since
  */
 public class NotizServiceImpl implements NotizService {
 
@@ -30,7 +29,7 @@ public class NotizServiceImpl implements NotizService {
     /**
      * Konstruktor
      * @param notizDAO Nimmt ein NotizDAO Objekt entgegen
-     * @throws ObjectIstNullException
+     * @throws ObjectIstNullException wirft eine Exception, wenn das Objekt Null ist
      */
     public NotizServiceImpl(NotizDAO notizDAO) throws ObjectIstNullException {
         ObjectValidator.checkObObjectNullIst(notizDAO);
@@ -40,7 +39,7 @@ public class NotizServiceImpl implements NotizService {
 
     /**
      * Default Konstruktor
-     * @throws ObjectIstNullException
+     * @throws ObjectIstNullException wirft eine Exception, wenn das Objekt Null ist
      */
     public NotizServiceImpl() throws ObjectIstNullException {
         this(DaoObjectBuilder.getNotizDaoObject());
@@ -94,7 +93,7 @@ public class NotizServiceImpl implements NotizService {
 
     /**
      * @param kategorieID Die ID der Kategorie
-     * @return Gibt eine Liste<Notiz> mit einer bestimmten Kategorie zurueck
+     * @return Gibt eine Liste mit Notizen mit einer bestimmten Kategorie zurueck
      */
     @Override
     public List<Notiz> getAlleNotizenvonEinerKategorie(int kategorieID) {
