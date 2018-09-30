@@ -20,12 +20,15 @@ public interface KategorieFX {
 
 
 
+    //____________________ID___________________
     public IntegerProperty getKategorieID();
     public void setKategorieID(int kategorieID);
 
+    //____________________Name___________________
     public StringProperty getKategorieName();
     public void setKategorieName(String name);
 
+    //____________________Farbe___________________
     public ObjectProperty getFarbe();
     public void setFarbe(Color farbe);
 }

@@ -22,6 +22,7 @@ public class NotizFXImpl implements NotizFX {
     private IntegerProperty notizID;
     private StringProperty title;
     private IntegerProperty kategorieID;
+    private StringProperty kategorieName;
     private IntegerProperty bearbeitungszustandID;
     private StringProperty beschreibung;
     private BooleanProperty prioritaet;
@@ -35,6 +36,7 @@ public class NotizFXImpl implements NotizFX {
         notizID = new SimpleIntegerProperty();
         title = new SimpleStringProperty();
         kategorieID = new SimpleIntegerProperty();
+        kategorieName = new SimpleStringProperty();
         bearbeitungszustandID = new SimpleIntegerProperty();
         beschreibung = new SimpleStringProperty();;
         prioritaet = new SimpleBooleanProperty();

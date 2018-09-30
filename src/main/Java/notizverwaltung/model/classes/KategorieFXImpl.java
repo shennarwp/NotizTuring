@@ -29,7 +29,7 @@ public class KategorieFXImpl implements KategorieFX {
     }
 
     /**
-     *
+     *getter-Methode für ID der Kategorie
      * @return gibt KategorieID als IntegerProperty  zurueck.
      */
     @Override
@@ -38,7 +38,7 @@ public class KategorieFXImpl implements KategorieFX {
     }
 
     /**
-     *
+     *setter-Methode für ID der Kategorie
      * @param kategorieID als int, int darf nicht kleiner 0 sein.
      */
 
@@ -50,7 +50,7 @@ public class KategorieFXImpl implements KategorieFX {
     }
 
     /**
-     *
+     *suche bestimmte Name einer Kategorie
      * @return Gibt KategorieName als StringProperty zurueck.
      */
     @Override
@@ -59,7 +59,7 @@ public class KategorieFXImpl implements KategorieFX {
     }
 
     /**
-     *
+     *erstelle die Name einer Kategorie
      * @param name als String, String darf nicht leer sein.
      */
 
@@ -70,7 +70,7 @@ public class KategorieFXImpl implements KategorieFX {
     }
 
     /**
-     *
+     *getter-Methode für Farbe einer Kategorie
      * @return Gibt Farbe als ObjectProperty zurueck.
      */
     @Override
@@ -79,7 +79,7 @@ public class KategorieFXImpl implements KategorieFX {
     }
 
     /**
-     *
+     *setter--Methode für Farbe einer Kategorie
      * @param farbe als Color Object, darf nicht null sein.
      */
     @Override
@@ -109,6 +109,10 @@ public class KategorieFXImpl implements KategorieFX {
         return false;
     }
 
+    /**
+     * toString-Methode
+     * @return KategorieName
+     */
     @Override
     public String toString(){return kategorieName.getValue();}
 }

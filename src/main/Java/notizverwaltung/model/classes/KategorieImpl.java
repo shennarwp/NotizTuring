@@ -33,6 +33,11 @@ public class KategorieImpl implements Kategorie
 //    @Column(name = "Farbe")
 //    private Color farbe;
 
+    /**
+     * Konstruktor
+     * @param kategorieName
+     * @throws StringIsEmptyException
+     */
     public KategorieImpl(String kategorieName) throws StringIsEmptyException {
         StringValidator.checkObStringLeerOderNullIst(kategorieName);
         setKategorieName(kategorieName);
@@ -51,6 +56,10 @@ public class KategorieImpl implements Kategorie
 
     }
 
+    /**
+     * getter-Methode für ID der Kategorie
+     * @return ID der Kategorie
+     */
 
     @Override
     public int getKategorieID() {
@@ -58,16 +67,31 @@ public class KategorieImpl implements Kategorie
         return this.kategorieID;
     }
 
+    /**
+     * setter-Methode für ID der Kategorie
+     * @param kategorieID
+     * @throws IntIstNegativException
+     */
     @Override
     public void setKategorieID(int kategorieID) throws IntIstNegativException {
         IntValidator.checkObIntNullOderNegativIst(kategorieID);
         this.kategorieID = kategorieID;
     }
 
+    /**
+     * suche die Name einer Kategorie
+     * @return die Name einer Kategorie
+     */
     @Override
     public String getKategorieName() {
         return this.kategorieName;
     }
+
+    /**
+     * erstelle die Name der Kategorie
+     * @param kategorieName
+     * @throws StringIsEmptyException
+     */
 
     @Override
     public void setKategorieName(String kategorieName) throws StringIsEmptyException {
@@ -75,12 +99,21 @@ public class KategorieImpl implements Kategorie
         this.kategorieName = kategorieName;
     }
 
+    /**
+     * getter-Methode für die Farbe der Kategorie
+     * @return Dark Green- Farbe
+     */
     @Override
     public Color getFarbe() {
 //        return this.farbe;
         return Color.DARKGREEN;
     }
 
+    /**
+     * setter-Methode für Farbe der Kategorie
+      * @param farbe
+     * @throws ObjectIstNullException
+     */
     @Override
     public void setFarbe(Color farbe) throws ObjectIstNullException {
 //        ObjectValidator.checkObObjectNullIst(farbe);
@@ -108,6 +141,11 @@ public class KategorieImpl implements Kategorie
         return false;
     }
 
+
+    /**
+     * toString-Methode
+     * @return Name der Kategorie
+     */
     @Override
     public String toString() {
         return getKategorieName();

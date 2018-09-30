@@ -28,39 +28,70 @@ public class BearbeitungszustandImpl implements Bearbeitungszustand
 //	@Column(name = "Position", unique = true)
 //	private int position;
 
+	/**
+	 * Konstruktor
+	 * @param nameDerSpalte
+	 * @throws StringIsEmptyException
+	 */
 	public BearbeitungszustandImpl(String nameDerSpalte) throws StringIsEmptyException {
 		setName(nameDerSpalte);
 	}
 
 	public BearbeitungszustandImpl() {}
 
+	/**
+	 * getter-Methode für ID der Bearbeitungszustand
+	 * @return ID der Bearbeitungszustand
+	 */
 	@Override
 	public int getBearbeitungsZustandID() {
 		return bearbeitungszustandID;
 	}
+
+	/**
+	 * Setter-Methode ID der Bearbeitungszustand
+	 * @param bearbeitungszustandID
+	 */
 
 	@Override
 	public void setBearbeitungszustandID(int bearbeitungszustandID) {
 		this.bearbeitungszustandID = bearbeitungszustandID;
 	}
 
+	/**
+	 * getter-Methode für die Name der Spalte von Bearbeitungszustand
+	 * @return die Name der Spalte von Bearbeitungszustand
+	 */
 	@Override
 	public String getName()  {
 		return nameDerSpalte;
 	}
 
+	/**
+	 * setter-Methode für die Name der Spalte von Bearbeitungszustand
+	 * @param nameDerSpalte
+	 * @throws StringIsEmptyException
+	 */
 	@Override
 	public void setName(String nameDerSpalte) throws StringIsEmptyException {
 		StringValidator.checkObStringLeerOderNullIst(nameDerSpalte);
 		this.nameDerSpalte = nameDerSpalte;
 	}
 
+	/**
+	 * getter-Methode für Position von Bearbeitungszustand
+	 * @return
+	 */
 	@Override
 	public int getPosition() {
 //		return position;
 		return 0;
 	}
 
+	/**
+	 * setter-Methode für Position von Bearbeitungszustand
+	 * @param position
+	 */
 	@Override
 	public void setPosition(int position) {
 //		this.position = position;
@@ -85,6 +116,11 @@ public class BearbeitungszustandImpl implements Bearbeitungszustand
 		return false;
 	}
 
+
+	/**
+	 * toString-Methode
+	 * @return Name der Bearbeitungszustand
+	 */
 	@Override
 	public String toString() {
 		return getName();
