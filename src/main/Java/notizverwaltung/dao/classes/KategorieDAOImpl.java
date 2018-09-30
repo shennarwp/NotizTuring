@@ -17,13 +17,16 @@ import java.util.List;
 
 public class KategorieDAOImpl extends ObjectDAOImpl implements KategorieDAO
 {
+    /**
+     * Standard-konstruktor, nutzt die Konstruktor von Object-DAO superclass damit die benötigte entitymanager erstellt werden
+     */
     public KategorieDAOImpl() {
         super();
     }
 
     /**
      * erstelle neue Kategorie in Datenbank
-     * @param kategorie
+     * @param kategorie das Kategorie-Objekt
      * @return neue Kategorie
      */
     @Override
@@ -44,7 +47,7 @@ public class KategorieDAOImpl extends ObjectDAOImpl implements KategorieDAO
 
     /**
      * suche eine bestimmte Kategorie
-     * @param kategorieID
+     * @param kategorieID die ID von Kategorie
      * @return bestimmte Kategorie
      */
     @Override
@@ -64,7 +67,7 @@ public class KategorieDAOImpl extends ObjectDAOImpl implements KategorieDAO
 
     /**
      * prüfe, ob die Kategorie existiert oder nicht
-     * @param kategorieName
+     * @param kategorieName die Kategoriename
      * @return bestimmte Kategorie
      */
     @Override
@@ -87,7 +90,7 @@ public class KategorieDAOImpl extends ObjectDAOImpl implements KategorieDAO
 
     /**
      * Kategorie in Datenbank ändern
-     * @param kategorie
+     * @param kategorie das Kategorie-Objekt
      */
     @Override
     public void updateKategorie(Kategorie kategorie) {
@@ -108,7 +111,7 @@ public class KategorieDAOImpl extends ObjectDAOImpl implements KategorieDAO
 
     /**
      * lösche bestimmte Kategorie in Datenbank
-     * @param kategorieID
+     * @param kategorieID die ID von Kategorie
      */
     @Override
     public void deleteKategorie(int kategorieID) {
@@ -130,7 +133,7 @@ public class KategorieDAOImpl extends ObjectDAOImpl implements KategorieDAO
 
     /**
      * suche die Summe von alle Notizen in einer bestimmten Kategorie
-     * @param kategorieID
+     * @param kategorieID die ID von Kategorie
      * @return die Summe von alle Notizen in einer bestimmten Kategorie
      */
     @Override
@@ -161,6 +164,11 @@ public class KategorieDAOImpl extends ObjectDAOImpl implements KategorieDAO
         return listKategorie;
     }
 
+    /**
+     * suche Kategoriename anhand deren ID
+     * @param kategorieID die ID von den gesuchten Kategorie
+     * @return die Kategoriename
+     */
     public String getKategorieNameVonKategorieID(int kategorieID) {
         initTransaction();
         transaction.begin();

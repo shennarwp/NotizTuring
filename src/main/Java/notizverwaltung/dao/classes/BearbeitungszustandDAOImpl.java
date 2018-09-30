@@ -17,13 +17,17 @@ import java.util.List;
 
 public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements BearbeitungszustandDAO
 {
+
+    /**
+     * Standard-konstruktor, nutzt die Konstruktor von Object-DAO superclass damit die benötigte entitymanager erstellt werden
+     */
     public BearbeitungszustandDAOImpl() {
         super();
     }
 
     /**
      * erstelle neue Bearbeitungszustand in Datenbank
-     * @param bearbeitungszustand
+     * @param bearbeitungszustand das Bearbeitungszustand-Objekt
      * @return neue Bearbeitungszustand
      */
     @Override
@@ -44,7 +48,7 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
 
     /**
      * suche einer bestimmte Bearbeitungszutand
-     * @param bearbeitungszustandID
+     * @param bearbeitungszustandID die ID von Bearbeitungszustand
      * @return einer bestimmte Bearbeitungszutand
      */
     @Override
@@ -80,7 +84,7 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
 
     /**
      * prüfe, ob der Bearbeitungszutand existiert oder nicht
-     * @param bearbeitungszustand
+     * @param bearbeitungszustand dasBearbeitungszustand-Objekt
      * @return bestimmter Bearbeitungszutand
      */
     @Override
@@ -103,7 +107,7 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
 
     /**
      * Bearbeitungszutand in Datenbank ändern
-     * @param bearbeitungszustand
+     * @param bearbeitungszustand das Bearbeitungszustand-Objekt
      */
     @Override
     public void updateBearbeitungszustand(Bearbeitungszustand bearbeitungszustand) {
@@ -124,7 +128,7 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
 
     /**
      * lösche bestimmter Bearbeitungszutand in Datenbank
-     * @param bearbeitungszustandID
+     * @param bearbeitungszustandID die ID von Bearbeitungszustand
      */
     @Override
     public void deleteBearbeitungszustand(int bearbeitungszustandID) {
@@ -145,7 +149,7 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
 
     /**
      * suche die Summe von alle Notizen in einem bestimmten Bearbeitungszutand
-     * @param bearbeitungszustandID
+     * @param bearbeitungszustandID die ID von Bearbeitungszustand
      * @return die Summe von alle Notizen in einem bestimmten Bearbeitungszutand
      */
     @Override
@@ -164,7 +168,7 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
 
     /**
      * suche alle vorhandenen Notizen von einem bestimmten Bearbeitungszustand
-     * @param bearbeitungszustandID
+     * @param bearbeitungszustandID die ID von Bearbeitungszustand
      * @return alle vorhandenen Notizen von einem bestimmten Bearbeitungszustand
      */
     @Override
@@ -185,7 +189,7 @@ public class BearbeitungszustandDAOImpl extends ObjectDAOImpl implements Bearbei
 
     /**
      * suche alle vorhandenen Bearbeitungszustände von einem bestimmten Notizblock
-     * @param notizblockID
+     * @param notizblockID die ID von Notizblock
      * @return alle vorhandenen Bearbeitungszustände von einem bestimmten Notizblock
      */
     @Override

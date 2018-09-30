@@ -26,6 +26,9 @@ public class ObjectDAOImpl implements ObjectDAO
 	protected EntityManager entityManager;
 	protected EntityTransaction transaction;
 
+	/**
+	 * Standard-konstruktor, erstelle die Verbindung mit dem Datenbank
+	 */
 	public ObjectDAOImpl() {
 		try {
 			connection = DriverManager.getConnection("jdbc:sqlite:src/main/resources/testdb.db" );

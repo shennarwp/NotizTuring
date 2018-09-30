@@ -15,6 +15,9 @@ import java.util.List;
  */
 public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
 {
+    /**
+     * Standard-konstruktor, nutzt die Konstruktor von Object-DAO superclass damit die benötigte entitymanager erstellt werden
+     */
     public NotizDAOImpl() {
         super();
     }
@@ -22,8 +25,8 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
 
     /**
      * erstelle neue Notiz in Datenbank
-     * @param notiz
-     * @param notizblockID
+     * @param notiz das Notiz-Objekt
+     * @param notizblockID die ID von Notizblock
      * @return neue Notiz
      */
     @Override
@@ -41,10 +44,9 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
 
     /**
      * suche eine bestimmte Notiz
-     * @param notizID
+     * @param notizID die ID von Notiz
      * @return gesuchte bestimmte Notiz
      */
-
     @Override
     public Notiz getNotiz(int notizID) {
         initTransaction();
@@ -79,9 +81,8 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
 
     /**
      * die Notiz in Datenbank ändern
-     * @param notiz
+     * @param notiz das Notiz-Objekt
      */
-
     @Override
     public void updateNotiz(Notiz notiz) {
         initTransaction();
@@ -101,9 +102,8 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
 
     /**
      * lösche bestimmte Notiz in Datenbank
-     * @param notizID
+     * @param notizID die ID von Notiz
      */
-
     @Override
     public void deleteNotiz(int notizID) {
         initTransaction();
@@ -122,7 +122,7 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
 
     /**
      * suche alle vorhandenen Notizen von einem bestimmten Notizblock
-     * @param notizblockID
+     * @param notizblockID die ID von Notizblock
      * @return alle vorhandenen Notizen von einem bestimmten Notizblock
      */
     @Override
@@ -143,7 +143,7 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
 
     /**
      * suche alle vorhandenen Notizen von einer bestimmten Kategorie
-     * @param kategorieID
+     * @param kategorieID die ID von Kategorie
      * @return alle vorhandenen Notizen von einer bestimmten Kategorie
      */
     @Override
@@ -163,7 +163,7 @@ public class NotizDAOImpl extends ObjectDAOImpl implements NotizDAO
 
     /**
      * suche alle vorhandenen Notizen von einer bestimmten Priorität
-     * @param prioritaet
+     * @param prioritaet true, falls prioritaet gesetzt werden
      * @return alle vorhandenen Notizen von einer bestimmten Priorität
      */
     @Override

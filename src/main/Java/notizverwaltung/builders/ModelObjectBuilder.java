@@ -46,7 +46,6 @@ public class ModelObjectBuilder {
      *
      * @return Implementation von Bearbeitungszustand
      */
-
     public static Bearbeitungszustand getBearbeitungszustandObject(){ return new BearbeitungszustandImpl();}
 
     /**
@@ -139,7 +138,6 @@ public class ModelObjectBuilder {
      *
      * @return Implementation von BearbeitungszustandFX
      */
-
     public static BearbeitungszustandFX getBearbeitungszustandFXObjekt() {
         return new BearbeitungszustandFXImpl();
     }
