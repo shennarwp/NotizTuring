@@ -28,7 +28,7 @@ import java.util.ResourceBundle;
  * Hauptprogramm, welches die GUI initialisiert
  * Kategorien, Notizen, Bearbeitungszustände befinden sich jeweils in einer ObservableList.
  *
- * Die Funktionalität der GUI-Elemente wird durch entsprechende Controller-Klassen und FXML zur Verfuegung gestellt.
+ * Die Funktionalitaet der GUI-Elemente wird durch entsprechende Controller-Klassen und FXML zur Verfuegung gestellt.
  *
  * @author Michelle Blau
  * @author Johannes Gerwert
