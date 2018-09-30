@@ -99,7 +99,7 @@ public interface NotizFX extends Comparable<NotizFX> {
 
     /**
      * Liefert ein ObjectProperty mit dem Typ Date der Faelligkeit
-     * @return ObjectProperty<Date> mit der Faelligkeit
+     * @return ObjectProperty mit Type Date mit der Faelligkeit
      */
     public ObjectProperty<Date> getFaelligkeit();
 
@@ -134,7 +134,7 @@ public interface NotizFX extends Comparable<NotizFX> {
 
     /**
      * Die Methode liefert das Erstellungsdatum als ObjectProperty mit dem Typ Date zurueck.
-     * @return Liefert ein ObjectProperty<Date> Objekt zurueck
+     * @return Liefert ein ObjectProperty Objekt mit dem Type Date zurueck
      */
     public ObjectProperty<Date> getErstellung();
 

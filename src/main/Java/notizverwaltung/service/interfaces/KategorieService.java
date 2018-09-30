@@ -12,7 +12,6 @@ import java.util.List;
  *
  * @author Tobias Gottschalk
  * @version 1.0
- * @since
  */
 public interface KategorieService {
 
