@@ -16,6 +16,12 @@ import java.util.List;
  */
 
 public class BearbeitungszustandFXServiceImpl implements BearbeitungszustandFXService {
+
+    /**
+     * Methode wandelt Bearbeitungszustand in BearbeitungszustandFX um
+     * @param bearbeitungszustand
+     * @return BearbeitungszustandFX
+     */
     @Override
     public BearbeitungszustandFX wrapBearbeitungszustand(Bearbeitungszustand bearbeitungszustand) {
         ObjectValidator.checkObObjectNullIst(bearbeitungszustand);
@@ -27,6 +33,12 @@ public class BearbeitungszustandFXServiceImpl implements BearbeitungszustandFXSe
         return bearbeitungszustandFX;
 
     }
+
+    /**
+     * Methode wandelt BearbeitungszustandFX in Bearbeitungszustand um
+     * @param bearbeitungszustandFX
+     * @return Bearbeitungszustand
+     */
 
     @Override
     public Bearbeitungszustand unwrapBearbeitungszustandFX(BearbeitungszustandFX bearbeitungszustandFX) {
@@ -41,6 +53,12 @@ public class BearbeitungszustandFXServiceImpl implements BearbeitungszustandFXSe
 
 
     }
+
+    /**
+     * Methode wandelt BearbeitungszustandList in BearbeitungszustandFXList um
+     * @param bearbeitungszustandListe
+     * @return List<BearbeitungszustandFX>
+     */
 
     @Override
     public List<BearbeitungszustandFX> convertInBearbeitungszustandFXList(List<Bearbeitungszustand> bearbeitungszustandListe) {

@@ -16,6 +16,11 @@ import java.util.List;
  */
 public class NotizFXServiceImpl implements NotizFXService {
 
+    /**
+     * Methode wandelt Notiz in NotizFX um
+     * @param notiz
+     * @return NotizFX
+     */
     @Override
     public NotizFX wrapNotiz(Notiz notiz) {
         ObjectValidator.checkObObjectNullIst(notiz);
@@ -36,6 +41,12 @@ public class NotizFXServiceImpl implements NotizFXService {
         return notizFX;
     }
 
+    /**
+     * Methode wandelt NotizFX in Notiz um
+     * @param notizFX
+     * @return Notiz
+     */
+
     @Override
     public Notiz unwrapNotizFX(NotizFX notizFX){
         ObjectValidator.checkObObjectNullIst(notizFX);
@@ -52,6 +63,11 @@ public class NotizFXServiceImpl implements NotizFXService {
         return notiz;
     }
 
+    /**
+     * Methode wandelt notizListe in NotizFX Liste um
+     * @param notizListe
+     * @return List<NotizFX>
+     */
     @Override
     public List<NotizFX> convertInNotizFXList(List<Notiz> notizListe){
         ObjectValidator.checkObObjectNullIst(notizListe);

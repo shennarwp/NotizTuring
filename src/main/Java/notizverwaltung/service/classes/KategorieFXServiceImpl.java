@@ -23,6 +23,12 @@ import java.util.List;
  */
 
 public class KategorieFXServiceImpl implements KategorieFXService {
+
+    /**
+     * Methode wandelt Kategorie in KategorieFX um
+     * @param kategorie
+     * @return KategorieFX
+     */
     @Override
     public KategorieFX wrapKategorie(Kategorie kategorie) {
         ObjectValidator.checkObObjectNullIst(kategorie);
@@ -35,6 +41,12 @@ public class KategorieFXServiceImpl implements KategorieFXService {
 
     }
 
+    /**
+     * Methode wandelt KategorieFX in Kategorie um
+     * @param kategorieFX
+     * @return Kategorie
+     */
+
     @Override
     public Kategorie unwrapKategorieFX(KategorieFX kategorieFX) {
         ObjectValidator.checkObObjectNullIst(kategorieFX);
@@ -45,6 +57,12 @@ public class KategorieFXServiceImpl implements KategorieFXService {
         kategorie.setFarbe((Color) kategorieFX.getFarbe().getValue());
         return kategorie;
     }
+
+    /**
+     * Methode wandelt KategorieListe in KategorieFX Liste um
+     * @param kategorieListe
+     * @return List<KategorieFX>
+     */
 
     @Override
     public List<KategorieFX> convertInKategorieFXList(List<Kategorie> kategorieListe) {
