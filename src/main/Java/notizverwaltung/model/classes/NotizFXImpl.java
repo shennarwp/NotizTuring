@@ -12,6 +12,7 @@ import java.util.Date;
  *  Klasse fuer NotizFX. Die Klasse implementiert das NotizFX Interface.
  *
  * @author Tobias Gottschalk
+ * @author Michelle Blau
  *
  * @version 1.0
  */
@@ -200,6 +201,7 @@ public class NotizFXImpl implements NotizFX {
      * NotizFX sind gleich, wenn sie die gleiche ID haben
      * @param object zu vergleichende NotizFX
      * @return true, wenn ID gleich, sonst false
+     * @author Michelle Blau
      */
     @Override
     public boolean equals(Object object){

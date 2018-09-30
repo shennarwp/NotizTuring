@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Testklasse fuer die Klasse StringValidator
  *
  * @author Tobias Gottschalk
+ * @author Michelle Blau
  *
  * @version 1.0
  */
@@ -32,7 +33,6 @@ class StringValidatorTest {
      * Testet, was bei Übergabe eines Strings mit Sonderzeichen passiert
      * Methode: isSonderzeichenVorhanden()
      * ->Erwartet wird der Rückgabewert true
-     * @author Michelle Blau
      */
     @Test
     void isSonderzeichenVorhandenMitSonderzeichen(){
@@ -46,7 +46,6 @@ class StringValidatorTest {
      * Testet, was bei Übergabe eines Strings ohne Sonderzeichen passiert
      * Methode: isSonderzeichenVorhanden()
      * ->Erwartet wird der Rückgabewert false
-     * @author Michelle Blau
      */
     @Test
     void isSonderzeichenVorhandenOhneSonderzeichen(){

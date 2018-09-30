@@ -17,6 +17,7 @@ import java.util.Date;
  * @author Tobias Gottschalk
  * @author Shenna RWP
  * @author Agra Bimantara
+ * @author Michelle Blau
  *
  * @version 1.0
  */
@@ -192,6 +193,7 @@ public class NotizImpl implements Notiz
      * Vergleicht 2 Notizen
      * @param object zu vergleichende Notiz
      * @return true, wenn Notizen gleich, sonst false
+     * @author Michelle Blau
      */
     @Override
     public boolean equals(Object object){

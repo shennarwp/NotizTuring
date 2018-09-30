@@ -10,6 +10,7 @@ import javax.persistence.*;
  * Implementierung von Bearbeitungszustand
  *
  * @author Shenna RWP
+ * @author Michelle Blau
  */
 @Entity
 @Table(name = "Bearbeitungszustand")
@@ -70,7 +71,6 @@ public class BearbeitungszustandImpl implements Bearbeitungszustand
 	 * Vergleicht 2 Bearbeitungszustände
 	 * @param object zu vergleichender Bearbeitungszustand
 	 * @return true, wenn Zustände gleich, sonst false
-	 *
 	 * @author Michelle Blau
 	 */
 	@Override

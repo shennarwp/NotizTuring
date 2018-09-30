@@ -14,6 +14,7 @@ import javax.persistence.*;
 
 /**
  * @author Shenna RWP
+ * @author Michelle Blau
  */
 @Entity
 @Table(name = "Kategorie")

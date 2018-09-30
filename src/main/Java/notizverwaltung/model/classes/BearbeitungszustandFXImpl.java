@@ -12,6 +12,7 @@ import notizverwaltung.validators.StringValidator;
  * Klasse fuer BearbeitungszustandFX. Die Klasse implementiert das BearbeitungszustandFX Interface.
  *
  * @author Kevin Engelhardt
+ * @author Michelle Blau
  *
  * @version 1.0
  */
@@ -88,9 +89,8 @@ public class BearbeitungszustandFXImpl implements BearbeitungszustandFX {
 
     /**
      * BearbeitungszustandFX  sind gleich, wenn sie die gleiche ID haben
-     * @param object zu vergleichendes BearbeitungszustandFX
+     * @param object zu vergleichender BearbeitungszustandFX
      * @return true, wenn ID gleich, sonst false
-     *
      * @author Michelle Blau
      */
     @Override

@@ -104,8 +104,6 @@ public class FXUtil {
         kategorieName = kategorieName.toLowerCase();
         String vergleichsName = null;
 
-
-
         for(KategorieFX kategorieFX : guiKategorieListe){
             vergleichsName = kategorieFX.getKategorieName().getValue();
             vergleichsName = vergleichsName.toLowerCase();

@@ -11,7 +11,6 @@ package notizverwaltung.constants;
 public class DAOKonstanten {
 
     public static final int STANDARD_NOTIZBLOCK_ID = 1;
-    public static final int STANDARD_NOTIZBLOCK_ANZAHL = 1;
 
 
     public static final int MAX_ANZAHL_KATEGORIEN = 30;

@@ -11,6 +11,7 @@ import notizverwaltung.validators.StringValidator;
  * Klasse fuer KategorieFX. Die Klasse implementiert das KategorieFX Interface.
  *
  * @author Kevin Engelhardt
+ * @author Michelle Blau
  *
  * @version 1.0
  */
