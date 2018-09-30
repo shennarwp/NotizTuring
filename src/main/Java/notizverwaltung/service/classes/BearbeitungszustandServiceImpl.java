@@ -21,6 +21,11 @@ public class BearbeitungszustandServiceImpl implements BearbeitungszustandServic
 
 	private BearbeitungszustandDAO bearbeitungszustandDAO;
 
+	/**
+	 * Konstruktor
+	 * @param bearbeitungszustandDAO
+	 * @throws ObjectIstNullException
+	 */
 	public BearbeitungszustandServiceImpl(BearbeitungszustandDAO bearbeitungszustandDAO) throws ObjectIstNullException {
 		ObjectValidator.checkObObjectNullIst(bearbeitungszustandDAO);
 		this.bearbeitungszustandDAO = bearbeitungszustandDAO;
@@ -30,6 +35,11 @@ public class BearbeitungszustandServiceImpl implements BearbeitungszustandServic
 		this(DaoObjectBuilder.getBearbeitungszustandDaoObject());
 	}
 
+	/**
+	 * erstelle einen neue Bearbeitungszustand
+	 * @param bearbeitungszustand
+	 * @return
+	 */
 	@Override
 	public int addBearbeitungszustand (Bearbeitungszustand bearbeitungszustand) {
 		int bearbeitungszustandID = bearbeitungszustandDAO.addBearbeitungszustand(bearbeitungszustand);
@@ -37,17 +47,30 @@ public class BearbeitungszustandServiceImpl implements BearbeitungszustandServic
 		return bearbeitungszustandID;
 	}
 
+	/**
+	 * suche einen bestimmte Bearbeitungszustand
+	 * @param bearbeitungszustandID
+	 * @return Bearbeitungszustand
+	 */
 	@Override
 	public Bearbeitungszustand getBearbeitungszustand (int bearbeitungszustandID) {
 		return new BearbeitungszustandDAOImpl().getBearbeitungszustand(bearbeitungszustandID);
 	}
 
+	/**
+	 * Inhalt von Bearbeitungszustand ändern
+	 * @param bearbeitungszustand
+	 */
 	@Override
 	public void updateBearbeitungszustand (Bearbeitungszustand bearbeitungszustand) {
 		ObjectValidator.checkObObjectNullIst(bearbeitungszustand);
 		bearbeitungszustandDAO.updateBearbeitungszustand(bearbeitungszustand);
 	}
 
+	/**
+	 * lösche einen bestimmte Bearbeitungszustand
+	 * @param bearbeitungszustandID
+	 */
 	@Override
 	public void deleteBearbeitungszustand (int bearbeitungszustandID) {
 		if(getAnzahlNotizenInBearbeitungszustand(bearbeitungszustandID) == 0) {
@@ -56,11 +79,20 @@ public class BearbeitungszustandServiceImpl implements BearbeitungszustandServic
 		//TODO throws exception later
 	}
 
+	/**
+	 * suche die Summe von Notizen in einem bestimmten Bearbeitungszustand
+	 * @param bearbeitungszustandID
+	 * @return Summe der Notizen von einer bestimmten Kategorie
+	 */
 	@Override
 	public long getAnzahlNotizenInBearbeitungszustand(int bearbeitungszustandID) {
 		return bearbeitungszustandDAO.getAnzahlNotizenInBearbeitungszustand(bearbeitungszustandID);
 	}
 
+	/**
+	 * suche die Liste von aller Bearbeitungszustände
+	 * @return ie Liste von aller Bearbeitungszustände
+	 */
 	@Override
 	public List<Bearbeitungszustand> getAllBearbeitungszustand() {
 		return bearbeitungszustandDAO.getAlleBearbeitungszustand();
