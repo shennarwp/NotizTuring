@@ -28,7 +28,7 @@ import java.util.ResourceBundle;
  * Hauptprogramm, welches die GUI initialisiert
  * Kategorien, Notizen, Bearbeitungszustände befinden sich jeweils in einer ObservableList.
  *
- * Die Funktionalität der GUI-Elemente wird durch entsprechende Controller-Klassen und FXML zur Verfügung gestellt.
+ * Die Funktionalität der GUI-Elemente wird durch entsprechende Controller-Klassen und FXML zur Verfuegung gestellt.
  *
  * @author Michelle Blau
  * @author Johannes Gerwert
@@ -63,7 +63,7 @@ public class MainApp extends Application {
 
 
     /**
-     * Füllt die ObservableLists mit entsprechenden Daten aus der Datenbank
+     * Fuellt die ObservableLists mit entsprechenden Daten aus der Datenbank
      */
     public MainApp() {
 
@@ -87,7 +87,7 @@ public class MainApp extends Application {
 
 
     /**
-     * Initialisiert das Grundfenster und die Menü-Leiste.
+     * Initialisiert das Grundfenster und die Menue-Leiste.
      */
     public void initRootLayout() {
         try {
@@ -161,7 +161,7 @@ public class MainApp extends Application {
 
 
     /**
-     * Lädt normale Modellklassen aus der Datenbank und konvertiert diese um. Speichert
+     * Laedt normale Modellklassen aus der Datenbank und konvertiert diese um. Speichert
      * die konvertierten Objekte jeweils in einer ObservableList.
      */
     private void initializeListenMitDatenbankInhalt(){
@@ -183,7 +183,7 @@ public class MainApp extends Application {
 
 
     /**
-     * Führt launch()-Methode aus, sollte aus Kompatibilitätsgründen nicht verändert werden
+     * Führt launch()-Methode aus, sollte aus Kompatibilitaetsgründen nicht veraendert werden
      *
      * @param args wird nicht verwendet
      */

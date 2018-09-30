@@ -29,14 +29,14 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * Diese Klasse stattet die Menüleiste des Grundfensters mit Funktionalität aus:
+ * Diese Klasse stattet die Menueleiste des Grundfensters mit Funktionalitaet aus:
  *
- * Sie ermöglicht das Öffnen von Dialogfenstern mit vorheriger Überprüfung von DB-Inhalten.
- * Ebenfalls wird das Sortieren der Notizen ermöglicht.
+ * Sie ermoeglicht das Oeffnen von Dialogfenstern mit vorheriger Ueberpruefung von DB-Inhalten.
+ * Ebenfalls wird das Sortieren der Notizen ermoeglicht.
  *
  *
- * Die Klassen "ÄnderungsDialogController", "ErstellungsDialogController", "LöschungsDialogController" beinhalten
- * entsprechende Funktionalität für die Dialogfenster.
+ * Die Klassen "AenderungsDialogController", "ErstellungsDialogController", "LoeschungsDialogController" beinhalten
+ * entsprechende Funktionalitaet für die Dialogfenster.
  * 
  * @author Michelle Blau
  * @version 24.09.2018
@@ -49,7 +49,7 @@ public class RootLayoutController {
     private KategorieService kategorieService = ServiceObjectBuilder.getKategorieService();
 
 	/**
-	 * Eine Referenz auf das Hauptprogramm, wichtig zum Verändern der Kategorien/Notizen/Bearbeitungszustände.
+	 * Eine Referenz auf das Hauptprogramm, wichtig zum Veraendern der Kategorien/Notizen/Bearbeitungszustaende.
 	 */
     private MainApp mainApp;
     private Stage dialogStage;
@@ -69,7 +69,7 @@ public class RootLayoutController {
     /**
      * Zeigt einen Dialog zur Erstellung einer neuen Kategorie
      * beim Klicken auf "Neu -> Kategorie"
-     * Prüft vorher, ob zu viele Kategorien angelegt wurden.
+     * Prueft vorher, ob zu viele Kategorien angelegt wurden.
      */
     @FXML
     private void handleshowKategorieErstellungsMaske() {
@@ -86,7 +86,7 @@ public class RootLayoutController {
     /**
      * Zeigt einen Dialog zur Erstellung eines neuen Bearbeitungszustands beim Klicken auf
      * "Neu -> Bearbeitungszustand"
-     * Prüft vorher, ob zu viele Bearbeitungszustände angelegt wurden.
+     * Prueft vorher, ob zu viele Bearbeitungszustände angelegt wurden.
      */
     @FXML
     private void handleshowBearbeitungszustandErstellungsMaske() {
@@ -103,7 +103,7 @@ public class RootLayoutController {
     /**
      * Zeigt einen Dialog zur Erstellung einer neuen Notiz
      * beim Klicken auf "Neu -> Notiz"
-     * Prüft vorher, ob zu viele Notizen angelegt wurden.
+     * Prueft vorher, ob zu viele Notizen angelegt wurden.
      */
     @FXML
     private void handleshowNotizErstellungsMaske() {
@@ -116,7 +116,7 @@ public class RootLayoutController {
     }
 
     /**
-     * Zeigt einen Dialog zum Verändern einer bestehenden Kategorie
+     * Zeigt einen Dialog zum Veraendern einer bestehenden Kategorie
      */
     @FXML
     private void handleshowKategorieAenderungsMaske() {
@@ -125,7 +125,7 @@ public class RootLayoutController {
 
 
     /**
-     * Zeigt einen Dialog zum Verändern eines bestehenden Bearbeitungszustands
+     * Zeigt einen Dialog zum Veraendern eines bestehenden Bearbeitungszustands
      */
     @FXML
     private void handleshowZustandAenderungsMaske() {
@@ -134,7 +134,7 @@ public class RootLayoutController {
 
 
     /**
-     * Zeigt einen Dialog zum Verändern einer bestehenden Notiz
+     * Zeigt einen Dialog zum Veraendern einer bestehenden Notiz
      */
     @FXML
     private void handleshowNotizAenderungsMaske() {
@@ -143,7 +143,7 @@ public class RootLayoutController {
 
 
     /**
-     * Zeigt einen Dialog zum Löschen einer bestehenden Notiz
+     * Zeigt einen Dialog zum Loeschen einer bestehenden Notiz
      */
     @FXML
     private void handleshowNotizLoeschungsMaske() {
@@ -152,7 +152,7 @@ public class RootLayoutController {
 
 
     /**
-     * Zeigt einen Dialog zum Löschen einer bestehenden Kategorie
+     * Zeigt einen Dialog zum Loeschen einer bestehenden Kategorie
      */
     @FXML
     private void handleshowKategorieLoeschungsMaske() {
@@ -160,7 +160,7 @@ public class RootLayoutController {
     }
 
     /**
-     * Zeigt einen Dialog zum Löschen eines bestehenden Bearbeitungszustands
+     * Zeigt einen Dialog zum Loeschen eines bestehenden Bearbeitungszustands
      */
     @FXML
     private void handleshowBearbeitungszustandLoeschungsMaske() {
@@ -200,7 +200,7 @@ public class RootLayoutController {
 
 
     /**
-     * Hilfsmethode, erzeugt Dialogfenster zum Ändern von Objekten und zeigt dieses an.
+     * Hilfsmethode, erzeugt Dialogfenster zum Aendern von Objekten und zeigt dieses an.
      *
      * @param fxmlPfad Pfad zur fxml-Datei
      */
@@ -232,7 +232,7 @@ public class RootLayoutController {
 
 
     /**
-     * Hilfsmethode, erzeugt Dialogfenster zum Löschen von Objekten und zeigt dieses an.
+     * Hilfsmethode, erzeugt Dialogfenster zum Loeschen von Objekten und zeigt dieses an.
      *
      * @param fxmlPfad Pfad zur fxml-Datei
      */
@@ -264,7 +264,7 @@ public class RootLayoutController {
 
     /**
      * Sortiert die Notizen aufsteigend anhand ihrer compareTo()-Methode,
-     * also abhängig vom Fälligkeitsdatum
+     * also abhaengig vom Faelligkeitsdatum
      */
     @FXML
     private void handleSortiereNotizenAufsteigend(){
@@ -292,7 +292,7 @@ public class RootLayoutController {
 
     /**
      * Sortiert die Notizen anhand ihrer ID.
-     * Dies stellt die ursprüngliche Sortierung, wie sie beim Start der Notizverwaltung vorliegt,
+     * Dies stellt die urspruengliche Sortierung, wie sie beim Start der Notizverwaltung vorliegt,
      * wieder her.
      */
     @FXML
