@@ -24,7 +24,7 @@ import java.time.LocalDate;
  *
  * Dabei werden Nutzereingaben überprüft.
  *
- *  TODO System.out.printlns rausnehmen, sobald fertig geschrieben und getestet
+ *
  *
  * @author Michelle Blau
  * @version 29.09.2018
@@ -140,8 +140,6 @@ public class ErstellungsDialogController {
             NotizFX tmpNotizFX = notizFXService.wrapNotiz(tmpNotiz);
             mainApp.getNotizFXListe().add(tmpNotizFX);
 
-            System.out.println("Notiz erfolgreich in Liste eingefügt und in DB geschrieben:" + mainApp.getNotizFXListe());
-            System.out.println("ID der erstellten Notiz:" + tmpNotiz.getNotizID() +"und FX: " + tmpNotizFX.getNotizID() );
             dialogStage.close();
         }
     }
@@ -163,7 +161,6 @@ public class ErstellungsDialogController {
             KategorieFX tmpKategorieFX = kategorieFXService.wrapKategorie(tmpKategorie);
             mainApp.getKategorieFXListe().add(tmpKategorieFX);
 
-            System.out.println("Kategorie erfolgreich in Liste und in Datenbank eingefügt"+ mainApp.getKategorieFXListe());
             dialogStage.close();
         }
     }
@@ -187,7 +184,6 @@ public class ErstellungsDialogController {
             BearbeitungszustandFX tmpZustandFX = bearbeitungszustandFXService.wrapBearbeitungszustand(tmpZustand);
             mainApp.getBearbeitungszustandFXListe().add(tmpZustandFX);
 
-            System.out.println("Bearbeitungszustand in Liste und in Datenbank eingefügt"+ mainApp.getBearbeitungszustandFXListe());
             dialogStage.close();
         }
     }

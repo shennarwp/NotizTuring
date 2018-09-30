@@ -27,7 +27,7 @@ import java.util.Date;
  *
  * Dabei werden Nutzereingaben überprüft.
  *
- *  TODO System.out.printlns rausnehmen, sobald fertig geschrieben und getestet
+ *
  *
  * @author Michelle Blau
  * @version 29.09.2018
@@ -111,7 +111,6 @@ public class AenderungsDialogController {
     }
 
 
-
     /**
      * Schließt Stage/Dialogfenster beim Klicken auf den "Abbrechen" Button
      */
@@ -149,7 +148,6 @@ public class AenderungsDialogController {
 
             notizService.updateNotiz(notizFXService.unwrapNotizFX(zuAenderndeNotizFX));
 
-            System.out.println("Notiz wurde geändert in Liste und DB:" + mainApp.getNotizFXListe());
             dialogStage.close();
         }
     }
@@ -173,7 +171,6 @@ public class AenderungsDialogController {
             Kategorie zuAenderndeKategorie = kategorieFXService.unwrapKategorieFX(zuAenderndeKategorieFX);
             kategorieService.updateKategorie(zuAenderndeKategorie);
 
-            System.out.println("Kategorie wurde geändert in Liste und DB: "+mainApp.getKategorieFXListe());
             dialogStage.close();
         }
     }
@@ -198,7 +195,6 @@ public class AenderungsDialogController {
 
             bearbeitungszustandService.updateBearbeitungszustand(zuAendernderZustand);
 
-            System.out.println("Bearbeitungszustand geändert in Liste und DB: "+ mainApp.getBearbeitungszustandFXListe());
             dialogStage.close();
         }
     }

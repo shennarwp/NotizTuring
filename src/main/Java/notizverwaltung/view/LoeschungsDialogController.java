@@ -17,7 +17,7 @@ import notizverwaltung.validators.ObjectValidator;
  *
  * Dabei werden Nutzereingaben überprüft.
  *
- *  TODO System.out.printlns rausnehmen, sobald fertig geschrieben und getestet
+ *
  *
  * @author Michelle Blau
  * @version 29.09.2018
@@ -102,7 +102,6 @@ public class LoeschungsDialogController {
             mainApp.getNotizFXListe().remove(zuLoeschendeNotizFX);
             notizService.deleteNotiz(zuLoeschendeNotizFX.getNotizID().getValue());
 
-            System.out.println("Notiz wurde aus Liste und Datenbank gelöscht:" + mainApp.getNotizFXListe());
             dialogStage.close();
         }
     }
@@ -122,7 +121,6 @@ public class LoeschungsDialogController {
             mainApp.getKategorieFXListe().remove(zuLoeschendeKategorieFX);
             kategorieService.deleteKategorie(zuLoeschendeKategorieFX.getKategorieID().getValue());
 
-            System.out.println("Kategorie wurde aus Liste und Datenbank gelöscht:" + mainApp.getKategorieFXListe());
             dialogStage.close();
         }
     }
@@ -143,7 +141,6 @@ public class LoeschungsDialogController {
             mainApp.getBearbeitungszustandFXListe().remove(bestehenderBearbeitungszustandFX);
             bearbeitungszustandService.deleteBearbeitungszustand(bearbeitungszustandID);
 
-            System.out.println("Bearbeitungszustand wurde in Liste und Datenbank gelöscht:" + mainApp.getBearbeitungszustandFXListe());
             dialogStage.close();
         }
     }

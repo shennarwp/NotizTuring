@@ -19,6 +19,12 @@ import org.junit.jupiter.api.Test;
  */
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Testet Methoden der Klasse KategorieFXImpl
+ *
+ * @author Kevin Engelhardt
+ * @author Michelle Blau
+ */
 class KategorieFXImplTest {
 
     @BeforeEach

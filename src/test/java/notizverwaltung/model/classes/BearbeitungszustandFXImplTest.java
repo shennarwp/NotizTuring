@@ -17,6 +17,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Testet Methoden der Klasse BerabeitungszustandFXImpl
+ *
+ * @author Kevin Engelhardt
+ * @author Michelle Blau
+ *
+ */
+
 class BearbeitungszustandFXImplTest {
 
     @BeforeEach

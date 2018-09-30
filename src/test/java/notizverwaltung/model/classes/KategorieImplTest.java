@@ -17,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Testklasse fuer die Klasse KategorieImpl
  *
  * @author Tobias Gottschalk
+ * @author Michelle Blau
  *
  * @version 1.0
  */
