@@ -115,6 +115,10 @@ public class NotizFXImpl implements NotizFX {
         return bearbeitungszustandID;
     }
 
+    /**
+     * Die Methode setzt den Bearbeitungszustand
+     * @param bearbeitungszustandID BearbeitungszustandID als Integer. Der Integer darf nicht kleiner als 1 sein
+     */
     @Override
     public void setBearbeitungszustandID(int bearbeitungszustandID) {
         IntValidator.checkObIntNullOderNegativIst(bearbeitungszustandID);
@@ -169,7 +173,7 @@ public class NotizFXImpl implements NotizFX {
 
     }
 
-    //TODO muss ich noch schauen wie das besten gemacht wird
+
     @Override
     public BooleanProperty istErinnerungGesetzt() {
         return istErinnerungGesetzt;
