@@ -4,6 +4,10 @@ import notizverwaltung.model.interfaces.Notizblock;
 
 import javax.persistence.*;
 
+/**
+ * @author Agra Bimantara
+ * @author Shenna RWP
+ */
 @Entity
 @Table(name = "Notizblock")
 public class NotizblockImpl implements Notizblock
