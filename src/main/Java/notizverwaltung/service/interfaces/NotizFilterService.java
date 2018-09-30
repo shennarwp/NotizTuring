@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 
 /**
  *
- * Die Klasse stellt Funktionalitäten für den Notizblock bereit
+ * Die Klasse stellt Funktionalitäten für den NotizFilter bereit
  *
  *
  * @author Kevin Engelhardt
