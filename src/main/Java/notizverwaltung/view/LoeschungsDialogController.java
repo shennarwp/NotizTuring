@@ -12,7 +12,7 @@ import notizverwaltung.util.FXUtil;
 import notizverwaltung.validators.DaoContentValidator;
 import notizverwaltung.validators.ObjectValidator;
 /**
- * Stellt Funktionalitaet für die Dialog-Fenster zur Verfuegung, welche
+ * Stellt Funktionalitaet fuer die Dialog-Fenster zur Verfuegung, welche
  * bestehende Kategorien/Notizen/Bearbeitungszustaende loeschen.
  *
  * Dabei werden Nutzereingaben ueberprueft.

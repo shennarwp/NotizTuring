@@ -22,7 +22,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 /**
- * Stellt Funktionalitaet für die Dialog-Fenster zur Verfuegung, welche
+ * Stellt Funktionalitaet fuer die Dialog-Fenster zur Verfuegung, welche
  * bestehende Kategorien/Notizen/Bearbeitungszustaende veraendern.
  *
  * Dabei werden Nutzereingaben ueberprueft.

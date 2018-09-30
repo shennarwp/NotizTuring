@@ -19,7 +19,7 @@ import notizverwaltung.validators.StringValidator;
 import java.time.LocalDate;
 
 /**
- * Stellt Funktionalitaet für die Dialog-Fenster zur Verfuegung, welche
+ * Stellt Funktionalitaet fuer die Dialog-Fenster zur Verfuegung, welche
  * Kategorien/Notizen/Bearbeitungszustaende neu anlegen.
  *
  * Dabei werden Nutzereingaben ueberprueft.
