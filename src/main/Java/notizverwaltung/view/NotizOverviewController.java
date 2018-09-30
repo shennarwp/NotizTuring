@@ -257,7 +257,6 @@ public class NotizOverviewController {
      *
      * @param kategorieID Die ID der zu findenden Kategorie
      * @return Das gefundene Namensproperty
-
      */
     private StringProperty findKategorieFXName(int kategorieID){
 

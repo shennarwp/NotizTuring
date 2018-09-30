@@ -1,7 +1,15 @@
 package notizverwaltung.i18n;
 
 import java.util.ResourceBundle;
-//TODO Kommentare
+
+/**
+ * Stellt internationalisierte Strings zur Verfuegung, die in GUI-Elementen verwendet werden.
+ * Verwendete Ressourcendatei: Components
+ *
+ * @author Michelle Blau
+ * @author Johannes Gerwert
+ * @version 30.09.2018
+ */
 public abstract class I18nComponentsUtil {
 
     private static final String MENU_FILE = "menu-file";
