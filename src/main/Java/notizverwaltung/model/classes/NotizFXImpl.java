@@ -85,9 +85,7 @@ public class NotizFXImpl implements NotizFX {
     @Override
     public void setTitle(String title) {
         StringValidator.checkObStringLeerOderNullIst(title);
-        //TODO Wo ist der Unterschied zwischen set und setValue? Olbertz benutzt set
         this.title.set(title);
-        //this.title.setValue(title);
     }
 
     /**
@@ -190,7 +188,7 @@ public class NotizFXImpl implements NotizFX {
 
 
     }
-    
+
     /**
      * Die Methode liefert ein BooleanProperty zurueck
      * @return BooleanProperty. Value ist true, wenn das Erinnerungsdatum gesetzt ist. Anderenfalls ist das Value false
