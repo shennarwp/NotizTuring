@@ -131,7 +131,6 @@ public class NotizImpl implements Notiz
      * Die Methode liefert die ID des Bearbeitungszustand zurueck
      * @return int
      */
-
     @Override
     public int getBearbeitungszustandID() {
         return bearbeitungszustandID;

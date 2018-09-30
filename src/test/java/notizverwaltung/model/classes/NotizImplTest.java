@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 /**
@@ -22,26 +23,31 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 1.0
  */
 class NotizImplTest {
+    String stringIstLeer = " ";
+    String stringIstNull = null;
+    int intIstNegativ = -1;
 
-    @BeforeEach
-    void setUp()  {
 
-    }
+    NotizImpl notiz = new NotizImpl();
 
-    @AfterEach
-    void tearDown() {
+    @Test
+    void setTitleStringIstLeer() {
+        assertThrows(StringIsEmptyException.class, () -> { notiz.setBeschreibung(stringIstLeer);});
+
     }
 
     @Test
-    void setTitle() {
+    void setTitleStringIstNull() {
+        assertThrows(StringIsEmptyException.class, () -> { notiz.setBeschreibung(stringIstNull);});
+
     }
 
     @Test
     void setBeschreibungStringIstNull() throws StringIsEmptyException, IntIstNegativException, IOException, ObjectIstNullException {
-        String test = null;
-        NotizImpl notiz = new NotizImpl();
 
-        assertThrows(StringIsEmptyException.class, () -> { notiz.setBeschreibung(test);});
+        notiz = new NotizImpl();
+
+        assertThrows(StringIsEmptyException.class, () -> { notiz.setBeschreibung(stringIstLeer);});
 
     }
 
@@ -53,38 +59,33 @@ class NotizImplTest {
 
     }
 
+    @Test
+    void setKategorieID() {
+        assertThrows(IntIstNegativException.class, () -> { notiz.setKategorieID(intIstNegativ);});
+    }
 
 
     @Test
-    void getBearbeitungszustand() {
+    void setBeschreibungIstLeer() {
+        assertThrows(StringIsEmptyException.class, () -> { notiz.setBeschreibung(stringIstLeer);});
     }
 
     @Test
-    void setKategorie() {
+    void setBeschreibungIstLNull() {
+        assertThrows(StringIsEmptyException.class, () -> { notiz.setBeschreibung(stringIstNull);});
     }
 
     @Test
-    void setTitle1() {
-    }
+    void setBearbeitungszustandID() {
+        assertThrows(IntIstNegativException.class, () -> { notiz.setBearbeitungszustandID(intIstNegativ);});
 
-    @Test
-    void setBeschreibung() {
-    }
-
-    @Test
-    void setPrioritaet1() {
-    }
-
-    @Test
-    void setBearbeitungszustand1() {
-    }
-
-    @Test
-    void isErinnerungGesetzt() {
     }
 
     @Test
     void setErinnerung() {
+        Date dateIstNull = null;
+        assertThrows(ObjectIstNullException.class, () -> { notiz.setErinnerung(dateIstNull);});
+
     }
 
     /**
@@ -120,4 +121,16 @@ class NotizImplTest {
 
         assertEquals(false, ergebnis);
     }
+
+    @Test
+    void setID() {
+    }
+
+
+    @Test
+    void setFaelligkeit() {
+    }
+
+
+
 }
