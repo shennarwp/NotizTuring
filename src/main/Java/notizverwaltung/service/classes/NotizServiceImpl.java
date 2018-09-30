@@ -27,7 +27,6 @@ public class NotizServiceImpl implements NotizService {
 
     private NotizDAO notizDAO;
 
-
     /**
      * Konstruktor
      * @param notizDAO Nimmt ein NotizDAO Objekt entgegen
