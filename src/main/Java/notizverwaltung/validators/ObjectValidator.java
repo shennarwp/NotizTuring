@@ -12,7 +12,7 @@ public class ObjectValidator {
 
     /**
      * Validator prueft ob ein Objekt Null ist
-     * @param zuUberpruefendesObject
+     * @param zuUberpruefendesObject zu pruefendes Objekt
      * @throws ObjectIstNullException wirft eine Exception, wenn das Objekt null ist
      */
     public static void checkObObjectNullIst(Object zuUberpruefendesObject) throws ObjectIstNullException {
