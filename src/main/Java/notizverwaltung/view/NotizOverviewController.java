@@ -217,6 +217,8 @@ public class NotizOverviewController {
 
 
     /**
+     * Oeffnet ein Fenster, das den Inhalt der Notiz anzeigt.
+     *
      * @author Tobias Gottschalk
      */
     @FXML
