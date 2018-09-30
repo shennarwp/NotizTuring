@@ -8,10 +8,10 @@ import notizverwaltung.model.interfaces.KategorieFX;
 import notizverwaltung.validators.StringValidator;
 
 /**
- * Stellt Werkzeugmethoden für die GUI zur Verfügung:
+ * Stellt Werkzeugmethoden für die GUI zur Verfuegung:
  *
  * -Anzeigen von Error-/Warning-Dialogen
- * -Überprüfung von Inhalten der ObservableLists
+ * -Ueberprüfung von Inhalten der ObservableLists
  *
  * @author Michelle Blau
  * @version 08.09.2018
@@ -24,7 +24,7 @@ public class FXUtil {
     /**
      * Zeigt einen Fehlerdialog an.
      * @param titel Der Titel des Dialogs.
-     * @param header Die Überschrift, die über der Nachricht angezeigt wird.
+     * @param header Die Ueberschrift, die ueber der Nachricht angezeigt wird.
      * @param message Die Nachricht, die in dem Dialog angezeigt wird.
      */
     public static void showErrorDialog(String titel, String header,
@@ -39,7 +39,7 @@ public class FXUtil {
     /**
      * Zeigt Warnung; die max. Anzahl an Kategorien/Notizen/Bearbeitungszuständen
      * ist in der DB erreicht
-     * @param header Dialog-Überschrift
+     * @param header Dialog-Ueberschrift
      */
     public static void showZuVieleElementeWarning(String header){
         Alert dialog = new Alert(Alert.AlertType.WARNING);
@@ -72,7 +72,7 @@ public class FXUtil {
 
 
     /**
-     * Prüft, ob ein übergebener Name eines Bearbeitungszustands bereits in der GUI existiert
+     * Prueft, ob ein uebergebener Name eines Bearbeitungszustands bereits in der GUI existiert
      * (ignoriert Groß-/Kleinschreibung)
      *
      * @param zustandName Name des Zustands
@@ -96,7 +96,7 @@ public class FXUtil {
 
 
     /**
-     * Prüft, ob ein übergebener Name eine Kategorie bereits in der GUI existiert
+     * Prüft, ob ein uebergebener Name eine Kategorie bereits in der GUI existiert
      * (ignoriert Groß-/Kleinschreibung)
      *
      * @param kategorieName Name der Kategorie

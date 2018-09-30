@@ -10,7 +10,7 @@ import java.util.Date;
 import static notizverwaltung.validators.ObjectValidator.checkObObjectNullIst;
 
 /**
- * Stellt statische Methoden zum Konvertieren von "Date"-Objekten bzw. "LocalDate"-Objekten zur Verfügung
+ * Stellt statische Methoden zum Konvertieren von "Date"-Objekten bzw. "LocalDate"-Objekten zur Verfuegung
  *
  * @author Michelle Blau
  * @version 30.09.2018

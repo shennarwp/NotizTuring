@@ -22,10 +22,10 @@ import java.time.LocalDate;
 import java.util.Date;
 
 /**
- * Stellt Funktionalität für die Dialog-Fenster zur Verfügung, welche
- * bestehende Kategorien/Notizen/Bearbeitungszustände verändern.
+ * Stellt Funktionalitaet für die Dialog-Fenster zur Verfuegung, welche
+ * bestehende Kategorien/Notizen/Bearbeitungszustaende veraendern.
  *
- * Dabei werden Nutzereingaben überprüft.
+ * Dabei werden Nutzereingaben ueberprueft.
  *
  *
  *
@@ -101,7 +101,7 @@ public class AenderungsDialogController {
 
 
     /**
-     * Setzt Referenz auf die aufgerufene dialogStage, also das geöffnete Dialogfenster
+     * Setzt Referenz auf die aufgerufene dialogStage, also das geoeffnete Dialogfenster
      *
      * @param dialogStage
      */
@@ -122,7 +122,7 @@ public class AenderungsDialogController {
 
     /**
      * Ändert bestehende Notiz, wenn auf "Anwenden" Button geklickt wird, oder ruft Error-Dialog auf, wenn
-     * Nutzereingaben falsch. Die Änderung wird direkt in die Datenbank übernommen
+     * Nutzereingaben falsch. Die Aenderung wird direkt in die Datenbank übernommen
      *
      */
     @FXML
@@ -155,8 +155,8 @@ public class AenderungsDialogController {
 
 
     /**
-     * Ändert bestehende Kategorie, wenn auf "Anwenden" Button geklickt wird, oder ruft Error-Dialog auf, wenn
-     * Nutzereingaben falsch. Die Änderung wird direkt in die Datenbank übernommen
+     * Aendert bestehende Kategorie, wenn auf "Anwenden" Button geklickt wird, oder ruft Error-Dialog auf, wenn
+     * Nutzereingaben falsch. Die Aenderung wird direkt in die Datenbank übernommen
      */
     @FXML
     private void handleBtnAendereKategorie(){
@@ -179,7 +179,7 @@ public class AenderungsDialogController {
 
 
     /**
-     * Ändert bestehenden Bearbeitungszustand, wenn auf "Anwenden" Button geklickt wird, oder ruft Error-Dialog auf, wenn
+     * Aendert bestehenden Bearbeitungszustand, wenn auf "Anwenden" Button geklickt wird, oder ruft Error-Dialog auf, wenn
      * Nutzereingaben falsch
      */
     @FXML
@@ -203,7 +203,7 @@ public class AenderungsDialogController {
 
 
     /**
-     * Validiert die Eingabefelder fuer die Änderung einer Notiz.
+     * Validiert die Eingabefelder fuer die Aenderung einer Notiz.
      *
      * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
      * leerer String.
@@ -242,7 +242,7 @@ public class AenderungsDialogController {
 
 
     /**
-     * Validiert die Eingabefelder zur Änderung einer bestehenden Kategorie.
+     * Validiert die Eingabefelder zur Aenderung einer bestehenden Kategorie.
      *
      * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
      * leerer String.
@@ -274,7 +274,7 @@ public class AenderungsDialogController {
 
 
     /**
-     * Validiert die Eingabefelder zur Änderung eines Bearbeitungszustands.
+     * Validiert die Eingabefelder zur Aenderung eines Bearbeitungszustands.
      *
      * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
      * leerer String.
@@ -309,7 +309,7 @@ public class AenderungsDialogController {
      * Bei Wahl einer Notiz in der Choice-Box werden die Attribute der Notiz
      * in der GUI sichtbar gemacht.
      *
-     * @return lambda - Schreibt die Attribute der gewählten Notiz in die GUI
+     * @return lambda - Schreibt die Attribute der gewaehlten Notiz in die GUI
      */
     private ChangeListener<Number> getNotizChoiceBoxListener(){
 

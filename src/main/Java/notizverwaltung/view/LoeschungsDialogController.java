@@ -12,10 +12,10 @@ import notizverwaltung.util.FXUtil;
 import notizverwaltung.validators.DaoContentValidator;
 import notizverwaltung.validators.ObjectValidator;
 /**
- * Stellt Funktionalität für die Dialog-Fenster zur Verfügung, welche
- * bestehende Kategorien/Notizen/Bearbeitungszustände löschen.
+ * Stellt Funktionalitaet für die Dialog-Fenster zur Verfuegung, welche
+ * bestehende Kategorien/Notizen/Bearbeitungszustaende loeschen.
  *
- * Dabei werden Nutzereingaben überprüft.
+ * Dabei werden Nutzereingaben ueberprueft.
  *
  *
  *
@@ -66,7 +66,7 @@ public class LoeschungsDialogController {
 
 
     /**
-     * Setzt Referenz auf die aufgerufene dialogStage, also das geöffnete Dialogfenster
+     * Setzt Referenz auf die aufgerufene dialogStage, also das geoeffnete Dialogfenster
      *
      * @param dialogStage
      */
@@ -89,8 +89,8 @@ public class LoeschungsDialogController {
 
 
     /**
-     * Löscht bestehende Notiz, wenn auf "Löschen" Button geklickt wird, oder ruft Error-Dialog auf, wenn
-     * Nutzereingaben falsch. Dies wird direkt in die Datenbank übernommen.
+     * Loescht bestehende Notiz, wenn auf "Loeschen" Button geklickt wird, oder ruft Error-Dialog auf, wenn
+     * Nutzereingaben falsch. Dies wird direkt in die Datenbank uebernommen.
      *
      */
     @FXML
@@ -108,8 +108,8 @@ public class LoeschungsDialogController {
 
 
     /**
-     * Löscht bestehende Kategorie, wenn auf "Löschen" Button geklickt wird, oder ruft Error-Dialog auf, wenn
-     * Nutzereingaben falsch. Dies wird direkt in die Datenbank übernommen.
+     * Loescht bestehende Kategorie, wenn auf "Loeschen" Button geklickt wird, oder ruft Error-Dialog auf, wenn
+     * Nutzereingaben falsch. Dies wird direkt in die Datenbank uebernommen.
      *
      */
     @FXML
@@ -128,8 +128,8 @@ public class LoeschungsDialogController {
 
 
     /**
-     * Löscht bestehenden Bearbeitungszustand, wenn auf "Löschen" Button geklickt wird, oder ruft Error-Dialog auf, wenn
-     * Nutzereingaben falsch. Dies wird direkt in die Datenbank übernommen.
+     * Loescht bestehenden Bearbeitungszustand, wenn auf "Loeschen" Button geklickt wird, oder ruft Error-Dialog auf, wenn
+     * Nutzereingaben falsch. Dies wird direkt in die Datenbank uebernommen.
      */
     @FXML
     private void handleBtnLoescheBearbeitungszustand(){
@@ -148,7 +148,7 @@ public class LoeschungsDialogController {
 
 
     /**
-     * Validiert die Eingabefelder zum Löschen einer Notiz.
+     * Validiert die Eingabefelder zum Loeschen einer Notiz.
      *
      * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
      * leerer String.
@@ -168,7 +168,7 @@ public class LoeschungsDialogController {
 
 
     /**
-     * Validiert die Eingabefelder zum Löschen einer bestehenden Kategorie.
+     * Validiert die Eingabefelder zum Loeschen einer bestehenden Kategorie.
      *
      * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
      * leerer String.
@@ -196,7 +196,7 @@ public class LoeschungsDialogController {
 
 
     /**
-     * Validiert die Eingabefelder zum Löschen eines Bearbeitungszustands.
+     * Validiert die Eingabefelder zum Loeschen eines Bearbeitungszustands.
      *
      * @return Fehlermeldungen, wenn Validierungsfehler aufgetreten sind, oder ein
      * leerer String.

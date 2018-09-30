@@ -13,7 +13,7 @@ import notizverwaltung.service.interfaces.NotizService;
 import java.util.List;
 
 /**
- * Stellt Methoden zum Überprüfen von Datenbankinhalten zur Verfügung.
+ * Stellt Methoden zum Ueberprüfen von Datenbankinhalten zur Verfuegung.
  * Diese Methoden werden für die GUI verwendet.
  *
  * @author Michelle Blau
@@ -23,7 +23,7 @@ public class DaoContentValidator {
 
 
     /**
-     * Prüft, ob es Notizen in der Datenbank gibt, die eine übergebene Kategorie nutzen
+     * Prueft, ob es Notizen in der Datenbank gibt, die eine uebergebene Kategorie nutzen
      *
      * @param kategorie zu der festgestellt werden soll, ob Notizen dieser zugeordnet sind
      * @return true, wenn es zugeordnete Notizen gibt, sonst false
@@ -42,7 +42,7 @@ public class DaoContentValidator {
 
 
     /**
-     * Prüft, ob es Notizen in der Datenbank gibt, die einen übergebenen Bearbeitungszustand nutzen
+     * Prueft, ob es Notizen in der Datenbank gibt, die einen uebergebenen Bearbeitungszustand nutzen
      *
      * @param bearbeitungszustand zu dem festgestellt werden soll, ob Notizen diesem zugeordnet sind
      * @return true, wenn es zugeordnete Notizen gibt, sonst false
@@ -61,7 +61,7 @@ public class DaoContentValidator {
 
 
     /**
-     * Überprüft, ob die max. mögliche Anzahl an Kategorien in der DB erreicht wurde
+     * Ueberprueft, ob die max. moegliche Anzahl an Kategorien in der DB erreicht wurde
      *
      * @return true, wenn max. Anzahl erreicht, sonst false
      */
@@ -78,7 +78,7 @@ public class DaoContentValidator {
 
 
     /**
-     * Überprüft, ob die max. mögliche Anzahl an Bearbeitungszustaenden in der DB erreicht wurde
+     * Ueberprüft, ob die max. moegliche Anzahl an Bearbeitungszustaenden in der DB erreicht wurde
      *
      * @return true, wenn max. Anzahl erreicht, sonst false
      */
@@ -95,7 +95,7 @@ public class DaoContentValidator {
 
 
     /**
-     * Überprüft, ob die max. mögliche Anzahl Notizen in der DB erreicht wurde
+     * Ueberprüft, ob die max. moegliche Anzahl Notizen in der DB erreicht wurde
      *
      * @return true, wenn max. Anzahl erreicht, sonst false
      */
