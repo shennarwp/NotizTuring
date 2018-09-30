@@ -75,6 +75,7 @@ public class FXUtil {
      * (ignoriert Groß-/Kleinschreibung)
      *
      * @param zustandName Name des Zustands
+     * @param guiZustandListe ObservableList aus der GUI
      * @return true, wenn es einen Zustand mit diesem Namen schon in der GUI gibt, sonst false
      */
     public static boolean isZustandNameInListe(String zustandName, ObservableList<BearbeitungszustandFX> guiZustandListe){
@@ -98,6 +99,7 @@ public class FXUtil {
      * (ignoriert Groß-/Kleinschreibung)
      *
      * @param kategorieName Name der Kategorie
+     * @param guiKategorieListe ObservableList aus der GUI
      * @return true, wenn es eine Kategorie mit diesem Namen schon in der GUI gibt, sonst false
      */
     public static boolean isKategorieNameInListe(String kategorieName, ObservableList<KategorieFX> guiKategorieListe) {

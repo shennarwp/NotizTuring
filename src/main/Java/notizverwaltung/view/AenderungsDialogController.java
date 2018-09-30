@@ -169,6 +169,7 @@ public class AenderungsDialogController {
             zuAenderndeKategorieFX.setKategorieName(neuerName);
 
             Kategorie zuAenderndeKategorie = kategorieFXService.unwrapKategorieFX(zuAenderndeKategorieFX);
+
             kategorieService.updateKategorie(zuAenderndeKategorie);
 
             dialogStage.close();
