@@ -15,9 +15,12 @@ import java.util.List;
  */
 
 public interface KategorieFXService {
-
+    //Wandelt Kategorie in KategorieFX um
     public KategorieFX wrapKategorie(Kategorie kategorie);
+    //Wandelt KategorieFX in Kategorie um
     public Kategorie unwrapKategorieFX(KategorieFX kategorieFX);
+    //Wandelt kategorieListe in kategorieFXListe um
     public List<KategorieFX> convertInKategorieFXList(List<Kategorie> kategorieListe);
+    //Gibt Kategorie Name mittels KategorieID zurueck
     public StringProperty getKategorieNamePropertyVonKategorieID(int KategorieID);
 }
