@@ -4,6 +4,10 @@ import notizverwaltung.model.interfaces.Notizblock;
 
 import javax.persistence.*;
 
+/**
+ * @author Agra Bimantara
+ * @author Shenna RWP
+ */
 @Entity
 @Table(name = "Notizblock")
 public class NotizblockImpl implements Notizblock
@@ -13,11 +17,20 @@ public class NotizblockImpl implements Notizblock
     @Column(name = "NotizblockID", nullable = false, unique = true)
     private int notizblockID;
 
+    /**
+     * getter-Methode von ID der Notizblock
+     * @return ID der Notizblock
+     */
     @Override
     public int getNotizblockID() {
         return notizblockID;
     }
 
+
+    /**
+     * setter-Methode von ID der Notizblock
+     * @param notizblockID als int
+     */
     @Override
     public void setNotizblockID(int notizblockID) {
         this.notizblockID = notizblockID;
