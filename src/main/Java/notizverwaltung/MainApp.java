@@ -74,7 +74,7 @@ public class MainApp extends Application {
     /**
      * Startet das Hauptprogramm
      *
-     * @param primaryStage
+     * @param primaryStage Das Hauptfenster
      */
     @Override
     public void start(Stage primaryStage) {

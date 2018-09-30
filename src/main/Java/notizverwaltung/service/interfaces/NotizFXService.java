@@ -13,11 +13,25 @@ import java.util.List;
 
 public interface NotizFXService {
 
-    //Wandelt Notiz in NotizFX um
+    /**
+     * Wandelt Notiz in NotizFX um
+     * @param notiz
+     * @return notizFX
+     */
     public NotizFX wrapNotiz(Notiz notiz);
-    //Wandelt Notiz in NotizFX um
+
+    /**
+     * Wandelt Notiz in NotizFX um
+     * @param notizFX
+     * @return notiz
+     */
     public Notiz unwrapNotizFX(NotizFX notizFX);
-    //Wandelt notizListe in notizFXListe um
+
+    /**
+     * Wandelt notizListe in notizFXListe um
+     * @param notizListe
+     * @return notizFXListe
+     */
     public List<NotizFX> convertInNotizFXList(List<Notiz> notizListe);
 
 
