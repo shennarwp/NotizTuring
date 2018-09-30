@@ -4,6 +4,8 @@ import notizverwaltung.dao.interfaces.NutzerprofilDAO;
 import notizverwaltung.model.classes.NutzerprofilImpl;
 
 /**
+ *
+ *Klasse für Datenbank-Methode von Nutzerprofil
  * @author Agra Bimantara
  */
 

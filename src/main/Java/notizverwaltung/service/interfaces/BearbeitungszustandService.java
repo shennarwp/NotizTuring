@@ -5,6 +5,7 @@ import notizverwaltung.model.interfaces.Bearbeitungszustand;
 import java.util.List;
 
 /**
+ * Das Interface stellt die Methoden für die Serviceklasse bereit
  * @author Shenna RWP
  */
 public interface BearbeitungszustandService {
