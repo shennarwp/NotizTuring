@@ -4,6 +4,10 @@ import notizverwaltung.model.interfaces.Nutzerprofil;
 
 import javax.persistence.*;
 
+/**
+ * @author Agra Bimantara
+ * @author Shenna RWP
+ */
 @Entity
 @Table(name = "Nutzerprofil")
 public class NutzerprofilImpl implements Nutzerprofil
