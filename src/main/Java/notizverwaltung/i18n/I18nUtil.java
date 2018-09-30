@@ -12,7 +12,7 @@ import java.util.ResourceBundle;
  */
 public class I18nUtil {
 	/**
-	 * Der Basisname fuer die Ressourcendatei. 
+	 * Die Basisnamen fuer die Ressourcendateien.
 	 */
 	private static final String I18N_BASENAME_MESSAGES ="i18n.messages" ;
 	private static final String I18N_BASENAME_COMPONENTS ="i18n.components" ;
@@ -20,7 +20,7 @@ public class I18nUtil {
 
 
 	/**
-	 * Die Ressourcendatei fuer alle Texte.
+	 * Die Ressourcendateien.
 	 */
 	private static ResourceBundle resourceBundleMessages;
 	private static ResourceBundle resourceBundleComponents;
@@ -51,10 +51,18 @@ public class I18nUtil {
 		return resourceBundleMessages;
 	}
 
+	/**
+	 * Ermoeglicht den Zugriff auf die Ressourcendatei fuer die Komponenten.
+	 * @return Das ResourceBundle mit den Komponenten.
+	 */
 	public static ResourceBundle getComponentsResourceBundle() {
 		return resourceBundleComponents;
 	}
 
+	/**
+	 * Ermoeglicht den Zugriff auf die Ressourcendatei fuer die Dialoge.
+	 * @return Das ResourceBundle mit den Dialogen.
+	 */
 	public static ResourceBundle getDialogResourceBundle(){
 		return resourceBundleDialog;
 	}
