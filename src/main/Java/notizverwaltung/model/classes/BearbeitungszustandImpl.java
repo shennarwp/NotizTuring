@@ -24,9 +24,9 @@ public class BearbeitungszustandImpl implements Bearbeitungszustand
 
 	@Column(name = "BearbeitungszustandName")
 	private String nameDerSpalte;
-//TODO: Irgendwas stimmt mit der Position in der Datenbank nicht, bei Konstruktoraufruf MIT Position wird das Unique-Constraint verletzt
-//	@Column(name = "Position", unique = true)
-//	private int position;
+	// Irgendwas stimmt mit der Position in der Datenbank nicht, bei Konstruktoraufruf MIT Position wird das Unique-Constraint verletzt
+	//	@Column(name = "Position", unique = true)
+	//	private int position;
 
 	/**
 	 * Konstruktor

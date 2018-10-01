@@ -82,7 +82,6 @@ public class KategorieServiceImpl implements KategorieService
 		if(getAnzahlNotizenInKategorie(kategorieID) == 0) {
 			kategorieDAO.deleteKategorie(kategorieID);
 		}
-		//TODO throws exception hier später
 	}
 
 	/**
