@@ -34,6 +34,10 @@ class NotizFXImplTest {
     void tearDown() {
     }
 
+    /**
+     * testet set Methode auf falsche Eingabe (neg. int)
+     * Methode: setNotizID
+     */
     @Test
     void setNotizID() {
         NotizFXImpl notizFXImpl = new NotizFXImpl();
@@ -41,6 +45,10 @@ class NotizFXImplTest {
 
     }
 
+    /**
+     * testet set Methode auf falsche Eingabe (leerer String)
+     * Methode: setTitle
+     */
     @Test
     void setTitle() {
         NotizFXImpl notizFXImpl = new NotizFXImpl();
@@ -48,6 +56,10 @@ class NotizFXImplTest {
 
     }
 
+    /**
+     * testet set Methode auf falsche Eingabe (neg. int)
+     * Methode: setKategorieID
+     */
     @Test
     void setKategorieID() {
         NotizFXImpl notizFXImpl = new NotizFXImpl();
@@ -55,21 +67,34 @@ class NotizFXImplTest {
 
     }
 
+    /**
+     * testet set Methode auf falsche Eingabe (neg. int)
+     * Methode: setBearbeitungszustandID
+     */
     @Test
     void setBearbeitungszustandID() {
         NotizFXImpl notizFXImpl = new NotizFXImpl();
         assertThrows(IntIstNegativException.class, () -> {notizFXImpl.setBearbeitungszustandID(testInt);});
     }
 
+    /**
+     * testet set Methode auf falsche Eingabe (leerer String)
+     * Methode: setBeschreibung
+     */
     @Test
     void setBeschreibung() {
         NotizFXImpl notizFXImpl = new NotizFXImpl();
         assertThrows(StringIsEmptyException.class, () -> {notizFXImpl.setBeschreibung(leerString);});
     }
+
+    /**
+     * testet set Methode auf falsche Eingabe (leeres Object)
+     * Methode: setFaelligkeit
+     */
     @Test
-     void setFaelligkeit() {
-       NotizFXImpl notizFXImpl = new NotizFXImpl();
-       assertThrows(ObjectIstNullException.class,  () -> {notizFXImpl.setFaelligkeit(objectIsNull);});
+    void setFaelligkeit() {
+        NotizFXImpl notizFXImpl = new NotizFXImpl();
+        assertThrows(ObjectIstNullException.class,  () -> {notizFXImpl.setFaelligkeit(objectIsNull);});
     }
 
     /**
@@ -183,6 +208,7 @@ class NotizFXImplTest {
 
         assertEquals(-1, ergebnis);
     }
+
 
 
 }
