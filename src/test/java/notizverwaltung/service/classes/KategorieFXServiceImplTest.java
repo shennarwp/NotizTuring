@@ -30,6 +30,11 @@ class KategorieFXServiceImplTest {
     @AfterEach
     void tearDown() {
     }
+
+    /**
+     * testet Methode auf falsche Eingabe (leeres Object)
+     * Methode: wrapKategorie
+     */
     @Test
     void wrapKategorie(){
         Kategorie emptyObject = null;
@@ -37,6 +42,10 @@ class KategorieFXServiceImplTest {
         assertThrows(ObjectIstNullException.class, () -> {kategorieFXService.wrapKategorie(emptyObject);});
     }
 
+    /**
+     * testet Methode auf falsche Eingabe (leeres Object)
+     * Methode: unwrapKategorieFX
+     */
     @Test
     void unwrapKategorieFX(){
         KategorieFX emptyObject = null;
@@ -44,6 +53,10 @@ class KategorieFXServiceImplTest {
         assertThrows(ObjectIstNullException.class, () -> {kategorieFXService.unwrapKategorieFX(emptyObject);});
     }
 
+    /**
+     * testet Methode auf falsche Eingabe (leere Liste)
+     * Methode: convertInKategorieFXList
+     */
     @Test
     void convertInKategorieFXList(){
         List<Kategorie> emptyList = null;
@@ -51,6 +64,10 @@ class KategorieFXServiceImplTest {
         assertThrows(ObjectIstNullException.class, () -> {kategorieFXService.convertInKategorieFXList(emptyList);});
     }
 
+    /**
+     * testet Methode auf falsche Eingabe
+     * Methode: getKategorieNamePropertyVonKategorieID
+     */
     @Test
     void getKategorieNamePropertyVonKategorieID() {
         int testInt = -1;
