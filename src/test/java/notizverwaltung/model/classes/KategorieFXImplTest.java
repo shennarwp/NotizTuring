@@ -36,6 +36,10 @@ class KategorieFXImplTest {
     }
 
 
+    /**
+     * testet set Methode auf falsche Eingabe (neg. int)
+     * Methode: setKategorieID
+     */
     @Test
     void setKategorieID() {
         int testInt = -1;
@@ -44,7 +48,10 @@ class KategorieFXImplTest {
     }
 
 
-
+    /**
+     * testet set Methode auf falsche Eingabe (leerer String)
+     * Methode: setKategorieName
+     */
     @Test
     void setKategorieName() {
         String leerstring = " ";
@@ -53,7 +60,10 @@ class KategorieFXImplTest {
     }
 
 
-
+    /**
+     * testet set Methode auf falsche Eingabe (leeres Object)
+     * Methode setFarbe
+     */
     @Test
     void setFarbe() {
         Color testObject = null;

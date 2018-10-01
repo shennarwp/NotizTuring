@@ -35,6 +35,10 @@ class BearbeitungszustandFXImplTest {
     void tearDown() {
     }
 
+    /**
+     * testet set Methode auf falsche Eingabe (neg. int)
+     * Methode: setBearbeitungsZustandID
+     */
     @Test
     void setBearbeitungsZustandID() {
         int testInt = -1;
@@ -43,6 +47,10 @@ class BearbeitungszustandFXImplTest {
     }
 
 
+    /**
+     * testet set Methode auf falsche Eingabe (leerer String)
+     * Methode: setName
+     */
     @Test
     void setName() {
         String leerstring = " ";
@@ -50,6 +58,9 @@ class BearbeitungszustandFXImplTest {
         assertThrows(StringIsEmptyException.class, () -> {bearbeitungszustandFXImpl.setName(leerstring);});
     }
 
+    /**
+     * testet set Methode auf falsche Eingabe (neg. int)
+     */
     @Test
     void setPosition() {
         int testInt = -1;

@@ -14,13 +14,24 @@ import java.util.List;
  */
 
 public interface BearbeitungszustandFXService {
-
-    //Methode wandelt Bearbeitungszustand in BearbeitungszustandFX um
+    /**
+     * Wandelt Bearbeitungszustand in BearbeitungszustandFX um
+     * @param bearbeitungszustand
+     * @return bearbeitungszustandFX
+     */
     public BearbeitungszustandFX wrapBearbeitungszustand(Bearbeitungszustand bearbeitungszustand);
 
-    //Methode wandelt BearbeitungszustandFX in Bearbeitungszustand um
+    /**
+     * Wandelt BearbeitungszustandFX in Bearbeitungszustand um
+     * @param bearbeitungszustandFX
+     * @return bearbeitungszustand
+     */
     public Bearbeitungszustand unwrapBearbeitungszustandFX(BearbeitungszustandFX bearbeitungszustandFX);
 
-    //Methode wandelt BearbeitungszustandList in BearbeitungszustandFXList um
+    /**
+     * Wandelt bearbeitungszustandListe in bearbeitungszustandFXListe um
+     * @param bearbeitungszustandListe
+     * @return  bearbeitungszustandFXListe
+     */
     public List<BearbeitungszustandFX> convertInBearbeitungszustandFXList(List<Bearbeitungszustand> bearbeitungszustandListe);
 }
