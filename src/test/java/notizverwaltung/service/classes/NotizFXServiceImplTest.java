@@ -30,6 +30,10 @@ class NotizFXServiceImplTest {
     void tearDown() {
     }
 
+    /**
+     * testet Methode auf falsche Eingabe (leeres Object)
+     * Methode: wrapNotiz
+     */
     @Test
     void wrapNotiz() {
         Notiz emptyObject = null;
@@ -37,6 +41,10 @@ class NotizFXServiceImplTest {
         assertThrows(ObjectIstNullException.class, () -> {notizFXService.wrapNotiz(emptyObject);});
     }
 
+    /**
+     * testet Methode auf falsche Eingabe (leeres Object)
+     * Methode: unwrapNotizFX
+     */
     @Test
     void unwrapNotizFX() {
         NotizFX emptyObject = null;
@@ -44,6 +52,10 @@ class NotizFXServiceImplTest {
         assertThrows(ObjectIstNullException.class, () -> {notizFXService.unwrapNotizFX(emptyObject);});
     }
 
+    /**
+     * testet Methode auf falsche Eingabe (leere Liste)
+     * Methode: convertInNotizFXList
+     */
     @Test
     void convertInNotizFXList() {
         List<Notiz> emptyList = null;

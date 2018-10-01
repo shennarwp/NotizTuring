@@ -32,6 +32,10 @@ class BearbeitungszustandFXServiceImplTest {
     void tearDown() {
     }
 
+    /**
+     * testet Methode auf falsche Eingabe (leeres Object)
+     * Methode: wrapBearbeitungszustand
+     */
     @Test
     void wrapBearbeitungszustand() {
         Bearbeitungszustand emptyObject =  null;
@@ -40,6 +44,10 @@ class BearbeitungszustandFXServiceImplTest {
 
     }
 
+    /**
+     * testet Methode auf falsche Eingabe (leeres Object)
+     * Methode: unwrapBearbeitungszustandFX
+     */
     @Test
     void unwrapBearbeitungszustandFX() {
         BearbeitungszustandFX emptyObject = null;
@@ -47,6 +55,10 @@ class BearbeitungszustandFXServiceImplTest {
         assertThrows(ObjectIstNullException.class, () -> {bearbeitungszustandFXService.unwrapBearbeitungszustandFX(emptyObject);});
     }
 
+    /**
+     * testet Methode auf falsche Eingabe (leere Liste)
+     * Methode: convertInBearbeitungszustandListe
+     */
     @Test
     void convertInBearbeitungszustandFXList(){
         ArrayList<Bearbeitungszustand> emptyList = null;
