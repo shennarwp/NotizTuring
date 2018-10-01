@@ -29,9 +29,9 @@ public class KategorieImpl implements Kategorie
     @Column(name = "KategorieName")
     private String kategorieName;
 
-    //TODO: Derzeit stimmt mit Attribut farbe irgendwas in der Datenbank nicht, deswegen auskommentiert. Bei Konstruktoraufruf von NotizImpl MIT farbe gibt die DB eine Exception
-//    @Column(name = "Farbe")
-//    private Color farbe;
+    //Derzeit stimmt mit Attribut farbe irgendwas in der Datenbank nicht, deswegen auskommentiert. Bei Konstruktoraufruf von NotizImpl MIT farbe gibt die DB eine Exception
+    //    @Column(name = "Farbe")
+    //    private Color farbe;
 
     /**
      * Konstruktor

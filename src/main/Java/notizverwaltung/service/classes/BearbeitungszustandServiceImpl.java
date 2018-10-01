@@ -76,7 +76,6 @@ public class BearbeitungszustandServiceImpl implements BearbeitungszustandServic
 		if(getAnzahlNotizenInBearbeitungszustand(bearbeitungszustandID) == 0) {
 			bearbeitungszustandDAO.deleteBearbeitungszustand(bearbeitungszustandID);
 		}
-		//TODO throws exception later
 	}
 
 	/**
